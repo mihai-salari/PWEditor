@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DropboxFileListViewController">
+            <connections>
+                <outlet property="addToobarButton" destination="9bG-pY-lZX" id="eCc-Bq-KdL"/>
+                <outlet property="bannerView" destination="3tD-oh-LxQ" id="rKj-lI-d2O"/>
+                <outlet property="tableView" destination="191-Hx-b4V" id="hXA-xI-Prh"/>
+                <outlet property="toolbar" destination="3wo-sS-4ad" id="xZf-EV-RuW"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="191-Hx-b4V">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="474"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3wo-sS-4ad">
+                    <rect key="frame" x="0.0" y="474" width="320" height="44"/>
+                    <items>
+                        <barButtonItem systemItem="add" id="9bG-pY-lZX">
+                            <connections>
+                                <action selector="addToolbarButtonPressed:" destination="-1" id="Ndc-l1-Tg0"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tD-oh-LxQ" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="GZV-eY-UJD"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="3tD-oh-LxQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Bo-hL-r26"/>
+                <constraint firstAttribute="trailing" secondItem="3tD-oh-LxQ" secondAttribute="trailing" id="MUR-ob-1zo"/>
+                <constraint firstAttribute="bottom" secondItem="3tD-oh-LxQ" secondAttribute="bottom" id="NK8-eh-9B7"/>
+                <constraint firstItem="3tD-oh-LxQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dvh-IH-Tyi"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

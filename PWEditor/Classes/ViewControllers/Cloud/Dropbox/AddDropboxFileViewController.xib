@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddDropboxFileViewController" customModule="PWEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="bannerView" destination="uwm-hO-XX9" id="WPx-FI-kU9"/>
+                <outlet property="tableView" destination="vPT-pP-Nqj" id="shS-d0-K8r"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vPT-pP-Nqj">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uwm-hO-XX9" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="TJR-c3-nUN"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="uwm-hO-XX9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3r0-PZ-oAG"/>
+                <constraint firstItem="vPT-pP-Nqj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="5AJ-98-aRA"/>
+                <constraint firstItem="uwm-hO-XX9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gzz-VM-pk2"/>
+                <constraint firstAttribute="trailing" secondItem="uwm-hO-XX9" secondAttribute="trailing" id="XvC-lv-StO"/>
+                <constraint firstItem="vPT-pP-Nqj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c65-xU-Chn"/>
+                <constraint firstAttribute="bottom" secondItem="uwm-hO-XX9" secondAttribute="bottom" id="gZ2-OP-7YT"/>
+                <constraint firstItem="uwm-hO-XX9" firstAttribute="top" secondItem="vPT-pP-Nqj" secondAttribute="bottom" id="oZ8-zF-InI"/>
+                <constraint firstAttribute="trailing" secondItem="vPT-pP-Nqj" secondAttribute="trailing" id="vYb-Aj-hGY"/>
+                <constraint firstItem="vPT-pP-Nqj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="x52-fo-fci"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

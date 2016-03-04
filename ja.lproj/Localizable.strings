@@ -1,0 +1,134 @@
+/* 
+  Localizable.strings
+  PWEditor
+
+  Created by 二俣征嗣 on 2016/02/19.
+  Copyright © 2016年 Masatsugu Futamata. All rights reserved.
+*/
+
+// ボタンタイトル
+ButtonTitleOk = "OK";
+ButtonTitleCancel = "キャンセル";
+ButtonTitleClose = "閉じる";
+ButtonTitleClear = "クリア";
+ButtonTitleDelete = "削除";
+ButtonTitleMenu = "メニュー";
+ButtonTitleOpenChar = "文字コードを指定して開く";
+
+// アラートタイトル
+AlertTitleError = "エラー";
+AlertTitleConfirm = "確認";
+AlertTitleAbout = "%@ Ver.%@";
+
+// アラートメッセージ
+AlertMessageAbout = "Text editor for source code. \nCopyright(C) 2016 paveway.info.\nAll rights reserved.";
+AlertMessageDeleteConfirm = "%@を削除しますか？";
+AlertMessageSignOutDropbox = "Dropboxからサインアウトしますか。";
+AlertMessageDropboxInvalid = "Dropboxが無効です。";
+AlertMessageOpenFileError = "このファイルは開けません。";
+
+// アクションシートタイトル
+ActionSheetTitleDropbox = "Dropbox操作";
+
+// その他
+FontSize = "フォントサイズ";
+SignIn = "サインイン";
+SignOut = "サインアウト";
+Update = "更新";
+
+// フォント選択画面
+SelectFontScreenTitle = "フォント選択";
+
+// メニュー画面
+MenuScreenTitle = "メニュー";
+MenuSectionTitleLocal = "ローカル";
+MenuSectionTitleCloud = "クラウド";
+MenuSectionTitleHelp = "ヘルプ";
+MenuCellTitleLocalFileList = "ローカルファイル一覧";
+MenuCellTitleRecentFileList = "最近使用したファイル一覧";
+MenuCellTitleICloud = "iCloudファイル一覧";
+MenuCellTitleDropbox = "Dropboxファイル一覧";
+MenuCellTitleGoogleDrive = "GoogleDriveファイル一覧";
+MenuCellTitleOneDrive = "OneDriveファイル一覧";
+MenuCellTitleSettings = "設定";
+MenuCellTitleAbout = "このアプリについて";
+MenuCellTitleHistory = "更新履歴";
+MenuCellTitleOpenSourceLicense = "オープンソースライセンス";
+
+// ローカルファイル一覧画面
+LocalFileListScreenTitle = "ローカルファイル一覧";
+LocalFileListScreenTitleSearch = "検索結果一覧";
+
+// ファイル追加画面
+AddFileScreenTitle = "ファイル追加";
+AddFileSectionTitleFileName = "名前";
+AddFileSectionTitleFileType = "タイプ";
+AddFileCellTitleFile = "ファイル";
+AddFileCellTitleDir = "ディレクトリ";
+AddFileEnterNameError = "名前を入力してください。";
+AddFileSameNameError = "同名のファイルまたはディレクトリが存在します。";
+AddFileCreateError = "%@が作成できませんでした。";
+
+// ファイル編集画面
+EditFileWriteFileError = "ファイルデータが書き込めません。";
+
+// ファイル情報画面
+FileInfoScreenTitle = "ファイル情報";
+FileInfoCellTitlePathName = "パス名";
+FileInfoCellTitleFileName = "ファイル名";
+FileInfoCellTitleSize = "サイズ";
+FileInfoCellTitleCharNum = "文字数";
+FileInfoCellTitleLineNum = "行数";
+FileInfoCellTitleRetCodeType = "改行コード";
+FileInfoCellTitleCreateDate = "作成日";
+FileInfoCellTitleUpdateDate = "更新日";
+
+// grep一覧画面
+GrepListScreenTitle = "grep一覧";
+
+// iCloudファイル一覧画面
+ICloudFileListScreenTitle = "iCloudファイル一覧";
+
+// Dropboxファイル一覧画面
+DropboxFileListScreenTitle = "Dropboxファイル一覧";
+DropboxFileListGetFileInfoListError = "ファイル情報一覧を取得できませんでした。";
+
+// Dropboxファイル情報画面
+DropboxFileInfoScreenTitle = "Dropboxファイル情報";
+DropboxFileInfoCellTitleId = "ID";
+DropboxFileInfoCellTitleName = "ファイル名";
+DropboxFileInfoCellTitlePathLower = "パス名";
+DropboxFileInfoCellTitleSize = "サイズ";
+DropboxFileInfoCellTitleRev = "Rev";
+DropboxFileInfoCellTitleServerModified = "サーバ更新日時";
+DropboxFileInfoCellTitleClientModified = "クライアント更新日時";
+
+// Dropboxファイル追加画面
+AddDropboxFileScreenTitle = "Dropboxファイル追加";
+AddDropboxFileSectionTitleFileName = "名前";
+AddDropboxFileSectionTitleFileType = "タイプ";
+AddDropboxFileCellTitleFile = "ファイル";
+AddDropboxFileCellTitleDir = "ディレクトリ";
+AddDropboxFileEnterNameError = "名前を入力してください。";
+AddDropboxFileSameNameError = "同名のファイルまたはディレクトリが存在します。";
+AddDropboxFileCreateError = "%@が作成できませんでした。";
+
+// Dropboxファイル編集画面
+EditDropboxFileDownloadError = "%@をダウンロードできませんでした。";
+EditDropboxFileUpdloadError = "%@をアップロードできませんでした。";
+
+// 設定画面
+SettingsScreenTitle = "設定";
+SettingsSectionTitleFont = "フォント";
+SettingsSectionTitleCloud = "クラウド";
+SettingsCellTitleEnterDataFontName = "入力用フォント名";
+SettingsCellTitleEnterDataFontSize = "入力用フォントサイズ";
+SettingsCellTitleDropbox = "Dropbox";
+SettingsCellTitleGoogleDrive = "GoogleDrive";
+SettingsCellTitleOneDrive = "OneDrive";
+
+// 更新履歴画面
+HistoryScreenTitle = "更新履歴";
+
+// オープンソースライセンス一覧画面
+OpenSourceLicenseListScreenTitle = "オープンソースライセンス一覧";

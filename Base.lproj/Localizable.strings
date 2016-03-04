@@ -1,0 +1,134 @@
+/* 
+  Localizable.strings
+  PWEditor
+
+  Created by 二俣征嗣 on 2016/02/19.
+  Copyright © 2016年 Masatsugu Futamata. All rights reserved.
+*/
+
+// ボタンタイトル
+ButtonTitleOk = "OK";
+ButtonTitleCancel = "Cancel";
+ButtonTitleClose = "Close";
+ButtonTitleClear = "Clear";
+ButtonTitleDelete = "Delete";
+ButtonTitleMenu = "Menu";
+ButtonTitleOpenChar = "Open by specify char code";
+
+// アラートタイトル
+AlertTitleError = "Error";
+AlertTitleConfirm = "Confrim";
+AlertTitleAbout = "%@ Ver.%@";
+
+// アラートメッセージ
+AlertMessageAbout = "Text editor for source code. \nCopyright(C) 2016 paveway.info.\nAll rights reserved.";
+AlertMessageDeleteConfirm = "Delete the %@?";
+AlertMessageSignOutDropbox = "Sign out from dropbox?";
+AlertMessageDropboxInvalid = "Dropbox invalid.";
+AlertMessageOpenFileError = "File open failed.";
+
+// アクションシートタイトル
+ActionSheetTitleDropbox = "Dropbox operation";
+
+// その他
+FontSize = "Font size";
+SignIn = "Sign in";
+SignOut = "Sign out";
+Update = "Update";
+
+// フォント選択画面
+SelectFontScreenTitle = "Select font";
+
+// メニュー画面
+MenuScreenTitle = "Menu";
+MenuSectionTitleLocal = "Local";
+MenuSectionTitleCloud = "Cloud";
+MenuSectionTitleHelp = "Help";
+MenuCellTitleLocalFileList = "Local file list";
+MenuCellTitleRecentFileList = "Recent file list";
+MenuCellTitleICloud = "iCloud file list";
+MenuCellTitleDropbox = "Dropbox file list";
+MenuCellTitleGoogleDrive = "GoogleDrive file list";
+MenuCellTitleOneDrive = "OneDrive file list";
+MenuCellTitleSettings = "Settings";
+MenuCellTitleAbout = "About";
+MenuCellTitleHistory = "History";
+MenuCellTitleOpenSourceLicense = "Open source license";
+
+// ローカルファイル一覧画面
+LocalFileListScreenTitle = "Local file list";
+LocalFileListScreenTitleSearch = "Search result list";
+
+// ファイル追加画面
+AddFileScreenTitle = "Add file";
+AddFileSectionTitleFileName = "Name";
+AddFileSectionTitleFileType = "Type";
+AddFileCellTitleFile = "File";
+AddFileCellTitleDir = "Directory";
+AddFileEnterNameError = "Please enter a name.";
+AddFileSameNameError = "Exist same name file or directory.";
+AddFileCreateError = "Create %@ failed.";
+
+// ファイル編集画面
+EditFileWriteFileDataError = "Write file data failed.";
+
+// ファイル情報画面
+FileInfoScreenTitle = "File information";
+FileInfoCellTitlePathName = "Path name";
+FileInfoCellTitleFileName = "File name";
+FileInfoCellTitleSize = "Size";
+FileInfoCellTitleCharNum = "Char num";
+FileInfoCellTitleLineNum = "Line num";
+FileInfoCellTitleRetCodeType = "Return code";
+FileInfoCellTitleCreateDate = "Create date";
+FileInfoCellTitleUpdateDate = "Update date";
+
+// grep一覧画面
+GrepListScreenTitle = "Grep list";
+
+// iCloudファイル一覧画面
+ICloudFileListScreenTitle = "iCloud file list";
+
+// Dropboxファイル一覧画面
+DropboxFileListScreenTitle = "Dropbox file list";
+DropboxFileListGetFileInfoListError = "Get file info list failed.";
+
+// Dropboxファイル情報画面
+DropboxFileInfoScreenTitle = "Dropbox file info";
+DropboxFileInfoCellTitleId = "ID";
+DropboxFileInfoCellTitleName = "File name";
+DropboxFileInfoCellTitlePathLower = "Path name";
+DropboxFileInfoCellTitleSize = "Size";
+DropboxFileInfoCellTitleRev = "Rev";
+DropboxFileInfoCellTitleServerModified = "Server modified";
+DropboxFileInfoCellTitleClientModified = "Client modified";
+
+// Dropboxファイル追加画面
+AddDropboxFileScreenTitle = "Add dropbox file";
+AddDropboxFileSectionTitleFileName = "Name";
+AddDropboxFileSectionTitleFileType = "Type";
+AddDropboxFileCellTitleFile = "File";
+AddDropboxFileCellTitleDir = "Directory";
+AddDropboxFileEnterNameError = "Please enter a name.";
+AddDropboxFileSameNameError = "Exist same name file or directory.";
+AddDropboxFileCreateError = "Create %@ failed.";
+
+// Dropboxファイル編集画面
+EditDropboxFileDownloadError = "Download %@ failed.";
+EditDropboxFileUpdloadError = "Upload %@ failed.";
+
+// 設定画面
+SettingsScreenTitle = "Setting";
+SettingsSectionTitleFont = "Font";
+SettingsSectionTitleCloud = "Cloud";
+SettingsCellTitleEnterDataFontName = "Font name for enter data";
+SettingsCellTitleEnterDataFontSize = "Font size for enter data";
+SettingsCellTitleDropbox = "Dropbox";
+SettingsCellTitleGoogleDrive = "GoogleDrive";
+SettingsCellTitleOneDrive = "OneDrive";
+
+// 更新履歴画面
+HistoryScreenTitle = "Change log";
+
+// オープンソースライセンス一覧画面
+OpenSourceLicenseListScreenTitle = "Open source license list";

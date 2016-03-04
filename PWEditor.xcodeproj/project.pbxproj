@@ -7,83 +7,440 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F41F5241C8921EC0046F4C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41F5231C8921EC0046F4C7 /* AppDelegate.swift */; };
-		3F41F5261C8921EC0046F4C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41F5251C8921EC0046F4C7 /* ViewController.swift */; };
-		3F41F5291C8921EC0046F4C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F41F5271C8921EC0046F4C7 /* Main.storyboard */; };
-		3F41F52B1C8921EC0046F4C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F41F52A1C8921EC0046F4C7 /* Assets.xcassets */; };
-		3F41F52E1C8921EC0046F4C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F41F52C1C8921EC0046F4C7 /* LaunchScreen.storyboard */; };
-		EDDED37BC66D5CD0288E5003 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF300C3864291BAB0ECEC20 /* Pods.framework */; };
+		3F003D1B1C7676C500ECC371 /* CommonConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D1A1C7676C500ECC371 /* CommonConst.swift */; };
+		3F003D1D1C7678B000ECC371 /* LocalizableConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D1C1C7678B000ECC371 /* LocalizableConst.swift */; };
+		3F003D201C767A2100ECC371 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F003D221C767A2100ECC371 /* InfoPlist.strings */; };
+		3F003D271C767B1800ECC371 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F003D291C767B1800ECC371 /* Localizable.strings */; };
+		3F003D2C1C767C1B00ECC371 /* EnvUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D2B1C767C1B00ECC371 /* EnvUtils.swift */; };
+		3F003D301C767C2600ECC371 /* LocalizableUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D2D1C767C2600ECC371 /* LocalizableUtils.swift */; };
+		3F003D311C767C2600ECC371 /* LogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D2E1C767C2600ECC371 /* LogUtils.swift */; };
+		3F003D321C767C2600ECC371 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D2F1C767C2600ECC371 /* StringUtils.swift */; };
+		3F003D3C1C767DFB00ECC371 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D3A1C767DFB00ECC371 /* BaseTableViewController.swift */; };
+		3F003D3D1C767DFB00ECC371 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D3B1C767DFB00ECC371 /* BaseViewController.swift */; };
+		3F157BFA1C84F4A6007C555E /* AddDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F157BF81C84F4A6007C555E /* AddDropboxFileViewController.swift */; };
+		3F157BFB1C84F4A6007C555E /* AddDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F157BF91C84F4A6007C555E /* AddDropboxFileViewController.xib */; };
+		3F157BFF1C84F4F3007C555E /* ICloudDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F157BFC1C84F4F3007C555E /* ICloudDocument.swift */; };
+		3F157C001C84F4F3007C555E /* ICloudFileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F157BFD1C84F4F3007C555E /* ICloudFileListViewController.swift */; };
+		3F157C011C84F4F3007C555E /* ICloudFileListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F157BFE1C84F4F3007C555E /* ICloudFileListViewController.xib */; };
+		3F157C051C84F50E007C555E /* DropboxFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F157C021C84F50E007C555E /* DropboxFileInfo.swift */; };
+		3F157C061C84F50E007C555E /* DropboxFileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F157C031C84F50E007C555E /* DropboxFileListViewController.swift */; };
+		3F157C071C84F50E007C555E /* DropboxFileListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F157C041C84F50E007C555E /* DropboxFileListViewController.xib */; };
+		3F165E271C7A684F001CBC38 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E251C7A684F001CBC38 /* MenuViewController.swift */; };
+		3F165E281C7A684F001CBC38 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E261C7A684F001CBC38 /* MenuViewController.xib */; };
+		3F165E311C7A687C001CBC38 /* AddFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E291C7A687C001CBC38 /* AddFileViewController.swift */; };
+		3F165E321C7A687C001CBC38 /* AddFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E2A1C7A687C001CBC38 /* AddFileViewController.xib */; };
+		3F165E331C7A687C001CBC38 /* EditFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E2B1C7A687C001CBC38 /* EditFileViewController.swift */; };
+		3F165E341C7A687C001CBC38 /* EditFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E2C1C7A687C001CBC38 /* EditFileViewController.xib */; };
+		3F165E351C7A687C001CBC38 /* GrepListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E2D1C7A687C001CBC38 /* GrepListViewController.swift */; };
+		3F165E361C7A687C001CBC38 /* GrepListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E2E1C7A687C001CBC38 /* GrepListViewController.xib */; };
+		3F165E371C7A687C001CBC38 /* LocalFileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E2F1C7A687C001CBC38 /* LocalFileListViewController.swift */; };
+		3F165E381C7A687C001CBC38 /* LocalFileListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E301C7A687C001CBC38 /* LocalFileListViewController.xib */; };
+		3F165E3D1C7A68FB001CBC38 /* History.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E3C1C7A68FB001CBC38 /* History.txt */; };
+		3F165E411C7A690C001CBC38 /* ECSlidingViewControllerLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E3E1C7A690C001CBC38 /* ECSlidingViewControllerLicense.txt */; };
+		3F165E421C7A690C001CBC38 /* SourceHanCodeJPLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E3F1C7A690C001CBC38 /* SourceHanCodeJPLicense.txt */; };
+		3F165E431C7A690C001CBC38 /* TextKitLineNumbers.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E401C7A690C001CBC38 /* TextKitLineNumbers.txt */; };
+		3F165E451C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E441C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf */; };
+		3F165E481C7A6CE0001CBC38 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E461C7A6CE0001CBC38 /* HistoryViewController.swift */; };
+		3F165E491C7A6CE0001CBC38 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E471C7A6CE0001CBC38 /* HistoryViewController.xib */; };
+		3F165E4B1C7A72A1001CBC38 /* BaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E4A1C7A72A1001CBC38 /* BaseWebViewController.swift */; };
+		3F165E511C7A75F9001CBC38 /* content.html in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E4D1C7A75F9001CBC38 /* content.html */; };
+		3F165E601C7A776F001CBC38 /* highlight.pack.js in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E5D1C7A776F001CBC38 /* highlight.pack.js */; };
+		3F165E611C7A776F001CBC38 /* highlightjs-line-numbers.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E5E1C7A776F001CBC38 /* highlightjs-line-numbers.min.js */; };
+		3F165E621C7A776F001CBC38 /* xcode.css in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E5F1C7A776F001CBC38 /* xcode.css */; };
+		3F165E671C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E631C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift */; };
+		3F165E681C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E641C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.xib */; };
+		3F165E691C7A7B13001CBC38 /* OpenSourceLicenseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E651C7A7B13001CBC38 /* OpenSourceLicenseListViewController.swift */; };
+		3F165E6A1C7A7B13001CBC38 /* OpenSourceLicenseListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E661C7A7B13001CBC38 /* OpenSourceLicenseListViewController.xib */; };
+		3F165E6D1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E6B1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt */; };
+		3F165E6E1C7A7D0B001CBC38 /* HighlightLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E6C1C7A7D0B001CBC38 /* HighlightLicense.txt */; };
+		3F165E731C7A7E7C001CBC38 /* SelectFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E6F1C7A7E7C001CBC38 /* SelectFontViewController.swift */; };
+		3F165E741C7A7E7C001CBC38 /* SelectFontViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E701C7A7E7C001CBC38 /* SelectFontViewController.xib */; };
+		3F165E751C7A7E7C001CBC38 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E711C7A7E7C001CBC38 /* SettingsViewController.swift */; };
+		3F165E761C7A7E7C001CBC38 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E721C7A7E7C001CBC38 /* SettingsViewController.xib */; };
+		3F165E791C7A7FF5001CBC38 /* SelectNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E771C7A7FF5001CBC38 /* SelectNumberViewController.swift */; };
+		3F165E7A1C7A7FF5001CBC38 /* SelectNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E781C7A7FF5001CBC38 /* SelectNumberViewController.xib */; };
+		3F165E7C1C7A8039001CBC38 /* SettingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E7B1C7A8039001CBC38 /* SettingUtils.swift */; };
+		3F23F9601C7BBAA2004852B3 /* GrepResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */; };
+		3F23F9611C7BBAA2004852B3 /* SearchResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */; };
+		3F23F9651C7BD19D004852B3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F9641C7BD19D004852B3 /* DateUtils.swift */; };
+		3F37CF4A1C85AC1800B138C9 /* DropboxFileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F37CF481C85AC1800B138C9 /* DropboxFileInfoViewController.swift */; };
+		3F37CF4B1C85AC1800B138C9 /* DropboxFileInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F37CF491C85AC1800B138C9 /* DropboxFileInfoViewController.xib */; };
+		3F3E85BC1C776174002EFB6D /* EnterLineDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E85BA1C776174002EFB6D /* EnterLineDataTableViewCell.swift */; };
+		3F3E85BD1C776174002EFB6D /* EnterLineDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E85BB1C776174002EFB6D /* EnterLineDataTableViewCell.xib */; };
+		3F447C871C8904FD001A3518 /* SelectStringEncodingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F447C851C8904FD001A3518 /* SelectStringEncodingViewController.swift */; };
+		3F447C881C8904FD001A3518 /* SelectStringEncodingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F447C861C8904FD001A3518 /* SelectStringEncodingViewController.xib */; };
+		3F4873681C75D83B006594A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4873671C75D83B006594A6 /* AppDelegate.swift */; };
+		3F48736E1C75DB6A006594A6 /* ConfigUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F48736D1C75DB6A006594A6 /* ConfigUtils.swift */; };
+		3F4873701C75DB9C006594A6 /* Config.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F48736F1C75DB9C006594A6 /* Config.txt */; };
+		3F4873721C75DBE6006594A6 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4873711C75DBE6006594A6 /* FileUtils.swift */; };
+		3F4873741C75DD6D006594A6 /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4873731C75DD6D006594A6 /* FileInfo.swift */; };
+		3F49306D1C7BAF590088A454 /* FileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49306B1C7BAF590088A454 /* FileInfoViewController.swift */; };
+		3F49306E1C7BAF590088A454 /* FileInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F49306C1C7BAF590088A454 /* FileInfoViewController.xib */; };
+		3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F74947F1C753B0B002A0544 /* Assets.xcassets */; };
+		3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */; };
+		3FF4B8411C792B8C001F113C /* LineNumberLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4B83C1C792B8C001F113C /* LineNumberLayoutManager.m */; };
+		3FF4B8421C792B8C001F113C /* LineNumberTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4B83E1C792B8C001F113C /* LineNumberTextView.m */; };
+		3FF4B8431C792B8C001F113C /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4B8401C792B8C001F113C /* MyView.m */; };
+		3FF93E371C86595500621455 /* EditDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */; };
+		3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */; };
+		3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */; };
+		40C44389B3CB69C698058540 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D11AD2E8D3B26F561B704230 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		107AD38F1B73C16760921766 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		3F41F5201C8921EC0046F4C7 /* PWEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PWEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F41F5231C8921EC0046F4C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3F41F5251C8921EC0046F4C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3F41F5281C8921EC0046F4C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3F41F52A1C8921EC0046F4C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3F41F52D1C8921EC0046F4C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3F41F52F1C8921EC0046F4C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		62370B14DA9427B9B9C3F981 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		8BF300C3864291BAB0ECEC20 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F003D1A1C7676C500ECC371 /* CommonConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonConst.swift; path = Classes/CommonConst.swift; sourceTree = "<group>"; };
+		3F003D1C1C7678B000ECC371 /* LocalizableConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalizableConst.swift; path = PWEditor/Classes/LocalizableConst.swift; sourceTree = "<group>"; };
+		3F003D211C767A2100ECC371 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3F003D231C767A7500ECC371 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		3F003D241C767A7500ECC371 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3F003D281C767B1800ECC371 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3F003D2A1C767B1A00ECC371 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3F003D2B1C767C1B00ECC371 /* EnvUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnvUtils.swift; path = Classes/Utils/EnvUtils.swift; sourceTree = "<group>"; };
+		3F003D2D1C767C2600ECC371 /* LocalizableUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalizableUtils.swift; path = Classes/Utils/LocalizableUtils.swift; sourceTree = "<group>"; };
+		3F003D2E1C767C2600ECC371 /* LogUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogUtils.swift; path = Classes/Utils/LogUtils.swift; sourceTree = "<group>"; };
+		3F003D2F1C767C2600ECC371 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringUtils.swift; path = Classes/Utils/StringUtils.swift; sourceTree = "<group>"; };
+		3F003D3A1C767DFB00ECC371 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = Classes/ViewControllers/Common/BaseTableViewController.swift; sourceTree = "<group>"; };
+		3F003D3B1C767DFB00ECC371 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = Classes/ViewControllers/Common/BaseViewController.swift; sourceTree = "<group>"; };
+		3F0D81471C7F2C22005FC945 /* PWEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PWEditor.entitlements; sourceTree = "<group>"; };
+		3F157BF81C84F4A6007C555E /* AddDropboxFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddDropboxFileViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/AddDropboxFileViewController.swift; sourceTree = "<group>"; };
+		3F157BF91C84F4A6007C555E /* AddDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/AddDropboxFileViewController.xib; sourceTree = "<group>"; };
+		3F157BFC1C84F4F3007C555E /* ICloudDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICloudDocument.swift; path = Classes/ViewControllers/Cloud/ICloud/ICloudDocument.swift; sourceTree = "<group>"; };
+		3F157BFD1C84F4F3007C555E /* ICloudFileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICloudFileListViewController.swift; path = Classes/ViewControllers/Cloud/ICloud/ICloudFileListViewController.swift; sourceTree = "<group>"; };
+		3F157BFE1C84F4F3007C555E /* ICloudFileListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ICloudFileListViewController.xib; path = Classes/ViewControllers/Cloud/ICloud/ICloudFileListViewController.xib; sourceTree = "<group>"; };
+		3F157C021C84F50E007C555E /* DropboxFileInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DropboxFileInfo.swift; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileInfo.swift; sourceTree = "<group>"; };
+		3F157C031C84F50E007C555E /* DropboxFileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DropboxFileListViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileListViewController.swift; sourceTree = "<group>"; };
+		3F157C041C84F50E007C555E /* DropboxFileListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DropboxFileListViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileListViewController.xib; sourceTree = "<group>"; };
+		3F165E251C7A684F001CBC38 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Classes/ViewControllers/Common/MenuViewController.swift; sourceTree = "<group>"; };
+		3F165E261C7A684F001CBC38 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MenuViewController.xib; path = Classes/ViewControllers/Common/MenuViewController.xib; sourceTree = "<group>"; };
+		3F165E291C7A687C001CBC38 /* AddFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddFileViewController.swift; path = Classes/ViewControllers/Local/AddFileViewController.swift; sourceTree = "<group>"; };
+		3F165E2A1C7A687C001CBC38 /* AddFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddFileViewController.xib; path = Classes/ViewControllers/Local/AddFileViewController.xib; sourceTree = "<group>"; };
+		3F165E2B1C7A687C001CBC38 /* EditFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditFileViewController.swift; path = Classes/ViewControllers/Local/EditFileViewController.swift; sourceTree = "<group>"; };
+		3F165E2C1C7A687C001CBC38 /* EditFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditFileViewController.xib; path = Classes/ViewControllers/Local/EditFileViewController.xib; sourceTree = "<group>"; };
+		3F165E2D1C7A687C001CBC38 /* GrepListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GrepListViewController.swift; path = Classes/ViewControllers/Local/GrepListViewController.swift; sourceTree = "<group>"; };
+		3F165E2E1C7A687C001CBC38 /* GrepListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GrepListViewController.xib; path = Classes/ViewControllers/Local/GrepListViewController.xib; sourceTree = "<group>"; };
+		3F165E2F1C7A687C001CBC38 /* LocalFileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalFileListViewController.swift; path = Classes/ViewControllers/Local/LocalFileListViewController.swift; sourceTree = "<group>"; };
+		3F165E301C7A687C001CBC38 /* LocalFileListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalFileListViewController.xib; path = Classes/ViewControllers/Local/LocalFileListViewController.xib; sourceTree = "<group>"; };
+		3F165E3C1C7A68FB001CBC38 /* History.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = History.txt; path = Resources/History/History.txt; sourceTree = "<group>"; };
+		3F165E3E1C7A690C001CBC38 /* ECSlidingViewControllerLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ECSlidingViewControllerLicense.txt; path = Resources/Licenses/ECSlidingViewControllerLicense.txt; sourceTree = "<group>"; };
+		3F165E3F1C7A690C001CBC38 /* SourceHanCodeJPLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SourceHanCodeJPLicense.txt; path = Resources/Licenses/SourceHanCodeJPLicense.txt; sourceTree = "<group>"; };
+		3F165E401C7A690C001CBC38 /* TextKitLineNumbers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TextKitLineNumbers.txt; path = Resources/Licenses/TextKitLineNumbers.txt; sourceTree = "<group>"; };
+		3F165E441C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceHanCodeJP-Normal.otf"; path = "Resources/Fonts/SourceHanCodeJP-Normal.otf"; sourceTree = "<group>"; };
+		3F165E461C7A6CE0001CBC38 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryViewController.swift; path = Classes/ViewControllers/Help/HistoryViewController.swift; sourceTree = "<group>"; };
+		3F165E471C7A6CE0001CBC38 /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HistoryViewController.xib; path = Classes/ViewControllers/Help/HistoryViewController.xib; sourceTree = "<group>"; };
+		3F165E4A1C7A72A1001CBC38 /* BaseWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseWebViewController.swift; path = Classes/ViewControllers/Common/BaseWebViewController.swift; sourceTree = "<group>"; };
+		3F165E4D1C7A75F9001CBC38 /* content.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = content.html; path = Resources/Html/content.html; sourceTree = "<group>"; };
+		3F165E5D1C7A776F001CBC38 /* highlight.pack.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = highlight.pack.js; path = Resources/Html/highlight.pack.js; sourceTree = "<group>"; };
+		3F165E5E1C7A776F001CBC38 /* highlightjs-line-numbers.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "highlightjs-line-numbers.min.js"; path = "Resources/Html/highlightjs-line-numbers.min.js"; sourceTree = "<group>"; };
+		3F165E5F1C7A776F001CBC38 /* xcode.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = xcode.css; path = Resources/Html/xcode.css; sourceTree = "<group>"; };
+		3F165E631C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenSourceLicenseContentViewController.swift; path = Classes/ViewControllers/Help/OpenSourceLicenseContentViewController.swift; sourceTree = "<group>"; };
+		3F165E641C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OpenSourceLicenseContentViewController.xib; path = Classes/ViewControllers/Help/OpenSourceLicenseContentViewController.xib; sourceTree = "<group>"; };
+		3F165E651C7A7B13001CBC38 /* OpenSourceLicenseListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenSourceLicenseListViewController.swift; path = Classes/ViewControllers/Help/OpenSourceLicenseListViewController.swift; sourceTree = "<group>"; };
+		3F165E661C7A7B13001CBC38 /* OpenSourceLicenseListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OpenSourceLicenseListViewController.xib; path = Classes/ViewControllers/Help/OpenSourceLicenseListViewController.xib; sourceTree = "<group>"; };
+		3F165E6B1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Highlightjs-line-numbersLicense.txt"; path = "Resources/Licenses/Highlightjs-line-numbersLicense.txt"; sourceTree = "<group>"; };
+		3F165E6C1C7A7D0B001CBC38 /* HighlightLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = HighlightLicense.txt; path = Resources/Licenses/HighlightLicense.txt; sourceTree = "<group>"; };
+		3F165E6F1C7A7E7C001CBC38 /* SelectFontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectFontViewController.swift; path = Classes/ViewControllers/Help/SelectFontViewController.swift; sourceTree = "<group>"; };
+		3F165E701C7A7E7C001CBC38 /* SelectFontViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectFontViewController.xib; path = Classes/ViewControllers/Help/SelectFontViewController.xib; sourceTree = "<group>"; };
+		3F165E711C7A7E7C001CBC38 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Classes/ViewControllers/Help/SettingsViewController.swift; sourceTree = "<group>"; };
+		3F165E721C7A7E7C001CBC38 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Classes/ViewControllers/Help/SettingsViewController.xib; sourceTree = "<group>"; };
+		3F165E771C7A7FF5001CBC38 /* SelectNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectNumberViewController.swift; path = Classes/ViewControllers/Common/SelectNumberViewController.swift; sourceTree = "<group>"; };
+		3F165E781C7A7FF5001CBC38 /* SelectNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectNumberViewController.xib; path = Classes/ViewControllers/Common/SelectNumberViewController.xib; sourceTree = "<group>"; };
+		3F165E7B1C7A8039001CBC38 /* SettingUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingUtils.swift; path = Classes/Utils/SettingUtils.swift; sourceTree = "<group>"; };
+		3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GrepResultInfo.swift; path = Classes/ViewControllers/Local/GrepResultInfo.swift; sourceTree = "<group>"; };
+		3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultInfo.swift; path = Classes/ViewControllers/Local/SearchResultInfo.swift; sourceTree = "<group>"; };
+		3F23F9641C7BD19D004852B3 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtils.swift; path = Classes/Utils/DateUtils.swift; sourceTree = "<group>"; };
+		3F37CF481C85AC1800B138C9 /* DropboxFileInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DropboxFileInfoViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileInfoViewController.swift; sourceTree = "<group>"; };
+		3F37CF491C85AC1800B138C9 /* DropboxFileInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DropboxFileInfoViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileInfoViewController.xib; sourceTree = "<group>"; };
+		3F3E85BA1C776174002EFB6D /* EnterLineDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterLineDataTableViewCell.swift; path = Classes/ViewControllers/Common/EnterLineDataTableViewCell.swift; sourceTree = "<group>"; };
+		3F3E85BB1C776174002EFB6D /* EnterLineDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnterLineDataTableViewCell.xib; path = Classes/ViewControllers/Common/EnterLineDataTableViewCell.xib; sourceTree = "<group>"; };
+		3F447C851C8904FD001A3518 /* SelectStringEncodingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectStringEncodingViewController.swift; path = Classes/ViewControllers/Common/SelectStringEncodingViewController.swift; sourceTree = "<group>"; };
+		3F447C861C8904FD001A3518 /* SelectStringEncodingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectStringEncodingViewController.xib; path = Classes/ViewControllers/Common/SelectStringEncodingViewController.xib; sourceTree = "<group>"; };
+		3F4873661C75D83A006594A6 /* PWEditor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PWEditor-Bridging-Header.h"; sourceTree = "<group>"; };
+		3F4873671C75D83B006594A6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Classes/AppDelegate.swift; sourceTree = "<group>"; };
+		3F48736D1C75DB6A006594A6 /* ConfigUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigUtils.swift; path = Classes/Utils/ConfigUtils.swift; sourceTree = "<group>"; };
+		3F48736F1C75DB9C006594A6 /* Config.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Config.txt; path = Resources/Config/Config.txt; sourceTree = "<group>"; };
+		3F4873711C75DBE6006594A6 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileUtils.swift; path = Classes/Utils/FileUtils.swift; sourceTree = "<group>"; };
+		3F4873731C75DD6D006594A6 /* FileInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileInfo.swift; path = Classes/Utils/FileInfo.swift; sourceTree = "<group>"; };
+		3F49306B1C7BAF590088A454 /* FileInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileInfoViewController.swift; path = Classes/ViewControllers/Local/FileInfoViewController.swift; sourceTree = "<group>"; };
+		3F49306C1C7BAF590088A454 /* FileInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FileInfoViewController.xib; path = Classes/ViewControllers/Local/FileInfoViewController.xib; sourceTree = "<group>"; };
+		3F7494751C753B0A002A0544 /* PWEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PWEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F74947F1C753B0B002A0544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F7494821C753B0B002A0544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3F7494841C753B0B002A0544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FF4B83B1C792B8C001F113C /* LineNumberLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineNumberLayoutManager.h; path = Classes/TextKitLineNumbers/LineNumberLayoutManager.h; sourceTree = "<group>"; };
+		3FF4B83C1C792B8C001F113C /* LineNumberLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineNumberLayoutManager.m; path = Classes/TextKitLineNumbers/LineNumberLayoutManager.m; sourceTree = "<group>"; };
+		3FF4B83D1C792B8C001F113C /* LineNumberTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineNumberTextView.h; path = Classes/TextKitLineNumbers/LineNumberTextView.h; sourceTree = "<group>"; };
+		3FF4B83E1C792B8C001F113C /* LineNumberTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineNumberTextView.m; path = Classes/TextKitLineNumbers/LineNumberTextView.m; sourceTree = "<group>"; };
+		3FF4B83F1C792B8C001F113C /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyView.h; path = Classes/TextKitLineNumbers/MyView.h; sourceTree = "<group>"; };
+		3FF4B8401C792B8C001F113C /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyView.m; path = Classes/TextKitLineNumbers/MyView.m; sourceTree = "<group>"; };
+		3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDropboxFileViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.swift; sourceTree = "<group>"; };
+		3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.xib; sourceTree = "<group>"; };
+		3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SwiftyDropboxLicense.txt; path = Resources/Licenses/SwiftyDropboxLicense.txt; sourceTree = "<group>"; };
+		64373137871C337C27C6C1D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A2F5EB2F3BCA960D97722707 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D11AD2E8D3B26F561B704230 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3F41F51D1C8921EC0046F4C7 /* Frameworks */ = {
+		3F7494721C753B0A002A0544 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDDED37BC66D5CD0288E5003 /* Pods.framework in Frameworks */,
+				40C44389B3CB69C698058540 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F41F5171C8921EC0046F4C7 = {
+		350BE812C464A5AF905A2CEC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3F41F5221C8921EC0046F4C7 /* PWEditor */,
-				3F41F5211C8921EC0046F4C7 /* Products */,
-				6E2E3086701F6D8ADB98C4CB /* Pods */,
-				F0E3372A8A5D81166BB2F0DC /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		3F41F5211C8921EC0046F4C7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3F41F5201C8921EC0046F4C7 /* PWEditor.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		3F41F5221C8921EC0046F4C7 /* PWEditor */ = {
-			isa = PBXGroup;
-			children = (
-				3F41F5231C8921EC0046F4C7 /* AppDelegate.swift */,
-				3F41F5251C8921EC0046F4C7 /* ViewController.swift */,
-				3F41F5271C8921EC0046F4C7 /* Main.storyboard */,
-				3F41F52A1C8921EC0046F4C7 /* Assets.xcassets */,
-				3F41F52C1C8921EC0046F4C7 /* LaunchScreen.storyboard */,
-				3F41F52F1C8921EC0046F4C7 /* Info.plist */,
-			);
-			path = PWEditor;
-			sourceTree = "<group>";
-		};
-		6E2E3086701F6D8ADB98C4CB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				62370B14DA9427B9B9C3F981 /* Pods.debug.xcconfig */,
-				107AD38F1B73C16760921766 /* Pods.release.xcconfig */,
+				64373137871C337C27C6C1D3 /* Pods.debug.xcconfig */,
+				A2F5EB2F3BCA960D97722707 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		F0E3372A8A5D81166BB2F0DC /* Frameworks */ = {
+		3F003D391C767DEC00ECC371 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8BF300C3864291BAB0ECEC20 /* Pods.framework */,
+				3F003D3B1C767DFB00ECC371 /* BaseViewController.swift */,
+				3F003D3A1C767DFB00ECC371 /* BaseTableViewController.swift */,
+				3F165E4A1C7A72A1001CBC38 /* BaseWebViewController.swift */,
+				3F3E85BA1C776174002EFB6D /* EnterLineDataTableViewCell.swift */,
+				3F3E85BB1C776174002EFB6D /* EnterLineDataTableViewCell.xib */,
+				3F165E771C7A7FF5001CBC38 /* SelectNumberViewController.swift */,
+				3F165E781C7A7FF5001CBC38 /* SelectNumberViewController.xib */,
+				3F165E251C7A684F001CBC38 /* MenuViewController.swift */,
+				3F165E261C7A684F001CBC38 /* MenuViewController.xib */,
+				3F447C851C8904FD001A3518 /* SelectStringEncodingViewController.swift */,
+				3F447C861C8904FD001A3518 /* SelectStringEncodingViewController.xib */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		3F157BF61C84F454007C555E /* Dropbox */ = {
+			isa = PBXGroup;
+			children = (
+				3F157C031C84F50E007C555E /* DropboxFileListViewController.swift */,
+				3F157C041C84F50E007C555E /* DropboxFileListViewController.xib */,
+				3F37CF481C85AC1800B138C9 /* DropboxFileInfoViewController.swift */,
+				3F37CF491C85AC1800B138C9 /* DropboxFileInfoViewController.xib */,
+				3F157BF81C84F4A6007C555E /* AddDropboxFileViewController.swift */,
+				3F157BF91C84F4A6007C555E /* AddDropboxFileViewController.xib */,
+				3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */,
+				3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */,
+				3F157C021C84F50E007C555E /* DropboxFileInfo.swift */,
+			);
+			name = Dropbox;
+			sourceTree = "<group>";
+		};
+		3F157BF71C84F460007C555E /* ICloud */ = {
+			isa = PBXGroup;
+			children = (
+				3F157BFD1C84F4F3007C555E /* ICloudFileListViewController.swift */,
+				3F157BFE1C84F4F3007C555E /* ICloudFileListViewController.xib */,
+				3F157BFC1C84F4F3007C555E /* ICloudDocument.swift */,
+			);
+			name = ICloud;
+			sourceTree = "<group>";
+		};
+		3F165E221C7A6743001CBC38 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				3F165E711C7A7E7C001CBC38 /* SettingsViewController.swift */,
+				3F165E721C7A7E7C001CBC38 /* SettingsViewController.xib */,
+				3F165E6F1C7A7E7C001CBC38 /* SelectFontViewController.swift */,
+				3F165E701C7A7E7C001CBC38 /* SelectFontViewController.xib */,
+				3F165E461C7A6CE0001CBC38 /* HistoryViewController.swift */,
+				3F165E471C7A6CE0001CBC38 /* HistoryViewController.xib */,
+				3F165E651C7A7B13001CBC38 /* OpenSourceLicenseListViewController.swift */,
+				3F165E661C7A7B13001CBC38 /* OpenSourceLicenseListViewController.xib */,
+				3F165E631C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift */,
+				3F165E641C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.xib */,
+			);
+			name = Help;
+			sourceTree = "<group>";
+		};
+		3F165E231C7A6756001CBC38 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				3F165E2F1C7A687C001CBC38 /* LocalFileListViewController.swift */,
+				3F165E301C7A687C001CBC38 /* LocalFileListViewController.xib */,
+				3F49306B1C7BAF590088A454 /* FileInfoViewController.swift */,
+				3F49306C1C7BAF590088A454 /* FileInfoViewController.xib */,
+				3F165E291C7A687C001CBC38 /* AddFileViewController.swift */,
+				3F165E2A1C7A687C001CBC38 /* AddFileViewController.xib */,
+				3F165E2B1C7A687C001CBC38 /* EditFileViewController.swift */,
+				3F165E2C1C7A687C001CBC38 /* EditFileViewController.xib */,
+				3F165E2D1C7A687C001CBC38 /* GrepListViewController.swift */,
+				3F165E2E1C7A687C001CBC38 /* GrepListViewController.xib */,
+				3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */,
+				3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */,
+			);
+			name = Local;
+			sourceTree = "<group>";
+		};
+		3F165E241C7A676D001CBC38 /* Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				3F157BF71C84F460007C555E /* ICloud */,
+				3F157BF61C84F454007C555E /* Dropbox */,
+			);
+			name = Cloud;
+			sourceTree = "<group>";
+		};
+		3F165E391C7A6899001CBC38 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				3F165E3E1C7A690C001CBC38 /* ECSlidingViewControllerLicense.txt */,
+				3F165E401C7A690C001CBC38 /* TextKitLineNumbers.txt */,
+				3F165E6C1C7A7D0B001CBC38 /* HighlightLicense.txt */,
+				3F165E6B1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt */,
+				3F165E3F1C7A690C001CBC38 /* SourceHanCodeJPLicense.txt */,
+				3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */,
+			);
+			name = Licenses;
+			sourceTree = "<group>";
+		};
+		3F165E3A1C7A68BF001CBC38 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3F165E441C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		3F165E3B1C7A68E2001CBC38 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				3F165E3C1C7A68FB001CBC38 /* History.txt */,
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
+		3F165E4C1C7A75E2001CBC38 /* Html */ = {
+			isa = PBXGroup;
+			children = (
+				3F165E4D1C7A75F9001CBC38 /* content.html */,
+				3F165E5D1C7A776F001CBC38 /* highlight.pack.js */,
+				3F165E5E1C7A776F001CBC38 /* highlightjs-line-numbers.min.js */,
+				3F165E5F1C7A776F001CBC38 /* xcode.css */,
+			);
+			name = Html;
+			sourceTree = "<group>";
+		};
+		3F4873611C75D7D7006594A6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F4873651C75D807006594A6 /* Config */,
+				3F165E3B1C7A68E2001CBC38 /* History */,
+				3F165E391C7A6899001CBC38 /* Licenses */,
+				3F165E4C1C7A75E2001CBC38 /* Html */,
+				3F165E3A1C7A68BF001CBC38 /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		3F4873621C75D7E0006594A6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3F4873661C75D83A006594A6 /* PWEditor-Bridging-Header.h */,
+				3F4873671C75D83B006594A6 /* AppDelegate.swift */,
+				3F003D1A1C7676C500ECC371 /* CommonConst.swift */,
+				3F4873641C75D7F7006594A6 /* Utils */,
+				3FF4B83A1C792B6E001F113C /* TextKitLineNumbers */,
+				3F4873631C75D7EB006594A6 /* ViewControllers */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		3F4873631C75D7EB006594A6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3F003D391C767DEC00ECC371 /* Common */,
+				3F165E231C7A6756001CBC38 /* Local */,
+				3F165E241C7A676D001CBC38 /* Cloud */,
+				3F165E221C7A6743001CBC38 /* Help */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3F4873641C75D7F7006594A6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3F23F9641C7BD19D004852B3 /* DateUtils.swift */,
+				3F003D2E1C767C2600ECC371 /* LogUtils.swift */,
+				3F003D2D1C767C2600ECC371 /* LocalizableUtils.swift */,
+				3F003D2B1C767C1B00ECC371 /* EnvUtils.swift */,
+				3F48736D1C75DB6A006594A6 /* ConfigUtils.swift */,
+				3F003D2F1C767C2600ECC371 /* StringUtils.swift */,
+				3F4873711C75DBE6006594A6 /* FileUtils.swift */,
+				3F4873731C75DD6D006594A6 /* FileInfo.swift */,
+				3F165E7B1C7A8039001CBC38 /* SettingUtils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		3F4873651C75D807006594A6 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				3F48736F1C75DB9C006594A6 /* Config.txt */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		3F74946C1C753B0A002A0544 = {
+			isa = PBXGroup;
+			children = (
+				3F003D221C767A2100ECC371 /* InfoPlist.strings */,
+				3F003D291C767B1800ECC371 /* Localizable.strings */,
+				3F003D1C1C7678B000ECC371 /* LocalizableConst.swift */,
+				3F7494771C753B0A002A0544 /* PWEditor */,
+				3F7494761C753B0A002A0544 /* Products */,
+				350BE812C464A5AF905A2CEC /* Pods */,
+				68707F84FD35F2518EB0746F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3F7494761C753B0A002A0544 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F7494751C753B0A002A0544 /* PWEditor.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F7494771C753B0A002A0544 /* PWEditor */ = {
+			isa = PBXGroup;
+			children = (
+				3F0D81471C7F2C22005FC945 /* PWEditor.entitlements */,
+				3F4873621C75D7E0006594A6 /* Classes */,
+				3F4873611C75D7D7006594A6 /* Resources */,
+				3F74947F1C753B0B002A0544 /* Assets.xcassets */,
+				3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */,
+				3F7494841C753B0B002A0544 /* Info.plist */,
+			);
+			path = PWEditor;
+			sourceTree = "<group>";
+		};
+		3FF4B83A1C792B6E001F113C /* TextKitLineNumbers */ = {
+			isa = PBXGroup;
+			children = (
+				3FF4B83B1C792B8C001F113C /* LineNumberLayoutManager.h */,
+				3FF4B83C1C792B8C001F113C /* LineNumberLayoutManager.m */,
+				3FF4B83D1C792B8C001F113C /* LineNumberTextView.h */,
+				3FF4B83E1C792B8C001F113C /* LineNumberTextView.m */,
+				3FF4B83F1C792B8C001F113C /* MyView.h */,
+				3FF4B8401C792B8C001F113C /* MyView.m */,
+			);
+			name = TextKitLineNumbers;
+			sourceTree = "<group>";
+		};
+		68707F84FD35F2518EB0746F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D11AD2E8D3B26F561B704230 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -91,16 +448,16 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F41F51F1C8921EC0046F4C7 /* PWEditor */ = {
+		3F7494741C753B0A002A0544 /* PWEditor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F41F5321C8921EC0046F4C7 /* Build configuration list for PBXNativeTarget "PWEditor" */;
+			buildConfigurationList = 3F7494871C753B0B002A0544 /* Build configuration list for PBXNativeTarget "PWEditor" */;
 			buildPhases = (
-				493B3A28BE8748C1C82E021B /* Check Pods Manifest.lock */,
-				3F41F51C1C8921EC0046F4C7 /* Sources */,
-				3F41F51D1C8921EC0046F4C7 /* Frameworks */,
-				3F41F51E1C8921EC0046F4C7 /* Resources */,
-				3947AB5A0206C5890964398E /* Embed Pods Frameworks */,
-				AF6CE08206AFD17E7EEAFC52 /* Copy Pods Resources */,
+				C8D38FFCA70F41DF81F01A62 /* Check Pods Manifest.lock */,
+				3F7494711C753B0A002A0544 /* Sources */,
+				3F7494721C753B0A002A0544 /* Frameworks */,
+				3F7494731C753B0A002A0544 /* Resources */,
+				02F080C52269EC7D06B03B2F /* Embed Pods Frameworks */,
+				102DBDE55682903E6C400929 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -108,57 +465,97 @@
 			);
 			name = PWEditor;
 			productName = PWEditor;
-			productReference = 3F41F5201C8921EC0046F4C7 /* PWEditor.app */;
+			productReference = 3F7494751C753B0A002A0544 /* PWEditor.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		3F41F5181C8921EC0046F4C7 /* Project object */ = {
+		3F74946D1C753B0A002A0544 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = Paveway;
+				ORGANIZATIONNAME = "Masatsugu Futamata";
 				TargetAttributes = {
-					3F41F51F1C8921EC0046F4C7 = {
+					3F7494741C753B0A002A0544 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 5Q7YHJUK8E;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
-			buildConfigurationList = 3F41F51B1C8921EC0046F4C7 /* Build configuration list for PBXProject "PWEditor" */;
+			buildConfigurationList = 3F7494701C753B0A002A0544 /* Build configuration list for PBXProject "PWEditor" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
-			mainGroup = 3F41F5171C8921EC0046F4C7;
-			productRefGroup = 3F41F5211C8921EC0046F4C7 /* Products */;
+			mainGroup = 3F74946C1C753B0A002A0544;
+			productRefGroup = 3F7494761C753B0A002A0544 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3F41F51F1C8921EC0046F4C7 /* PWEditor */,
+				3F7494741C753B0A002A0544 /* PWEditor */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3F41F51E1C8921EC0046F4C7 /* Resources */ = {
+		3F7494731C753B0A002A0544 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F41F52E1C8921EC0046F4C7 /* LaunchScreen.storyboard in Resources */,
-				3F41F52B1C8921EC0046F4C7 /* Assets.xcassets in Resources */,
-				3F41F5291C8921EC0046F4C7 /* Main.storyboard in Resources */,
+				3F165E491C7A6CE0001CBC38 /* HistoryViewController.xib in Resources */,
+				3F157C071C84F50E007C555E /* DropboxFileListViewController.xib in Resources */,
+				3F165E741C7A7E7C001CBC38 /* SelectFontViewController.xib in Resources */,
+				3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */,
+				3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */,
+				3F165E511C7A75F9001CBC38 /* content.html in Resources */,
+				3F165E6E1C7A7D0B001CBC38 /* HighlightLicense.txt in Resources */,
+				3F003D201C767A2100ECC371 /* InfoPlist.strings in Resources */,
+				3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */,
+				3F165E411C7A690C001CBC38 /* ECSlidingViewControllerLicense.txt in Resources */,
+				3F165E7A1C7A7FF5001CBC38 /* SelectNumberViewController.xib in Resources */,
+				3F165E321C7A687C001CBC38 /* AddFileViewController.xib in Resources */,
+				3F37CF4B1C85AC1800B138C9 /* DropboxFileInfoViewController.xib in Resources */,
+				3F165E451C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf in Resources */,
+				3F165E6D1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt in Resources */,
+				3F165E611C7A776F001CBC38 /* highlightjs-line-numbers.min.js in Resources */,
+				3F165E421C7A690C001CBC38 /* SourceHanCodeJPLicense.txt in Resources */,
+				3F157BFB1C84F4A6007C555E /* AddDropboxFileViewController.xib in Resources */,
+				3F165E3D1C7A68FB001CBC38 /* History.txt in Resources */,
+				3F165E341C7A687C001CBC38 /* EditFileViewController.xib in Resources */,
+				3F49306E1C7BAF590088A454 /* FileInfoViewController.xib in Resources */,
+				3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */,
+				3F165E601C7A776F001CBC38 /* highlight.pack.js in Resources */,
+				3F003D271C767B1800ECC371 /* Localizable.strings in Resources */,
+				3F157C011C84F4F3007C555E /* ICloudFileListViewController.xib in Resources */,
+				3F165E6A1C7A7B13001CBC38 /* OpenSourceLicenseListViewController.xib in Resources */,
+				3F165E361C7A687C001CBC38 /* GrepListViewController.xib in Resources */,
+				3F165E761C7A7E7C001CBC38 /* SettingsViewController.xib in Resources */,
+				3F447C881C8904FD001A3518 /* SelectStringEncodingViewController.xib in Resources */,
+				3F3E85BD1C776174002EFB6D /* EnterLineDataTableViewCell.xib in Resources */,
+				3F165E381C7A687C001CBC38 /* LocalFileListViewController.xib in Resources */,
+				3F165E681C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.xib in Resources */,
+				3F165E431C7A690C001CBC38 /* TextKitLineNumbers.txt in Resources */,
+				3F165E281C7A684F001CBC38 /* MenuViewController.xib in Resources */,
+				3F4873701C75DB9C006594A6 /* Config.txt in Resources */,
+				3F165E621C7A776F001CBC38 /* xcode.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3947AB5A0206C5890964398E /* Embed Pods Frameworks */ = {
+		02F080C52269EC7D06B03B2F /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -173,22 +570,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		493B3A28BE8748C1C82E021B /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		AF6CE08206AFD17E7EEAFC52 /* Copy Pods Resources */ = {
+		102DBDE55682903E6C400929 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -203,33 +585,98 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C8D38FFCA70F41DF81F01A62 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3F41F51C1C8921EC0046F4C7 /* Sources */ = {
+		3F7494711C753B0A002A0544 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F41F5261C8921EC0046F4C7 /* ViewController.swift in Sources */,
-				3F41F5241C8921EC0046F4C7 /* AppDelegate.swift in Sources */,
+				3F003D321C767C2600ECC371 /* StringUtils.swift in Sources */,
+				3FF93E371C86595500621455 /* EditDropboxFileViewController.swift in Sources */,
+				3F165E371C7A687C001CBC38 /* LocalFileListViewController.swift in Sources */,
+				3F165E7C1C7A8039001CBC38 /* SettingUtils.swift in Sources */,
+				3F003D1D1C7678B000ECC371 /* LocalizableConst.swift in Sources */,
+				3F49306D1C7BAF590088A454 /* FileInfoViewController.swift in Sources */,
+				3F165E731C7A7E7C001CBC38 /* SelectFontViewController.swift in Sources */,
+				3F003D3C1C767DFB00ECC371 /* BaseTableViewController.swift in Sources */,
+				3F447C871C8904FD001A3518 /* SelectStringEncodingViewController.swift in Sources */,
+				3F003D2C1C767C1B00ECC371 /* EnvUtils.swift in Sources */,
+				3F165E481C7A6CE0001CBC38 /* HistoryViewController.swift in Sources */,
+				3F165E351C7A687C001CBC38 /* GrepListViewController.swift in Sources */,
+				3F165E671C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift in Sources */,
+				3F48736E1C75DB6A006594A6 /* ConfigUtils.swift in Sources */,
+				3F003D3D1C767DFB00ECC371 /* BaseViewController.swift in Sources */,
+				3F003D301C767C2600ECC371 /* LocalizableUtils.swift in Sources */,
+				3F37CF4A1C85AC1800B138C9 /* DropboxFileInfoViewController.swift in Sources */,
+				3F003D311C767C2600ECC371 /* LogUtils.swift in Sources */,
+				3F4873681C75D83B006594A6 /* AppDelegate.swift in Sources */,
+				3F157BFF1C84F4F3007C555E /* ICloudDocument.swift in Sources */,
+				3F4873721C75DBE6006594A6 /* FileUtils.swift in Sources */,
+				3F3E85BC1C776174002EFB6D /* EnterLineDataTableViewCell.swift in Sources */,
+				3F23F9611C7BBAA2004852B3 /* SearchResultInfo.swift in Sources */,
+				3F157C001C84F4F3007C555E /* ICloudFileListViewController.swift in Sources */,
+				3F157C051C84F50E007C555E /* DropboxFileInfo.swift in Sources */,
+				3F165E4B1C7A72A1001CBC38 /* BaseWebViewController.swift in Sources */,
+				3F157C061C84F50E007C555E /* DropboxFileListViewController.swift in Sources */,
+				3F23F9601C7BBAA2004852B3 /* GrepResultInfo.swift in Sources */,
+				3F165E271C7A684F001CBC38 /* MenuViewController.swift in Sources */,
+				3F23F9651C7BD19D004852B3 /* DateUtils.swift in Sources */,
+				3F003D1B1C7676C500ECC371 /* CommonConst.swift in Sources */,
+				3FF4B8421C792B8C001F113C /* LineNumberTextView.m in Sources */,
+				3F165E331C7A687C001CBC38 /* EditFileViewController.swift in Sources */,
+				3FF4B8411C792B8C001F113C /* LineNumberLayoutManager.m in Sources */,
+				3F165E791C7A7FF5001CBC38 /* SelectNumberViewController.swift in Sources */,
+				3F165E691C7A7B13001CBC38 /* OpenSourceLicenseListViewController.swift in Sources */,
+				3F4873741C75DD6D006594A6 /* FileInfo.swift in Sources */,
+				3F165E311C7A687C001CBC38 /* AddFileViewController.swift in Sources */,
+				3F157BFA1C84F4A6007C555E /* AddDropboxFileViewController.swift in Sources */,
+				3FF4B8431C792B8C001F113C /* MyView.m in Sources */,
+				3F165E751C7A7E7C001CBC38 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3F41F5271C8921EC0046F4C7 /* Main.storyboard */ = {
+		3F003D221C767A2100ECC371 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3F41F5281C8921EC0046F4C7 /* Base */,
+				3F003D211C767A2100ECC371 /* Base */,
+				3F003D241C767A7500ECC371 /* ja */,
 			);
-			name = Main.storyboard;
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		3F41F52C1C8921EC0046F4C7 /* LaunchScreen.storyboard */ = {
+		3F003D291C767B1800ECC371 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3F41F52D1C8921EC0046F4C7 /* Base */,
+				3F003D281C767B1800ECC371 /* Base */,
+				3F003D2A1C767B1A00ECC371 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F7494821C753B0B002A0544 /* Base */,
+				3F003D231C767A7500ECC371 /* ja */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -237,7 +684,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3F41F5301C8921EC0046F4C7 /* Debug */ = {
+		3F7494851C753B0B002A0544 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -281,7 +728,7 @@
 			};
 			name = Debug;
 		};
-		3F41F5311C8921EC0046F4C7 /* Release */ = {
+		3F7494861C753B0B002A0544 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -318,52 +765,81 @@
 			};
 			name = Release;
 		};
-		3F41F5331C8921EC0046F4C7 /* Debug */ = {
+		3F7494881C753B0B002A0544 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 62370B14DA9427B9B9C3F981 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 64373137871C337C27C6C1D3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PWEditor/PWEditor.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK/GoogleMobileAds\"",
+					"\"${PODS_ROOT}/ECSlidingViewController/ECSlidingViewController\"",
+				);
 				INFOPLIST_FILE = PWEditor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PWEditor/PWEditor-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		3F41F5341C8921EC0046F4C7 /* Release */ = {
+		3F7494891C753B0B002A0544 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 107AD38F1B73C16760921766 /* Pods.release.xcconfig */;
+			baseConfigurationReference = A2F5EB2F3BCA960D97722707 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PWEditor/PWEditor.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK/GoogleMobileAds\"",
+					"\"${PODS_ROOT}/ECSlidingViewController/ECSlidingViewController\"",
+				);
 				INFOPLIST_FILE = PWEditor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PWEditor/PWEditor-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3F41F51B1C8921EC0046F4C7 /* Build configuration list for PBXProject "PWEditor" */ = {
+		3F7494701C753B0A002A0544 /* Build configuration list for PBXProject "PWEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3F41F5301C8921EC0046F4C7 /* Debug */,
-				3F41F5311C8921EC0046F4C7 /* Release */,
+				3F7494851C753B0B002A0544 /* Debug */,
+				3F7494861C753B0B002A0544 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F41F5321C8921EC0046F4C7 /* Build configuration list for PBXNativeTarget "PWEditor" */ = {
+		3F7494871C753B0B002A0544 /* Build configuration list for PBXNativeTarget "PWEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3F41F5331C8921EC0046F4C7 /* Debug */,
-				3F41F5341C8921EC0046F4C7 /* Release */,
+				3F7494881C753B0B002A0544 /* Debug */,
+				3F7494891C753B0B002A0544 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 3F41F5181C8921EC0046F4C7 /* Project object */;
+	rootObject = 3F74946D1C753B0A002A0544 /* Project object */;
 }

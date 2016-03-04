@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocalFileListViewController">
+            <connections>
+                <outlet property="addToobarButton" destination="hOr-n3-5eU" id="FZ6-LB-kP0"/>
+                <outlet property="bannerView" destination="NiS-EW-deb" id="kff-Z9-3mf"/>
+                <outlet property="grepToolbarButton" destination="cGv-WT-JzY" id="ZfC-Mt-Mkt"/>
+                <outlet property="searchDisplayController" destination="w9g-Ol-o5B" id="gmE-7w-oXQ"/>
+                <outlet property="tableView" destination="1jL-Uh-XNV" id="Ig9-86-PhJ"/>
+                <outlet property="toolbar" destination="8yg-iQ-JB9" id="VAK-xO-qjh"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1jL-Uh-XNV">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="474"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8yg-iQ-JB9">
+                    <rect key="frame" x="0.0" y="474" width="320" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="dLi-ci-l5Z"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem systemItem="add" id="hOr-n3-5eU">
+                            <connections>
+                                <action selector="addToolbarButtonPressed:" destination="-1" id="j54-o4-Mpb"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="tva-fp-fDH"/>
+                        <barButtonItem title="grep" id="cGv-WT-JzY">
+                            <connections>
+                                <action selector="grepToolbarButtonPressed:" destination="-1" id="Tlu-t3-cJL"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-EW-deb" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Qm6-lv-M4O"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="1jL-Uh-XNV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4su-hb-l7y"/>
+                <constraint firstItem="NiS-EW-deb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CUs-jC-60D"/>
+                <constraint firstItem="1jL-Uh-XNV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CbT-Wu-nIa"/>
+                <constraint firstItem="8yg-iQ-JB9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DPb-BL-thG"/>
+                <constraint firstAttribute="bottom" secondItem="NiS-EW-deb" secondAttribute="bottom" id="Gp9-hk-HW3"/>
+                <constraint firstAttribute="trailing" secondItem="8yg-iQ-JB9" secondAttribute="trailing" id="Gpa-mm-NS3"/>
+                <constraint firstAttribute="trailing" secondItem="NiS-EW-deb" secondAttribute="trailing" id="Ovf-zj-c51"/>
+                <constraint firstItem="NiS-EW-deb" firstAttribute="top" secondItem="8yg-iQ-JB9" secondAttribute="bottom" id="TsN-zx-kFq"/>
+                <constraint firstAttribute="trailing" secondItem="1jL-Uh-XNV" secondAttribute="trailing" id="l1C-X5-E2h"/>
+                <constraint firstItem="8yg-iQ-JB9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lpq-ce-wCv"/>
+                <constraint firstItem="8yg-iQ-JB9" firstAttribute="top" secondItem="1jL-Uh-XNV" secondAttribute="bottom" id="mTO-9D-LuK"/>
+                <constraint firstItem="1jL-Uh-XNV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oug-0o-OiT"/>
+                <constraint firstItem="NiS-EW-deb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pid-9J-j3H"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+        <searchDisplayController id="w9g-Ol-o5B">
+            <connections>
+                <outlet property="delegate" destination="-1" id="PyW-1L-I0i"/>
+                <outlet property="searchContentsController" destination="-1" id="fff-6D-SW2"/>
+                <outlet property="searchResultsDataSource" destination="-1" id="Laz-AY-RYM"/>
+                <outlet property="searchResultsDelegate" destination="-1" id="qYR-Tw-0JW"/>
+            </connections>
+        </searchDisplayController>
+    </objects>
+</document>

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3F41F51F1C8921EC0046F4C7"
+               BlueprintIdentifier = "3F7494741C753B0A002A0544"
                BuildableName = "PWEditor.app"
                BlueprintName = "PWEditor"
                ReferencedContainer = "container:PWEditor.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3F41F51F1C8921EC0046F4C7"
+            BlueprintIdentifier = "3F7494741C753B0A002A0544"
             BuildableName = "PWEditor.app"
             BlueprintName = "PWEditor"
             ReferencedContainer = "container:PWEditor.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3F41F51F1C8921EC0046F4C7"
+            BlueprintIdentifier = "3F7494741C753B0A002A0544"
             BuildableName = "PWEditor.app"
             BlueprintName = "PWEditor"
             ReferencedContainer = "container:PWEditor.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3F41F51F1C8921EC0046F4C7"
+            BlueprintIdentifier = "3F7494741C753B0A002A0544"
             BuildableName = "PWEditor.app"
             BlueprintName = "PWEditor"
             ReferencedContainer = "container:PWEditor.xcodeproj">
