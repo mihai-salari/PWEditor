@@ -49,10 +49,32 @@ class BaseTableViewController: BaseViewController, UITableViewDataSource, UITabl
     }
 
     func getTableViewCell(tableView: UITableView) -> UITableViewCell {
+        // セルを取得する。
         var cell = tableView.dequeueReusableCellWithIdentifier(kCellName) as UITableViewCell?
         if (cell == nil) {
+            // セルが取得できない場合
+            // セルを生成する。
             cell = UITableViewCell()
         }
+
+        cell!.textLabel?.text = ""
+        cell!.accessoryType = .None
+
+        return cell!
+    }
+
+    func getTableViewDetailCell(tableView: UITableView) -> UITableViewCell {
+        // セルを取得する。
+        var cell = tableView.dequeueReusableCellWithIdentifier(kCellName) as UITableViewCell?
+        if (cell == nil || cell?.detailTextLabel == nil) {
+            // セルが取得できない場合
+            // セルを生成する。
+            cell = UITableViewCell(style: .Value1, reuseIdentifier: kCellName)
+        }
+
+        cell!.textLabel?.text = ""
+        cell!.detailTextLabel?.text = ""
+        cell!.accessoryType = .None
 
         return cell!
     }

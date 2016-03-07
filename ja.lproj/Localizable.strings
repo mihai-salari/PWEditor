@@ -26,6 +26,9 @@ AlertMessageDeleteConfirm = "%@を削除しますか？";
 AlertMessageSignOutDropbox = "Dropboxからサインアウトしますか。";
 AlertMessageDropboxInvalid = "Dropboxが無効です。";
 AlertMessageOpenFileError = "このファイルは開けません。";
+AlertMessageGetFileDataError = "ファイルデータが取得できません。";
+AlertMessageNotTextFileError = "このファイルはテキストファイルではありません。";
+AlertMessageCovertCharCodeError = "ファイルデータを指定の文字コードに変換できません。";
 
 // アクションシートタイトル
 ActionSheetTitleDropbox = "Dropbox操作";
@@ -38,6 +41,11 @@ Update = "更新";
 
 // フォント選択画面
 SelectFontScreenTitle = "フォント選択";
+
+// 文字コード選択画面
+SelectCharCodeScreenTitle = "文字コード選択";
+SelectCharCodeSectionTitleCharCode = "文字コード";
+SelectCharCodeSectionTitleReturnCode = "改行コード";
 
 // メニュー画面
 MenuScreenTitle = "メニュー";

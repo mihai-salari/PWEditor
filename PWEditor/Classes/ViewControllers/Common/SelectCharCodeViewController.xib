@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectStringEncodingViewController" customModule="PWEditor" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectCharCodeViewController" customModule="PWEditor" customModuleProvider="target">
             <connections>
-                <outlet property="bannerView" destination="l9Z-nE-5vk" id="i4i-sV-Nnw"/>
-                <outlet property="tableView" destination="Cfy-dx-S9r" id="WpG-4E-Llx"/>
+                <outlet property="bannerView" destination="l9Z-nE-5vk" id="AEP-GO-QRh"/>
+                <outlet property="tableView" destination="Cfy-dx-S9r" id="TKf-fb-i5W"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

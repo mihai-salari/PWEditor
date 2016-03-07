@@ -308,7 +308,8 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
         let openCharButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleOpenChar)
         let openCharAction = UIAlertAction(title: openCharButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
             // 文字コード選択画面に遷移する。
-            self.showDeleteFileConfirmAlert(name, index: index)
+            let vc = SelectCharCodeViewController(sourceClassName: self.dynamicType.description(), pathName: self.pathName, fileName: name)
+            self.navigationController?.pushViewController(vc, animated: true)
         })
         alert.addAction(openCharAction)
 

@@ -224,10 +224,10 @@ class AddFileViewController: BaseTableViewController, UIGestureRecognizerDelegat
             cell!.textLabel?.text = title
 
             if row == FileTypeIndex.File.rawValue {
-                cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+                cell?.accessoryType = .Checkmark
 
             } else {
-                cell?.accessoryType = UITableViewCellAccessoryType.None
+                cell?.accessoryType = .None
             }
             break
 

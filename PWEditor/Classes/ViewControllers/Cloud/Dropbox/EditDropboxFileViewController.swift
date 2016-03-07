@@ -10,7 +10,7 @@ import UIKit
 import GoogleMobileAds
 import SwiftyDropbox
 
-class EditDropboxFileViewController: BaseViewController {
+class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
 
     // MARK: - Variables
 
@@ -25,6 +25,15 @@ class EditDropboxFileViewController: BaseViewController {
 
     /// ファイル名
     var fileName: String!
+
+    /// 文字コードタイプ
+    var charCodeType: Int!
+
+    /// 文字コード
+    var charCode: UInt!
+
+    /// 改行コードタイプ
+    var retCodeType: Int!
 
     /// ダウンロード用Dropboxファイル情報
     var downloadFileInfo: DropboxFileInfo?
@@ -53,11 +62,19 @@ class EditDropboxFileViewController: BaseViewController {
     /**
      イニシャライザ
      コンテンツ作成時呼び出される。
+     
+     - Parameter pathName: パス名
+     - Parameter fileName: ファイル名
+     - Parameter charCodeType: 文字コードタイプ(デフォルト"UTF-8")
+     - Parameter retCodeType: 改行コードタイプ(デフォルト"Unix(LF)")
      */
-    init(pathName: String, fileName: String) {
+    init(pathName: String, fileName: String, charCodeType: Int = CommonConst.CharCodeType.Utf8.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue) {
         // 引数を保存する。
         self.pathName = pathName
         self.fileName = fileName
+        self.charCodeType = charCodeType
+        self.retCodeType = retCodeType
+        self.charCode = CommonConst.CharCodeList[self.charCodeType]
 
         // スーパークラスのイニシャライザを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -65,6 +82,9 @@ class EditDropboxFileViewController: BaseViewController {
 
     // MARK: - UIViewDelegate
 
+    /**
+     インスタンスが生成された時に呼び出される。
+     */
     override func viewDidLoad() {
         // スーパークラスのメソッドを呼び出す。
         super.viewDidLoad()
@@ -80,6 +100,7 @@ class EditDropboxFileViewController: BaseViewController {
         setupTextView()
         let selector = Selector("textChanged:")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: UITextViewTextDidChangeNotification, object: nil)
+        myView.textView.delegate = self
 
         // バナービューを設定する。
         setupBannerView(bannerView)
@@ -180,9 +201,14 @@ class EditDropboxFileViewController: BaseViewController {
         // キーボードを閉じる。
         myView.textView.resignFirstResponder()
 
-        // ファイルデータをアップロードする。
+        // ファイルデータを取得する。
         let fileData = myView.textView.text
-        uploadFile(fileData)
+
+        // 改行コードを変換する。
+        let convertedFileData = convertRetCode(fileData)
+
+        // 変換されたファイルデータをアップロードする。
+        uploadFile(convertedFileData)
     }
 
     // MARK: - UITextViewDelegate
@@ -194,6 +220,78 @@ class EditDropboxFileViewController: BaseViewController {
     */
     func textChanged(notification: NSNotification?) -> (Void) {
         textChanged = true
+    }
+
+    // CR/LF, LF, CR
+    /**
+     改行コードを変換する。
+
+     - Parameter srcString: 変換元文字列
+     - Returns: 変換後文字列
+     */
+    func convertRetCode(srcString: String) -> String {
+        // 各改行コードのバイト値を文字列に変換する。
+        let lfBytes = [0x0D]
+        let crLfBytes = [0x0A, 0x0D]
+        let crBytes = [0x0A]
+        let crCrLfBytes = [0x0A, 0x0A, 0x0D]
+        let crLfLfBytes = [0x0A, 0x0D, 0x0D]
+        let lfString = String(bytes: lfBytes, length: lfBytes.count, encoding: NSUTF8StringEncoding)
+        let crLfString = String(bytes: crLfBytes, length: crLfBytes.count, encoding: NSUTF8StringEncoding)
+        let crString = String(bytes: crBytes, length: crBytes.count, encoding: NSUTF8StringEncoding)
+        let crCrLfString = String(bytes: crCrLfBytes, length: crCrLfBytes.count, encoding: NSUTF8StringEncoding)
+        let crLfLfString = String(bytes: crLfLfBytes, length: crLfLfBytes.count, encoding: NSUTF8StringEncoding)
+
+        // 改行コードごとに処理を振り分ける。
+        var dstString = ""
+        switch retCodeType {
+        case CommonConst.RetCodeType.LF.rawValue:
+            // LFの場合
+            // CR/LF->LF
+            dstString = srcString.stringByReplacingOccurrencesOfString(crLfString, withString: lfString)
+            // CR->LF
+            dstString = dstString.stringByReplacingOccurrencesOfString(crString, withString: lfString)
+            break
+
+        case CommonConst.RetCodeType.CRLF.rawValue:
+            // CR/LFの場合
+            // 元の文字列にCR/LFが含まれるかチェックする。
+            let range = srcString.rangeOfString(crLfString)
+            if range != nil {
+                // CR/LFが含まれる場合
+                // LF->CR/LF
+                dstString = srcString.stringByReplacingOccurrencesOfString(lfString, withString: crLfString)
+                // CR->CR/LF
+                dstString = dstString.stringByReplacingOccurrencesOfString(crString, withString: crLfString)
+
+                // 元のCR/LFがCR/CRLFまたはCRLF/LFに変換されているため、正常な改行コードに戻す。
+                // CR/CRLF->CR/LF
+                dstString = dstString.stringByReplacingOccurrencesOfString(crCrLfString, withString: crLfString)
+                // CRLF/LF->CR/LF
+                dstString = dstString.stringByReplacingOccurrencesOfString(crLfLfString, withString: crLfString)
+
+            } else {
+                // CR/LFが含まれない場合
+                // LF->CR/LF
+                dstString = srcString.stringByReplacingOccurrencesOfString(lfString, withString: crLfString)
+                // CR->CR/LF
+                dstString = dstString.stringByReplacingOccurrencesOfString(crString, withString: crLfString)
+            }
+            break
+
+        case CommonConst.RetCodeType.CR.rawValue:
+            // CRの場合
+            // CR/LF->CR
+            dstString = srcString.stringByReplacingOccurrencesOfString(crLfString, withString: crString)
+            // LF->CR
+            dstString = dstString.stringByReplacingOccurrencesOfString(lfString, withString: crString)
+            break
+
+        default:
+            // 上記以外、何もしない。
+            break
+        }
+        return dstString
     }
 
     // MARK: - Private Method
@@ -333,9 +431,9 @@ class EditDropboxFileViewController: BaseViewController {
                 if fileData == nil {
                     // ファイルデータが取得できない場合
                     let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                    let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOpenFileError)
+                    let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageGetFileDataError)
                     self.showAlert(title, message: message, handler: { () -> Void in
-                        self.navigationController?.popViewControllerAnimated(true)
+                        self.popViewController()
                     })
 
                 } else {
@@ -343,13 +441,13 @@ class EditDropboxFileViewController: BaseViewController {
                     if FileUtils.isTextData(fileData!) {
                         // テキストデータの場合
                         // 文字列に変換する。
-                        text = String(data: fileData!, encoding: NSUTF8StringEncoding)
+                        text = String(data: fileData!, encoding: self.charCode)
                         if text == nil {
                             // 文字列に変換できない場合
                             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOpenFileError)
+                            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCovertCharCodeError)
                             self.showAlert(title, message: message, handler: { () -> Void in
-                                self.navigationController?.popViewControllerAnimated(true)
+                                self.popViewController()
                             })
 
                         } else {
@@ -357,14 +455,16 @@ class EditDropboxFileViewController: BaseViewController {
                             self.navigationItem.rightBarButtonItem?.enabled = true
 
                             // ファイルデータをテキストビューに設定する。
+                            let winRetCode: [CChar] = [13, 10]
+                            let winRetCodeString = String(winRetCode)
                             self.myView.textView.text = text!
                         }
 
                     } else {
                         let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                        let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOpenFileError)
+                        let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageNotTextFileError)
                         self.showAlert(title, message: message, handler: { () -> Void in
-                            self.navigationController?.popViewControllerAnimated(true)
+                            self.popViewController()
                         })
                     }
                 }
@@ -389,7 +489,7 @@ class EditDropboxFileViewController: BaseViewController {
 
         // ファイルデータをアップロードする。
         let filePathName = "\(pathName)/\(fileName)"
-        let fileData = fileDataString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        let fileData = fileDataString.dataUsingEncoding(charCode, allowLossyConversion: false)
         let rev = downloadFileInfo!.rev
         let date = NSDate()
         client!.files.upload(path: filePathName, mode: .Update(rev), clientModified: date, body: fileData!).response { response, error in
@@ -403,7 +503,28 @@ class EditDropboxFileViewController: BaseViewController {
             }
 
             // 遷移元画面に戻る。
-            self.navigationController?.popViewControllerAnimated(true)
+            self.popViewController()
+        }
+    }
+
+    // MARK: - Private method
+
+    /**
+     遷移元画面に戻る。
+     文字コード選択画面から遷移した場合、Dropboxファイル一覧画面に戻るための対応
+     */
+    func popViewController() {
+        // 画面遷移数を取得する。
+        let count = navigationController?.viewControllers.count
+        // 最後に表示した画面から画面遷移数確認する。
+        for var i = count! - 1; i >= 0; i-- {
+            let vc = navigationController?.viewControllers[i]
+            if vc!.dynamicType == DropboxFileListViewController.self {
+                // 表示した画面がDropboxファイル一覧画面の場合
+                // 画面を戻す。
+                navigationController?.popToViewController(vc!, animated: true)
+                break
+            }
         }
     }
 }

@@ -73,15 +73,33 @@ struct CommonConst {
         static let kEnterData: CGFloat = 12.0
     }
 
+    enum CharCodeType: Int {
+        case Utf8 = 0
+        case ShiftJis = 1
+        case Euc = 2
+    }
+
+    static let CharCodeNameList = [
+        "UTF-8",
+        "Shift_JIS",
+        "EUC"
+    ]
+
+    static let CharCodeList = [
+        NSUTF8StringEncoding,
+        NSShiftJISStringEncoding,
+        NSJapaneseEUCStringEncoding
+    ]
+
     enum RetCodeType: Int {
         case LF = 0
         case CRLF = 1
         case CR = 2
     }
 
-    struct RetCodeName {
-        static let kUnix = "UNIX(LF)"
-        static let kWindows = "Windows(CR/LF)"
-        static let kMac = "Mac(CR)"
-    }
+    static let RetCodeNameList = [
+        "UNIX(LF)",
+        "Windows(CR/LF)",
+        "Mac(CR)"
+    ]
 }

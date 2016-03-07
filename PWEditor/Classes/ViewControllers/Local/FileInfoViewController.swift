@@ -205,24 +205,7 @@ class FileInfoViewController: BaseTableViewController {
 
         case CellIndex.RetCodeType.rawValue:
             cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kFileInfoCellTitleRetCodeType)
-            let text: String
-            switch retCodeType {
-            case CommonConst.RetCodeType.LF.rawValue:
-                text = CommonConst.RetCodeName.kUnix
-                break
-
-            case CommonConst.RetCodeType.CRLF.rawValue:
-                text = CommonConst.RetCodeName.kWindows
-                break
-
-            case CommonConst.RetCodeType.CR.rawValue:
-                text = CommonConst.RetCodeName.kMac
-                break
-
-            default:
-                text = ""
-                break
-            }
+            let text = CommonConst.RetCodeNameList[row]
             cell?.detailTextLabel?.text = text
             break
 

@@ -60,6 +60,12 @@
 		3F165E791C7A7FF5001CBC38 /* SelectNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E771C7A7FF5001CBC38 /* SelectNumberViewController.swift */; };
 		3F165E7A1C7A7FF5001CBC38 /* SelectNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E781C7A7FF5001CBC38 /* SelectNumberViewController.xib */; };
 		3F165E7C1C7A8039001CBC38 /* SettingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E7B1C7A8039001CBC38 /* SettingUtils.swift */; };
+		3F1915471C8CCE8D0042D306 /* CharCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1915461C8CCE8D0042D306 /* CharCode.swift */; };
+		3F1915491C8CCEB40042D306 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1915481C8CCEB40042D306 /* FileType.swift */; };
+		3F19154B1C8CCEFE0042D306 /* ReadJEnc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F19154A1C8CCEFE0042D306 /* ReadJEnc.swift */; };
+		3F1915521C8CCF360042D306 /* LineNumberLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F19154D1C8CCF360042D306 /* LineNumberLayoutManager.m */; };
+		3F1915531C8CCF360042D306 /* LineNumberTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F19154F1C8CCF360042D306 /* LineNumberTextView.m */; };
+		3F1915541C8CCF360042D306 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1915511C8CCF360042D306 /* MyView.m */; };
 		3F23F9601C7BBAA2004852B3 /* GrepResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */; };
 		3F23F9611C7BBAA2004852B3 /* SearchResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */; };
 		3F23F9651C7BD19D004852B3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F9641C7BD19D004852B3 /* DateUtils.swift */; };
@@ -67,8 +73,8 @@
 		3F37CF4B1C85AC1800B138C9 /* DropboxFileInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F37CF491C85AC1800B138C9 /* DropboxFileInfoViewController.xib */; };
 		3F3E85BC1C776174002EFB6D /* EnterLineDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E85BA1C776174002EFB6D /* EnterLineDataTableViewCell.swift */; };
 		3F3E85BD1C776174002EFB6D /* EnterLineDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E85BB1C776174002EFB6D /* EnterLineDataTableViewCell.xib */; };
-		3F447C871C8904FD001A3518 /* SelectStringEncodingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F447C851C8904FD001A3518 /* SelectStringEncodingViewController.swift */; };
-		3F447C881C8904FD001A3518 /* SelectStringEncodingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F447C861C8904FD001A3518 /* SelectStringEncodingViewController.xib */; };
+		3F447C871C8904FD001A3518 /* SelectCharCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F447C851C8904FD001A3518 /* SelectCharCodeViewController.swift */; };
+		3F447C881C8904FD001A3518 /* SelectCharCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F447C861C8904FD001A3518 /* SelectCharCodeViewController.xib */; };
 		3F4873681C75D83B006594A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4873671C75D83B006594A6 /* AppDelegate.swift */; };
 		3F48736E1C75DB6A006594A6 /* ConfigUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F48736D1C75DB6A006594A6 /* ConfigUtils.swift */; };
 		3F4873701C75DB9C006594A6 /* Config.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F48736F1C75DB9C006594A6 /* Config.txt */; };
@@ -78,9 +84,6 @@
 		3F49306E1C7BAF590088A454 /* FileInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F49306C1C7BAF590088A454 /* FileInfoViewController.xib */; };
 		3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F74947F1C753B0B002A0544 /* Assets.xcassets */; };
 		3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */; };
-		3FF4B8411C792B8C001F113C /* LineNumberLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4B83C1C792B8C001F113C /* LineNumberLayoutManager.m */; };
-		3FF4B8421C792B8C001F113C /* LineNumberTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4B83E1C792B8C001F113C /* LineNumberTextView.m */; };
-		3FF4B8431C792B8C001F113C /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4B8401C792B8C001F113C /* MyView.m */; };
 		3FF93E371C86595500621455 /* EditDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */; };
 		3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */; };
 		3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */; };
@@ -145,6 +148,15 @@
 		3F165E771C7A7FF5001CBC38 /* SelectNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectNumberViewController.swift; path = Classes/ViewControllers/Common/SelectNumberViewController.swift; sourceTree = "<group>"; };
 		3F165E781C7A7FF5001CBC38 /* SelectNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectNumberViewController.xib; path = Classes/ViewControllers/Common/SelectNumberViewController.xib; sourceTree = "<group>"; };
 		3F165E7B1C7A8039001CBC38 /* SettingUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingUtils.swift; path = Classes/Utils/SettingUtils.swift; sourceTree = "<group>"; };
+		3F1915461C8CCE8D0042D306 /* CharCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharCode.swift; path = Classes/External/ReadJEnc/CharCode.swift; sourceTree = "<group>"; };
+		3F1915481C8CCEB40042D306 /* FileType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileType.swift; path = Classes/External/ReadJEnc/FileType.swift; sourceTree = "<group>"; };
+		3F19154A1C8CCEFE0042D306 /* ReadJEnc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadJEnc.swift; path = Classes/External/ReadJEnc/ReadJEnc.swift; sourceTree = "<group>"; };
+		3F19154C1C8CCF360042D306 /* LineNumberLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineNumberLayoutManager.h; path = Classes/External/TextKitLineNumbers/LineNumberLayoutManager.h; sourceTree = "<group>"; };
+		3F19154D1C8CCF360042D306 /* LineNumberLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineNumberLayoutManager.m; path = Classes/External/TextKitLineNumbers/LineNumberLayoutManager.m; sourceTree = "<group>"; };
+		3F19154E1C8CCF360042D306 /* LineNumberTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineNumberTextView.h; path = Classes/External/TextKitLineNumbers/LineNumberTextView.h; sourceTree = "<group>"; };
+		3F19154F1C8CCF360042D306 /* LineNumberTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineNumberTextView.m; path = Classes/External/TextKitLineNumbers/LineNumberTextView.m; sourceTree = "<group>"; };
+		3F1915501C8CCF360042D306 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyView.h; path = Classes/External/TextKitLineNumbers/MyView.h; sourceTree = "<group>"; };
+		3F1915511C8CCF360042D306 /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyView.m; path = Classes/External/TextKitLineNumbers/MyView.m; sourceTree = "<group>"; };
 		3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GrepResultInfo.swift; path = Classes/ViewControllers/Local/GrepResultInfo.swift; sourceTree = "<group>"; };
 		3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultInfo.swift; path = Classes/ViewControllers/Local/SearchResultInfo.swift; sourceTree = "<group>"; };
 		3F23F9641C7BD19D004852B3 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtils.swift; path = Classes/Utils/DateUtils.swift; sourceTree = "<group>"; };
@@ -152,8 +164,8 @@
 		3F37CF491C85AC1800B138C9 /* DropboxFileInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DropboxFileInfoViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileInfoViewController.xib; sourceTree = "<group>"; };
 		3F3E85BA1C776174002EFB6D /* EnterLineDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterLineDataTableViewCell.swift; path = Classes/ViewControllers/Common/EnterLineDataTableViewCell.swift; sourceTree = "<group>"; };
 		3F3E85BB1C776174002EFB6D /* EnterLineDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnterLineDataTableViewCell.xib; path = Classes/ViewControllers/Common/EnterLineDataTableViewCell.xib; sourceTree = "<group>"; };
-		3F447C851C8904FD001A3518 /* SelectStringEncodingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectStringEncodingViewController.swift; path = Classes/ViewControllers/Common/SelectStringEncodingViewController.swift; sourceTree = "<group>"; };
-		3F447C861C8904FD001A3518 /* SelectStringEncodingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectStringEncodingViewController.xib; path = Classes/ViewControllers/Common/SelectStringEncodingViewController.xib; sourceTree = "<group>"; };
+		3F447C851C8904FD001A3518 /* SelectCharCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectCharCodeViewController.swift; path = Classes/ViewControllers/Common/SelectCharCodeViewController.swift; sourceTree = "<group>"; };
+		3F447C861C8904FD001A3518 /* SelectCharCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectCharCodeViewController.xib; path = Classes/ViewControllers/Common/SelectCharCodeViewController.xib; sourceTree = "<group>"; };
 		3F4873661C75D83A006594A6 /* PWEditor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PWEditor-Bridging-Header.h"; sourceTree = "<group>"; };
 		3F4873671C75D83B006594A6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Classes/AppDelegate.swift; sourceTree = "<group>"; };
 		3F48736D1C75DB6A006594A6 /* ConfigUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConfigUtils.swift; path = Classes/Utils/ConfigUtils.swift; sourceTree = "<group>"; };
@@ -166,12 +178,6 @@
 		3F74947F1C753B0B002A0544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F7494821C753B0B002A0544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F7494841C753B0B002A0544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3FF4B83B1C792B8C001F113C /* LineNumberLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineNumberLayoutManager.h; path = Classes/TextKitLineNumbers/LineNumberLayoutManager.h; sourceTree = "<group>"; };
-		3FF4B83C1C792B8C001F113C /* LineNumberLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineNumberLayoutManager.m; path = Classes/TextKitLineNumbers/LineNumberLayoutManager.m; sourceTree = "<group>"; };
-		3FF4B83D1C792B8C001F113C /* LineNumberTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineNumberTextView.h; path = Classes/TextKitLineNumbers/LineNumberTextView.h; sourceTree = "<group>"; };
-		3FF4B83E1C792B8C001F113C /* LineNumberTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineNumberTextView.m; path = Classes/TextKitLineNumbers/LineNumberTextView.m; sourceTree = "<group>"; };
-		3FF4B83F1C792B8C001F113C /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyView.h; path = Classes/TextKitLineNumbers/MyView.h; sourceTree = "<group>"; };
-		3FF4B8401C792B8C001F113C /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyView.m; path = Classes/TextKitLineNumbers/MyView.m; sourceTree = "<group>"; };
 		3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDropboxFileViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.swift; sourceTree = "<group>"; };
 		3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.xib; sourceTree = "<group>"; };
 		3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SwiftyDropboxLicense.txt; path = Resources/Licenses/SwiftyDropboxLicense.txt; sourceTree = "<group>"; };
@@ -213,8 +219,8 @@
 				3F165E781C7A7FF5001CBC38 /* SelectNumberViewController.xib */,
 				3F165E251C7A684F001CBC38 /* MenuViewController.swift */,
 				3F165E261C7A684F001CBC38 /* MenuViewController.xib */,
-				3F447C851C8904FD001A3518 /* SelectStringEncodingViewController.swift */,
-				3F447C861C8904FD001A3518 /* SelectStringEncodingViewController.xib */,
+				3F447C851C8904FD001A3518 /* SelectCharCodeViewController.swift */,
+				3F447C861C8904FD001A3518 /* SelectCharCodeViewController.xib */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -330,6 +336,25 @@
 			name = Html;
 			sourceTree = "<group>";
 		};
+		3F1915441C8CCB4D0042D306 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				3F1915451C8CCB770042D306 /* ReadJEnc */,
+				3FF4B83A1C792B6E001F113C /* TextKitLineNumbers */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
+		3F1915451C8CCB770042D306 /* ReadJEnc */ = {
+			isa = PBXGroup;
+			children = (
+				3F1915461C8CCE8D0042D306 /* CharCode.swift */,
+				3F1915481C8CCEB40042D306 /* FileType.swift */,
+				3F19154A1C8CCEFE0042D306 /* ReadJEnc.swift */,
+			);
+			name = ReadJEnc;
+			sourceTree = "<group>";
+		};
 		3F4873611C75D7D7006594A6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,7 +374,7 @@
 				3F4873671C75D83B006594A6 /* AppDelegate.swift */,
 				3F003D1A1C7676C500ECC371 /* CommonConst.swift */,
 				3F4873641C75D7F7006594A6 /* Utils */,
-				3FF4B83A1C792B6E001F113C /* TextKitLineNumbers */,
+				3F1915441C8CCB4D0042D306 /* External */,
 				3F4873631C75D7EB006594A6 /* ViewControllers */,
 			);
 			name = Classes;
@@ -427,12 +452,12 @@
 		3FF4B83A1C792B6E001F113C /* TextKitLineNumbers */ = {
 			isa = PBXGroup;
 			children = (
-				3FF4B83B1C792B8C001F113C /* LineNumberLayoutManager.h */,
-				3FF4B83C1C792B8C001F113C /* LineNumberLayoutManager.m */,
-				3FF4B83D1C792B8C001F113C /* LineNumberTextView.h */,
-				3FF4B83E1C792B8C001F113C /* LineNumberTextView.m */,
-				3FF4B83F1C792B8C001F113C /* MyView.h */,
-				3FF4B8401C792B8C001F113C /* MyView.m */,
+				3F19154C1C8CCF360042D306 /* LineNumberLayoutManager.h */,
+				3F19154D1C8CCF360042D306 /* LineNumberLayoutManager.m */,
+				3F19154E1C8CCF360042D306 /* LineNumberTextView.h */,
+				3F19154F1C8CCF360042D306 /* LineNumberTextView.m */,
+				3F1915501C8CCF360042D306 /* MyView.h */,
+				3F1915511C8CCF360042D306 /* MyView.m */,
 			);
 			name = TextKitLineNumbers;
 			sourceTree = "<group>";
@@ -541,7 +566,7 @@
 				3F165E6A1C7A7B13001CBC38 /* OpenSourceLicenseListViewController.xib in Resources */,
 				3F165E361C7A687C001CBC38 /* GrepListViewController.xib in Resources */,
 				3F165E761C7A7E7C001CBC38 /* SettingsViewController.xib in Resources */,
-				3F447C881C8904FD001A3518 /* SelectStringEncodingViewController.xib in Resources */,
+				3F447C881C8904FD001A3518 /* SelectCharCodeViewController.xib in Resources */,
 				3F3E85BD1C776174002EFB6D /* EnterLineDataTableViewCell.xib in Resources */,
 				3F165E381C7A687C001CBC38 /* LocalFileListViewController.xib in Resources */,
 				3F165E681C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.xib in Resources */,
@@ -615,7 +640,7 @@
 				3F49306D1C7BAF590088A454 /* FileInfoViewController.swift in Sources */,
 				3F165E731C7A7E7C001CBC38 /* SelectFontViewController.swift in Sources */,
 				3F003D3C1C767DFB00ECC371 /* BaseTableViewController.swift in Sources */,
-				3F447C871C8904FD001A3518 /* SelectStringEncodingViewController.swift in Sources */,
+				3F447C871C8904FD001A3518 /* SelectCharCodeViewController.swift in Sources */,
 				3F003D2C1C767C1B00ECC371 /* EnvUtils.swift in Sources */,
 				3F165E481C7A6CE0001CBC38 /* HistoryViewController.swift in Sources */,
 				3F165E351C7A687C001CBC38 /* GrepListViewController.swift in Sources */,
@@ -635,18 +660,21 @@
 				3F165E4B1C7A72A1001CBC38 /* BaseWebViewController.swift in Sources */,
 				3F157C061C84F50E007C555E /* DropboxFileListViewController.swift in Sources */,
 				3F23F9601C7BBAA2004852B3 /* GrepResultInfo.swift in Sources */,
+				3F1915521C8CCF360042D306 /* LineNumberLayoutManager.m in Sources */,
+				3F1915471C8CCE8D0042D306 /* CharCode.swift in Sources */,
 				3F165E271C7A684F001CBC38 /* MenuViewController.swift in Sources */,
+				3F1915491C8CCEB40042D306 /* FileType.swift in Sources */,
 				3F23F9651C7BD19D004852B3 /* DateUtils.swift in Sources */,
 				3F003D1B1C7676C500ECC371 /* CommonConst.swift in Sources */,
-				3FF4B8421C792B8C001F113C /* LineNumberTextView.m in Sources */,
 				3F165E331C7A687C001CBC38 /* EditFileViewController.swift in Sources */,
-				3FF4B8411C792B8C001F113C /* LineNumberLayoutManager.m in Sources */,
 				3F165E791C7A7FF5001CBC38 /* SelectNumberViewController.swift in Sources */,
 				3F165E691C7A7B13001CBC38 /* OpenSourceLicenseListViewController.swift in Sources */,
 				3F4873741C75DD6D006594A6 /* FileInfo.swift in Sources */,
 				3F165E311C7A687C001CBC38 /* AddFileViewController.swift in Sources */,
 				3F157BFA1C84F4A6007C555E /* AddDropboxFileViewController.swift in Sources */,
-				3FF4B8431C792B8C001F113C /* MyView.m in Sources */,
+				3F1915541C8CCF360042D306 /* MyView.m in Sources */,
+				3F1915531C8CCF360042D306 /* LineNumberTextView.m in Sources */,
+				3F19154B1C8CCEFE0042D306 /* ReadJEnc.swift in Sources */,
 				3F165E751C7A7E7C001CBC38 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
