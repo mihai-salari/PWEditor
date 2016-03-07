@@ -10,6 +10,12 @@ import UIKit
 import GoogleMobileAds
 import SwiftyDropbox
 
+/**
+ Dropboxファイル追加画面クラス
+
+ - Version: 1.0 新規作成
+ - Author: paveway.info@gmail.com
+ */
 class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
 
     // MARK: - Constants
@@ -103,13 +109,6 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
         let nib  = UINib(nibName: "EnterLineDataTableViewCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: kLineDataCellName)
 
-        // 画面タップジェスチャーを作成する。
-        let tapGestureAction = Selector("screenTapped:")
-        screenTapGesture = UITapGestureRecognizer(target: self, action: tapGestureAction)
-        screenTapGesture.delegate = self
-        screenTapGesture.numberOfTapsRequired = 1
-        //view.addGestureRecognizer(screenTapGesture)
-
         // バナービューを設定する。
         setupBannerView(bannerView)
     }
@@ -157,12 +156,15 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case SectionIndex.FileName.rawValue:
+            // ファイル名セクションの場合
             return 1
 
         case SectionIndex.FileType.rawValue:
+            // ファイルタイプセクションの場合
             return kFileTypeCellTitleList.count
 
         default:
+            // 上記以外
             return 0;
         }
     }
@@ -205,9 +207,11 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
             cell!.textLabel?.text = title
 
             if row == FileTypeCellIndex.File.rawValue {
+                // ファイルタイプがファイルの場合
                 cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
 
             } else {
+                // ファイルタイプがディレクトリの場合
                 cell?.accessoryType = UITableViewCellAccessoryType.None
             }
             break
@@ -268,7 +272,14 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
 
     // MARK: - UITextFieldDelegate
 
+    /**
+     リターンキーが押下された時に呼び出される。
+
+     - Parameter textField: テキストフィールド
+     - Returns: 処理結果
+     */
     func textFieldShouldReturn(textField: UITextField) -> Bool{
+        // キーボードを閉じる。
         let result = textField.resignFirstResponder()
         return result
     }
@@ -318,39 +329,24 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
             return
         }
 
-        // ファイル
-        let localFilePath = FileUtils.getLocalPath(pathName, name: name)
-        if FileUtils.isExist(localFilePath) {
-            // 同名のファイル・ディレクトリが存在する場合
-            // エラーアラートを表示して、処理終了
-            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAddDropboxFileSameNameError)
-            let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
-            showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: nil)
-            return
-        }
-
         // ファイルタイプにより処理を振り分ける。
         switch fileType {
         case FileTypeCellIndex.File.rawValue:
             // ファイルタイプがファイルの場合
             // ファイルを作成する。
-            createFile(pathName, fileName: name)
+            self.createFile(pathName, fileName: name)
             break
 
         case FileTypeCellIndex.Dir.rawValue:
             // ファイルタイプがディレクトリの場合
             // ディレクトリを作成する。
-            createDirectory(pathName, dirName: name)
+            self.createDirectory(pathName, dirName: name)
             break
-            
+
         default:
             // 上記以外、処理終了
             return
         }
-
-        // 遷移元画面に戻る。
-        navigationController?.popViewControllerAnimated(true)
     }
 
     // MARK: - Dropbox
@@ -381,6 +377,7 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
                     // 遷移元画面に戻る。
                     self.navigationController?.popViewControllerAnimated(true)
                 })
+                return
             }
 
             // 遷移元画面に戻る。
@@ -413,6 +410,7 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
                     // 遷移元画面に戻る。
                     self.navigationController?.popViewControllerAnimated(true)
                 })
+                return
             }
 
             // 遷移元画面に戻る。

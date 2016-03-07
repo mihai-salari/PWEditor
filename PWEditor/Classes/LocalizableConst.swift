@@ -123,6 +123,7 @@ struct LocalizableConst {
     static let kAddDropboxFileCellTitleFile = "AddDropboxFileCellTitleFile"
     static let kAddDropboxFileCellTitleDir = "AddDropboxFileCellTitleDir"
     static let kAddDropboxFileEnterNameError = "AddDropboxFileEnterNameError"
+    static let kAddDropboxGetMetaDataError = "AddDropboxGetMetaDataError"
     static let kAddDropboxFileSameNameError = "AddDropboxFileSameNameError"
     static let kAddDropboxFileCreateError = "AddDropboxFileCreateError"
 

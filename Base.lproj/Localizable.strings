@@ -118,6 +118,7 @@ AddDropboxFileSectionTitleFileType = "Type";
 AddDropboxFileCellTitleFile = "File";
 AddDropboxFileCellTitleDir = "Directory";
 AddDropboxFileEnterNameError = "Please enter a name.";
+AddDropboxGetMetaDataError = "Get file information failed.";
 AddDropboxFileSameNameError = "Exist same name file or directory.";
 AddDropboxFileCreateError = "Create %@ failed.";
 
