@@ -188,12 +188,12 @@ class EditLocalFileViewController: BaseViewController {
             let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
             showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: { () -> Void in
                 // 呼び出し元画面に戻る。
-                self.navigationController?.popViewControllerAnimated(true)
+                self.popViewController()
             })
         }
 
         // 呼び出し元画面に戻る。
-        navigationController?.popViewControllerAnimated(true)
+        self.popViewController()
     }
 
     // MARK: - UITextViewDelegate
@@ -273,5 +273,26 @@ class EditLocalFileViewController: BaseViewController {
      */
     func keyboardDidHide(notification: NSNotification) {
         myView.textView.setContentOffset(preOffset!, animated: true)
+    }
+
+    // MARK: - Private method
+
+    /**
+    遷移元画面に戻る。
+    文字エンコーディング選択画面から遷移した場合、ローカルファイル一覧画面に戻るための対応
+    */
+    func popViewController() {
+        // 画面遷移数を取得する。
+        let count = navigationController?.viewControllers.count
+        // 最後に表示した画面から画面遷移数確認する。
+        for var i = count! - 1; i >= 0; i-- {
+            let vc = navigationController?.viewControllers[i]
+            if vc!.dynamicType == LocalFileListViewController.self {
+                // 表示した画面がローカルファイル一覧画面の場合
+                // 画面を戻す。
+                navigationController?.popToViewController(vc!, animated: true)
+                break
+            }
+        }
     }
 }
