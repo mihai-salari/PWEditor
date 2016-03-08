@@ -10,33 +10,46 @@ import Foundation
 
 class ReadJEnc: NSObject {
 
-    static let DEL = 0x7F
+    static let JP = SJis()
 
-    static let BINARY = 0x03
-
-    var c: CharCode
-    var euc: CharCode
-    var euctw = false
-
-    init(c: CharCode, euc: CharCode) {
-        self.c = c
-        self.euc = euc
+    func getEncoding(bytes: [UInt8], len: Int) -> (CharCode, String) {
+        let charCode = CharCode(name: "", encoding: NSUTF8StringEncoding, bytes: [0x00])
+        let str = String()
+        return (charCode, str)
     }
-
-//    func getEncoding(bytes: [UInt8], len: Int) -> (CharCode, String) {
-//        let b1 = len > 0 ? bytes[0] : 0
-//
-//    }
 
     func getEncoding(bytes: [UInt8], pos: Int, len: Int) -> Int {
         return 0
     }
 
-//    func seemsUTF16N(bytes: [UInt8], len: Int) -> CharCode {
-//
-//    }
+    class func seemsUTF16N(bytes: [UInt8], len: Int) -> CharCode {
+        let charCode = CharCode(name: "", encoding: NSUTF8StringEncoding, bytes: [0x00])
+        return charCode
+    }
+
+    static let DEL = 0x7F
+
+    static let BINARY = 0x03
+
+    var charCode: CharCode
+    var euc: CharCode
+    var euctw = false
+
+    init(charCode: CharCode, euc: CharCode) {
+        self.charCode = charCode
+        self.euc = euc
+    }
+
+    func toString() -> String {
+        return charCode.name
+    }
 
     class Jis: NSObject {
+
+        func hasSOSI(bytes: [UInt8], len: Int) -> Bool {
+            return false
+        }
+
         var bytes: [UInt8]
         var len: Int
         var jish = false
@@ -49,8 +62,14 @@ class ReadJEnc: NSObject {
             self.isokr = pos >= 0 && pos < len - 4 && String(bytes[pos + 1]) == "$" && String(bytes[pos + 2]) == ")" && String(bytes[pos + 3]) == "C";
         }
 
-        func hasSOSI(bytes: [UInt8], len: Int) -> Bool {
-            return false
+        func getEncoding(pos: Int) -> Int {
+            return 0
+        }
+
+        func getEncoding() -> (CharCode, String) {
+            let charCode = CharCode(name: "", encoding: NSUTF8StringEncoding, bytes: [0x00])
+            let str = String()
+            return (charCode, str)
         }
 
 //        func getEncoding(pos: Int) -> Int {
@@ -107,9 +126,8 @@ class ReadJEnc: NSObject {
     }
 
     class SJis: ReadJEnc {
-//        override init(c: CharCode, euc: CharCode) {
-//            super.init(c: CharCode.SJIS, euc: CharCode.EUC)
-//        }
-
+        init() {
+            super.init(charCode: CharCode.SJIS, euc: CharCode.EUC)
+        }
     }
 }

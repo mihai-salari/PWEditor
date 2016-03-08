@@ -9,21 +9,21 @@
 import UIKit
 import GoogleMobileAds
 
-class SelectCharCodeViewController: BaseTableViewController {
+class SelectEncodingViewController: BaseTableViewController {
 
     // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kSelectCharCodeScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kSelectEncodingScreenTitle)
 
     /// セクションタイトルリスト
     let kSectionTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kSelectCharCodeSectionTitleCharCode),
-        LocalizableUtils.getString(LocalizableConst.kSelectCharCodeSectionTitleReturnCode)
+        LocalizableUtils.getString(LocalizableConst.kSelectEncodingSectionTitleEncoding),
+        LocalizableUtils.getString(LocalizableConst.kSelectEncodingSectionTitleReturnCode)
     ]
 
-    /// 文字コードセルタイトルリスト
-    let kCharCodeCellTitleList = [
+    /// 文字エンコーディングセルタイトルリスト
+    let kEncodingCellTitleList = [
         "UTF-8",
         "Shift-JIS",
         "EUC"
@@ -37,12 +37,12 @@ class SelectCharCodeViewController: BaseTableViewController {
     ]
 
     enum SectionIndex: Int {
-        case CharCode = 0
+        case Encoding = 0
         case ReturnCode = 1
     }
 
-    /// 文字コードセルインデックス
-    enum StringEncodingCellIndex: Int {
+    /// 文字エンコーディングセルインデックス
+    enum EncodingCellIndex: Int {
         case Utf8 = 0
         case ShiftJis = 1
         case Euc = 2
@@ -157,8 +157,8 @@ class SelectCharCodeViewController: BaseTableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case SectionIndex.CharCode.rawValue:
-            return CommonConst.CharCodeNameList.count
+        case SectionIndex.Encoding.rawValue:
+            return CommonConst.EncodingNameList.count
 
         case SectionIndex.ReturnCode.rawValue:
             return CommonConst.RetCodeNameList.count
@@ -174,9 +174,9 @@ class SelectCharCodeViewController: BaseTableViewController {
         let row = indexPath.row
 
         switch section {
-        case SectionIndex.CharCode.rawValue:
-            // 文字コードセクションの場合
-            cell.textLabel?.text = kCharCodeCellTitleList[row]
+        case SectionIndex.Encoding.rawValue:
+            // 文字エンコーディングセクションの場合
+            cell.textLabel?.text = kEncodingCellTitleList[row]
             if row == 0 {
                 cell.accessoryType = .Checkmark
 
@@ -219,7 +219,7 @@ class SelectCharCodeViewController: BaseTableViewController {
         let row = indexPath.row
 
         switch section {
-        case SectionIndex.CharCode.rawValue:
+        case SectionIndex.Encoding.rawValue:
             // セル位置のセルを取得する。
             let cell = tableView.cellForRowAtIndexPath(indexPath)
 
@@ -227,7 +227,7 @@ class SelectCharCodeViewController: BaseTableViewController {
             cell?.accessoryType = .Checkmark
 
             // 選択されていないセルのチェックマークを外す。
-            let valuesNum = kCharCodeCellTitleList.count
+            let valuesNum = kEncodingCellTitleList.count
             for var i = 0; i < valuesNum; i++ {
                 if i != row {
                     let unselectedIndexPath = NSIndexPath(forRow: i, inSection: section)
@@ -269,28 +269,28 @@ class SelectCharCodeViewController: BaseTableViewController {
     - Parameter sender: 右バーボタン
     */
     override func rightBarButtonPressed(sender: UIButton) {
-        // 選択された文字コードを取得する。
-        var charCodeType = -1
-        let charCodeSection = SectionIndex.CharCode.rawValue
-        let charCodeRowNum = tableView?.numberOfRowsInSection(charCodeSection)
-        for (var i = 0; i < charCodeRowNum; i++) {
-            let indexPath = NSIndexPath(forItem: i, inSection: charCodeSection)
+        // 選択された文字エンコーディングを取得する。
+        var encodingType = -1
+        let encodingSection = SectionIndex.Encoding.rawValue
+        let encodingRowNum = tableView?.numberOfRowsInSection(encodingSection)
+        for (var i = 0; i < encodingRowNum; i++) {
+            let indexPath = NSIndexPath(forItem: i, inSection: encodingSection)
             let cell = tableView?.cellForRowAtIndexPath(indexPath)
             let check = cell?.accessoryType
 
             if check == UITableViewCellAccessoryType.Checkmark {
-                charCodeType = indexPath.row
+                encodingType = indexPath.row
                 break
             }
         }
-        if charCodeType == -1 {
-            // 文字コードが取得できない場合、処理終了
+        if encodingType == -1 {
+            // 文字エンコーディングが取得できない場合、処理終了
             return
         }
 
         // 選択された改行コードを取得する。
         var returnCodeType = -1
-        let returnCodeSection = SectionIndex.CharCode.rawValue
+        let returnCodeSection = SectionIndex.ReturnCode.rawValue
         let returnCodeRowNum = tableView?.numberOfRowsInSection(returnCodeSection)
         for (var i = 0; i < returnCodeRowNum; i++) {
             let indexPath = NSIndexPath(forItem: i, inSection: returnCodeSection)
@@ -307,11 +307,23 @@ class SelectCharCodeViewController: BaseTableViewController {
             return
         }
 
-        if sourceClassName == DropboxFileListViewController.self.description() {
-            // 遷移元画面がDropboxファイル一覧画面の場合
-            // Dropboxファイル編集画面に遷移する。
-            let vc = EditDropboxFileViewController(pathName: pathName, fileName: fileName, charCodeType: charCodeType, retCodeType: returnCodeType)
+        // 遷移元画面により処理を判別する。
+        switch sourceClassName {
+        case LocalFileListViewController.self.description():
+            // ローカルファイル一覧画面の場合
+            let vc = EditFileViewController(pathName: pathName, fileName: fileName)
             navigationController?.pushViewController(vc, animated: true)
+            break
+
+        case DropboxFileListViewController.self.description():
+            // Dropboxファイル一覧画面の場合
+            // Dropboxファイル編集画面に遷移する。
+            let vc = EditDropboxFileViewController(pathName: pathName, fileName: fileName, encodingType: encodingType, retCodeType: returnCodeType)
+            navigationController?.pushViewController(vc, animated: true)
+            break
+
+        default:
+            break
         }
     }
 }

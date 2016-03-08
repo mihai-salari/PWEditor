@@ -48,6 +48,9 @@ class FileInfoViewController: BaseTableViewController {
     /// ファイル名
     var fileName: String!
 
+    /// 文字エンコーディング
+    var encoding: UInt!
+
     /// ファイル属性情報
     var fileAttrInfo: NSDictionary?
 
@@ -76,10 +79,11 @@ class FileInfoViewController: BaseTableViewController {
      イニシャライザ
      コンテンツ作成時呼び出される。
      */
-    init(pathName: String, fileName: String) {
+    init(pathName: String, fileName: String, encoding: UInt) {
         // 引数を保存する。
         self.pathName = pathName
         self.fileName = fileName
+        self.encoding = encoding
 
         // スーパークラスのイニシャライザを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -115,7 +119,13 @@ class FileInfoViewController: BaseTableViewController {
         if fileAttrInfo != nil {
             // ファイル属性情報が取得できた場合
             // ファイルデータを取得する。
-            let fileData = FileUtils.getFileData(localFilePathName)
+            let returns = FileUtils.getFileData(localFilePathName, encoding: encoding)
+
+            let result = returns.0
+            if result {
+                return
+            }
+            let fileData = returns.1
 
             // 文字数を取得する。
             charNum = fileData.characters.count
@@ -126,7 +136,7 @@ class FileInfoViewController: BaseTableViewController {
             }
 
             // 改行コードタイプを取得する。
-            retCodeType = StringUtils.getRetCodeType(fileData)
+            retCodeType = StringUtils.getRetCodeType(fileData, encoding: encoding)
         }
     }
 
@@ -205,7 +215,7 @@ class FileInfoViewController: BaseTableViewController {
 
         case CellIndex.RetCodeType.rawValue:
             cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kFileInfoCellTitleRetCodeType)
-            let text = CommonConst.RetCodeNameList[row]
+            let text = CommonConst.RetCodeNameList[retCodeType]
             cell?.detailTextLabel?.text = text
             break
 

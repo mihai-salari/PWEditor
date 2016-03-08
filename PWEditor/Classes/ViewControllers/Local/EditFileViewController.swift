@@ -31,11 +31,22 @@ class EditFileViewController: BaseViewController {
     /// ファイル名
     var fileName: String!
 
+    /// 文字エンコーディングタイプ
+    var encodingType: Int!
+
+    /// 文字エンコーディング
+    var encoding: UInt!
+
+    /// 改行コードタイプ
+    var retCodeType: Int!
+
     /// grep単語
     var grepWord = ""
 
+    /// プレオフセット
     var preOffset: CGPoint?
 
+    /// テキスト変更フラグ
     var textChanged = false
 
     // MARK: - Initializer
@@ -52,12 +63,19 @@ class EditFileViewController: BaseViewController {
 
     /**
      イニシャライザ
-     コンテンツ作成時呼び出される。
+
+     - Parameter pathName: パス名
+     - Parameter fileName: ファイル名
+     - Parameter encodingType: 文字エンコーディングタイプ(デフォルト"UTF-8")
+     - Parameter retCodeType: 改行コードタイプ(デフォルト"Unix(LF)")
      */
-    init(pathName: String, fileName: String) {
+    init(pathName: String, fileName: String, encodingType: Int = CommonConst.EncodingType.Utf8.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue) {
         // 引数を保存する。
         self.pathName = pathName
         self.fileName = fileName
+        self.encodingType = encodingType
+        self.retCodeType = retCodeType
+        self.encoding = CommonConst.EncodingList[self.encodingType]
 
         // スーパークラスのイニシャライザを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -65,14 +83,20 @@ class EditFileViewController: BaseViewController {
 
     // MARK: - UIViewDelegate
 
+    /**
+    インスタンスが生成された時に呼び出される。
+    */
     override func viewDidLoad() {
+        // スーパークラスのメソッドを呼び出す。
         super.viewDidLoad()
 
+        // 画面タイトルを設定する。
         navigationItem.title = fileName
 
         // 右上ボタンを設定する。
         createRightBarButton()
 
+        // テキストビューを設定する。
         listNumber = 0
         setupTextView()
         let selector = Selector("textChanged:")
@@ -83,8 +107,8 @@ class EditFileViewController: BaseViewController {
 
         // ファイルデータを取得する。
         let localFilePath = FileUtils.getLocalPath(pathName, name: fileName)
-        let fileData = FileUtils.getFileData(localFilePath)
-        myView.textView.text = fileData
+        let result = FileUtils.getFileData(localFilePath, encoding: encoding)
+        myView.textView.text = result.1
 
         // テキストビューがキーボードに隠れないための処理
         // 参考 : https://teratail.com/questions/2915

@@ -10,9 +10,9 @@ import Foundation
 
 class CharCode: NSObject {
 
-    //static let UTF8 = Text(name: "UTF-8", encoding: NSUTF8StringEncoding)
-    //static let EUC = Text(name: "EUCJP", encoding: NSJapaneseEUCStringEncoding)
-    //static let SJIS = Text(name: "SJIS", encoding: NSShiftJISStringEncoding)
+    static let UTF8 = Text(name: "UTF-8", encoding: NSUTF8StringEncoding)
+    static let EUC = Text(name: "EUCJP", encoding: NSJapaneseEUCStringEncoding)
+    static let SJIS = Text(name: "SJIS", encoding: NSShiftJISStringEncoding)
 
     class func getPreamble(bytes: [UInt8], read: Int) -> CharCode {
         return CharCode(name: "", encoding: NSUTF8StringEncoding, bytes: [0])
@@ -68,7 +68,45 @@ class Text: CharCode {
         super.init(name: name, encoding: encoding, bytes: [0])
     }
 
-//    init(name: String, enc: Int) {
-//        super.init(name: name, enc: enc, bytes: nil)
-//    }
+    init(name: String, enc: Int) {
+        super.init(name: name, enc: enc, bytes: [])
+    }
+}
+
+/**
+ JIS補助漢字対応デコーダ
+ */
+class Euch: Text {
+    /**
+     イニシャライザ
+
+     - Parameter name: 文字コード名
+     */
+    init(name: String) {
+        super.init(name: name, enc: 20932)
+    }
+
+    /**
+     イニシャライザ
+
+     - Parameter bytes: 先頭バイト識別データ
+     - Parameter len: 長さ
+     */
+    override func getString(bytes: [UInt8], len: Int) -> String {
+        var bytesForCP20932 = [UInt8]()
+        var cp20932Len = 0
+        var shiftPos = Int.min
+        var b: UInt8
+        for var i = 0; i < len; i++ {
+            b = bytes[i]
+            let start: UInt8 = 0x8F
+            if b == start {
+                shiftPos = i + 2
+            } else {
+                bytesForCP20932[cp20932Len] = i == shiftPos ? b & 0x7F : b
+                cp20932Len++
+            }
+        }
+        return ""
+    }
 }

@@ -13,7 +13,7 @@ ButtonTitleClose = "閉じる";
 ButtonTitleClear = "クリア";
 ButtonTitleDelete = "削除";
 ButtonTitleMenu = "メニュー";
-ButtonTitleOpenChar = "文字コードを指定して開く";
+ButtonTitleOpenChar = "文字エンコーディングを指定して開く";
 
 // アラートタイトル
 AlertTitleError = "エラー";
@@ -28,9 +28,10 @@ AlertMessageDropboxInvalid = "Dropboxが無効です。";
 AlertMessageOpenFileError = "このファイルは開けません。";
 AlertMessageGetFileDataError = "ファイルデータが取得できません。";
 AlertMessageNotTextFileError = "このファイルはテキストファイルではありません。";
-AlertMessageCovertCharCodeError = "ファイルデータを指定の文字コードに変換できません。";
+AlertMessageCovertEncodingError = "ファイルデータを指定の文字エンコーディングに変換できません。";
 
 // アクションシートタイトル
+ActionSheetTitleLocalFile = "ローカルファイル操作";
 ActionSheetTitleDropbox = "Dropbox操作";
 
 // その他
@@ -42,10 +43,10 @@ Update = "更新";
 // フォント選択画面
 SelectFontScreenTitle = "フォント選択";
 
-// 文字コード選択画面
-SelectCharCodeScreenTitle = "文字コード選択";
-SelectCharCodeSectionTitleCharCode = "文字コード";
-SelectCharCodeSectionTitleReturnCode = "改行コード";
+// 文字エンコーディング選択画面
+SelectEncodingScreenTitle = "文字エンコーディング選択";
+SelectEncodingSectionTitleEncoding = "文字エンコーディング";
+SelectEncodingSectionTitleReturnCode = "改行コード";
 
 // メニュー画面
 MenuScreenTitle = "メニュー";

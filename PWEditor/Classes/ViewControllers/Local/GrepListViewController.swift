@@ -34,6 +34,9 @@ class GrepListViewController: BaseTableViewController, UISearchBarDelegate, UISe
     /// パス名
     var pathName: String!
 
+    /// 文字エンコーディング
+    var encoding: UInt!
+
     /// grep結果情報リスト
     var grepResultInfoList = [GrepResultInfo]()
 
@@ -54,11 +57,13 @@ class GrepListViewController: BaseTableViewController, UISearchBarDelegate, UISe
 
      - Parameter grepWord: grep単語
      - Parameter pathName: パス名
+     - Parameter encoding: 文字エンコーディング
      */
-    init(grepWord: String, pathName: String) {
+    init(grepWord: String, pathName: String, encoding: UInt) {
         // 引数のデータを保存する。
         self.grepWord = grepWord
         self.pathName = pathName
+        self.encoding = encoding
 
         // スーパークラスのイニシャライザを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -281,7 +286,12 @@ class GrepListViewController: BaseTableViewController, UISearchBarDelegate, UISe
         for name in dirEnum {
             let targetPathName = FileUtils.getLocalPath(pathName, name: name as! String)
             if !FileUtils.isDirectory(targetPathName) {
-                let fileData = FileUtils.getFileData(targetPathName)
+                let returns = FileUtils.getFileData(targetPathName, encoding: encoding)
+                let result = returns.0
+                if !result {
+                    return
+                }
+                let fileData = returns.1
                 var lineNo = 0
                 // 行数分繰り返す。
                 fileData.enumerateLines { line, stop in

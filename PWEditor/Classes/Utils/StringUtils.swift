@@ -68,10 +68,11 @@ class StringUtils: NSObject {
      改行コードタイプを返却する。
 
      - Parameter dataString: データ文字列
+     - Parameter encodig: 文字エンコーディング
      - Returns: 改行コードタイプ
      */
-    class func getRetCodeType(dataString: String) -> Int {
-        let data = dataString.dataUsingEncoding(NSUTF8StringEncoding)
+    class func getRetCodeType(dataString: String, encoding: UInt) -> Int {
+        let data = dataString.dataUsingEncoding(encoding)
         let count = data!.length
         var buffer = Array<Int8>(count: count, repeatedValue: 0)
         data!.getBytes(&buffer, length: count)

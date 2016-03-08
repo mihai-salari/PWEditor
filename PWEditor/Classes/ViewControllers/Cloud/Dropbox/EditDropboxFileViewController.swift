@@ -26,11 +26,11 @@ class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
     /// ファイル名
     var fileName: String!
 
-    /// 文字コードタイプ
-    var charCodeType: Int!
+    /// 文字エンコーディングタイプ
+    var encodingType: Int!
 
-    /// 文字コード
-    var charCode: UInt!
+    /// 文字エンコーディング
+    var encoding: UInt!
 
     /// 改行コードタイプ
     var retCodeType: Int!
@@ -61,20 +61,19 @@ class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
 
     /**
      イニシャライザ
-     コンテンツ作成時呼び出される。
-     
+
      - Parameter pathName: パス名
      - Parameter fileName: ファイル名
-     - Parameter charCodeType: 文字コードタイプ(デフォルト"UTF-8")
+     - Parameter encodingType: 文字エンコーディングタイプ(デフォルト"UTF-8")
      - Parameter retCodeType: 改行コードタイプ(デフォルト"Unix(LF)")
      */
-    init(pathName: String, fileName: String, charCodeType: Int = CommonConst.CharCodeType.Utf8.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue) {
+    init(pathName: String, fileName: String, encodingType: Int = CommonConst.EncodingType.Utf8.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue) {
         // 引数を保存する。
         self.pathName = pathName
         self.fileName = fileName
-        self.charCodeType = charCodeType
+        self.encodingType = encodingType
         self.retCodeType = retCodeType
-        self.charCode = CommonConst.CharCodeList[self.charCodeType]
+        self.encoding = CommonConst.EncodingList[self.encodingType]
 
         // スーパークラスのイニシャライザを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -441,11 +440,11 @@ class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
                     if FileUtils.isTextData(fileData!) {
                         // テキストデータの場合
                         // 文字列に変換する。
-                        text = String(data: fileData!, encoding: self.charCode)
+                        text = String(data: fileData!, encoding: self.encoding)
                         if text == nil {
                             // 文字列に変換できない場合
                             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCovertCharCodeError)
+                            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCovertEncodingError)
                             self.showAlert(title, message: message, handler: { () -> Void in
                                 self.popViewController()
                             })
@@ -489,7 +488,7 @@ class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
 
         // ファイルデータをアップロードする。
         let filePathName = "\(pathName)/\(fileName)"
-        let fileData = fileDataString.dataUsingEncoding(charCode, allowLossyConversion: false)
+        let fileData = fileDataString.dataUsingEncoding(encoding, allowLossyConversion: false)
         let rev = downloadFileInfo!.rev
         let date = NSDate()
         client!.files.upload(path: filePathName, mode: .Update(rev), clientModified: date, body: fileData!).response { response, error in
@@ -511,7 +510,7 @@ class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
 
     /**
      遷移元画面に戻る。
-     文字コード選択画面から遷移した場合、Dropboxファイル一覧画面に戻るための対応
+     文字エンコーディング選択画面から遷移した場合、Dropboxファイル一覧画面に戻るための対応
      */
     func popViewController() {
         // 画面遷移数を取得する。

@@ -73,19 +73,19 @@ struct CommonConst {
         static let kEnterData: CGFloat = 12.0
     }
 
-    enum CharCodeType: Int {
+    enum EncodingType: Int {
         case Utf8 = 0
         case ShiftJis = 1
         case Euc = 2
     }
 
-    static let CharCodeNameList = [
+    static let EncodingNameList = [
         "UTF-8",
         "Shift_JIS",
         "EUC"
     ]
 
-    static let CharCodeList = [
+    static let EncodingList = [
         NSUTF8StringEncoding,
         NSShiftJISStringEncoding,
         NSJapaneseEUCStringEncoding

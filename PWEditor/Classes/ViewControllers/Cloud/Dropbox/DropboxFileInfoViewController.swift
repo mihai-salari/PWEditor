@@ -39,6 +39,9 @@ class DropboxFileInfoViewController: BaseTableViewController {
     /// Dropboxファイル情報
     var fileInfo: DropboxFileInfo!
 
+    /// 改行コードタイプ
+    var retCodeType = CommonConst.RetCodeType.LF.rawValue
+
     // MARK: - Initializer
 
     /**

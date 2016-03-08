@@ -251,7 +251,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
 
         let fileInfo = fileInfoList[row]
         let fileName = fileInfo.name
-        let vc = FileInfoViewController(pathName: pathName, fileName: fileName)
+        let vc = FileInfoViewController(pathName: pathName, fileName: fileName, encoding: NSUTF8StringEncoding)
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -336,6 +336,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         // インデックスパスを取得する。
         let point = recognizer.locationInView(tableView)
         let indexPath = tableView!.indexPathForRowAtPoint(point)
+
         if indexPath == nil {
             // インデックスパスが取得できない場合、処理を終了する。
             return
@@ -350,40 +351,15 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
                 return
             }
 
-            // ファイル情報から名前を取得する。
+            // ファイル情報を取得する。
             let fileInfo = self.fileInfoList[row]
+
+            // ファイル名を取得する。
             let name = fileInfo.name
 
-            // 削除確認アラートを表示する。
-            let alertTitle = LocalizableUtils.getString(LocalizableConst.kAlertTitleConfirm)
-            let alertMessage = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageDeleteConfirm, name)
-            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .Alert)
-
-            let okActionTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
-            let okAction = UIAlertAction(title: okActionTitle, style: .Default, handler: {(action: UIAlertAction!) -> Void in
-                // OKボタン押下時の処理
-                // 指定された名前のファイル・ディレクトリを削除する。
-                let filePath = "\(self.pathName)/\(name)"
-                let localFilePath = FileUtils.getLocalPath(filePath)
-                let result = FileUtils.remove(localFilePath)
-                if !result {
-                    // 削除できない場合、エラーアラートを表示する。
-                    // TODO: 未実装
-
-                } else {
-                    // 削除できた場合
-                    // ファイル情報リストからファイル情報を削除し、テーブルビューを更新する。
-                    self.fileInfoList.removeAtIndex(row)
-                    self.tableView.reloadData()
-                }
-            })
-            alert.addAction(okAction)
-
-            let cancelActionTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
-            let cancelAction = UIAlertAction(title: cancelActionTitle, style: .Cancel, handler: nil)
-            alert.addAction(cancelAction)
-
-            presentViewController(alert, animated: true, completion: nil)
+            // ローカルファイル操作アクションシートを表示する。
+            let cell = tableView.cellForRowAtIndexPath(indexPath!)
+            showOperateLocalFileActionSheet(name, index: row, cell: cell!)
         }
     }
 
@@ -406,7 +382,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
      */
     @IBAction func grepToolbarButtonPressed(sender: AnyObject) {
         // Grep一覧画面に遷移する。
-        let vc = GrepListViewController(grepWord: "", pathName: pathName)
+        let vc = GrepListViewController(grepWord: "", pathName: pathName, encoding: NSUTF8StringEncoding)
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -441,5 +417,103 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         searchDisplayController.searchResultsDelegate = self;
         searchDisplayController.searchResultsDataSource = self;
         tableView.tableHeaderView = searchBar;
+    }
+
+
+    // MARK: - ActionSheet
+
+    /**
+     ローカルファイル操作アクションシートを表示する。
+
+     - Parameter name: ファイル名またはディレクトリ名
+     - Parameter index: ファイル情報の位置
+     - Parameter cell: テーブルビューセル
+    */
+    private func showOperateLocalFileActionSheet(name: String, index: Int, cell: UITableViewCell) {
+        // ローカルファイル操作アクションシートを生成する。
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kActionSheetTitleLocalFile)
+        let alert = UIAlertController(title: alertTitle, message: "", preferredStyle: .ActionSheet)
+        // iPadでクラッシュする対応
+        alert.popoverPresentationController?.sourceView = view
+        alert.popoverPresentationController?.sourceRect = cell.frame
+
+        // キャンセルボタンを生成する。
+        let cancelButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+        // 文字エンコーディングを指定して開くボタンを生成する。
+        let openCharButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleOpenChar)
+        let openCharAction = UIAlertAction(title: openCharButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // 文字エンコーディング選択画面に遷移する。
+            let vc = SelectEncodingViewController(sourceClassName: self.dynamicType.description(), pathName: self.pathName, fileName: name)
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(openCharAction)
+
+        // 削除ボタンを生成する。
+        let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+        let deleteAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // ファイル削除確認アラートを表示する。
+            self.showDeleteFileConfirmAlert(name, index: index)
+        })
+        alert.addAction(deleteAction)
+
+        // アラートを表示する。
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    /**
+     ファイル削除確認アラートを表示する。
+
+     - Parameter name: ファイル名またはディレクトリ名
+     - Parameter index: ファイル情報の位置
+     */
+    private func showDeleteFileConfirmAlert(name: String, index: Int) {
+        // ファイル削除確認アラートを生成する。
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kAlertTitleConfirm)
+        let alertMessage = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageDeleteConfirm, "\(name)")
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .Alert)
+
+        // キャンセルボタンを生成する。
+        let cancelButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
+
+        // 削除ボタンを生成する。
+        let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+        let okAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // 削除する。
+            self.deleteFile(name, index: index)
+        })
+
+        // 各ボタンをアラートに設定する。
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+
+        // アラートを表示する。
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    /**
+     ファイルまたはディレクトリを削除する。
+
+     - Parameter name: ファイル名またはディレクトリ名
+     - Parameter index: ファイル情報の位置
+     */
+    func deleteFile(name: String, index: Int) {
+        // 指定された名前のファイル・ディレクトリを削除する。
+        let filePath = "\(self.pathName)/\(name)"
+        let localFilePath = FileUtils.getLocalPath(filePath)
+        let result = FileUtils.remove(localFilePath)
+        if !result {
+            // 削除できない場合、エラーアラートを表示する。
+            // TODO: 未実装
+
+        } else {
+            // 削除できた場合
+            // ファイル情報リストからファイル情報を削除し、テーブルビューを更新する。
+            self.fileInfoList.removeAtIndex(index)
+            self.tableView.reloadData()
+        }
     }
 }

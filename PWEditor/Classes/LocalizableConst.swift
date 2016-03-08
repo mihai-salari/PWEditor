@@ -31,9 +31,10 @@ struct LocalizableConst {
     static let kAlertMessageOpenFileError = "AlertMessageOpenFileError"
     static let kAlertMessageGetFileDataError = "AlertMessageGetFileDataError"
     static let kAlertMessageNotTextFileError = "AlertMessageNotTextFileError"
-    static let kAlertMessageCovertCharCodeError = "AlertMessageCovertCharCodeError"
+    static let kAlertMessageCovertEncodingError = "AlertMessageCovertEncodingError"
 
     // アクションシートタイトル
+    static let kActionSheetTitleLocalFile = "ActionSheetTitleLocalFile"
     static let kActionSheetTitleDropbox = "ActionSheetTitleDropbox"
 
     // その他
@@ -46,9 +47,9 @@ struct LocalizableConst {
     static let kSelectFontScreenTitle = "SelectFontScreenTitle"
 
     // 文字コード選択画面
-    static let kSelectCharCodeScreenTitle = "SelectCharCodeScreenTitle"
-    static let kSelectCharCodeSectionTitleCharCode = "SelectCharCodeSectionTitleCharCode"
-    static let kSelectCharCodeSectionTitleReturnCode = "SelectCharCodeSectionTitleReturnCode"
+    static let kSelectEncodingScreenTitle = "SelectEncodingScreenTitle"
+    static let kSelectEncodingSectionTitleEncoding = "SelectEncodingSectionTitleEncoding"
+    static let kSelectEncodingSectionTitleReturnCode = "SelectEncodingSectionTitleReturnCode"
 
     // メニュー画面
     static let kMenuScreenTitle = "MenuScreenTitle"

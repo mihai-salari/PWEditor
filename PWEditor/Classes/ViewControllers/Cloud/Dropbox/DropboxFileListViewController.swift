@@ -237,20 +237,23 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
     - Parameter recognizer: ジェスチャーオブジェクト
     */
     override func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
-        // 押された位置でcellのPathを取得
+        // インデックスパスを取得する。
         let point = recognizer.locationInView(tableView)
         let indexPath = tableView!.indexPathForRowAtPoint(point)
 
-        // セルの位置が取得できない場合
         if indexPath == nil {
-            // 何もしない。
+            // インデックスパスが取得できない場合、処理を終了する。
             return
         }
 
-        // 対象のセルが特定できた場合
         if recognizer.state == UIGestureRecognizerState.Began {
+            // ジェスチャーが開始状態の場合
             // セル位置を取得する。
             let row = indexPath!.row
+            let count = fileInfoList.count
+            if row + 1 > count {
+                return
+            }
 
             // ファイル情報を取得する。
             let fileInfo = fileInfoList[row]
@@ -270,6 +273,7 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
      - Parameter sender: 追加ツールバーボタン
      */
     @IBAction func addToolbarButtonPressed(sender: AnyObject) {
+        // Dropboxファイル追加画面に遷移する。
         let vc = AddDropboxFileViewController(pathName: pathName)
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -304,11 +308,11 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
         let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
         alert.addAction(cancelAction)
 
-        // 文字コードを指定して開くボタンを生成する。
+        // 文字エンコーディングを指定して開くボタンを生成する。
         let openCharButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleOpenChar)
         let openCharAction = UIAlertAction(title: openCharButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
-            // 文字コード選択画面に遷移する。
-            let vc = SelectCharCodeViewController(sourceClassName: self.dynamicType.description(), pathName: self.pathName, fileName: name)
+            // 文字エンコーディング選択画面に遷移する。
+            let vc = SelectEncodingViewController(sourceClassName: self.dynamicType.description(), pathName: self.pathName, fileName: name)
             self.navigationController?.pushViewController(vc, animated: true)
         })
         alert.addAction(openCharAction)

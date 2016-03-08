@@ -187,21 +187,22 @@ class FileUtils: NSObject {
      ファイルデータを取得する。
 
      - Parameter filePathName: ファイルパス名
-     - Returns: ファイルデータ
+     - Parameter encoding: 文字エンコーディング
+     - Returns: 取得結果(true:成功/false:エラー)、ファイルデータ
      */
-    class func getFileData(filePathName: String) -> String {
+    class func getFileData(filePathName: String, encoding: UInt) -> (Bool, String) {
         if filePathName.isEmpty {
-            return ""
+            return (false, "")
         }
 
         let fileData: String
         do {
-            fileData = try NSString(contentsOfFile: filePathName, encoding: NSUTF8StringEncoding) as String
+            fileData = try NSString(contentsOfFile: filePathName, encoding: encoding) as String
         } catch {
-            fileData = ""
+            return (false, "")
         }
 
-        return fileData
+        return (true, fileData)
     }
 
     class func writeFileData(filePathName: String, fileData: String)  -> Bool {
@@ -261,6 +262,11 @@ class FileUtils: NSObject {
         return convert
     }
 
+
+
+
+
+    
     class func getFileEncoding(filePathName: String) -> NSStringEncoding {
         if filePathName.isEmpty {
             return 0
