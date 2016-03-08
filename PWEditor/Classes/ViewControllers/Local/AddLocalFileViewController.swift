@@ -26,23 +26,23 @@ import GoogleMobileAds
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class AddFileViewController: BaseTableViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
+class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
 
     // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kAddFileScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kAddLocalFileScreenTitle)
 
     /// セクションタイトルリスト
     let kSectionTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kAddFileSectionTitleFileName),
-        LocalizableUtils.getString(LocalizableConst.kAddFileSectionTitleFileType)
+        LocalizableUtils.getString(LocalizableConst.kAddLocalFileSectionTitleFileName),
+        LocalizableUtils.getString(LocalizableConst.kAddLocalFileSectionTitleFileType)
     ]
 
     /// ファイルタイプタイトルリスト
     let kFileTypeTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kAddFileCellTitleFile),
-        LocalizableUtils.getString(LocalizableConst.kAddFileCellTitleDir)
+        LocalizableUtils.getString(LocalizableConst.kAddLocalFileCellTitleFile),
+        LocalizableUtils.getString(LocalizableConst.kAddLocalFileCellTitleDir)
     ]
 
     /// セクションインデックス
@@ -312,7 +312,7 @@ class AddFileViewController: BaseTableViewController, UIGestureRecognizerDelegat
             // 名前が未入力の場合
             // エラーアラートを表示して、処理終了
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAddFileEnterNameError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAddLocalFileEnterNameError)
             let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
             showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: nil)
             return
@@ -343,7 +343,7 @@ class AddFileViewController: BaseTableViewController, UIGestureRecognizerDelegat
             // 同名のファイル・ディレクトリが存在する場合
             // エラーアラートを表示して、処理終了
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAddFileSameNameError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAddLocalFileSameNameError)
             let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
             showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: nil)
             return
@@ -361,7 +361,7 @@ class AddFileViewController: BaseTableViewController, UIGestureRecognizerDelegat
                 // ファイルが作成できない場合
                 // エラーアラートを表示して、処理終了
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAddFileCreateError, name)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAddLocalFileCreateError, name)
                 let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
                 showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: nil)
             }
@@ -376,7 +376,7 @@ class AddFileViewController: BaseTableViewController, UIGestureRecognizerDelegat
                 // エラーの場合
                 // エラーアラートを表示して、処理終了
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAddFileCreateError, name)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAddLocalFileCreateError, name)
                 let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
                 showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: nil)
                 return

@@ -15,12 +15,12 @@ import GoogleMobileAds
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class GrepListViewController: BaseTableViewController, UISearchBarDelegate, UISearchDisplayDelegate, UIGestureRecognizerDelegate  {
+class GrepLocalFileListViewController: BaseTableViewController, UISearchBarDelegate, UISearchDisplayDelegate, UIGestureRecognizerDelegate  {
 
     // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kGrepListScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kGrepLocalFileListScreenTitle)
 
     /// テーブルビュー
     @IBOutlet weak var tableView: UITableView!
@@ -190,8 +190,8 @@ class GrepListViewController: BaseTableViewController, UISearchBarDelegate, UISe
         let name = filePathName.substringFromIndex((range?.endIndex)!) as String
         let path = filePathName.substringToIndex((range?.startIndex)!) as String
 
-        // ローカルリポジトリ内容画面に遷移する。
-        let vc = EditFileViewController(pathName: path, fileName: name)
+        // ローカルファイル編集画面に遷移する。
+        let vc = EditLocalFileViewController(pathName: path, fileName: name)
         navigationController?.pushViewController(vc, animated: true)
     }
 

@@ -68,32 +68,32 @@ MenuCellTitleOpenSourceLicense = "Open source license";
 LocalFileListScreenTitle = "Local file list";
 LocalFileListScreenTitleSearch = "Search result list";
 
-// ファイル追加画面
-AddFileScreenTitle = "Add file";
-AddFileSectionTitleFileName = "Name";
-AddFileSectionTitleFileType = "Type";
-AddFileCellTitleFile = "File";
-AddFileCellTitleDir = "Directory";
-AddFileEnterNameError = "Please enter a name.";
-AddFileSameNameError = "Exist same name file or directory.";
-AddFileCreateError = "Create %@ failed.";
+// ローカルファイル追加画面
+AddLocalFileScreenTitle = "Add local file";
+AddLocalFileSectionTitleFileName = "Name";
+AddLocalFileSectionTitleFileType = "Type";
+AddLocalFileCellTitleFile = "File";
+AddLocalFileCellTitleDir = "Directory";
+AddLocalFileEnterNameError = "Please enter a name.";
+AddLocalFileSameNameError = "Exist same name file or directory.";
+AddLocalFileCreateError = "Create %@ failed.";
 
-// ファイル編集画面
-EditFileWriteFileDataError = "Write file data failed.";
+// ローカルファイル編集画面
+EditLocalFileWriteFileDataError = "Write file data failed.";
 
-// ファイル情報画面
-FileInfoScreenTitle = "File information";
-FileInfoCellTitlePathName = "Path name";
-FileInfoCellTitleFileName = "File name";
-FileInfoCellTitleSize = "Size";
-FileInfoCellTitleCharNum = "Char num";
-FileInfoCellTitleLineNum = "Line num";
-FileInfoCellTitleRetCodeType = "Return code";
-FileInfoCellTitleCreateDate = "Create date";
-FileInfoCellTitleUpdateDate = "Update date";
+// ローカルファイル情報画面
+LocalFileInfoScreenTitle = "Local File information";
+LocalFileInfoCellTitlePathName = "Path name";
+LocalFileInfoCellTitleFileName = "File name";
+LocalFileInfoCellTitleSize = "Size";
+LocalFileInfoCellTitleCharNum = "Char num";
+LocalFileInfoCellTitleLineNum = "Line num";
+LocalFileInfoCellTitleRetCodeType = "Return code";
+LocalFileInfoCellTitleCreateDate = "Create date";
+LocalFileInfoCellTitleUpdateDate = "Update date";
 
-// grep一覧画面
-GrepListScreenTitle = "Grep list";
+// ローカルファイルgrep一覧画面
+GrepLocalFileListScreenTitle = "Local file grep list";
 
 // iCloudファイル一覧画面
 ICloudFileListScreenTitle = "iCloud file list";

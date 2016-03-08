@@ -73,32 +73,32 @@ struct LocalizableConst {
     static let kLocalFileListScreenTitle = "LocalFileListScreenTitle"
     static let kLocalFileListScreenTitleSearch = "LocalFileListScreenTitleSearch"
 
-    // ファイル追加画面
-    static let kAddFileScreenTitle = "AddFileScreenTitle"
-    static let kAddFileSectionTitleFileName = "AddFileSectionTitleFileName"
-    static let kAddFileSectionTitleFileType = "AddFileSectionTitleFileType"
-    static let kAddFileCellTitleFile = "AddFileCellTitleFile"
-    static let kAddFileCellTitleDir = "AddFileCellTitleDir"
-    static let kAddFileEnterNameError = "AddFileEnterNameError"
-    static let kAddFileSameNameError = "AddFileSameNameError"
-    static let kAddFileCreateError = "AddFileCreateError"
+    // ローカルファイル追加画面
+    static let kAddLocalFileScreenTitle = "AddLocalFileScreenTitle"
+    static let kAddLocalFileSectionTitleFileName = "AddLocalFileSectionTitleFileName"
+    static let kAddLocalFileSectionTitleFileType = "AddLocalFileSectionTitleFileType"
+    static let kAddLocalFileCellTitleFile = "AddLocalFileCellTitleFile"
+    static let kAddLocalFileCellTitleDir = "AddLocalFileCellTitleDir"
+    static let kAddLocalFileEnterNameError = "AddLocalFileEnterNameError"
+    static let kAddLocalFileSameNameError = "AddLocalFileSameNameError"
+    static let kAddLocalFileCreateError = "AddLocalFileCreateError"
     
-    // ファイル編集画面
-    static let kEditFileWriteFileDataError = "EditFileWriteFileDataError"
+    // ローカルファイル編集画面
+    static let kEditLocalFileWriteFileDataError = "EditLocalFileWriteFileDataError"
 
-    // ファイル情報画面
-    static let kFileInfoScreenTitle = "FileInfoScreenTitle"
-    static let kFileInfoCellTitlePathName = "FileInfoCellTitlePathName"
-    static let kFileInfoCellTitleFileName = "FileInfoCellTitleFileName"
-    static let kFileInfoCellTitleSize = "FileInfoCellTitleSize"
-    static let kFileInfoCellTitleCharNum = "FileInfoCellTitleCharNum"
-    static let kFileInfoCellTitleLineNum = "FileInfoCellTitleLineNum"
-    static let kFileInfoCellTitleRetCodeType = "FileInfoCellTitleRetCodeType"
-    static let kFileInfoCellTitleCreateDate = "FileInfoCellTitleCreateDate"
-    static let kFileInfoCellTitleUpdateDate = "FileInfoCellTitleUpdateDate"
+    // ローカルファイル情報画面
+    static let kLocalFileInfoScreenTitle = "LocalFileInfoScreenTitle"
+    static let kLocalFileInfoCellTitlePathName = "LocalFileInfoCellTitlePathName"
+    static let kLocalFileInfoCellTitleFileName = "LocalFileInfoCellTitleFileName"
+    static let kLocalFileInfoCellTitleSize = "LocalFileInfoCellTitleSize"
+    static let kLocalFileInfoCellTitleCharNum = "LocalFileInfoCellTitleCharNum"
+    static let kLocalFileInfoCellTitleLineNum = "LocalFileInfoCellTitleLineNum"
+    static let kLocalFileInfoCellTitleRetCodeType = "LocalFileInfoCellTitleRetCodeType"
+    static let kLocalFileInfoCellTitleCreateDate = "LocalFileInfoCellTitleCreateDate"
+    static let kLocalFileInfoCellTitleUpdateDate = "LocalFileInfoCellTitleUpdateDate"
 
-    // grep一覧画面
-    static let kGrepListScreenTitle = "GrepListScreenTitle"
+    // ローカルファイルgrep一覧画面
+    static let kGrepLocalFileListScreenTitle = "GrepLocalFileListScreenTitle"
 
     // iCloudファイル一覧画面
     static let kICloudFileListScreenTitle = "ICloudFileListScreenTitle"

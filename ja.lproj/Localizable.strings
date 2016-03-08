@@ -68,32 +68,32 @@ MenuCellTitleOpenSourceLicense = "オープンソースライセンス";
 LocalFileListScreenTitle = "ローカルファイル一覧";
 LocalFileListScreenTitleSearch = "検索結果一覧";
 
-// ファイル追加画面
-AddFileScreenTitle = "ファイル追加";
-AddFileSectionTitleFileName = "名前";
-AddFileSectionTitleFileType = "タイプ";
-AddFileCellTitleFile = "ファイル";
-AddFileCellTitleDir = "ディレクトリ";
-AddFileEnterNameError = "名前を入力してください。";
-AddFileSameNameError = "同名のファイルまたはディレクトリが存在します。";
-AddFileCreateError = "%@が作成できませんでした。";
+// ローカルファイル追加画面
+AddLocalFileScreenTitle = "ローカルファイル追加";
+AddLocalFileSectionTitleFileName = "名前";
+AddLocalFileSectionTitleFileType = "タイプ";
+AddLocalFileCellTitleFile = "ファイル";
+AddLocalFileCellTitleDir = "ディレクトリ";
+AddLocalFileEnterNameError = "名前を入力してください。";
+AddLocalFileSameNameError = "同名のファイルまたはディレクトリが存在します。";
+AddLocalFileCreateError = "%@が作成できませんでした。";
 
-// ファイル編集画面
-EditFileWriteFileError = "ファイルデータが書き込めません。";
+// ローカルファイル編集画面
+EditLocalFileWriteFileError = "ファイルデータが書き込めません。";
 
-// ファイル情報画面
-FileInfoScreenTitle = "ファイル情報";
-FileInfoCellTitlePathName = "パス名";
-FileInfoCellTitleFileName = "ファイル名";
-FileInfoCellTitleSize = "サイズ";
-FileInfoCellTitleCharNum = "文字数";
-FileInfoCellTitleLineNum = "行数";
-FileInfoCellTitleRetCodeType = "改行コード";
-FileInfoCellTitleCreateDate = "作成日";
-FileInfoCellTitleUpdateDate = "更新日";
+// ローカルファイル情報画面
+LocalFileInfoScreenTitle = "ローカルファイル情報";
+LocalFileInfoCellTitlePathName = "パス名";
+LocalFileInfoCellTitleFileName = "ファイル名";
+LocalFileInfoCellTitleSize = "サイズ";
+LocalFileInfoCellTitleCharNum = "文字数";
+LocalFileInfoCellTitleLineNum = "行数";
+LocalFileInfoCellTitleRetCodeType = "改行コード";
+LocalFileInfoCellTitleCreateDate = "作成日";
+LocalFileInfoCellTitleUpdateDate = "更新日";
 
-// grep一覧画面
-GrepListScreenTitle = "grep一覧";
+// ローカルファイルgrep一覧画面
+GrepLocalFileListScreenTitle = "ローカルファイルgrep一覧";
 
 // iCloudファイル一覧画面
 ICloudFileListScreenTitle = "iCloudファイル一覧";

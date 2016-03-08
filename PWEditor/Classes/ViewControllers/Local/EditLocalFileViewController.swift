@@ -10,12 +10,12 @@ import UIKit
 import GoogleMobileAds
 
 /**
- ファイル編集画面クラス
+ ローカルファイル編集画面クラス
 
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class EditFileViewController: BaseViewController {
+class EditLocalFileViewController: BaseViewController {
 
     // MARK: - Variables
 
@@ -184,7 +184,7 @@ class EditFileViewController: BaseViewController {
         let fileData = myView.textView.text
         if !FileUtils.writeFileData(localFilePath, fileData: fileData) {
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kEditFileWriteFileDataError)
+            let message = LocalizableUtils.getString(LocalizableConst.kEditLocalFileWriteFileDataError)
             let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
             showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: { () -> Void in
                 // 呼び出し元画面に戻る。

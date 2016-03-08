@@ -311,7 +311,7 @@ class SelectEncodingViewController: BaseTableViewController {
         switch sourceClassName {
         case LocalFileListViewController.self.description():
             // ローカルファイル一覧画面の場合
-            let vc = EditFileViewController(pathName: pathName, fileName: fileName)
+            let vc = EditLocalFileViewController(pathName: pathName, fileName: fileName)
             navigationController?.pushViewController(vc, animated: true)
             break
 

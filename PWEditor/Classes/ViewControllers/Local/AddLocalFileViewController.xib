@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddFileViewController" customModule="PWEditor" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddLocalFileViewController">
             <connections>
                 <outlet property="bannerView" destination="bdL-pr-7tE" id="Hue-CN-VFr"/>
                 <outlet property="tableView" destination="OkY-EH-afR" id="IVL-ql-YDh"/>

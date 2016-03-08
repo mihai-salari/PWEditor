@@ -230,7 +230,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             // ファイルの場合
             // ファイル編集画面に遷移する。
             let fileName = fileInfo.name
-            let vc = EditFileViewController(pathName: pathName, fileName: fileName)
+            let vc = EditLocalFileViewController(pathName: pathName, fileName: fileName)
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -251,7 +251,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
 
         let fileInfo = fileInfoList[row]
         let fileName = fileInfo.name
-        let vc = FileInfoViewController(pathName: pathName, fileName: fileName, encoding: NSUTF8StringEncoding)
+        let vc = LocalFileInfoViewController(pathName: pathName, fileName: fileName, encoding: NSUTF8StringEncoding)
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -370,7 +370,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
      */
     @IBAction func addToolbarButtonPressed(sender: AnyObject) {
         // ファイル追加画面に遷移する。
-        let vc = AddFileViewController(pathName: pathName)
+        let vc = AddLocalFileViewController(pathName: pathName)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -382,7 +382,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
      */
     @IBAction func grepToolbarButtonPressed(sender: AnyObject) {
         // Grep一覧画面に遷移する。
-        let vc = GrepListViewController(grepWord: "", pathName: pathName, encoding: NSUTF8StringEncoding)
+        let vc = GrepLocalFileListViewController(grepWord: "", pathName: pathName, encoding: NSUTF8StringEncoding)
         navigationController?.pushViewController(vc, animated: true)
     }
 
