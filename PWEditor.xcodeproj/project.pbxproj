@@ -17,6 +17,9 @@
 		3F003D321C767C2600ECC371 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D2F1C767C2600ECC371 /* StringUtils.swift */; };
 		3F003D3C1C767DFB00ECC371 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D3A1C767DFB00ECC371 /* BaseTableViewController.swift */; };
 		3F003D3D1C767DFB00ECC371 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D3B1C767DFB00ECC371 /* BaseViewController.swift */; };
+		3F0F829E1C90D1510090632E /* ICTextViewLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */; };
+		3F0F82A11C90DAD20090632E /* HighlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F829F1C90DAD20090632E /* HighlightViewController.swift */; };
+		3F0F82A21C90DAD20090632E /* HighlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F82A01C90DAD20090632E /* HighlightViewController.xib */; };
 		3F157BFA1C84F4A6007C555E /* AddDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F157BF81C84F4A6007C555E /* AddDropboxFileViewController.swift */; };
 		3F157BFB1C84F4A6007C555E /* AddDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F157BF91C84F4A6007C555E /* AddDropboxFileViewController.xib */; };
 		3F157BFF1C84F4F3007C555E /* ICloudDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F157BFC1C84F4F3007C555E /* ICloudDocument.swift */; };
@@ -105,6 +108,9 @@
 		3F003D3A1C767DFB00ECC371 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = Classes/ViewControllers/Common/BaseTableViewController.swift; sourceTree = "<group>"; };
 		3F003D3B1C767DFB00ECC371 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = Classes/ViewControllers/Common/BaseViewController.swift; sourceTree = "<group>"; };
 		3F0D81471C7F2C22005FC945 /* PWEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PWEditor.entitlements; sourceTree = "<group>"; };
+		3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ICTextViewLicense.txt; path = Resources/Licenses/ICTextViewLicense.txt; sourceTree = "<group>"; };
+		3F0F829F1C90DAD20090632E /* HighlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighlightViewController.swift; path = Classes/ViewControllers/Local/HighlightViewController.swift; sourceTree = "<group>"; };
+		3F0F82A01C90DAD20090632E /* HighlightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HighlightViewController.xib; path = Classes/ViewControllers/Local/HighlightViewController.xib; sourceTree = "<group>"; };
 		3F157BF81C84F4A6007C555E /* AddDropboxFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddDropboxFileViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/AddDropboxFileViewController.swift; sourceTree = "<group>"; };
 		3F157BF91C84F4A6007C555E /* AddDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/AddDropboxFileViewController.xib; sourceTree = "<group>"; };
 		3F157BFC1C84F4F3007C555E /* ICloudDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICloudDocument.swift; path = Classes/ViewControllers/Cloud/ICloud/ICloudDocument.swift; sourceTree = "<group>"; };
@@ -283,6 +289,8 @@
 				3F165E2E1C7A687C001CBC38 /* GrepLocalFileListViewController.xib */,
 				3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */,
 				3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */,
+				3F0F829F1C90DAD20090632E /* HighlightViewController.swift */,
+				3F0F82A01C90DAD20090632E /* HighlightViewController.xib */,
 			);
 			name = Local;
 			sourceTree = "<group>";
@@ -305,6 +313,7 @@
 				3F165E6B1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt */,
 				3F165E3F1C7A690C001CBC38 /* SourceHanCodeJPLicense.txt */,
 				3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */,
+				3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */,
 			);
 			name = Licenses;
 			sourceTree = "<group>";
@@ -553,11 +562,13 @@
 				3F37CF4B1C85AC1800B138C9 /* DropboxFileInfoViewController.xib in Resources */,
 				3F165E451C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf in Resources */,
 				3F165E6D1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt in Resources */,
+				3F0F829E1C90D1510090632E /* ICTextViewLicense.txt in Resources */,
 				3F165E611C7A776F001CBC38 /* highlightjs-line-numbers.min.js in Resources */,
 				3F165E421C7A690C001CBC38 /* SourceHanCodeJPLicense.txt in Resources */,
 				3F157BFB1C84F4A6007C555E /* AddDropboxFileViewController.xib in Resources */,
 				3F165E3D1C7A68FB001CBC38 /* History.txt in Resources */,
 				3F165E341C7A687C001CBC38 /* EditLocalFileViewController.xib in Resources */,
+				3F0F82A21C90DAD20090632E /* HighlightViewController.xib in Resources */,
 				3F49306E1C7BAF590088A454 /* LocalFileInfoViewController.xib in Resources */,
 				3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */,
 				3F165E601C7A776F001CBC38 /* highlight.pack.js in Resources */,
@@ -654,6 +665,7 @@
 				3F157BFF1C84F4F3007C555E /* ICloudDocument.swift in Sources */,
 				3F4873721C75DBE6006594A6 /* FileUtils.swift in Sources */,
 				3F3E85BC1C776174002EFB6D /* EnterLineDataTableViewCell.swift in Sources */,
+				3F0F82A11C90DAD20090632E /* HighlightViewController.swift in Sources */,
 				3F23F9611C7BBAA2004852B3 /* SearchResultInfo.swift in Sources */,
 				3F157C001C84F4F3007C555E /* ICloudFileListViewController.swift in Sources */,
 				3F157C051C84F50E007C555E /* DropboxFileInfo.swift in Sources */,
@@ -808,9 +820,11 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK/GoogleMobileAds\"",
 					"\"${PODS_ROOT}/ECSlidingViewController/ECSlidingViewController\"",
+					"\"${PODS_ROOT}/ICTextView/ICTextView",
 				);
 				INFOPLIST_FILE = PWEditor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -835,9 +849,11 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK/GoogleMobileAds\"",
 					"\"${PODS_ROOT}/ECSlidingViewController/ECSlidingViewController\"",
+					"\"${PODS_ROOT}/ICTextView/ICTextView",
 				);
 				INFOPLIST_FILE = PWEditor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

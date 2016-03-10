@@ -15,7 +15,7 @@ import GoogleMobileAds
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class EditLocalFileViewController: BaseViewController {
+class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
 
     // MARK: - Variables
 
@@ -101,6 +101,10 @@ class EditLocalFileViewController: BaseViewController {
         setupTextView()
         let selector = Selector("textChanged:")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: UITextViewTextDidChangeNotification, object: nil)
+        myView.textView.delegate = self
+        myView.textView.circularSearch = true
+        myView.textView.scrollPosition = ICTextViewScrollPositionMiddle
+        myView.textView.searchOptions = .CaseInsensitive
 
         // バナービューを設定する。
         setupBannerView(bannerView)
@@ -182,7 +186,8 @@ class EditLocalFileViewController: BaseViewController {
 
         let localFilePath = FileUtils.getLocalPath(pathName, name: fileName)
         let fileData = myView.textView.text
-        if !FileUtils.writeFileData(localFilePath, fileData: fileData) {
+        let covertedFileData = FileUtils.convertRetCode(fileData, encoding: encoding, retCodeType: retCodeType)
+        if !FileUtils.writeFileData(localFilePath, fileData: covertedFileData) {
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kEditLocalFileWriteFileDataError)
             let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
@@ -205,6 +210,35 @@ class EditLocalFileViewController: BaseViewController {
      */
     func textChanged(notification: NSNotification?) -> (Void) {
         textChanged = true
+    }
+
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        LogUtils.d("textViewShouldBeginEditing")
+        return true
+    }
+    func textViewDidBeginEditing(textView: UITextView){
+        LogUtils.d("textViewDidBeginEditing")
+    }
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        LogUtils.d("textViewShouldEndEditing")
+        return true
+    }
+    func textViewDidEndEditing(textView: UITextView) {
+        LogUtils.d("textViewDidEndEditing")
+    }
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        LogUtils.d("shouldChangeTextInRange")
+        return true
+    }
+    func textViewDidChange(textView: UITextView) {
+        LogUtils.d("textViewDidChange")
+        searchMatchInDrection("m")
+    }
+    func searchMatchInDrection(word: String) {
+        let result = myView.textView.scrollToString(word, searchDirection: ICTextViewSearchDirectionForward)
+        if result {
+
+        }
     }
 
     // MARK: - Private Method

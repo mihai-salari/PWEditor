@@ -262,7 +262,78 @@ class FileUtils: NSObject {
         return convert
     }
 
+    // CR/LF, LF, CR
+    /**
+    改行コードを変換する。
 
+    - Parameter srcString: 変換元文字列
+    - Parameter retCodeType: 改行コードタイプ
+    - Returns: 変換後文字列
+    */
+    class func convertRetCode(srcString: String, encoding: UInt, retCodeType: Int) -> String {
+        // 各改行コードのバイト値を文字列に変換する。
+        let lfBytes = [0x0D]
+        let crLfBytes = [0x0A, 0x0D]
+        let crBytes = [0x0A]
+        let crCrLfBytes = [0x0A, 0x0A, 0x0D]
+        let crLfLfBytes = [0x0A, 0x0D, 0x0D]
+        let lfString = String(bytes: lfBytes, length: lfBytes.count, encoding: encoding)
+        let crLfString = String(bytes: crLfBytes, length: crLfBytes.count, encoding: encoding)
+        let crString = String(bytes: crBytes, length: crBytes.count, encoding: encoding)
+        let crCrLfString = String(bytes: crCrLfBytes, length: crCrLfBytes.count, encoding: encoding)
+        let crLfLfString = String(bytes: crLfLfBytes, length: crLfLfBytes.count, encoding: encoding)
+
+        // 改行コードごとに処理を振り分ける。
+        var dstString = ""
+        switch retCodeType {
+        case CommonConst.RetCodeType.LF.rawValue:
+            // LFの場合
+            // CR/LF->LF
+            dstString = srcString.stringByReplacingOccurrencesOfString(crLfString, withString: lfString)
+            // CR->LF
+            dstString = dstString.stringByReplacingOccurrencesOfString(crString, withString: lfString)
+            break
+
+        case CommonConst.RetCodeType.CRLF.rawValue:
+            // CR/LFの場合
+            // 元の文字列にCR/LFが含まれるかチェックする。
+            let range = srcString.rangeOfString(crLfString)
+            if range != nil {
+                // CR/LFが含まれる場合
+                // LF->CR/LF
+                dstString = srcString.stringByReplacingOccurrencesOfString(lfString, withString: crLfString)
+                // CR->CR/LF
+                dstString = dstString.stringByReplacingOccurrencesOfString(crString, withString: crLfString)
+
+                // 元のCR/LFがCR/CRLFまたはCRLF/LFに変換されているため、正常な改行コードに戻す。
+                // CR/CRLF->CR/LF
+                dstString = dstString.stringByReplacingOccurrencesOfString(crCrLfString, withString: crLfString)
+                // CRLF/LF->CR/LF
+                dstString = dstString.stringByReplacingOccurrencesOfString(crLfLfString, withString: crLfString)
+
+            } else {
+                // CR/LFが含まれない場合
+                // LF->CR/LF
+                dstString = srcString.stringByReplacingOccurrencesOfString(lfString, withString: crLfString)
+                // CR->CR/LF
+                dstString = dstString.stringByReplacingOccurrencesOfString(crString, withString: crLfString)
+            }
+            break
+
+        case CommonConst.RetCodeType.CR.rawValue:
+            // CRの場合
+            // CR/LF->CR
+            dstString = srcString.stringByReplacingOccurrencesOfString(crLfString, withString: crString)
+            // LF->CR
+            dstString = dstString.stringByReplacingOccurrencesOfString(lfString, withString: crString)
+            break
+
+        default:
+            // 上記以外、何もしない。
+            break
+        }
+        return dstString
+    }
 
 
 

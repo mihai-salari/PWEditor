@@ -289,20 +289,20 @@ class SelectEncodingViewController: BaseTableViewController {
         }
 
         // 選択された改行コードを取得する。
-        var returnCodeType = -1
-        let returnCodeSection = SectionIndex.ReturnCode.rawValue
-        let returnCodeRowNum = tableView?.numberOfRowsInSection(returnCodeSection)
-        for (var i = 0; i < returnCodeRowNum; i++) {
-            let indexPath = NSIndexPath(forItem: i, inSection: returnCodeSection)
+        var retCodeType = -1
+        let retCodeSection = SectionIndex.ReturnCode.rawValue
+        let retCodeRowNum = tableView?.numberOfRowsInSection(retCodeSection)
+        for (var i = 0; i < retCodeRowNum; i++) {
+            let indexPath = NSIndexPath(forItem: i, inSection: retCodeSection)
             let cell = tableView?.cellForRowAtIndexPath(indexPath)
             let check = cell?.accessoryType
 
             if check == UITableViewCellAccessoryType.Checkmark {
-                returnCodeType = indexPath.row
+                retCodeType = indexPath.row
                 break
             }
         }
-        if returnCodeType == -1 {
+        if retCodeType == -1 {
             // 改行コードが取得できない場合、処理終了
             return
         }
@@ -311,14 +311,14 @@ class SelectEncodingViewController: BaseTableViewController {
         switch sourceClassName {
         case LocalFileListViewController.self.description():
             // ローカルファイル一覧画面の場合
-            let vc = EditLocalFileViewController(pathName: pathName, fileName: fileName)
+            let vc = EditLocalFileViewController(pathName: pathName, fileName: fileName, encodingType: encodingType, retCodeType: retCodeType)
             navigationController?.pushViewController(vc, animated: true)
             break
 
         case DropboxFileListViewController.self.description():
             // Dropboxファイル一覧画面の場合
             // Dropboxファイル編集画面に遷移する。
-            let vc = EditDropboxFileViewController(pathName: pathName, fileName: fileName, encodingType: encodingType, retCodeType: returnCodeType)
+            let vc = EditDropboxFileViewController(pathName: pathName, fileName: fileName, encodingType: encodingType, retCodeType: retCodeType)
             navigationController?.pushViewController(vc, animated: true)
             break
 

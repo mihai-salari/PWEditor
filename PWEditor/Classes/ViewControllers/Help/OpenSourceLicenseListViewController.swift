@@ -26,7 +26,8 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "highlight.js",
         "highlightjs-line-numbers.js",
         "SourceHanCodeJP",
-        "SwiftyDropbox"
+        "SwiftyDropbox",
+//        "ICTextView"
     ]
     
     /** セルインデックス */
@@ -37,6 +38,7 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         case HighlightjsLineNumbersjs = 3
         case SourceHanCodeJP = 4
         case SwiftyDropbox = 5
+//        case ICTextView = 6
     }
     
     /** URLリスト */
@@ -46,7 +48,8 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "https://highlightjs.org/",
         "https://github.com/wcoder/highlightjs-line-numbers.js",
         "https://github.com/adobe-fonts/source-han-code-jp",
-        "https://github.com/dropbox/SwiftyDropbox"
+        "https://github.com/dropbox/SwiftyDropbox",
+//        "https://github.com/Exile90/ICTextView"
     ]
 
     /// テーブルビュー

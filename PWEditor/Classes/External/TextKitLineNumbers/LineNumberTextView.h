@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ICTextView.h"
 
 
 #define kLineNumberGutterWidth      40.0
 
-@interface LineNumberTextView : UITextView
+@interface LineNumberTextView : ICTextView
 
 @end

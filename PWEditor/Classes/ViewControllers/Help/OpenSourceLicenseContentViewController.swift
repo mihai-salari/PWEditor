@@ -21,7 +21,8 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "highlight.js",
         "highlightjs-line-numbers.js",
         "Source Han Code JP",
-        "SwiftyDropbox"
+        "SwiftyDropbox",
+        "ICTextView"
     ]
     
     /** ライセンスファイル名リスト */
@@ -31,7 +32,8 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "HighlightLicense",
         "Highlightjs-line-numbersLicense",
         "SourceHanCodeJPLicense",
-        "SwiftyDropboxLicense"
+        "SwiftyDropboxLicense",
+        "ICTextViewLicense"
     ]
     
     /** ライセンスファイル拡張子 */

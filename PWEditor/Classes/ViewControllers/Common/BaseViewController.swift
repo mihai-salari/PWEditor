@@ -35,6 +35,12 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
     /// 拡張キーリスト4
     let kExtendKeyList4 = ["&", "|", "!", "?", "#", "$", "~", "^"]
 
+    /// Undoボタンタイトル
+    let kUndoButtonTitle = "U"
+
+    /// Redoボタンタイトル
+    let kRedoButtonTitle = "R"
+
     /// 前へボタンタイトル
     let kPrevButtonTitle = "▲"
 
@@ -51,6 +57,10 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
 
     /// 行番号
     var listNumber: Int!
+
+    var undoButton: UIBarButtonItem?
+
+    var redoButton: UIBarButtonItem?
 
     // MARK: - UIViewControllerDelegate
 
@@ -230,13 +240,11 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
     }
 
     /**
-     Dropboxが有効かチェックする。
-     無効な場合、エラーアラートを表示し、ローカルファイル一覧画面に遷移する。
+     画面構成をリセットする。
+     エラーアラートを表示し、ローカルファイル一覧画面に遷移する。
 
-     - Parameter client: Dropboxクライアント
      */
     func resetScreen() {
-        // Dropboxが無効な場合
         // エラーアラートを表示する。
         let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
         let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDropboxInvalid)
@@ -267,7 +275,35 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
     */
     func onClickExtendKeyboardButton(sender: UIBarButtonItem) {
         let title = sender.title
-        if title == "▼" {
+        switch title! {
+        case kUndoButtonTitle:
+            // Undoボタンの場合
+            if targetView != nil {
+                let undoManager = targetView!.undoManager
+                if undoManager != nil {
+                    if undoManager!.canUndo {
+                        undoManager!.undo()
+                        if !undoManager!.canUndo {
+                            undoButton?.enabled = false
+                        }
+                        redoButton?.enabled = true
+                    } else {
+                        undoButton?.enabled = false
+                        if undoManager!.canRedo {
+                            redoButton?.enabled = true
+                        } else {
+                            redoButton?.enabled = false
+                        }
+                    }
+                }
+            }
+            break
+
+        case kRedoButtonTitle:
+            // Redoボタンの場合
+            break
+
+        case kNextButtonTitle:
             // 次の行へボタンの場合
             if listNumber < kListNumberMax {
                 listNumber = listNumber + 1
@@ -275,8 +311,9 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
                 listNumber = 0
             }
             setExtendKeyboardItems(listNumber)
+            break
 
-        } else if title == "▲" {
+        case kPrevButtonTitle:
             // 前の行へボタンの場合
             if listNumber > 0 {
                 listNumber = listNumber - 1
@@ -284,12 +321,14 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
                 listNumber = kListNumberMax - 1
             }
             setExtendKeyboardItems(listNumber)
+            break
 
-        } else if title == "↓" {
+        case kCloseButtonTitle:
             // キーボードを閉じるボタンの場合
             targetView?.resignFirstResponder()
+            break
 
-        } else {
+        default:
             // その他の場合
             // 入力された文字をビューに反映する。
             if let targetView = targetView as? UITextView {
@@ -298,6 +337,7 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
             } else if let targetView = targetView as? UITextView {
                 targetView.text = targetView.text + title!
             }
+            break
         }
     }
 
@@ -310,6 +350,22 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
     - Returns: 拡張キーボードのボタン
     */
     func createExtendKeyboardItems(lineNumber: Int) -> [UIBarButtonItem] {
+        let action = Selector("onClickExtendKeyboardButton:")
+        let barButtonArray = NSMutableArray()
+
+        // TODO: Undo/Redo対応は保留
+        // Undoボタン
+        undoButton = UIBarButtonItem(title: kUndoButtonTitle, style: .Plain, target: self, action: action)
+//        barButtonArray.addObject(undoButton!)
+
+        // Redoボタン
+        redoButton = UIBarButtonItem(title: kRedoButtonTitle, style: .Plain, target: self, action: action)
+//        barButtonArray.addObject(redoButton!)
+
+        // スペース
+        let space = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
+
+        // 拡張キーのリストを決定する。
         let extendKeyList: [String]!
         if lineNumber == 0 {
             extendKeyList = kExtendKeyList1
@@ -323,10 +379,9 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
         } else {
             extendKeyList = kExtendKeyList4
         }
+
+        // 各拡張キーリストのキー数分繰り返す。
         let count = extendKeyList.count
-        let action = Selector("onClickExtendKeyboardButton:")
-        let barButtonArray = NSMutableArray()
-        let space = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
         for var i = 0; i < count; i++ {
             let title = extendKeyList[i]
             let button = UIBarButtonItem(title: title, style: .Plain, target: self, action: action)

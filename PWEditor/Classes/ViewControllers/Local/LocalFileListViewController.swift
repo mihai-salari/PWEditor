@@ -45,6 +45,17 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
     /// ファイル情報リスト
     var fileInfoList = [FileInfo]()
 
+    var searchBar: UISearchBar?
+
+    var deleteToolbarButton: UIBarButtonItem?
+
+    var copyToolbarButton: UIBarButtonItem?
+
+    var moveToolbarButton: UIBarButtonItem?
+
+    var normalToolbarItems: [UIBarButtonItem]?
+    var editingToolbarItems: [UIBarButtonItem]?
+
     /// 開始位置
     // TODO: ナビゲーションバー引っ張って表示用
     //var beginingPoint = CGPointMake(0.0, 0.0)
@@ -94,6 +105,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
 
         // テーブルビューを設定する。
         setupTableView(tableView)
+        tableView.allowsMultipleSelectionDuringEditing = true
 
         // 検索バーを作成する。
         createSearchBar()
@@ -101,12 +113,28 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         // セルロングタップを設定する。
         createCellLogPressed(tableView, delegate: self)
 
+        normalToolbarItems = toolbar.items
+
+        let spaser = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let deleteToolbarButtonAction = Selector("deleteToolbarButtonPressed:")
+        deleteToolbarButton = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: deleteToolbarButtonAction)
+        let copyToolbarButtonAction = Selector("copyToolbarButtonPressed:")
+        copyToolbarButton = UIBarButtonItem(title: "copy", style: .Plain, target: self, action: copyToolbarButtonAction)
+        let moveToolbarButtonAction = Selector("moveToolbarButtonPressed:")
+        moveToolbarButton = UIBarButtonItem(title: "move", style: .Plain, target: self, action: moveToolbarButtonAction)
+        editingToolbarItems = [deleteToolbarButton!, spaser, copyToolbarButton!, spaser, moveToolbarButton!]
+
         // バナービューを設定する。
         setupBannerView(bannerView)
 
         // ファイル情報リストを取得する。
         let localPathName = FileUtils.getLocalPath(pathName)
         fileInfoList = FileUtils.getFileInfoListInDir(localPathName)
+
+        // TODO:複数選択対応は保留
+//        if fileInfoList.count > 0 {
+//            navigationItem.rightBarButtonItem = editButtonItem()
+//        }
     }
 
     /**
@@ -207,6 +235,11 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
      - Parameter indexPath: インデックスパス
      */
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView.editing {
+            // 編集モードの場合、処理しない。
+            return
+        }
+
         // セルの選択状態を解除する。
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
@@ -231,6 +264,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             // ファイル編集画面に遷移する。
             let fileName = fileInfo.name
             let vc = EditLocalFileViewController(pathName: pathName, fileName: fileName)
+//            let vc = HighlightViewController()
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -253,6 +287,46 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         let fileName = fileInfo.name
         let vc = LocalFileInfoViewController(pathName: pathName, fileName: fileName, encoding: NSUTF8StringEncoding)
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.editing = editing
+
+        if editing {
+            toolbar.items = editingToolbarItems
+            searchBar!.hidden = true
+
+
+        } else {
+            toolbar.items = normalToolbarItems
+            searchBar!.hidden = false
+        }
+    }
+
+    func deleteToolbarButtonPressed(sender: UIBarButtonItem) {
+
+    }
+    func copyToolbarButtonPressed(sender: UIBarButtonItem) {
+        // ディレクトリ選択画面に遷移する。
+
+    }
+    func moveToolbarButtonPressed(sender: UIBarButtonItem) {
+        // ディレクトリ選択画面に遷移する。
+
+    }
+
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+
+        //titles.removeAtIndex(indexPath.row)
+
+        // それからテーブルの更新
+        //tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
     }
 
     // MARK: - UISearchBarDelegate
@@ -408,11 +482,11 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
      */
     func createSearchBar() {
         let searchBarFrame = CGRectMake(0, 0, view.bounds.size.width, 44.0)
-        let searchBar = UISearchBar(frame: searchBarFrame)
-        searchBar.delegate = self
-        searchBar.showsCancelButton = true
+        searchBar = UISearchBar(frame: searchBarFrame)
+        searchBar!.delegate = self
+        searchBar!.showsCancelButton = true
 
-        let searchDisplayController = UISearchDisplayController(searchBar: searchBar, contentsController: self)
+        let searchDisplayController = UISearchDisplayController(searchBar: searchBar!, contentsController: self)
         searchDisplayController.delegate = self;
         searchDisplayController.searchResultsDelegate = self;
         searchDisplayController.searchResultsDataSource = self;

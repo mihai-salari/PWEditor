@@ -122,7 +122,7 @@ class LocalFileInfoViewController: BaseTableViewController {
             let returns = FileUtils.getFileData(localFilePathName, encoding: encoding)
 
             let result = returns.0
-            if result {
+            if !result {
                 return
             }
             let fileData = returns.1
