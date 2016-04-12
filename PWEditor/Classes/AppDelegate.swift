@@ -30,7 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// 入力用フォントサイズ
     var enterDataFontSize = CommonConst.FontSize.kEnterData
 
+    /// メソッド変更フラグ
+    var isChangedMethod = false
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        if !isChangedMethod {
+            // メソッドが変更されていない場合、メソッドを変更する。
+            isChangedMethod = true
+            MethodUtils.changeTextViewMethod()
+        }
 
         // iCloudの初期化を行う。
         initializeiCloudAccess()

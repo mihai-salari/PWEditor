@@ -76,6 +76,7 @@
 		3F23F9651C7BD19D004852B3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F9641C7BD19D004852B3 /* DateUtils.swift */; };
 		3F37CF4A1C85AC1800B138C9 /* DropboxFileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F37CF481C85AC1800B138C9 /* DropboxFileInfoViewController.swift */; };
 		3F37CF4B1C85AC1800B138C9 /* DropboxFileInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F37CF491C85AC1800B138C9 /* DropboxFileInfoViewController.xib */; };
+		3F3A15A91CBD2977008DED48 /* UITextViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3A15A81CBD2977008DED48 /* UITextViewExtention.swift */; };
 		3F3E85BC1C776174002EFB6D /* EnterLineDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3E85BA1C776174002EFB6D /* EnterLineDataTableViewCell.swift */; };
 		3F3E85BD1C776174002EFB6D /* EnterLineDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F3E85BB1C776174002EFB6D /* EnterLineDataTableViewCell.xib */; };
 		3F447C871C8904FD001A3518 /* SelectEncodingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F447C851C8904FD001A3518 /* SelectEncodingViewController.swift */; };
@@ -87,6 +88,7 @@
 		3F4873741C75DD6D006594A6 /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4873731C75DD6D006594A6 /* FileInfo.swift */; };
 		3F49306D1C7BAF590088A454 /* LocalFileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49306B1C7BAF590088A454 /* LocalFileInfoViewController.swift */; };
 		3F49306E1C7BAF590088A454 /* LocalFileInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F49306C1C7BAF590088A454 /* LocalFileInfoViewController.xib */; };
+		3F68715C1CBD937E009E45B2 /* MethodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68715B1CBD937E009E45B2 /* MethodUtils.swift */; };
 		3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F74947F1C753B0B002A0544 /* Assets.xcassets */; };
 		3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */; };
 		3FF93E371C86595500621455 /* EditDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */; };
@@ -172,6 +174,7 @@
 		3F23F9641C7BD19D004852B3 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtils.swift; path = Classes/Utils/DateUtils.swift; sourceTree = "<group>"; };
 		3F37CF481C85AC1800B138C9 /* DropboxFileInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DropboxFileInfoViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileInfoViewController.swift; sourceTree = "<group>"; };
 		3F37CF491C85AC1800B138C9 /* DropboxFileInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DropboxFileInfoViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileInfoViewController.xib; sourceTree = "<group>"; };
+		3F3A15A81CBD2977008DED48 /* UITextViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextViewExtention.swift; path = Classes/Extentions/UITextViewExtention.swift; sourceTree = "<group>"; };
 		3F3E85BA1C776174002EFB6D /* EnterLineDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterLineDataTableViewCell.swift; path = Classes/ViewControllers/Common/EnterLineDataTableViewCell.swift; sourceTree = "<group>"; };
 		3F3E85BB1C776174002EFB6D /* EnterLineDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EnterLineDataTableViewCell.xib; path = Classes/ViewControllers/Common/EnterLineDataTableViewCell.xib; sourceTree = "<group>"; };
 		3F447C851C8904FD001A3518 /* SelectEncodingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectEncodingViewController.swift; path = Classes/ViewControllers/Common/SelectEncodingViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +187,7 @@
 		3F4873731C75DD6D006594A6 /* FileInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileInfo.swift; path = Classes/Utils/FileInfo.swift; sourceTree = "<group>"; };
 		3F49306B1C7BAF590088A454 /* LocalFileInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalFileInfoViewController.swift; path = Classes/ViewControllers/Local/LocalFileInfoViewController.swift; sourceTree = "<group>"; };
 		3F49306C1C7BAF590088A454 /* LocalFileInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalFileInfoViewController.xib; path = Classes/ViewControllers/Local/LocalFileInfoViewController.xib; sourceTree = "<group>"; };
+		3F68715B1CBD937E009E45B2 /* MethodUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MethodUtils.swift; path = Classes/Utils/MethodUtils.swift; sourceTree = "<group>"; };
 		3F7494751C753B0A002A0544 /* PWEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PWEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F74947F1C753B0B002A0544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F7494821C753B0B002A0544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -370,6 +374,14 @@
 			name = ReadJEnc;
 			sourceTree = "<group>";
 		};
+		3F3A15A71CBD292D008DED48 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				3F3A15A81CBD2977008DED48 /* UITextViewExtention.swift */,
+			);
+			name = Extentions;
+			sourceTree = "<group>";
+		};
 		3F4873611C75D7D7006594A6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +397,7 @@
 		3F4873621C75D7E0006594A6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3F3A15A71CBD292D008DED48 /* Extentions */,
 				3F4873661C75D83A006594A6 /* PWEditor-Bridging-Header.h */,
 				3F4873671C75D83B006594A6 /* AppDelegate.swift */,
 				3F003D1A1C7676C500ECC371 /* CommonConst.swift */,
@@ -409,6 +422,7 @@
 		3F4873641C75D7F7006594A6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3F68715B1CBD937E009E45B2 /* MethodUtils.swift */,
 				3F23F9641C7BD19D004852B3 /* DateUtils.swift */,
 				3F003D2E1C767C2600ECC371 /* LogUtils.swift */,
 				3F003D2D1C767C2600ECC371 /* LocalizableUtils.swift */,
@@ -664,6 +678,7 @@
 				3F165E351C7A687C001CBC38 /* GrepLocalFileListViewController.swift in Sources */,
 				3F165E671C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift in Sources */,
 				3F48736E1C75DB6A006594A6 /* ConfigUtils.swift in Sources */,
+				3F3A15A91CBD2977008DED48 /* UITextViewExtention.swift in Sources */,
 				3F003D3D1C767DFB00ECC371 /* BaseViewController.swift in Sources */,
 				3F003D301C767C2600ECC371 /* LocalizableUtils.swift in Sources */,
 				3F37CF4A1C85AC1800B138C9 /* DropboxFileInfoViewController.swift in Sources */,
@@ -695,6 +710,7 @@
 				3F1915541C8CCF360042D306 /* MyView.m in Sources */,
 				3F1915531C8CCF360042D306 /* LineNumberTextView.m in Sources */,
 				3F19154B1C8CCEFE0042D306 /* ReadJEnc.swift in Sources */,
+				3F68715C1CBD937E009E45B2 /* MethodUtils.swift in Sources */,
 				3F165E751C7A7E7C001CBC38 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
