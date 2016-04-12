@@ -92,8 +92,8 @@ class ICloudFileListViewController: BaseTableViewController {
             query = textDocumentQuery()
 
             let notificationCenter = NSNotificationCenter.defaultCenter()
-            notificationCenter.addObserver(self, selector: "processFiles:", name: NSMetadataQueryDidFinishGatheringNotification, object: nil)
-            notificationCenter.addObserver(self, selector: "processFiles:", name: NSMetadataQueryDidUpdateNotification, object: nil)
+            notificationCenter.addObserver(self, selector: #selector(ICloudFileListViewController.processFiles(_:)), name: NSMetadataQueryDidFinishGatheringNotification, object: nil)
+            notificationCenter.addObserver(self, selector: #selector(ICloudFileListViewController.processFiles(_:)), name: NSMetadataQueryDidUpdateNotification, object: nil)
             query?.startQuery()
         }
 /*

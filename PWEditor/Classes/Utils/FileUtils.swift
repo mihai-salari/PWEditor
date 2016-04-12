@@ -165,6 +165,25 @@ class FileUtils: NSObject {
     }
 
     /**
+     ディレクトリ内のディレクトリのファイル情報リストを取得する。
+
+     - Parameter dirName: ディレクトリ名
+     - Returns: ディレクトリのファイル情報リスト
+     */
+    class func getDirInfoListInDir(dirName: String) -> [FileInfo] {
+        var fileInfoList = getFileInfoListInDir(dirName)
+        var dirInfoList = [FileInfo]()
+        let count = fileInfoList.count
+        for i in 0 ..< count {
+            let fileInfo = fileInfoList[i]
+            if fileInfo.isDir {
+                dirInfoList.append(fileInfo)
+            }
+        }
+        return dirInfoList
+    }
+
+    /**
     ファイルデータを取得する。
     取得できない場合、空文字列を返却する。
 

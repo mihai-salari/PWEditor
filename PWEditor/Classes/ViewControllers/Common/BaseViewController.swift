@@ -112,7 +112,7 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
      左バーボタンを作成する。
      */
     func createLeftBarButton() {
-        let action = Selector("leftBarButtonPressed:")
+        let action = #selector(leftBarButtonPressed(_:))
         let title = LocalizableUtils.getString(LocalizableConst.kButtonTitleMenu)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: action)
     }
@@ -123,7 +123,7 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
      - Parameter title: タイトル
      */
     func createRightBarButton(title title: String) {
-        let action = Selector("rightBarButtonPressed:")
+        let action = #selector(rightBarButtonPressed(_:))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: action)
     }
 
@@ -133,7 +133,7 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
      - Parameter style: スタイル(デフォルトDone)
      */
     func createRightBarButton(style: UIBarButtonItemStyle = .Done) {
-        let action = Selector("rightBarButtonPressed:")
+        let action = #selector(rightBarButtonPressed(_:))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: action)
     }
 
@@ -350,7 +350,7 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
     - Returns: 拡張キーボードのボタン
     */
     func createExtendKeyboardItems(lineNumber: Int) -> [UIBarButtonItem] {
-        let action = Selector("onClickExtendKeyboardButton:")
+        let action = #selector(BaseViewController.onClickExtendKeyboardButton(_:))
         let barButtonArray = NSMutableArray()
 
         // TODO: Undo/Redo対応は保留
@@ -382,7 +382,7 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
 
         // 各拡張キーリストのキー数分繰り返す。
         let count = extendKeyList.count
-        for var i = 0; i < count; i++ {
+        for i in 0 ..< count {
             let title = extendKeyList[i]
             let button = UIBarButtonItem(title: title, style: .Plain, target: self, action: action)
             barButtonArray.addObject(button)

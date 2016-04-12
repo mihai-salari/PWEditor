@@ -152,15 +152,16 @@ class EnvUtils: NSObject {
     - Returns: フォントファミリー名
     */
     class func getFontFamilyName(fontName: String) -> String {
-        var i = 0
         let count = CommonConst.FontNameList.count
-        for i = 0; i < count; i++ {
+        var index = 0
+        for i in 0 ..< count {
             let name = CommonConst.FontNameList[i]
             if fontName == name {
+                index = i
                 break
             }
         }
-        let fontFamilyName = CommonConst.FontFamilyNameList[i]
+        let fontFamilyName = CommonConst.FontFamilyNameList[index]
         return fontFamilyName
     }
 }

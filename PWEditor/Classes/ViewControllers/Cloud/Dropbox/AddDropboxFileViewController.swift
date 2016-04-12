@@ -249,7 +249,7 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
 
             // 選択されていないセルのチェックマークを外す。
             let valuesNum = kFileTypeCellTitleList.count
-            for var i = 0; i < valuesNum; i++ {
+            for i in 0 ..< valuesNum {
                 if i != row {
                     let unselectedIndexPath = NSIndexPath(forRow: i, inSection: section)
                     let unselectedCell = tableView.cellForRowAtIndexPath(unselectedIndexPath)

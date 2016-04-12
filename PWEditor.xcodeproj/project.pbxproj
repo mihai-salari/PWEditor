@@ -69,6 +69,8 @@
 		3F1915521C8CCF360042D306 /* LineNumberLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F19154D1C8CCF360042D306 /* LineNumberLayoutManager.m */; };
 		3F1915531C8CCF360042D306 /* LineNumberTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F19154F1C8CCF360042D306 /* LineNumberTextView.m */; };
 		3F1915541C8CCF360042D306 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1915511C8CCF360042D306 /* MyView.m */; };
+		3F19D2661C9225D6009ACAB2 /* SelectDirViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F19D2641C9225D6009ACAB2 /* SelectDirViewController.swift */; };
+		3F19D2671C9225D6009ACAB2 /* SelectDirViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F19D2651C9225D6009ACAB2 /* SelectDirViewController.xib */; };
 		3F23F9601C7BBAA2004852B3 /* GrepResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */; };
 		3F23F9611C7BBAA2004852B3 /* SearchResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */; };
 		3F23F9651C7BD19D004852B3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F9641C7BD19D004852B3 /* DateUtils.swift */; };
@@ -163,6 +165,8 @@
 		3F19154F1C8CCF360042D306 /* LineNumberTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineNumberTextView.m; path = Classes/External/TextKitLineNumbers/LineNumberTextView.m; sourceTree = "<group>"; };
 		3F1915501C8CCF360042D306 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyView.h; path = Classes/External/TextKitLineNumbers/MyView.h; sourceTree = "<group>"; };
 		3F1915511C8CCF360042D306 /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyView.m; path = Classes/External/TextKitLineNumbers/MyView.m; sourceTree = "<group>"; };
+		3F19D2641C9225D6009ACAB2 /* SelectDirViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectDirViewController.swift; path = Classes/ViewControllers/Local/SelectDirViewController.swift; sourceTree = "<group>"; };
+		3F19D2651C9225D6009ACAB2 /* SelectDirViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectDirViewController.xib; path = Classes/ViewControllers/Local/SelectDirViewController.xib; sourceTree = "<group>"; };
 		3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GrepResultInfo.swift; path = Classes/ViewControllers/Local/GrepResultInfo.swift; sourceTree = "<group>"; };
 		3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultInfo.swift; path = Classes/ViewControllers/Local/SearchResultInfo.swift; sourceTree = "<group>"; };
 		3F23F9641C7BD19D004852B3 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtils.swift; path = Classes/Utils/DateUtils.swift; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 				3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */,
 				3F0F829F1C90DAD20090632E /* HighlightViewController.swift */,
 				3F0F82A01C90DAD20090632E /* HighlightViewController.xib */,
+				3F19D2641C9225D6009ACAB2 /* SelectDirViewController.swift */,
+				3F19D2651C9225D6009ACAB2 /* SelectDirViewController.xib */,
 			);
 			name = Local;
 			sourceTree = "<group>";
@@ -428,8 +434,8 @@
 			isa = PBXGroup;
 			children = (
 				3F003D221C767A2100ECC371 /* InfoPlist.strings */,
-				3F003D291C767B1800ECC371 /* Localizable.strings */,
 				3F003D1C1C7678B000ECC371 /* LocalizableConst.swift */,
+				3F003D291C767B1800ECC371 /* Localizable.strings */,
 				3F7494771C753B0A002A0544 /* PWEditor */,
 				3F7494761C753B0A002A0544 /* Products */,
 				350BE812C464A5AF905A2CEC /* Pods */,
@@ -565,6 +571,7 @@
 				3F0F829E1C90D1510090632E /* ICTextViewLicense.txt in Resources */,
 				3F165E611C7A776F001CBC38 /* highlightjs-line-numbers.min.js in Resources */,
 				3F165E421C7A690C001CBC38 /* SourceHanCodeJPLicense.txt in Resources */,
+				3F19D2671C9225D6009ACAB2 /* SelectDirViewController.xib in Resources */,
 				3F157BFB1C84F4A6007C555E /* AddDropboxFileViewController.xib in Resources */,
 				3F165E3D1C7A68FB001CBC38 /* History.txt in Resources */,
 				3F165E341C7A687C001CBC38 /* EditLocalFileViewController.xib in Resources */,
@@ -667,6 +674,7 @@
 				3F3E85BC1C776174002EFB6D /* EnterLineDataTableViewCell.swift in Sources */,
 				3F0F82A11C90DAD20090632E /* HighlightViewController.swift in Sources */,
 				3F23F9611C7BBAA2004852B3 /* SearchResultInfo.swift in Sources */,
+				3F19D2661C9225D6009ACAB2 /* SelectDirViewController.swift in Sources */,
 				3F157C001C84F4F3007C555E /* ICloudFileListViewController.swift in Sources */,
 				3F157C051C84F50E007C555E /* DropboxFileInfo.swift in Sources */,
 				3F165E4B1C7A72A1001CBC38 /* BaseWebViewController.swift in Sources */,

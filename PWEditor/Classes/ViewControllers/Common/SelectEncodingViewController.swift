@@ -228,7 +228,7 @@ class SelectEncodingViewController: BaseTableViewController {
 
             // 選択されていないセルのチェックマークを外す。
             let valuesNum = kEncodingCellTitleList.count
-            for var i = 0; i < valuesNum; i++ {
+            for i in 0 ..< valuesNum {
                 if i != row {
                     let unselectedIndexPath = NSIndexPath(forRow: i, inSection: section)
                     let unselectedCell = tableView.cellForRowAtIndexPath(unselectedIndexPath)
@@ -246,7 +246,7 @@ class SelectEncodingViewController: BaseTableViewController {
 
             // 選択されていないセルのチェックマークを外す。
             let valuesNum = kReturnCodeCellTitleList.count
-            for var i = 0; i < valuesNum; i++ {
+            for i in 0 ..< valuesNum {
                 if i != row {
                     let unselectedIndexPath = NSIndexPath(forRow: i, inSection: section)
                     let unselectedCell = tableView.cellForRowAtIndexPath(unselectedIndexPath)
@@ -273,7 +273,7 @@ class SelectEncodingViewController: BaseTableViewController {
         var encodingType = -1
         let encodingSection = SectionIndex.Encoding.rawValue
         let encodingRowNum = tableView?.numberOfRowsInSection(encodingSection)
-        for (var i = 0; i < encodingRowNum; i++) {
+        for var i = 0; i < encodingRowNum; i += 1 {
             let indexPath = NSIndexPath(forItem: i, inSection: encodingSection)
             let cell = tableView?.cellForRowAtIndexPath(indexPath)
             let check = cell?.accessoryType

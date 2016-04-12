@@ -132,7 +132,7 @@ class LocalFileInfoViewController: BaseTableViewController {
 
             // 行数を取得する。
             fileData.enumerateLines { line, stop in
-                self.lineNum++
+                self.lineNum += 1
             }
 
             // 改行コードタイプを取得する。

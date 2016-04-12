@@ -170,7 +170,7 @@ class SelectFontViewController: BaseTableViewController {
         let section = indexPath.section
         let row = indexPath.row
         let fontFamilyNameNum = CommonConst.FontFamilyNameList.count
-        for (var i = 0; i < fontFamilyNameNum; i++) {
+        for i in 0 ..< fontFamilyNameNum {
             if i != row {
                 let unselectedIndexPath = NSIndexPath(forRow: i, inSection: section)
                 let unselectedCell = tableView.cellForRowAtIndexPath(unselectedIndexPath)

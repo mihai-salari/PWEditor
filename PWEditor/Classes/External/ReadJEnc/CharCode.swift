@@ -97,14 +97,14 @@ class Euch: Text {
         var cp20932Len = 0
         var shiftPos = Int.min
         var b: UInt8
-        for var i = 0; i < len; i++ {
+        for i in 0 ..< len {
             b = bytes[i]
             let start: UInt8 = 0x8F
             if b == start {
                 shiftPos = i + 2
             } else {
                 bytesForCP20932[cp20932Len] = i == shiftPos ? b & 0x7F : b
-                cp20932Len++
+                cp20932Len += 1
             }
         }
         return ""

@@ -41,7 +41,7 @@ class LogUtils: NSObject {
     - parameter function: メソッド名
     - parameter line: 行番号
     */
-    class func v(obj: AnyObject?, file: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    class func v(obj: AnyObject?, file: String = #file, function: String = #function, line: Int = #line) {
         log(LogLevel.v, obj: obj, file: file, function: function, line: line)
     }
     /**
@@ -51,7 +51,7 @@ class LogUtils: NSObject {
     - parameter function: メソッド名
     - parameter line: 行番号
     */
-    class func d(obj: AnyObject?, file: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    class func d(obj: AnyObject?, file: String = #file, function: String = #function, line: Int = #line) {
         log(LogLevel.d, obj: obj, file: file, function: function, line: line)
     }
     /**
@@ -61,7 +61,7 @@ class LogUtils: NSObject {
     - parameter function: メソッド名
     - parameter line: 行番号
     */
-    class func i(obj: AnyObject?, file: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    class func i(obj: AnyObject?, file: String = #file, function: String = #function, line: Int = #line) {
         log(LogLevel.i, obj: obj, file: file, function: function, line: line)
     }
     /**
@@ -71,7 +71,7 @@ class LogUtils: NSObject {
     - parameter function: メソッド名
     - parameter line: 行番号
     */
-    class func w(obj: AnyObject?, file: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    class func w(obj: AnyObject?, file: String = #file, function: String = #function, line: Int = #line) {
         log(LogLevel.w, obj: obj, file: file, function: function, line: line)
     }
     /**
@@ -81,7 +81,7 @@ class LogUtils: NSObject {
     - parameter function: メソッド名
     - parameter line: 行番号
     */
-    class func e(obj: AnyObject?, file: String = __FILE__, function: String = __FUNCTION__, line: Int = __LINE__) {
+    class func e(obj: AnyObject?, file: String = #file, function: String = #function, line: Int = #line) {
         log(LogLevel.e, obj: obj, file: file, function: function, line: line)
     }
     // MARK: - Private

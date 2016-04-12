@@ -123,7 +123,7 @@ class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDe
         tableView.registerNib(nib, forCellReuseIdentifier: kLineDataCellName)
 
         // 画面タップジェスチャーを作成する。
-        let tapGestureAction = Selector("screenTapped:")
+        let tapGestureAction = #selector(AddLocalFileViewController.screenTapped(_:))
         screenTapGesture = UITapGestureRecognizer(target: self, action: tapGestureAction)
         screenTapGesture.delegate = self
         screenTapGesture.numberOfTapsRequired = 1
@@ -264,7 +264,7 @@ class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDe
 
             // 選択されていないセルのチェックマークを外す。
             let valuesNum = kFileTypeTitleList.count
-            for var i = 0; i < valuesNum; i++ {
+            for i in 0 ..< valuesNum {
                 if i != row {
                     let unselectedIndexPath = NSIndexPath(forRow: i, inSection: section)
                     let unselectedCell = tableView.cellForRowAtIndexPath(unselectedIndexPath)
@@ -322,7 +322,7 @@ class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDe
         var fileType = -1
         let fileTypeSection = SectionIndex.FileType.rawValue
         let fileTypeRowNum = tableView?.numberOfRowsInSection(fileTypeSection)
-        for (var i = 0; i < fileTypeRowNum; i++) {
+        for (var i = 0; i < fileTypeRowNum; i += 1) {
             let indexPath = NSIndexPath(forItem: i, inSection: fileTypeSection)
             let cell = tableView?.cellForRowAtIndexPath(indexPath)
             let check = cell?.accessoryType

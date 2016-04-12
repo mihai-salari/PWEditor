@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectDirViewController" customModule="PWEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="bannerView" destination="evF-a8-Ozs" id="hD8-Bw-lZP"/>
+                <outlet property="tableView" destination="eSY-bs-1Jk" id="Dv1-v1-8Ec"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eSY-bs-1Jk">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evF-a8-Ozs" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="iiI-B0-PkL"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="eSY-bs-1Jk" secondAttribute="trailing" id="CO1-PM-1po"/>
+                <constraint firstAttribute="trailing" secondItem="evF-a8-Ozs" secondAttribute="trailing" id="D3b-NT-LhH"/>
+                <constraint firstItem="eSY-bs-1Jk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FtT-wR-vLG"/>
+                <constraint firstItem="eSY-bs-1Jk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RtF-xQ-1xN"/>
+                <constraint firstItem="evF-a8-Ozs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Urh-Zs-aJ6"/>
+                <constraint firstItem="evF-a8-Ozs" firstAttribute="top" secondItem="eSY-bs-1Jk" secondAttribute="bottom" id="mD4-ut-hNc"/>
+                <constraint firstAttribute="bottom" secondItem="evF-a8-Ozs" secondAttribute="bottom" id="noA-Mv-ezy"/>
+                <constraint firstItem="evF-a8-Ozs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="oq4-XO-CtS"/>
+                <constraint firstItem="eSY-bs-1Jk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="z0o-1s-ypG"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

@@ -99,7 +99,7 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         // テキストビューを設定する。
         listNumber = 0
         setupTextView()
-        let selector = Selector("textChanged:")
+        let selector = #selector(EditLocalFileViewController.textChanged(_:))
         NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: UITextViewTextDidChangeNotification, object: nil)
         myView.textView.delegate = self
         myView.textView.circularSearch = true
@@ -117,11 +117,11 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         // テキストビューがキーボードに隠れないための処理
         // 参考 : https://teratail.com/questions/2915
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        let keyboardWillShow = Selector("keyboardWillShow:")
+        let keyboardWillShow = #selector(EditLocalFileViewController.keyboardWillShow(_:))
         notificationCenter.addObserver(self, selector: keyboardWillShow, name: UIKeyboardWillShowNotification, object: nil)
-        let keyboardWillHide = Selector("keyboardWillHide:")
+        let keyboardWillHide = #selector(EditLocalFileViewController.keyboardWillHide(_:))
         notificationCenter.addObserver(self, selector: keyboardWillHide, name: UIKeyboardWillHideNotification, object: nil)
-        let keyboardDidHide = Selector("keyboardDidHide:")
+        let keyboardDidHide = #selector(EditLocalFileViewController.keyboardDidHide(_:))
         notificationCenter.addObserver(self, selector: keyboardDidHide, name: UIKeyboardDidHideNotification, object: nil)
     }
 

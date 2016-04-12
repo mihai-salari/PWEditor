@@ -88,7 +88,7 @@ class BaseTableViewController: BaseViewController, UITableViewDataSource, UITabl
      - Parameter delegate: デリゲート
      - Parameter selector: セレクター
      */
-    func createCellLogPressed(tableView: UITableView, delegate: UIGestureRecognizerDelegate, selector: Selector = Selector("cellLongPressed:")) {
+    func createCellLogPressed(tableView: UITableView, delegate: UIGestureRecognizerDelegate, selector: Selector = #selector(BaseTableViewController.cellLongPressed(_:))) {
         let cellLongPressedAction = selector
         let longPressRecognizer = UILongPressGestureRecognizer(target: delegate, action: cellLongPressedAction)
         longPressRecognizer.delegate = delegate
@@ -113,7 +113,7 @@ class BaseTableViewController: BaseViewController, UITableViewDataSource, UITabl
         // リフレッシュコントロールを生成する。
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: title)
-        let action = Selector("pullRefresh")
+        let action = #selector(BaseTableViewController.pullRefresh)
         refreshControl?.addTarget(self, action: action, forControlEvents: .ValueChanged)
 
         // テーブルビューにリフレッシュコントロールを追加する。

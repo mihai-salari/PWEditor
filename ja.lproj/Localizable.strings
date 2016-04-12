@@ -95,6 +95,9 @@ LocalFileInfoCellTitleUpdateDate = "更新日";
 // ローカルファイルgrep一覧画面
 GrepLocalFileListScreenTitle = "ローカルファイルgrep一覧";
 
+// ディレクトリ選択画面
+SelectDirScreenTitle = "ディレクトリ選択";
+
 // iCloudファイル一覧画面
 ICloudFileListScreenTitle = "iCloudファイル一覧";
 

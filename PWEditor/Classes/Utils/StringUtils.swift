@@ -78,7 +78,7 @@ class StringUtils: NSObject {
         data!.getBytes(&buffer, length: count)
         var crFlag = false
         var lfFlag = false
-        for var i = 0; i < count; i++ {
+        for i in 0 ..< count {
             if buffer[i] == 13 {
                 // CRの場合
                 crFlag = true

@@ -54,6 +54,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
     var moveToolbarButton: UIBarButtonItem?
 
     var normalToolbarItems: [UIBarButtonItem]?
+
     var editingToolbarItems: [UIBarButtonItem]?
 
     /// 開始位置
@@ -118,11 +119,11 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         let spaser = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         let deleteToolbarButtonAction = Selector("deleteToolbarButtonPressed:")
         deleteToolbarButton = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: deleteToolbarButtonAction)
-        let copyToolbarButtonAction = Selector("copyToolbarButtonPressed:")
-        copyToolbarButton = UIBarButtonItem(title: "copy", style: .Plain, target: self, action: copyToolbarButtonAction)
-        let moveToolbarButtonAction = Selector("moveToolbarButtonPressed:")
+        deleteToolbarButton!.enabled = false
+        let moveToolbarButtonAction = #selector(LocalFileListViewController.moveToolbarButtonPressed(_:))
         moveToolbarButton = UIBarButtonItem(title: "move", style: .Plain, target: self, action: moveToolbarButtonAction)
-        editingToolbarItems = [deleteToolbarButton!, spaser, copyToolbarButton!, spaser, moveToolbarButton!]
+        moveToolbarButton!.enabled = false
+        editingToolbarItems = [deleteToolbarButton!, spaser, moveToolbarButton!]
 
         // バナービューを設定する。
         setupBannerView(bannerView)
@@ -131,10 +132,11 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         let localPathName = FileUtils.getLocalPath(pathName)
         fileInfoList = FileUtils.getFileInfoListInDir(localPathName)
 
-        // TODO:複数選択対応は保留
-//        if fileInfoList.count > 0 {
+        if fileInfoList.count > 0 {
+            // ファイル情報が存在する場合、
+            // 右上編集ボタンを表示する。
 //            navigationItem.rightBarButtonItem = editButtonItem()
-//        }
+        }
     }
 
     /**
@@ -212,14 +214,17 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         cell.textLabel?.text = ""
         cell.accessoryType = .None
 
+        // ファイル名、ディレクトリ名を設定する。
         let fileInfo = fileInfoList[row]
         cell.textLabel?.text = fileInfo.name
 
         let isDir = fileInfo.isDir
         if isDir {
+            // ディレクトリの場合
             cell.accessoryType = .DisclosureIndicator
 
         } else {
+            // ファイルの場合
             cell.accessoryType = .DetailButton
         }
 
@@ -236,7 +241,15 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
      */
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if tableView.editing {
-            // 編集モードの場合、処理しない。
+            let indexPaths = tableView.indexPathsForSelectedRows
+            let count = indexPaths?.count
+            if count > 0 {
+                deleteToolbarButton!.enabled = true
+                moveToolbarButton!.enabled = true
+            } else {
+                deleteToolbarButton!.enabled = false
+                moveToolbarButton!.enabled = false
+            }
             return
         }
 
@@ -247,6 +260,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         let row = indexPath.row
         let count = fileInfoList.count
         if row + 1 > count {
+            // ファイル情報リストが範囲外の場合、処理しない。
             return
         }
 
@@ -255,8 +269,15 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         if isDir {
             // ディレクトリの場合
             // ローカルファイル一覧画面に遷移する。
-            let pathName = fileInfo.name
-            let vc = LocalFileListViewController(pathName: pathName)
+            let localPathName: String
+            if pathName.isEmpty {
+                // パス名が空の場合
+                localPathName = fileInfo.name
+            } else {
+                // パス名が空ではない場合
+                localPathName = "\(pathName)/\(fileInfo.name)"
+            }
+            let vc = LocalFileListViewController(pathName: localPathName)
             navigationController?.pushViewController(vc, animated: true)
 
         } else {
@@ -264,8 +285,25 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             // ファイル編集画面に遷移する。
             let fileName = fileInfo.name
             let vc = EditLocalFileViewController(pathName: pathName, fileName: fileName)
+            // TODO: ハイライト表示確認用
 //            let vc = HighlightViewController()
             navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView.editing {
+            // 編集モードの場合
+            let indexPaths = tableView.indexPathsForSelectedRows
+            let count = indexPaths?.count
+            if count > 0 {
+                deleteToolbarButton!.enabled = true
+                moveToolbarButton!.enabled = true
+            } else {
+                deleteToolbarButton!.enabled = false
+                moveToolbarButton!.enabled = false
+            }
+            return
         }
     }
 
@@ -280,53 +318,57 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
 
         let count = fileInfoList.count
         if row + 1 > count {
+            // ファイル情報リストが範囲外の場合、処理しない。
             return
         }
 
+        // ローカルファイル情報画面に遷移する。
         let fileInfo = fileInfoList[row]
         let fileName = fileInfo.name
         let vc = LocalFileInfoViewController(pathName: pathName, fileName: fileName, encoding: NSUTF8StringEncoding)
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    /**
+     編集モードへ切り替える。
 
+     - Parameter editing: 編集モード
+     - Parameter animated: アニメーション指定
+     */
     override func setEditing(editing: Bool, animated: Bool) {
+        // スーパークラスのメソッドを呼び出す。
         super.setEditing(editing, animated: animated)
+
+        // テーブルビューの編集モードを切り替える。
         tableView.editing = editing
 
         if editing {
+            // 編集モードの場合
+            // ツールバーを切り替える。
             toolbar.items = editingToolbarItems
+
+            // 検索バーを非表示にする。
             searchBar!.hidden = true
 
-
         } else {
+            // 通常モードの場合
+            // ツールバーを切り替える。
             toolbar.items = normalToolbarItems
+
+            // 検索バーを表示する。
             searchBar!.hidden = false
         }
     }
 
-    func deleteToolbarButtonPressed(sender: UIBarButtonItem) {
+    /**
+     編集可能か返却する。
 
-    }
-    func copyToolbarButtonPressed(sender: UIBarButtonItem) {
-        // ディレクトリ選択画面に遷移する。
-
-    }
-    func moveToolbarButtonPressed(sender: UIBarButtonItem) {
-        // ディレクトリ選択画面に遷移する。
-
-    }
-
+     - Parameter tableView: テーブルビュー
+     - Parameter indexPath: インデックスパス
+     - Returns: 結果
+     */
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
-    }
-
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-
-        //titles.removeAtIndex(indexPath.row)
-
-        // それからテーブルの更新
-        //tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: indexPath.row, inSection: 0)], withRowAnimation: UITableViewRowAnimation.Fade)
     }
 
     // MARK: - UISearchBarDelegate
@@ -458,6 +500,65 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         // Grep一覧画面に遷移する。
         let vc = GrepLocalFileListViewController(grepWord: "", pathName: pathName, encoding: NSUTF8StringEncoding)
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    /**
+     削除ツールバーボタン押下時に呼び出される。
+
+     - Parameter sender: 削除ツールバーボタン
+     */
+    func deleteToolbarButtonPressed(sender: UIBarButtonItem) {
+
+    }
+
+    /**
+     コピーツールバーボタン押下時に呼び出される。
+
+     - Parameter sender: コピーツールバーボタン
+     */
+    func copyToolbarButtonPressed(sender: UIBarButtonItem) {
+        // ディレクトリ選択画面に遷移する。
+        let fileInfoList = getCheckedFileInfoList()
+        let indexPaths = tableView.indexPathsForSelectedRows
+
+        let vc = SelectDirViewController(pathName: "/", fileInfoList: fileInfoList)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    /**
+     移動ツールバーボタン押下時に呼び出される。
+
+     - Parameter sender: 移動ツールバーボタン
+     */
+    func moveToolbarButtonPressed(sender: UIBarButtonItem) {
+        // ディレクトリ選択画面に遷移する。
+        let fileInfoList = getCheckedFileInfoList()
+
+        let vc = SelectDirViewController(pathName: "/", fileInfoList: fileInfoList)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    /**
+     チェックされたファイル情報リストを取得する。
+
+     - Returns: チェックされたファイル情報リスト
+     */
+    func getCheckedFileInfoList() -> [FileInfo] {
+        var checkedFileInfoList = [FileInfo]()
+
+        let rowNum = tableView.numberOfRowsInSection(0)
+        for var i = 0; i < rowNum; i++ {
+            let indexPath = NSIndexPath(forItem: i, inSection: 0)
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            let check = cell?.editingAccessoryType
+
+            if check == UITableViewCellAccessoryType.Checkmark {
+                let fileInfo = fileInfoList[i]
+                checkedFileInfoList.append(fileInfo)
+            }
+        }
+
+        return checkedFileInfoList
     }
 
     // MARK: - NotifyAddFileDelegate

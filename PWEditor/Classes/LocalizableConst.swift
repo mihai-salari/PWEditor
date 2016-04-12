@@ -100,6 +100,9 @@ struct LocalizableConst {
     // ローカルファイルgrep一覧画面
     static let kGrepLocalFileListScreenTitle = "GrepLocalFileListScreenTitle"
 
+    // ディレクトリ選択画面
+    static let kSelectDirScreenTitle = "SelectDirScreenTitle"
+
     // iCloudファイル一覧画面
     static let kICloudFileListScreenTitle = "ICloudFileListScreenTitle"
 
