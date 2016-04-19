@@ -38,6 +38,8 @@
 		3F157C071C84F50E007C555E /* DropboxFileListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F157C041C84F50E007C555E /* DropboxFileListViewController.xib */; };
 		3F1620DE1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1620DC1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.swift */; };
 		3F1620DF1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1620DD1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.xib */; };
+		3F1620E71CC6D4B600ABECFE /* EditGoogleDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1620E51CC6D4B600ABECFE /* EditGoogleDriveFileViewController.swift */; };
+		3F1620E81CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1620E61CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib */; };
 		3F165E311C7A687C001CBC38 /* AddLocalFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E291C7A687C001CBC38 /* AddLocalFileViewController.swift */; };
 		3F165E321C7A687C001CBC38 /* AddLocalFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E2A1C7A687C001CBC38 /* AddLocalFileViewController.xib */; };
 		3F165E331C7A687C001CBC38 /* EditLocalFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E2B1C7A687C001CBC38 /* EditLocalFileViewController.swift */; };
@@ -194,6 +196,8 @@
 		3F157C041C84F50E007C555E /* DropboxFileListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DropboxFileListViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileListViewController.xib; sourceTree = "<group>"; };
 		3F1620DC1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleDriveFileDetailViewController.swift; path = Classes/ViewControllers/Cloud/GoogleDrive/GoogleDriveFileDetailViewController.swift; sourceTree = "<group>"; };
 		3F1620DD1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GoogleDriveFileDetailViewController.xib; path = Classes/ViewControllers/Cloud/GoogleDrive/GoogleDriveFileDetailViewController.xib; sourceTree = "<group>"; };
+		3F1620E51CC6D4B600ABECFE /* EditGoogleDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditGoogleDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/GoogleDrive/EditGoogleDriveFileViewController.swift; sourceTree = "<group>"; };
+		3F1620E61CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditGoogleDriveFileViewController.xib; path = Classes/ViewControllers/Cloud/GoogleDrive/EditGoogleDriveFileViewController.xib; sourceTree = "<group>"; };
 		3F165E291C7A687C001CBC38 /* AddLocalFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddLocalFileViewController.swift; path = Classes/ViewControllers/Local/AddLocalFileViewController.swift; sourceTree = "<group>"; };
 		3F165E2A1C7A687C001CBC38 /* AddLocalFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddLocalFileViewController.xib; path = Classes/ViewControllers/Local/AddLocalFileViewController.xib; sourceTree = "<group>"; };
 		3F165E2B1C7A687C001CBC38 /* EditLocalFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditLocalFileViewController.swift; path = Classes/ViewControllers/Local/EditLocalFileViewController.swift; sourceTree = "<group>"; };
@@ -343,6 +347,8 @@
 				3F12E86C1CC594430008DDEE /* GoogleDriveFileListViewController.xib */,
 				3F1620DC1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.swift */,
 				3F1620DD1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.xib */,
+				3F1620E51CC6D4B600ABECFE /* EditGoogleDriveFileViewController.swift */,
+				3F1620E61CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib */,
 			);
 			name = GoogleDrive;
 			sourceTree = "<group>";
@@ -751,6 +757,7 @@
 				3F165E321C7A687C001CBC38 /* AddLocalFileViewController.xib in Resources */,
 				3F37CF4B1C85AC1800B138C9 /* DropboxFileInfoViewController.xib in Resources */,
 				3F165E451C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf in Resources */,
+				3F1620E81CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib in Resources */,
 				3F165E6D1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt in Resources */,
 				3F0F829E1C90D1510090632E /* ICTextViewLicense.txt in Resources */,
 				3F165E611C7A776F001CBC38 /* highlightjs-line-numbers.min.js in Resources */,
@@ -877,6 +884,7 @@
 				3F12E86D1CC594430008DDEE /* GoogleDriveFileListViewController.swift in Sources */,
 				3F165E791C7A7FF5001CBC38 /* SelectNumberViewController.swift in Sources */,
 				3F12E8501CC57D7A0008DDEE /* GTLDrive_Sources.m in Sources */,
+				3F1620E71CC6D4B600ABECFE /* EditGoogleDriveFileViewController.swift in Sources */,
 				3F165E691C7A7B13001CBC38 /* OpenSourceLicenseListViewController.swift in Sources */,
 				3F4873741C75DD6D006594A6 /* FileInfo.swift in Sources */,
 				3F165E311C7A687C001CBC38 /* AddLocalFileViewController.swift in Sources */,

@@ -192,9 +192,8 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
         } else {
             // ファイルの場合
             // GoogleDriveファイル編集画面に遷移する。
-//            let fileName = driveFile.name
-//            let vc = EditGoolgeDriveFileViewController(pathName: pathName, fileName: fileName)
-//            navigationController?.pushViewController(vc, animated: true)
+            let vc = EditGoogleDriveFileViewController(driveFile: driveFile)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 

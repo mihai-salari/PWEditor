@@ -144,6 +144,10 @@ GoogleDriveFileDetailCellCreatedTime = "Created time";
 GoogleDriveFileDetailCellModifiedTime = "Modified time";
 GoogleDriveFileDetailCellStarred = "Starred";
 
+// GoogleDriveファイル編集画面
+EditGoogleDriveFileDownloadError = "Download %@ error.";
+EditGoogleDriveFileDownloadDataError = "Download %@ failed.";
+
 // 設定画面
 SettingsScreenTitle = "Setting";
 SettingsSectionTitleFont = "Font";

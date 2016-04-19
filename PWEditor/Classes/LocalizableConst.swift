@@ -149,6 +149,10 @@ struct LocalizableConst {
     static let kGoogleDriveFileDetailCellModifiedTime = "GoogleDriveFileDetailCellModifiedTime"
     static let kGoogleDriveFileDetailCellStarred = "GoogleDriveFileDetailCellStarred"
 
+    // GoogleDriveファイル編集画面
+    static let kEditGoogleDriveFileDownloadError = "EditGoogleDriveFileDownloadError";
+    static let kEditGoogleDriveFileDownloadDataError = "EditGoogleDriveFileDownloadDataError";
+
     // 設定画面
     static let kSettingsScreenTitle = "SettingsScreenTitle"
     static let kSettingsSectionTitleFont = "SettingsSectionTitleFont"
