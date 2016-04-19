@@ -29,6 +29,7 @@ AlertMessageOpenFileError = "このファイルは開けません。";
 AlertMessageGetFileDataError = "ファイルデータが取得できません。";
 AlertMessageNotTextFileError = "このファイルはテキストファイルではありません。";
 AlertMessageCovertEncodingError = "ファイルデータを指定の文字エンコーディングに変換できません。";
+AlertMessageSignOutGoogleDrive = "GoogleDriveからサインアウトしますか。";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "ローカルファイル操作";
@@ -129,6 +130,9 @@ AddDropboxFileCreateError = "%@を作成できませんでした。";
 // Dropboxファイル編集画面
 EditDropboxFileDownloadError = "%@をダウンロードできませんでした。";
 EditDropboxFileUpdloadError = "%@をアップロードできませんでした。";
+
+// GoogleDriveファイル一覧画面
+GoogleDriveFileListScreenTitle = "GoogleDriveファイル一覧";
 
 // 設定画面
 SettingsScreenTitle = "設定";

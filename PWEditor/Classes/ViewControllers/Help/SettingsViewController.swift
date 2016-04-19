@@ -50,7 +50,8 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
 
     /// クラウドセルタイトル
     let kCloudCellTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleDropbox)
+        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleDropbox),
+        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleGoogleDrive)
     ]
 
     /// セクションインデックス
@@ -241,14 +242,27 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
             switch row {
             case CloudCellIndex.Dropbox.rawValue:
                 // Dropboxセルの場合
-                if Dropbox.authorizedClient == nil {
-                    // 未ログインの場合
-                    cell?.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignIn)
-                } else {
+                if Dropbox.authorizedClient != nil {
                     // ログイン済みの場合
                     cell?.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignOut)
+                } else {
+                    // 未ログインの場合
+                    cell?.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignIn)
                 }
                 break
+
+            case CloudCellIndex.GoogleDrive.rawValue:
+                // GoogleDriveセルの場合
+                let appDelegate = EnvUtils.getAppDelegate()
+                let serviceDrive = appDelegate.googleDriveServiceDrive
+                if let authorizer = serviceDrive.authorizer, canAuth = authorizer.canAuthorize where canAuth {
+                    // ログイン済みの場合
+                    cell?.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignOut)
+
+                } else {
+                    // 未ログインの場合
+                    cell?.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignIn)
+                }
 
             default:
                 // 上記以外、何もしない。
@@ -313,23 +327,57 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
             // セル番号により処理を振り分ける。
             switch row {
             case CloudCellIndex.Dropbox.rawValue:
-                if Dropbox.authorizedClient == nil {
-                    // 未ログインの場合
-                    Dropbox.authorizeFromController(self)
-
-                    tableView.reloadData()
-
-                } else {
-                    // ログイン済みの場合
+                if Dropbox.authorizedClient != nil {
+                    // サインイン済みの場合
+                    // サインアウト確認アラートを表示する。
                     let title = LocalizableUtils.getString(LocalizableConst.kSignOut)
                     let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageSignOutDropbox)
                     showAlertWithCancel(title, message: message, handler: { () -> Void in
+                        // サインアウトする。
                         Dropbox.unlinkClient()
 
+                        // メニュー画面のDropboxセルを無効にする。
                         self.delegate?.receiveSignInState(0, state: true)
 
+                        // テーブルを更新する。
                         tableView.reloadData()
                     })
+
+                } else {
+                    // 未サインインの場合
+                    // サインイン画面を表示する。
+                    Dropbox.authorizeFromController(self)
+
+                    // テーブルを更新する。
+                    tableView.reloadData()
+                }
+                break
+
+            case CloudCellIndex.GoogleDrive.rawValue:
+                // GoogleDriveの場合
+                let appDelegate = EnvUtils.getAppDelegate()
+                let serviceDrive = appDelegate.googleDriveServiceDrive
+                if let authorizer = serviceDrive.authorizer, canAuth = authorizer.canAuthorize where canAuth {
+                    // サインイン済みの場合
+                    // サインアウト確認アラートを表示する。
+                    let title = LocalizableUtils.getString(LocalizableConst.kSignOut)
+                    let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageSignOutGoogleDrive)
+                    showAlertWithCancel(title, message: message, handler: { () -> Void in
+                        // サインアウトする。
+                        let keyChainItemName = CommonConst.GoogleDrive.kKeychainItemName
+                        let result = GTMOAuth2ViewControllerTouch.removeAuthFromKeychainForName(keyChainItemName)
+
+                        // メニュー画面のGoogleDriveセルを無効にする。
+                        self.delegate?.receiveSignInState(0, state: true)
+
+                        // テーブルを更新する。
+                        tableView.reloadData()
+                    })
+
+                } else {
+                    // 未サインインの場合
+                    // サインイン画面を表示する。
+                    presentViewController(createAuthController(), animated: true, completion: nil)
                 }
                 break
 
@@ -359,5 +407,49 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
         default:
             break
         }
+    }
+
+    // MARK: - Google Drive API
+
+    /**
+     認証コントローラを作成する。
+
+     - Returns: 認証コントローラ
+     */
+    private func createAuthController() -> GTMOAuth2ViewControllerTouch {
+        let scopeString = CommonConst.GoogleDrive.kScopeList.joinWithSeparator(" ")
+        let selector = #selector(viewAuthController(_:finishedWithAuth:error:))
+        let appDelegate = EnvUtils.getAppDelegate()
+        let clientId = appDelegate.googleDriveClientId
+        let keychainItemName = CommonConst.GoogleDrive.kKeychainItemName
+        let authController = GTMOAuth2ViewControllerTouch(scope: scopeString, clientID: clientId, clientSecret: nil, keychainItemName: keychainItemName, delegate: self, finishedSelector: selector)
+        return authController
+    }
+
+    /**
+     認証コントローラを表示する。
+
+     - Parameter vc: ビューコントローラ
+     - Parameter authResult: 認証結果
+     - Parameter error: エラー情報
+     */
+    func viewAuthController(vc: UIViewController, finishedWithAuth authResult: GTMOAuth2Authentication, error: NSError?) {
+        let appDelegate = EnvUtils.getAppDelegate()
+        let serviceDrive = appDelegate.googleDriveServiceDrive
+        if let error = error {
+            serviceDrive.authorizer = nil
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = error.localizedDescription
+            showAlert(title, message: message)
+            return
+        }
+
+        // 認証情報を設定する。
+        serviceDrive.authorizer = authResult
+
+        // ログイン画面を閉じる。
+        dismissViewControllerAnimated(true, completion: { () -> Void in
+            self.tableView.reloadData()
+        })
     }
 }

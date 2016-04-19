@@ -32,6 +32,7 @@ struct LocalizableConst {
     static let kAlertMessageGetFileDataError = "AlertMessageGetFileDataError"
     static let kAlertMessageNotTextFileError = "AlertMessageNotTextFileError"
     static let kAlertMessageCovertEncodingError = "AlertMessageCovertEncodingError"
+    static let kAlertMessageSignOutGoogleDrive = "AlertMessageSignOutGoogleDrive"
 
     // アクションシートタイトル
     static let kActionSheetTitleLocalFile = "ActionSheetTitleLocalFile"
@@ -134,6 +135,9 @@ struct LocalizableConst {
     // Dropboxファイル編集画面
     static let kEditDropboxFileDownloadError = "EditDropboxFileDownloadError"
     static let kEditDropboxFileUpdloadError = "EditDropboxFileUpdloadError"
+
+    // GoogleDriveファイル一覧画面
+    static let kGoogleDriveFileListScreenTitle = "GoogleDriveFileListScreenTitle"
 
     // 設定画面
     static let kSettingsScreenTitle = "SettingsScreenTitle"

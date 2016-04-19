@@ -15,6 +15,7 @@ struct CommonConst {
         static let kAdmobTestDeviceId = "admobTestDeviceId"
         static let kDropBoxAppKey = "dropboxAppKey"
         static let kDropBoxAppSecret = "dropboxAppSecret"
+        static let kGoogleDriveClientId = "googleDriveClientId"
     }
 
     struct SlidingViewSetting {
@@ -102,4 +103,12 @@ struct CommonConst {
         "Windows(CR/LF)",
         "Mac(CR)"
     ]
+
+    struct GoogleDrive {
+        static let kKeychainItemName = "GoogleDrive"
+        static let kRootParentId = "root"
+
+        /// スコープリスト
+        static let kScopeList = [kGTLAuthScopeDrive]
+    }
 }

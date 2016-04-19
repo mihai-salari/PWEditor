@@ -39,7 +39,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
     let kCloudTitleList = [
 //        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleICloud),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleDropbox),
-//        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleGoogleDrive),
+        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleGoogleDrive),
 //        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOneDrive)
     ]
 
@@ -68,8 +68,8 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
     enum CloudIndex: Int {
 //        case ICloud = 0
         case Dropbox = 0
-        case GoogleDrive = 2
-        case OneDrive = 3
+        case GoogleDrive = 1
+        case OneDrive = 2
     }
 
     /// ヘルプセクションインデックス
@@ -85,15 +85,19 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
 
     // MARK: - Variables
 
+    /// テーブルビュー
     @IBOutlet weak var tableView: UITableView!
 
     // MARK: - UIViewControllerDelegate
 
     override func viewDidLoad() {
+        // スーパークラスのメソッドを呼び出す。
         super.viewDidLoad()
 
+        // 画面タイトルを設定する。
         navigationItem.title = kScreenTitle
 
+        // テーブルビューを設定する。
         setupTableView(tableView)
     }
 
@@ -141,30 +145,53 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
         var title = ""
         switch section {
         case SectionIndex.Local.rawValue:
+            // ローカルセクションの場合
             title = kLocalTitleList[row]
             break
 
         case SectionIndex.Cloud.rawValue:
+            // クラウドセクションの場合
             title = kCloudTitleList[row]
             switch row {
             case CloudIndex.Dropbox.rawValue:
-                if Dropbox.authorizedClient == nil {
-                    cell.textLabel?.enabled = false
-                } else {
+                // Dropboxセルの場合
+                if Dropbox.authorizedClient != nil {
+                    // サインイン済みの場合
                     cell.textLabel?.enabled = true
+
+                } else {
+                    // 未サインインの場合
+                    cell.textLabel?.enabled = false
+                }
+                break
+
+            case CloudIndex.GoogleDrive.rawValue:
+                // GoogleDriveセルの場合
+                let appDelegate = EnvUtils.getAppDelegate()
+                let serviceDrive = appDelegate.googleDriveServiceDrive
+                if let authorizer = serviceDrive.authorizer, canAuth = authorizer.canAuthorize where canAuth {
+                    // サインイン済みの場合
+                    cell.textLabel?.enabled = true
+
+                } else {
+                    // 未サインインの場合
+                    cell.textLabel?.enabled = false
                 }
                 break
 
             default:
+                // 上記以外、何もしない。
                 break
             }
             break
 
         case SectionIndex.Help.rawValue:
+            // ヘルプセクションの場合
             title = kHelpTitleList[row]
             break
 
         default:
+            // 上記以外、何もしない。
             break
         }
         cell.textLabel?.text = title
@@ -211,6 +238,15 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
                 break
 
             case CloudIndex.GoogleDrive.rawValue:
+                // GoogleDriveの場合
+                let appDelegate = EnvUtils.getAppDelegate()
+                let serviceDrive = appDelegate.googleDriveServiceDrive
+                if let authorizer = serviceDrive.authorizer, canAuth = authorizer.canAuthorize where canAuth {
+                    // ログイン済みの場合、GoogleDriveファイル一覧画面を表示する。
+                    let parentId = CommonConst.GoogleDrive.kRootParentId
+                    let vc = GoogleDriveFileListViewController(parentId: parentId)
+                    resetTopView(vc)
+                }
                 break
 
             case CloudIndex.OneDrive.rawValue:
@@ -280,5 +316,52 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
     func receiveSignInState(cloudNo: Int, state: Bool) {
         // テーブルビューを更新する。
         tableView.reloadData()
+    }
+
+    // MARK: - Google Drive API
+
+    /**
+     認証コントローラを作成する。
+
+     - Returns: 認証コントローラ
+     */
+    private func createAuthController() -> GTMOAuth2ViewControllerTouch {
+        let scopeString = CommonConst.GoogleDrive.kScopeList.joinWithSeparator(" ")
+        let selector = #selector(viewAuthController(_:finishedWithAuth:error:))
+        let appDelegate = EnvUtils.getAppDelegate()
+        let clientId = appDelegate.googleDriveClientId
+        let keychainItemName = CommonConst.GoogleDrive.kKeychainItemName
+        let authController = GTMOAuth2ViewControllerTouch(scope: scopeString, clientID: clientId, clientSecret: nil, keychainItemName: keychainItemName, delegate: self, finishedSelector: selector)
+        return authController
+    }
+
+    /**
+     認証コントローラを表示する。
+
+     - Parameter vc: ビューコントローラ
+     - Parameter authResult: 認証結果
+     - Parameter error: エラー情報
+     */
+    func viewAuthController(vc: UIViewController, finishedWithAuth authResult: GTMOAuth2Authentication, error: NSError?) {
+        let appDelegate = EnvUtils.getAppDelegate()
+        let serviceDrive = appDelegate.googleDriveServiceDrive
+        if let error = error {
+            serviceDrive.authorizer = nil
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = error.localizedDescription
+            showAlert(title, message: message)
+            return
+        }
+
+        // 認証情報を設定する。
+        serviceDrive.authorizer = authResult
+
+        // ログイン画面を閉じる。
+        dismissViewControllerAnimated(true, completion: { () -> Void in
+            // GoogleDriveファイル一覧画面に遷移する。
+            let parentId = CommonConst.GoogleDrive.kRootParentId
+            let vc = GoogleDriveFileListViewController(parentId: parentId)
+            self.resetTopView(vc)
+        })
     }
 }

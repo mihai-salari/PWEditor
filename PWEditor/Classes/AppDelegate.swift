@@ -33,6 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// メソッド変更フラグ
     var isChangedMethod = false
 
+    /// GoogleDriveクライアントID
+    var googleDriveClientId: String!
+
+    /// スコープ
+    private let scopes = [kGTLAuthScopeDrive]
+
+    /// GoogleDriveサービスドライブ
+    let googleDriveServiceDrive = GTLServiceDrive()
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         if !isChangedMethod {
@@ -47,6 +56,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Dropboxの初期化を行う。
         let appKey = ConfigUtils.getConfigValue(CommonConst.ConfigKey.kDropBoxAppKey)
         Dropbox.setupWithAppKey(appKey)
+
+        // GoogleDriveクライアントIDを取得する。
+        googleDriveClientId = ConfigUtils.getConfigValue(CommonConst.ConfigKey.kGoogleDriveClientId)
+
+
+        // 認証オブジェクトを取得する。
+        let keyChainItemName = CommonConst.GoogleDrive.kKeychainItemName
+        let auth = GTMOAuth2ViewControllerTouch.authForGoogleFromKeychainForName(keyChainItemName, clientID: googleDriveClientId, clientSecret: nil)
+        if auth != nil {
+            // 認証情報が取得できた場合
+            googleDriveServiceDrive.authorizer = auth
+        }
 
         // トップ画面を作成する。
         let topVc = LocalFileListViewController(pathName: "")

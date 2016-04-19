@@ -29,6 +29,7 @@ AlertMessageOpenFileError = "File open failed.";
 AlertMessageGetFileDataError = "Get file data failed.";
 AlertMessageNotTextFileError = "This file not text file.";
 AlertMessageCovertEncodingError = "Convert char encoding failed.";
+AlertMessageSignOutGoogleDrive = "Sign out from google drive?";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "Local file operation";
@@ -129,6 +130,9 @@ AddDropboxFileCreateError = "Create %@ failed.";
 // Dropboxファイル編集画面
 EditDropboxFileDownloadError = "Download %@ failed.";
 EditDropboxFileUpdloadError = "Upload %@ failed.";
+
+// GoogleDriveファイル一覧画面
+GoogleDriveFileListScreenTitle = "GoogleDrive file list";
 
 // 設定画面
 SettingsScreenTitle = "Setting";
