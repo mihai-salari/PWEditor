@@ -213,9 +213,10 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
             return
         }
 
-//        let driveFile = driveFileList[row]
-//        let vc = GoogleDriveFileDetailViewController(driveFile: driveFile)
-//        navigationController?.pushViewController(vc, animated: true)
+        // GoogleDriveファイル詳細画面に遷移する。
+        let driveFile = driveFileList[row]
+        let vc = GoogleDriveFileDetailViewController(driveFile: driveFile)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: - Refresh control

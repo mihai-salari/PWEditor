@@ -66,7 +66,7 @@ class DropboxFileInfoViewController: BaseTableViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-    // MARK: - UIViewDelegate
+    // MARK: - UIViewController
 
     /**
     インスタンスが生成された時に呼び出される。

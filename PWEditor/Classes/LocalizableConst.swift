@@ -139,6 +139,16 @@ struct LocalizableConst {
     // GoogleDriveファイル一覧画面
     static let kGoogleDriveFileListScreenTitle = "GoogleDriveFileListScreenTitle"
 
+    // GoogleDriveファイル詳細画面
+    static let kGoogleDriveFileDetailScreenTitle = "GoogleDriveFileDetailScreenTitle"
+    static let kGoogleDriveFileDetailCellName = "GoogleDriveFileDetailCellName"
+    static let kGoogleDriveFileDetailCellSize = "GoogleDriveFileDetailCellSize"
+    static let kGoogleDriveFileDetailCellMimeType = "GoogleDriveFileDetailCellMimeType"
+    static let kGoogleDriveFileDetailCellFileExtention = "GoogleDriveFileDetailCellFileExtention"
+    static let kGoogleDriveFileDetailCellCreatedTime = "GoogleDriveFileDetailCellCreatedTime"
+    static let kGoogleDriveFileDetailCellModifiedTime = "GoogleDriveFileDetailCellModifiedTime"
+    static let kGoogleDriveFileDetailCellStarred = "GoogleDriveFileDetailCellStarred"
+
     // 設定画面
     static let kSettingsScreenTitle = "SettingsScreenTitle"
     static let kSettingsSectionTitleFont = "SettingsSectionTitleFont"

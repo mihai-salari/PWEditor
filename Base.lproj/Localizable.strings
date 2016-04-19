@@ -134,6 +134,16 @@ EditDropboxFileUpdloadError = "Upload %@ failed.";
 // GoogleDriveファイル一覧画面
 GoogleDriveFileListScreenTitle = "GoogleDrive file list";
 
+// GoogleDriveファイル詳細画面
+GoogleDriveFileDetailScreenTitle = "GoogleDrive detail";
+GoogleDriveFileDetailCellName = "file name";
+GoogleDriveFileDetailCellSize = "Size";
+GoogleDriveFileDetailCellMimeType = "MIME type";
+GoogleDriveFileDetailCellFileExtention = "File extention";
+GoogleDriveFileDetailCellCreatedTime = "Created time";
+GoogleDriveFileDetailCellModifiedTime = "Modified time";
+GoogleDriveFileDetailCellStarred = "Starred";
+
 // 設定画面
 SettingsScreenTitle = "Setting";
 SettingsSectionTitleFont = "Font";

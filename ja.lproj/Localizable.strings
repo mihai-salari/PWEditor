@@ -134,6 +134,16 @@ EditDropboxFileUpdloadError = "%@をアップロードできませんでした�
 // GoogleDriveファイル一覧画面
 GoogleDriveFileListScreenTitle = "GoogleDriveファイル一覧";
 
+// GoogleDriveファイル詳細画面
+GoogleDriveFileDetailScreenTitle = "GoogleDriveファイル詳細";
+GoogleDriveFileDetailCellName = "ファイル名";
+GoogleDriveFileDetailCellSize = "サイズ";
+GoogleDriveFileDetailCellMimeType = "MIMEタイプ";
+GoogleDriveFileDetailCellFileExtention = "拡張子";
+GoogleDriveFileDetailCellCreatedTime = "作成日時";
+GoogleDriveFileDetailCellModifiedTime = "更新日時";
+GoogleDriveFileDetailCellStarred = "スター";
+
 // 設定画面
 SettingsScreenTitle = "設定";
 SettingsSectionTitleFont = "フォント";
