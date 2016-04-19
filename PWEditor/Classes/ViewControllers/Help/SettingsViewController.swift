@@ -367,6 +367,10 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
                         let keyChainItemName = CommonConst.GoogleDrive.kKeychainItemName
                         let result = GTMOAuth2ViewControllerTouch.removeAuthFromKeychainForName(keyChainItemName)
 
+                        let appDelegate = EnvUtils.getAppDelegate()
+                        let serviceDrive = appDelegate.googleDriveServiceDrive
+                        serviceDrive.authorizer = nil
+
                         // メニュー画面のGoogleDriveセルを無効にする。
                         self.delegate?.receiveSignInState(0, state: true)
 
@@ -449,6 +453,10 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
 
         // ログイン画面を閉じる。
         dismissViewControllerAnimated(true, completion: { () -> Void in
+            // メニュー画面のGoogleDriveセルを無効にする。
+            self.delegate?.receiveSignInState(0, state: true)
+
+            // テーブルビューを更新する。
             self.tableView.reloadData()
         })
     }
