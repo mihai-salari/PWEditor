@@ -67,10 +67,13 @@ class SelectEncodingViewController: BaseTableViewController {
     var sourceClassName: String!
 
     /// パス名
-    var pathName: String!
+    var pathName = ""
 
     /// ファイル名
-    var fileName: String!
+    var fileName = ""
+
+    /// GoogleDriveファイル
+    var driveFile: GTLDriveFile?
 
     // MARK: - Initializer
 
@@ -96,6 +99,23 @@ class SelectEncodingViewController: BaseTableViewController {
         self.sourceClassName = sourceClassName
         self.pathName = pathName
         self.fileName = fileName
+        self.driveFile = nil
+
+        // スーパークラスのメソッドを呼び出す。
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    /**
+     イニシャライザ
+
+     - Parameter sourceClassName: 遷移元クラス名
+     - Parameter pathName: パス名
+     - Parameter fileName: ファイル名
+     */
+    init(sourceClassName: String, driveFile: GTLDriveFile) {
+        // 引数のデータを保存する。
+        self.sourceClassName = sourceClassName
+        self.driveFile = driveFile
 
         // スーパークラスのメソッドを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -322,7 +342,15 @@ class SelectEncodingViewController: BaseTableViewController {
             navigationController?.pushViewController(vc, animated: true)
             break
 
+        case GoogleDriveFileListViewController.self.description():
+            // GoogleDriveファイル一覧画面の場合
+            // GoogleDriveファイル編集画面に遷移する。
+            let vc = EditGoogleDriveFileViewController(driveFile: driveFile!, encodingType: encodingType, retCodeType: retCodeType)
+            navigationController?.pushViewController(vc, animated: true)
+            break
+
         default:
+            // 上記以外、何もしない。
             break
         }
     }

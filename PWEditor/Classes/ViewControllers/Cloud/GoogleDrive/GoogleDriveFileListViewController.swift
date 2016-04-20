@@ -282,6 +282,16 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
         let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
         alert.addAction(cancelAction)
 
+        // 文字エンコーディングを指定して開くボタンを生成する。
+        let openCharButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleOpenChar)
+        let openCharAction = UIAlertAction(title: openCharButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // 文字エンコーディング選択画面に遷移する。
+            let sourceClassName = self.dynamicType.description()
+            let vc = SelectEncodingViewController(sourceClassName: sourceClassName, driveFile: driveFile)
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(openCharAction)
+
         // 削除ボタンを生成する。
         let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
         let deleteAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in

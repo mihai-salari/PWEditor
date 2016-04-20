@@ -71,7 +71,7 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
     }
 
     // MARK: - UIViewDelegate
-
+ 
     /**
      インスタンスが生成された時に呼び出される。
      */
