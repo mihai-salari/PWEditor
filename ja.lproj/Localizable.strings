@@ -29,11 +29,13 @@ AlertMessageOpenFileError = "このファイルは開けません。";
 AlertMessageGetFileDataError = "ファイルデータが取得できません。";
 AlertMessageNotTextFileError = "このファイルはテキストファイルではありません。";
 AlertMessageCovertEncodingError = "ファイルデータを指定の文字エンコーディングに変換できません。";
-AlertMessageSignOutGoogleDrive = "GoogleDriveからサインアウトしますか。";
+AlertMessageSignOutGoogleDrive = "Google driveからサインアウトしますか。";
+AlertMessageDeleteFileError = "%@を削除できませんでした。";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "ローカルファイル操作";
-ActionSheetTitleDropbox = "Dropbox操作";
+ActionSheetTitleDropboxFile = "Dropboxファイル操作";
+ActionSheetTitleGoogleDriveFile = "Google driveファイル操作";
 
 // その他
 FontSize = "フォントサイズ";
@@ -58,8 +60,8 @@ MenuCellTitleLocalFileList = "ローカルファイル一覧";
 MenuCellTitleRecentFileList = "最近使用したファイル一覧";
 MenuCellTitleICloud = "iCloudファイル一覧";
 MenuCellTitleDropbox = "Dropboxファイル一覧";
-MenuCellTitleGoogleDrive = "GoogleDriveファイル一覧";
-MenuCellTitleOneDrive = "OneDriveファイル一覧";
+MenuCellTitleGoogleDrive = "Google driveファイル一覧";
+MenuCellTitleOneDrive = "One driveファイル一覧";
 MenuCellTitleSettings = "設定";
 MenuCellTitleAbout = "このアプリについて";
 MenuCellTitleHistory = "更新履歴";
@@ -132,10 +134,10 @@ EditDropboxFileDownloadError = "%@をダウンロードできませんでした�
 EditDropboxFileUpdloadError = "%@をアップロードできませんでした。";
 
 // GoogleDriveファイル一覧画面
-GoogleDriveFileListScreenTitle = "GoogleDriveファイル一覧";
+GoogleDriveFileListScreenTitle = "Google driveファイル一覧";
 
 // GoogleDriveファイル詳細画面
-GoogleDriveFileDetailScreenTitle = "GoogleDriveファイル詳細";
+GoogleDriveFileDetailScreenTitle = "Google driveファイル詳細";
 GoogleDriveFileDetailCellName = "ファイル名";
 GoogleDriveFileDetailCellSize = "サイズ";
 GoogleDriveFileDetailCellMimeType = "MIMEタイプ";
@@ -145,7 +147,7 @@ GoogleDriveFileDetailCellModifiedTime = "更新日時";
 GoogleDriveFileDetailCellStarred = "スター";
 
 // GoogleDriveファイル作成画面
-CreateGoogleDriveFileScreenTitle = "GoogleDriveファイル作成";
+CreateGoogleDriveFileScreenTitle = "Google driveファイル作成";
 CreateGoogleDriveFileSectionTitleFileName = "名前";
 CreateGoogleDriveFileSectionTitleFileType = "タイプ";
 CreateGoogleDriveFileCellTitleFile = "ファイル";

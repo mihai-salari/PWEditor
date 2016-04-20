@@ -297,7 +297,7 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
      */
     private func showOperateDropboxActionSheet(name: String, index: Int, cell: UITableViewCell) {
         // Dropbox操作アクションシートを生成する。
-        let alertTitle = LocalizableUtils.getString(LocalizableConst.kActionSheetTitleDropbox)
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kActionSheetTitleDropboxFile)
         let alert = UIAlertController(title: alertTitle, message: "", preferredStyle: .ActionSheet)
         // iPadでクラッシュする対応
         alert.popoverPresentationController?.sourceView = view

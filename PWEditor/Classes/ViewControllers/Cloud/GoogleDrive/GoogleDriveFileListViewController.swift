@@ -221,6 +221,109 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    // MARK: - Cell long press
+
+    /**
+     セルロングタップを生成する。
+     */
+    func createCellLogPressed() {
+        let selector = #selector(cellLongPressed(_:))
+        let cellLongPressedAction = selector
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: cellLongPressedAction)
+        longPressRecognizer.delegate = self
+        tableView.addGestureRecognizer(longPressRecognizer)
+    }
+
+    /**
+     セルロングタップ時に呼び出される。
+
+     - Parameter recognizer: ジェスチャー
+     */
+    override func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
+        let point = recognizer.locationInView(tableView)
+        let indexPath = tableView!.indexPathForRowAtPoint(point)
+
+        if indexPath == nil {
+            return
+        }
+
+        if recognizer.state == UIGestureRecognizerState.Began {
+            let row = indexPath!.row
+            let count = driveFileList.count
+            if row + 1 > count {
+                return
+            }
+
+            let driveFile = driveFileList[row]
+            let cell = tableView.cellForRowAtIndexPath(indexPath!)
+            showOperateDriveFileActionSheet(driveFile, index: row, cell: cell!)
+        }
+    }
+
+    // MARK: - ActionSheet
+
+    /**
+     GoolgeDriveファイル操作アクションシートを表示する。
+
+     - Parameter driveFile: GoogleDriveファイル
+     - Parameter index: GoogleDriveファイルの位置
+     - Parameter cell: テーブルビューセル
+     */
+    private func showOperateDriveFileActionSheet(driveFile: GTLDriveFile, index: Int, cell: UITableViewCell) {
+        // ローカルファイル操作アクションシートを生成する。
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kActionSheetTitleGoogleDriveFile)
+        let alert = UIAlertController(title: alertTitle, message: "", preferredStyle: .ActionSheet)
+        // iPadでクラッシュする対応
+        alert.popoverPresentationController?.sourceView = view
+        alert.popoverPresentationController?.sourceRect = cell.frame
+
+        // キャンセルボタンを生成する。
+        let cancelButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+        // 削除ボタンを生成する。
+        let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+        let deleteAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // ファイル削除確認アラートを表示する。
+            self.showDeleteFileConfirmAlert(driveFile, index: index)
+        })
+        alert.addAction(deleteAction)
+
+        // アラートを表示する。
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    /**
+     ファイル削除確認アラートを表示する。
+
+     - Parameter name: ファイル名またはディレクトリ名
+     - Parameter index: ファイル情報の位置
+     */
+    private func showDeleteFileConfirmAlert(driveFile: GTLDriveFile, index: Int) {
+        // ファイル削除確認アラートを生成する。
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kAlertTitleConfirm)
+        let name = driveFile.name
+        let alertMessage = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageDeleteConfirm, name)
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .Alert)
+
+        // キャンセルボタンを生成する。
+        let cancelButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+        // 削除ボタンを生成する。
+        let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+        let okAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // 削除する。
+            self.deleteDriveFile(driveFile, index: index)
+        })
+        alert.addAction(okAction)
+
+        // アラートを表示する。
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     // MARK: - Refresh control
 
     /**
@@ -293,5 +396,39 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
 
         // テーブルビューを更新する。
         tableView.reloadData()
+    }
+
+    /**
+     GoogleDriveファイルを削除する。
+
+     - Parameter driveFile: GoogleDriveファイル
+     - Parameter index: インデックス
+     */
+    func deleteDriveFile(driveFile: GTLDriveFile, index: Int) {
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        let id = driveFile.identifier
+        let query = GTLQueryDrive.queryForFilesDeleteWithFileId(id)
+        let appDelegate = EnvUtils.getAppDelegate()
+        let serviceDrive = appDelegate.googleDriveServiceDrive
+        serviceDrive.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, updatedFile: AnyObject!, error: NSError!) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                // エラーの場合、エラーアラートを表示して終了する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDeleteFileError)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            // GoogleDriveファイルリストから削除する。
+            self.driveFileList.removeAtIndex(index)
+
+            // テーブルビューを更新する。
+            self.tableView.reloadData()
+        })
     }
 }

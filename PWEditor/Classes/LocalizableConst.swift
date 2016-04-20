@@ -33,10 +33,12 @@ struct LocalizableConst {
     static let kAlertMessageNotTextFileError = "AlertMessageNotTextFileError"
     static let kAlertMessageCovertEncodingError = "AlertMessageCovertEncodingError"
     static let kAlertMessageSignOutGoogleDrive = "AlertMessageSignOutGoogleDrive"
+    static let kAlertMessageDeleteFileError = "AlertMessageDeleteFileError"
 
     // アクションシートタイトル
     static let kActionSheetTitleLocalFile = "ActionSheetTitleLocalFile"
-    static let kActionSheetTitleDropbox = "ActionSheetTitleDropbox"
+    static let kActionSheetTitleDropboxFile = "ActionSheetTitleDropboxFile"
+    static let kActionSheetTitleGoogleDriveFile = "ActionSheetTitleGoogleDriveFile"
 
     // その他
     static let kFontSize = "FontSize"

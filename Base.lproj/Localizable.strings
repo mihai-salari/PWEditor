@@ -30,10 +30,12 @@ AlertMessageGetFileDataError = "Get file data failed.";
 AlertMessageNotTextFileError = "This file not text file.";
 AlertMessageCovertEncodingError = "Convert char encoding failed.";
 AlertMessageSignOutGoogleDrive = "Sign out from google drive?";
+AlertMessageDeleteFileError = "Delete %@ failed.";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "Local file operation";
-ActionSheetTitleDropbox = "Dropbox operation";
+ActionSheetTitleDropboxFile = "Dropbox file operation";
+ActionSheetTitleGoogleDriveFile = "Google drive file operation";
 
 // その他
 FontSize = "Font size";
