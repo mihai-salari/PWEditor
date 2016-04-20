@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GoogleDriveFileListViewController" customModule="PWEditor" customModuleProvider="target">
             <connections>
                 <outlet property="bannerView" destination="Jaw-Sm-CRl" id="tAa-d7-eg6"/>
+                <outlet property="createToolbarButton" destination="XaL-j8-poL" id="WeV-rz-BfD"/>
                 <outlet property="tableView" destination="pnk-hs-tan" id="5lb-fh-bFY"/>
                 <outlet property="toolbar" destination="WEK-Va-8G3" id="auo-kr-yUW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -27,7 +28,14 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="sV4-5V-abc"/>
                     </constraints>
-                    <items/>
+                    <items>
+                        <barButtonItem systemItem="add" id="XaL-j8-poL">
+                            <connections>
+                                <action selector="createToolbarButtonPressed:" destination="-1" id="lLj-IY-gcb"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="MTd-aM-7b6"/>
+                    </items>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jaw-Sm-CRl" customClass="GADBannerView">
                     <rect key="frame" x="0.0" y="518" width="320" height="50"/>

@@ -150,6 +150,8 @@ CreateGoogleDriveFileSectionTitleFileName = "Name";
 CreateGoogleDriveFileSectionTitleFileType = "Type";
 CreateGoogleDriveFileCellTitleFile = "File";
 CreateGoogleDriveFileCellTitleDir = "Directory";
+CreateGoogleDriveFileEnterNameError = "Please enter a name.";
+CreateGoogleDriveFileFileCreateError = "Create %@ failed.";
 
 // GoogleDriveファイル編集画面
 EditGoogleDriveFileDownloadError = "Download %@ error.";

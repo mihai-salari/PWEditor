@@ -146,10 +146,12 @@ GoogleDriveFileDetailCellStarred = "スター";
 
 // GoogleDriveファイル作成画面
 CreateGoogleDriveFileScreenTitle = "GoogleDriveファイル作成";
-CreateGoogleDriveFileSectionTitleFileName = "ファイル名";
-CreateGoogleDriveFileSectionTitleFileType = "ファイルタイプ";
+CreateGoogleDriveFileSectionTitleFileName = "名前";
+CreateGoogleDriveFileSectionTitleFileType = "タイプ";
 CreateGoogleDriveFileCellTitleFile = "ファイル";
 CreateGoogleDriveFileCellTitleDir = "ディレクトリ";
+CreateGoogleDriveFileEnterNameError = "名前を入力してください。";
+CreateGoogleDriveFileFileCreateError = "%@を作成できませんでした。";
 
 // GoogleDriveファイル編集画面
 EditGoogleDriveFileDownloadError = "%@のダウンロードでエラーが発生しました。";

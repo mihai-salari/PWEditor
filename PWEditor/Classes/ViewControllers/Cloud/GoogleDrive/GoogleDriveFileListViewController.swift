@@ -30,11 +30,14 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
     /// ツールバー
     @IBOutlet weak var toolbar: UIToolbar!
 
+    /// 作成ツールバーボタン
+    @IBOutlet weak var createToolbarButton: UIBarButtonItem!
+
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
     /// 親ID
-    private var parentId: String?
+    private var parentId: String!
 
     /// GooleDriveファイルリスト
     private var driveFileList = [GTLDriveFile]()
@@ -150,7 +153,7 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
         let driveFile = driveFileList[row]
         cell.textLabel?.text = driveFile.name
 
-        let dir = isDir(driveFile)
+        let dir = GoogleDriveUtils.isDir(driveFile)
         if dir {
             cell.accessoryType = .DisclosureIndicator
 
@@ -181,7 +184,7 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
         }
 
         let driveFile = driveFileList[row]
-        let dir = isDir(driveFile)
+        let dir = GoogleDriveUtils.isDir(driveFile)
         if dir {
             // ディレクトリの場合
             // GooleDriveファイル一覧画面に遷移する。
@@ -227,6 +230,19 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
         getDriveFileList()
     }
 
+    // MARK: - Toolbar Button
+
+    /**
+     作成ツールバーボタン押下時に呼び出される。
+ 
+     - Parameter sender: 作成ツールバーボタン
+     */
+    @IBAction func createToolbarButtonPressed(sender: AnyObject) {
+        // GoogleDrive作成画面に遷移する。
+        let vc = CreateGoogleDriveFileViewController(parentId: parentId)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
     // MARK: - Google Drive API
 
     /**
@@ -263,7 +279,7 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
 
         if let error = error {
             // エラーの場合、エラーアラートを表示して終了する。
-            let title = "エラー"
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = error.localizedDescription
             showAlert(title, message: message)
             return
@@ -277,26 +293,5 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
 
         // テーブルビューを更新する。
         tableView.reloadData()
-    }
-
-    /**
-     ディレクトリか判定する。
-
-     - Parameter file: ファイルオブジェクト
-     - Returns: true:ディレクトリ / false:ファイル
-     */
-    private func isDir(file: GTLDriveFile) -> Bool {
-        let mimeType = file.mimeType
-        let mimeTypes = mimeType.componentsSeparatedByString(".")
-        let lastIndex = mimeTypes.count - 1
-        let type = mimeTypes[lastIndex]
-
-        let result: Bool
-        if type == "folder" {
-            result = true
-        } else {
-            result = false
-        }
-        return result
     }
 }

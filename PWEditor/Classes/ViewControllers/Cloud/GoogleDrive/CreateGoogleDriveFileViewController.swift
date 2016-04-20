@@ -281,8 +281,132 @@ class CreateGoogleDriveFileViewController: BaseTableViewController, UITextFieldD
      - Parameter sender: 右バーボタン
      */
     override func rightBarButtonPressed(sender: UIButton) {
+        let section = SectionIndex.FileName.rawValue
+        let indexPath = NSIndexPath(forItem: 0, inSection: section)
+        let cell = tableView?.cellForRowAtIndexPath(indexPath) as! EnterLineDataTableViewCell
+        let textField = cell.textField
+        textField.resignFirstResponder()
+
+        // 入力された名前を取得する。
+        let name = textField.text!
+        if name.isEmpty {
+            // 名前が未入力の場合
+            // エラーアラートを表示して、処理終了
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kCreateGoogleDriveFileEnterNameError)
+            let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
+            showAlert(title, message: message, okButtonTitle: okButtonTitle)
+            return
+        }
+
+        // 選択されたファイルタイプを取得する。
+        var fileType = -1
+        let fileTypeSection = SectionIndex.FileType.rawValue
+        let fileTypeRowNum = tableView?.numberOfRowsInSection(fileTypeSection)
+        for (var i = 0; i < fileTypeRowNum; i++) {
+            let indexPath = NSIndexPath(forItem: i, inSection: fileTypeSection)
+            let cell = tableView?.cellForRowAtIndexPath(indexPath)
+            let check = cell?.accessoryType
+
+            if check == UITableViewCellAccessoryType.Checkmark {
+                fileType = indexPath.row
+                break
+            }
+        }
+        if fileType == -1 {
+            // ファイルタイプが取得できない場合、処理終了
+            return
+        }
+
+        // ファイルタイプにより処理を振り分ける。
+        switch fileType {
+        case FileTypeCellIndex.File.rawValue:
+            // ファイルタイプがファイルの場合
+            // ファイルを作成する。
+            self.createFile(name)
+            break
+
+        case FileTypeCellIndex.Dir.rawValue:
+            // ファイルタイプがディレクトリの場合
+            // ディレクトリを作成する。
+            self.createDir(name)
+            break
+
+        default:
+            // 上記以外、処理終了
+            return
+        }
     }
 
     // MARK: - Google Drive API
 
+    /**
+     ファイルを作成する。
+
+     - Parameter fileName: ファイル名
+     */
+    func createFile(fileName: String) {
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        let data = NSData()
+        let mimeType = CommonConst.MimeType.kText
+        let uploadParameters = GTLUploadParameters(data: data, MIMEType: mimeType)
+
+        let driveFile = GTLDriveFile()
+        driveFile.name = fileName
+        driveFile.parents = [parentId]
+        let query = GTLQueryDrive.queryForFilesCreateWithObject(driveFile, uploadParameters: uploadParameters!)
+        let appDelegate = EnvUtils.getAppDelegate()
+        let serviceDrive = appDelegate.googleDriveServiceDrive
+        serviceDrive.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, updatedFile: AnyObject!, error: NSError!) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                // エラーの場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kCreateGoogleDriveFileFileCreateError, fileName)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            // 遷移元画面に戻る。
+            self.navigationController?.popViewControllerAnimated(true)
+        })
+    }
+
+    /**
+     ディレクトリを作成する。
+
+     - Parameter dirName: ディレクトリ名
+     */
+    func createDir(dirName: String) {
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        let dir = GTLDriveFile()
+        dir.name = dirName
+        dir.mimeType = CommonConst.MimeType.kFolder
+        dir.parents = [parentId]
+
+        let query = GTLQueryDrive.queryForFilesCreateWithObject(dir, uploadParameters: nil)
+        let appDelegate = EnvUtils.getAppDelegate()
+        let serviceDrive = appDelegate.googleDriveServiceDrive
+        serviceDrive.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, updatedFile: AnyObject!, error: NSError!) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                // エラーの場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kCreateGoogleDriveFileFileCreateError, dirName)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            // 遷移元画面に戻る。
+            self.navigationController?.popViewControllerAnimated(true)
+        })
+    }
 }

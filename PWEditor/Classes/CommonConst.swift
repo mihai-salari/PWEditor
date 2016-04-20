@@ -111,4 +111,9 @@ struct CommonConst {
         /// スコープリスト
         static let kScopeList = [kGTLAuthScopeDrive]
     }
+
+    struct MimeType {
+        static let kText = "text/plain"
+        static let kFolder = "application/vnd.google-apps.folder"
+    }
 }

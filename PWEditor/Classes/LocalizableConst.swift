@@ -155,6 +155,8 @@ struct LocalizableConst {
     static let kCreateGoogleDriveFileSectionTitleFileType = "CreateGoogleDriveFileSectionTitleFileType"
     static let kCreateGoogleDriveFileCellTitleFile = "CreateGoogleDriveFileCellTitleFile"
     static let kCreateGoogleDriveFileCellTitleDir = "CreateGoogleDriveFileCellTitleDir"
+    static let kCreateGoogleDriveFileEnterNameError = "CreateGoogleDriveFileEnterNameError"
+    static let kCreateGoogleDriveFileFileCreateError = "CreateGoogleDriveFileFileCreateError"
 
     // GoogleDriveファイル編集画面
     static let kEditGoogleDriveFileDownloadError = "EditGoogleDriveFileDownloadError";
