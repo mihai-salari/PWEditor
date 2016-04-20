@@ -1,38 +1,37 @@
 //
-//  AddDropboxFileViewController.swift
+//  CreateGoogleDriveFileViewController.swift
 //  PWEditor
 //
-//  Created by 二俣征嗣 on 2016/03/01.
+//  Created by mfuta1971 on 2016/04/20.
 //  Copyright © 2016年 Masatsugu Futamata. All rights reserved.
 //
 
 import UIKit
 import GoogleMobileAds
-import SwiftyDropbox
 
 /**
- Dropboxファイル追加画面クラス
-
+ GoogleDriveファイル作成画面
+ 
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
+class CreateGoogleDriveFileViewController: BaseTableViewController, UITextFieldDelegate {
 
     // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kAddDropboxFileScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kCreateGoogleDriveFileScreenTitle)
 
     /// セクションタイトルリスト
     let kSectionTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kAddDropboxFileSectionTitleFileName),
-        LocalizableUtils.getString(LocalizableConst.kAddDropboxFileSectionTitleFileType)
+        LocalizableUtils.getString(LocalizableConst.kCreateGoogleDriveFileSectionTitleFileName),
+        LocalizableUtils.getString(LocalizableConst.kCreateGoogleDriveFileSectionTitleFileType)
     ]
 
     /// ファイルタイプセルタイトルリスト
     let kFileTypeCellTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kAddDropboxFileCellTitleFile),
-        LocalizableUtils.getString(LocalizableConst.kAddDropboxFileCellTitleDir)
+        LocalizableUtils.getString(LocalizableConst.kCreateGoogleDriveFileCellTitleFile),
+        LocalizableUtils.getString(LocalizableConst.kCreateGoogleDriveFileCellTitleDir)
     ]
 
     /// セクションインデックス
@@ -55,19 +54,16 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
-    /// パス名
-    var pathName: String!
-
-    /// スクリーンタップジェスチャ
-    var screenTapGesture: UITapGestureRecognizer!
+    /// 親ID
+    var parentId: String!
 
     // MARK: - Initializer
 
     /**
-    イニシャライザ
+     イニシャライザ
 
-    - Parameter coder: デコーダー
-    */
+     - Parameter coder: デコーダー
+     */
     required init?(coder aDecoder: NSCoder) {
         // スーパークラスのメソッドを呼び出す。
         super.init(coder: aDecoder)
@@ -76,11 +72,11 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
     /**
      イニシャライザ
 
-     - Parameter pathName: パス名
+     - Parameter parentId: 親ID
      */
-    init(pathName: String) {
+    init(parentId: String) {
         // 引数のデータを保存する。
-        self.pathName = pathName
+        self.parentId = parentId
 
         // スーパークラスのメソッドを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -89,8 +85,8 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
     // MARK: - UIViewController
 
     /**
-    インスタンスが生成された時に呼び出される。
-    */
+     インスタンスが生成された時に呼び出される。
+     */
     override func viewDidLoad() {
         // スーパークラスのメソッドを呼び出す。
         super.viewDidLoad()
@@ -125,11 +121,11 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
     // MARK: - UITableViewDataSource
 
     /**
-    セクション数を返却する。
+     セクション数を返却する。
 
-    - Parameter tableView: テーブルビュー
-    - Returns: セクション数
-    */
+     - Parameter tableView: テーブルビュー
+     - Returns: セクション数
+     */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return kSectionTitleList.count
     }
@@ -219,18 +215,18 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
             // 上記以外、何もしない。
             break
         }
-
+        
         return cell!
     }
 
     // MARK: - UITableViewDelegate
 
     /**
-    セルが選択された時に呼び出される。
+     セルが選択された時に呼び出される。
 
-    - Parameter tableView: テーブルビュー
-    - Parameter indexPath: インデックスパス
-    */
+     - Parameter tableView: テーブルビュー
+     - Parameter indexPath: インデックスパス
+     */
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // 選択状態を解除する。
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -263,12 +259,6 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
         }
     }
 
-    // MARK: - UIGestureRecognizerDelegate
-
-    func screenTapped(sender: AnyObject) {
-        view.endEditing(true)
-    }
-
     // MARK: - UITextFieldDelegate
 
     /**
@@ -286,134 +276,13 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
     // MARK: - Button Handler
 
     /**
-    右バーボタン押下時に呼び出される。
+     右バーボタン押下時に呼び出される。
 
-    - Parameter sender: 右バーボタン
-    */
+     - Parameter sender: 右バーボタン
+     */
     override func rightBarButtonPressed(sender: UIButton) {
-        let section = SectionIndex.FileName.rawValue
-        let indexPath = NSIndexPath(forItem: 0, inSection: section)
-        let cell = tableView?.cellForRowAtIndexPath(indexPath) as! EnterLineDataTableViewCell
-        let textField = cell.textField
-        textField.resignFirstResponder()
-
-        // 入力された名前を取得する。
-        let name = textField.text!
-        if name.isEmpty {
-            // 名前が未入力の場合
-            // エラーアラートを表示して、処理終了
-            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAddDropboxFileEnterNameError)
-            let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
-            showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: nil)
-            return
-        }
-
-        // 選択されたファイルタイプを取得する。
-        var fileType = -1
-        let fileTypeSection = SectionIndex.FileType.rawValue
-        let fileTypeRowNum = tableView?.numberOfRowsInSection(fileTypeSection)
-        for (var i = 0; i < fileTypeRowNum; i++) {
-            let indexPath = NSIndexPath(forItem: i, inSection: fileTypeSection)
-            let cell = tableView?.cellForRowAtIndexPath(indexPath)
-            let check = cell?.accessoryType
-
-            if check == UITableViewCellAccessoryType.Checkmark {
-                fileType = indexPath.row
-                break
-            }
-        }
-        if fileType == -1 {
-            // ファイルタイプが取得できない場合、処理終了
-            return
-        }
-
-        // ファイルタイプにより処理を振り分ける。
-        switch fileType {
-        case FileTypeCellIndex.File.rawValue:
-            // ファイルタイプがファイルの場合
-            // ファイルを作成する。
-            self.createFile(pathName, fileName: name)
-            break
-
-        case FileTypeCellIndex.Dir.rawValue:
-            // ファイルタイプがディレクトリの場合
-            // ディレクトリを作成する。
-            self.createDirectory(pathName, dirName: name)
-            break
-
-        default:
-            // 上記以外、処理終了
-            return
-        }
     }
 
-    // MARK: - Dropbox
+    // MARK: - Google Drive API
 
-    /**
-     ファイルを作成する。
-
-     - Parameter pathName: パス名
-     - Parameter fileName: ファイル名
-     */
-    func createFile(pathName: String, fileName: String) {
-        let client = Dropbox.authorizedClient
-        if client == nil {
-            // Dropboxが無効な場合
-            // 画面構成をリセットする。
-            resetScreen()
-            return
-        }
-
-        let fileData = NSData()
-        let filePathName = "\(pathName)/\(fileName)"
-        client!.files.upload(path: filePathName, body: fileData).response { response, error in
-            if error != nil || response == nil {
-                // エラーの場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAddDropboxFileCreateError, fileName)
-                self.showAlert(title, message: message, handler: { () -> Void in
-                    // 遷移元画面に戻る。
-                    self.navigationController?.popViewControllerAnimated(true)
-                })
-                return
-            }
-
-            // 遷移元画面に戻る。
-            self.navigationController?.popViewControllerAnimated(true)
-        }
-    }
-
-    /**
-     ディレクトリを作成する。
-
-     - Parameter pathName: パス名
-     - Parameter dirName: ディレクトリ名
-     */
-    func createDirectory(pathName: String, dirName: String) {
-        let client = Dropbox.authorizedClient
-        if client == nil {
-            // Dropboxが無効な場合
-            // 画面構成をリセットする。
-            resetScreen()
-            return
-        }
-
-        let dirName = "\(pathName)/\(dirName)"
-        client!.files.createFolder(path: dirName).response { response, error in
-            if error != nil || response == nil {
-                // エラーの場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAddDropboxFileCreateError, dirName)
-                self.showAlert(title, message: message, handler: { () -> Void in
-                    // 遷移元画面に戻る。
-                    self.navigationController?.popViewControllerAnimated(true)
-                })
-                return
-            }
-
-            // 遷移元画面に戻る。
-            self.navigationController?.popViewControllerAnimated(true)
-        }
-    }
 }

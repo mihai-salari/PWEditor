@@ -135,7 +135,7 @@ EditDropboxFileUpdloadError = "Upload %@ failed.";
 GoogleDriveFileListScreenTitle = "GoogleDrive file list";
 
 // GoogleDriveファイル詳細画面
-GoogleDriveFileDetailScreenTitle = "GoogleDrive detail";
+GoogleDriveFileDetailScreenTitle = "Google drive detail";
 GoogleDriveFileDetailCellName = "file name";
 GoogleDriveFileDetailCellSize = "Size";
 GoogleDriveFileDetailCellMimeType = "MIME type";
@@ -143,6 +143,13 @@ GoogleDriveFileDetailCellFileExtention = "File extention";
 GoogleDriveFileDetailCellCreatedTime = "Created time";
 GoogleDriveFileDetailCellModifiedTime = "Modified time";
 GoogleDriveFileDetailCellStarred = "Starred";
+
+// GoogleDriveファイル作成画面
+CreateGoogleDriveFileScreenTitle = "Create google drive file";
+CreateGoogleDriveFileSectionTitleFileName = "Name";
+CreateGoogleDriveFileSectionTitleFileType = "Type";
+CreateGoogleDriveFileCellTitleFile = "File";
+CreateGoogleDriveFileCellTitleDir = "Directory";
 
 // GoogleDriveファイル編集画面
 EditGoogleDriveFileDownloadError = "Download %@ error.";

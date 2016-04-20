@@ -18,9 +18,14 @@ class BaseTableViewController: BaseViewController, UITableViewDataSource, UITabl
 
     // MARK: - Constants
 
+    /// セル名
     let kCellName = "Cell"
 
+    /// 1行データ入力用セル名
     let kLineDataCellName = "LineDataCell"
+
+    /// 1行データ入力用セルNIB名
+    let kLineDataTableViewCellNibName = "EnterLineDataTableViewCell"
 
     // MARK: - Variables
 

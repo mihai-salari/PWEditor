@@ -149,6 +149,13 @@ struct LocalizableConst {
     static let kGoogleDriveFileDetailCellModifiedTime = "GoogleDriveFileDetailCellModifiedTime"
     static let kGoogleDriveFileDetailCellStarred = "GoogleDriveFileDetailCellStarred"
 
+    // GoogleDriveファイル作成画面
+    static let kCreateGoogleDriveFileScreenTitle = "CreateGoogleDriveFileScreenTitle"
+    static let kCreateGoogleDriveFileSectionTitleFileName = "CreateGoogleDriveFileSectionTitleFileName"
+    static let kCreateGoogleDriveFileSectionTitleFileType = "CreateGoogleDriveFileSectionTitleFileType"
+    static let kCreateGoogleDriveFileCellTitleFile = "CreateGoogleDriveFileCellTitleFile"
+    static let kCreateGoogleDriveFileCellTitleDir = "CreateGoogleDriveFileCellTitleDir"
+
     // GoogleDriveファイル編集画面
     static let kEditGoogleDriveFileDownloadError = "EditGoogleDriveFileDownloadError";
     static let kEditGoogleDriveFileDownloadDataError = "EditGoogleDriveFileDownloadDataError";

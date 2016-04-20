@@ -144,6 +144,13 @@ GoogleDriveFileDetailCellCreatedTime = "作成日時";
 GoogleDriveFileDetailCellModifiedTime = "更新日時";
 GoogleDriveFileDetailCellStarred = "スター";
 
+// GoogleDriveファイル作成画面
+CreateGoogleDriveFileScreenTitle = "GoogleDriveファイル作成";
+CreateGoogleDriveFileSectionTitleFileName = "ファイル名";
+CreateGoogleDriveFileSectionTitleFileType = "ファイルタイプ";
+CreateGoogleDriveFileCellTitleFile = "ファイル";
+CreateGoogleDriveFileCellTitleDir = "ディレクトリ";
+
 // GoogleDriveファイル編集画面
 EditGoogleDriveFileDownloadError = "%@のダウンロードでエラーが発生しました。";
 EditGoogleDriveFileDownloadDataError = "%@をダウンロードできませんでした。";

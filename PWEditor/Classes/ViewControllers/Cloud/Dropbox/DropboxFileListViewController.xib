@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DropboxFileListViewController">
             <connections>
-                <outlet property="addToobarButton" destination="9bG-pY-lZX" id="eCc-Bq-KdL"/>
-                <outlet property="bannerView" destination="3tD-oh-LxQ" id="rKj-lI-d2O"/>
-                <outlet property="tableView" destination="191-Hx-b4V" id="hXA-xI-Prh"/>
-                <outlet property="toolbar" destination="3wo-sS-4ad" id="xZf-EV-RuW"/>
+                <outlet property="addToobarButton" destination="Wg3-lr-CuQ" id="qQB-bf-ptF"/>
+                <outlet property="bannerView" destination="kA2-a6-P4c" id="nun-Yp-Zcs"/>
+                <outlet property="tableView" destination="kBn-g2-ZEb" id="R15-6R-hHG"/>
+                <outlet property="toolbar" destination="u0J-WJ-JFx" id="YNh-9x-6o6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,34 +19,42 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="191-Hx-b4V">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kBn-g2-ZEb">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="474"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3wo-sS-4ad">
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u0J-WJ-JFx">
                     <rect key="frame" x="0.0" y="474" width="320" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="QaY-2x-Eoj"/>
+                    </constraints>
                     <items>
-                        <barButtonItem systemItem="add" id="9bG-pY-lZX">
-                            <connections>
-                                <action selector="addToolbarButtonPressed:" destination="-1" id="Ndc-l1-Tg0"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem systemItem="add" id="Wg3-lr-CuQ"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="oTN-m8-NvS"/>
                     </items>
                 </toolbar>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tD-oh-LxQ" customClass="GADBannerView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kA2-a6-P4c" customClass="GADBannerView">
                     <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="GZV-eY-UJD"/>
+                        <constraint firstAttribute="height" constant="50" id="uGh-mp-PfC"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="3tD-oh-LxQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Bo-hL-r26"/>
-                <constraint firstAttribute="trailing" secondItem="3tD-oh-LxQ" secondAttribute="trailing" id="MUR-ob-1zo"/>
-                <constraint firstAttribute="bottom" secondItem="3tD-oh-LxQ" secondAttribute="bottom" id="NK8-eh-9B7"/>
-                <constraint firstItem="3tD-oh-LxQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dvh-IH-Tyi"/>
+                <constraint firstAttribute="trailing" secondItem="u0J-WJ-JFx" secondAttribute="trailing" id="034-Nb-BF1"/>
+                <constraint firstItem="u0J-WJ-JFx" firstAttribute="top" secondItem="kBn-g2-ZEb" secondAttribute="bottom" id="2wu-b1-jVi"/>
+                <constraint firstItem="kBn-g2-ZEb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4uO-NJ-bJo"/>
+                <constraint firstItem="kA2-a6-P4c" firstAttribute="top" secondItem="u0J-WJ-JFx" secondAttribute="bottom" id="5V4-xR-Gfw"/>
+                <constraint firstAttribute="trailing" secondItem="kBn-g2-ZEb" secondAttribute="trailing" id="5yQ-ih-5HR"/>
+                <constraint firstItem="kA2-a6-P4c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Als-r4-mug"/>
+                <constraint firstAttribute="trailing" secondItem="kA2-a6-P4c" secondAttribute="trailing" id="AqD-Lv-p6F"/>
+                <constraint firstItem="kBn-g2-ZEb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JtF-2z-Upo"/>
+                <constraint firstItem="u0J-WJ-JFx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MjY-a9-llx"/>
+                <constraint firstAttribute="bottom" secondItem="kA2-a6-P4c" secondAttribute="bottom" id="amh-zt-BGM"/>
+                <constraint firstItem="kBn-g2-ZEb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rN5-JZ-Jb7"/>
+                <constraint firstItem="u0J-WJ-JFx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rn7-tG-XET"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
