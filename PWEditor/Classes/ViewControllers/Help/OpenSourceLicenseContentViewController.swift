@@ -22,6 +22,7 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "highlightjs-line-numbers.js",
         "Source Han Code JP",
         "SwiftyDropbox",
+        "Google APIs Client Library for Objective-C",
         "ICTextView"
     ]
     
@@ -33,6 +34,7 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "Highlightjs-line-numbersLicense",
         "SourceHanCodeJPLicense",
         "SwiftyDropboxLicense",
+        "GoogleApiObjectiveCClient",
         "ICTextViewLicense"
     ]
     

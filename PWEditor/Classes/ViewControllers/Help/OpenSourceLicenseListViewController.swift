@@ -27,6 +27,7 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "highlightjs-line-numbers.js",
         "SourceHanCodeJP",
         "SwiftyDropbox",
+        "Google APIs Client Library for Objective-C"
 //        "ICTextView"
     ]
     
@@ -38,7 +39,8 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         case HighlightjsLineNumbersjs = 3
         case SourceHanCodeJP = 4
         case SwiftyDropbox = 5
-//        case ICTextView = 6
+        case GoogleApiObjectiveCClient = 6
+//        case ICTextView = 7
     }
     
     /** URLリスト */
@@ -49,6 +51,7 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "https://github.com/wcoder/highlightjs-line-numbers.js",
         "https://github.com/adobe-fonts/source-han-code-jp",
         "https://github.com/dropbox/SwiftyDropbox",
+        "https://github.com/google/google-api-objectivec-client"
 //        "https://github.com/Exile90/ICTextView"
     ]
 
@@ -119,10 +122,12 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         }
         
         // セルにタイトルを設定する。
-        cell?.textLabel!.text = kCellTitles[indexPath.row]
+        cell!.textLabel!.text = kCellTitles[indexPath.row]
+        cell!.textLabel?.numberOfLines = 0
+        cell!.textLabel?.lineBreakMode = .ByWordWrapping
         
         // アクセサリタイプを設定する。
-        cell?.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
+        cell!.accessoryType = UITableViewCellAccessoryType.DetailDisclosureButton
         
         // セルを返却する。
         return cell!

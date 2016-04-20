@@ -85,7 +85,7 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
 
         // 右上ボタンを設定する。
         // TODO: 暫定で表示しない。
-//        createRightBarButton()
+        createRightBarButton()
 
         // テキストビューを設定する。
         listNumber = 0
@@ -93,8 +93,8 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
         let selector = #selector(EditDropboxFileViewController.textChanged(_:))
         NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: UITextViewTextDidChangeNotification, object: nil)
         myView.textView.delegate = self
-        // TODO: 暫定で編集不可とする。
-        myView.textView.editable = false
+        // TODO: 暫定で編集不可とする(正式対応時にはこの処理は削除する)
+        myView.textView.editable = true
 
         // バナービューを設定する。
         setupBannerView(bannerView)
@@ -169,7 +169,7 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
         let extendKeyboard = createExtendKeyboard()
         extendKeyboard.setItems(extendKeyboardItems, animated: false)
         // TODO: 暫定で拡張キーボードを表示しない。
-//        myView.textView.inputAccessoryView = extendKeyboard
+        myView.textView.inputAccessoryView = extendKeyboard
     }
 
     // MARK: - Notification handler
@@ -327,7 +327,7 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
         // ネットワークアクセス通知を表示する。
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
-        let mimeType = "text/plain"
+        let mimeType = CommonConst.MimeType.kText
         let uploadParameters = GTLUploadParameters(data: data!, MIMEType: mimeType)
 
         let fileId = driveFile.identifier

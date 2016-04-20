@@ -101,6 +101,7 @@
 		3F5AE4491CC788C600E262AC /* CreateGoogleDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5AE4471CC788C600E262AC /* CreateGoogleDriveFileViewController.swift */; };
 		3F5AE44A1CC788C600E262AC /* CreateGoogleDriveFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5AE4481CC788C600E262AC /* CreateGoogleDriveFileViewController.xib */; };
 		3F5AE4511CC833E600E262AC /* GoogleDriveUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5AE4501CC833E600E262AC /* GoogleDriveUtils.swift */; };
+		3F5AE4531CC8420D00E262AC /* GoogleApiObjectiveCClient.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F5AE4521CC8420D00E262AC /* GoogleApiObjectiveCClient.txt */; };
 		3F68715C1CBD937E009E45B2 /* MethodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68715B1CBD937E009E45B2 /* MethodUtils.swift */; };
 		3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F74947F1C753B0B002A0544 /* Assets.xcassets */; };
 		3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */; };
@@ -266,6 +267,7 @@
 		3F5AE4471CC788C600E262AC /* CreateGoogleDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateGoogleDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/GoogleDrive/CreateGoogleDriveFileViewController.swift; sourceTree = "<group>"; };
 		3F5AE4481CC788C600E262AC /* CreateGoogleDriveFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateGoogleDriveFileViewController.xib; path = Classes/ViewControllers/Cloud/GoogleDrive/CreateGoogleDriveFileViewController.xib; sourceTree = "<group>"; };
 		3F5AE4501CC833E600E262AC /* GoogleDriveUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleDriveUtils.swift; path = Classes/Utils/GoogleDriveUtils.swift; sourceTree = "<group>"; };
+		3F5AE4521CC8420D00E262AC /* GoogleApiObjectiveCClient.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GoogleApiObjectiveCClient.txt; path = Resources/Licenses/GoogleApiObjectiveCClient.txt; sourceTree = "<group>"; };
 		3F68715B1CBD937E009E45B2 /* MethodUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MethodUtils.swift; path = Classes/Utils/MethodUtils.swift; sourceTree = "<group>"; };
 		3F7494751C753B0A002A0544 /* PWEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PWEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F74947F1C753B0B002A0544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				3F165E3F1C7A690C001CBC38 /* SourceHanCodeJPLicense.txt */,
 				3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */,
 				3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */,
+				3F5AE4521CC8420D00E262AC /* GoogleApiObjectiveCClient.txt */,
 			);
 			name = Licenses;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				3F003D201C767A2100ECC371 /* InfoPlist.strings in Resources */,
 				3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */,
 				3F12E86E1CC594430008DDEE /* GoogleDriveFileListViewController.xib in Resources */,
+				3F5AE4531CC8420D00E262AC /* GoogleApiObjectiveCClient.txt in Resources */,
 				3F165E411C7A690C001CBC38 /* ECSlidingViewControllerLicense.txt in Resources */,
 				3F165E7A1C7A7FF5001CBC38 /* SelectNumberViewController.xib in Resources */,
 				3F165E321C7A687C001CBC38 /* AddLocalFileViewController.xib in Resources */,
