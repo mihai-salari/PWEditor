@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMobileAds
 import SwiftyDropbox
+import OneDriveSDK
 
 /**
  サインイン状態受信デリゲート
@@ -51,7 +52,8 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
     /// クラウドセルタイトル
     let kCloudCellTitleList = [
         LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleDropbox),
-        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleGoogleDrive)
+        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleGoogleDrive),
+        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleOneDrive)
     ]
 
     /// セクションインデックス
@@ -186,12 +188,7 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
      */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // セルを取得する。
-        var cell = tableView.dequeueReusableCellWithIdentifier(kCellName) as UITableViewCell?
-        // セルが取得できない場合
-        if (cell == nil || cell?.detailTextLabel == nil) {
-            // セルを生成する。
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: kCellName)
-        }
+        var cell = getTableViewDetailCell(tableView)
 
         // セクション番号、セル番号を取得する。
         let section = indexPath.section
@@ -199,33 +196,33 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
 
         switch section {
         case SectionIndex.Font.rawValue:
-            cell?.textLabel!.text = kFontCellTitleList[row]
+            cell.textLabel!.text = kFontCellTitleList[row]
 
             switch row {
             case FontCellIndex.ContentsFontName.rawValue:
                 // 入力用フォント名の場合
                 let fontName = EnvUtils.getEnterDataFontName()
                 let fontSize = UIFont.systemFontSize()
-                cell?.detailTextLabel?.font = UIFont(name: fontName, size: fontSize)
+                cell.detailTextLabel?.font = UIFont(name: fontName, size: fontSize)
 
                 let fontFamilyName = EnvUtils.getFontFamilyName(fontName)
-                cell?.detailTextLabel?.text = fontFamilyName
+                cell.detailTextLabel?.text = fontFamilyName
 
                 // アクセサリタイプを設定する。
-                cell?.accessoryType = .DisclosureIndicator
+                cell.accessoryType = .DisclosureIndicator
                 break
 
             case FontCellIndex.ContentsFontSize.rawValue:
                 // 入力用フォントサイズセルの場合
                 // 詳細タイトルにフォントサイズを設定する。
                 let fontSize = EnvUtils.getEnterDataFontSize()
-                cell?.detailTextLabel?.font = UIFont.systemFontOfSize(fontSize)
+                cell.detailTextLabel?.font = UIFont.systemFontOfSize(fontSize)
 
                 let fontSizeString = fontSize.description
-                cell?.detailTextLabel!.text = "\(fontSizeString)pt"
+                cell.detailTextLabel!.text = "\(fontSizeString)pt"
 
                 // アクセサリタイプを設定する。
-                cell?.accessoryType = .DisclosureIndicator
+                cell.accessoryType = .DisclosureIndicator
                 break
                 
             default:
@@ -236,7 +233,7 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
 
         case SectionIndex.Cloud.rawValue:
             // クラウドセクションの場合
-            cell?.textLabel!.text = kCloudCellTitleList[row]
+            cell.textLabel!.text = kCloudCellTitleList[row]
 
             // セル番号により処理を振り分ける。
             switch row {
@@ -244,10 +241,11 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
                 // Dropboxセルの場合
                 if Dropbox.authorizedClient != nil {
                     // ログイン済みの場合
-                    cell?.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignOut)
+                    cell.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignOut)
+
                 } else {
                     // 未ログインの場合
-                    cell?.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignIn)
+                    cell.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignIn)
                 }
                 break
 
@@ -257,12 +255,25 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
                 let serviceDrive = appDelegate.googleDriveServiceDrive
                 if let authorizer = serviceDrive.authorizer, canAuth = authorizer.canAuthorize where canAuth {
                     // ログイン済みの場合
-                    cell?.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignOut)
+                    cell.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignOut)
 
                 } else {
                     // 未ログインの場合
-                    cell?.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignIn)
+                    cell.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignIn)
                 }
+
+            case CloudCellIndex.OneDrive.rawValue:
+                // OneDriveセルの場合
+                let client = ODClient.loadCurrentClient()
+                if client != nil {
+                    // ログイン済みの場合
+                    cell.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignOut)
+
+                } else {
+                    // 未ログインの場合
+                    cell.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignIn)
+                }
+                break
 
             default:
                 // 上記以外、何もしない。
@@ -275,7 +286,7 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
         }
 
         // セルを返却する。
-        return cell!
+        return cell
     }
 
     // MARK: - UITableViewDelegate
@@ -340,7 +351,7 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
                         self.delegate?.receiveSignInState(0, state: true)
 
                         // テーブルを更新する。
-                        tableView.reloadData()
+                        self.tableView.reloadData()
                     })
 
                 } else {
@@ -349,7 +360,7 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
                     Dropbox.authorizeFromController(self)
 
                     // テーブルを更新する。
-                    tableView.reloadData()
+                    self.tableView.reloadData()
                 }
                 break
 
@@ -375,7 +386,7 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
                         self.delegate?.receiveSignInState(0, state: true)
 
                         // テーブルを更新する。
-                        tableView.reloadData()
+                        self.tableView.reloadData()
                     })
 
                 } else {
@@ -385,12 +396,69 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
                 }
                 break
 
+            case CloudCellIndex.OneDrive.rawValue:
+                // OneDriveセルの場合
+                let client = ODClient.loadCurrentClient()
+                if client != nil {
+                    // サインイン済みの場合
+                    // サインアウト確認アラートを表示する。
+                    let title = LocalizableUtils.getString(LocalizableConst.kSignOut)
+                    let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageSignOutOneDrive)
+                    showAlertWithCancel(title, message: message, handler: { () -> Void in
+                        // サインアウトする。
+                        client?.signOutWithCompletion( { (error: NSError?) -> Void in
+                            if error != nil {
+                                // エラーの場合
+                                // エラーアラートを表示する。
+                                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                                let message = LocalizableUtils.getString(LocalizableConst.kSettingsSignOutOneDriveError)
+                                self.showAlert(title, message: message)
+                                return
+                            }
+
+                            ODClient.setCurrentClient(nil)
+
+                            // メニュー画面のOneDriveセルを無効にする。
+                            self.delegate?.receiveSignInState(0, state: true)
+
+                            // テーブルを更新する。
+                            self.tableView.reloadData()
+                        })
+                    })
+
+                } else {
+                    // 未サインインの場合
+                    // サインインする。
+                    //ODClient.authenticatedClientWithCompletion( { (client: ODClient?, error: NSError?) -> Void in
+                    ODClient.clientWithCompletion( { (client: ODClient?, error: NSError?) -> Void in
+                        if error != nil {
+                            // エラーの場合  
+                            // エラーアラートを表示する。
+                            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                            let message = LocalizableUtils.getString(LocalizableConst.kSettingsSignInOneDriveError)
+                            self.showAlert(title, message: message)
+                            return
+                        }
+
+                        ODClient.setCurrentClient(client)
+
+                        // メニュー画面のOneDriveセルを有効にする。
+                        self.delegate?.receiveSignInState(0, state: true)
+
+                        // テーブルを更新する。
+                        self.tableView.reloadData()
+                    })
+                }
+                break
+
             default:
+                // 上記以外、何もしない。
                 break
             }
             break
 
         default:
+            // 上記以外、何もしない。
             break
         }
 
@@ -453,7 +521,7 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
 
         // ログイン画面を閉じる。
         dismissViewControllerAnimated(true, completion: { () -> Void in
-            // メニュー画面のGoogleDriveセルを無効にする。
+            // メニュー画面のGoogleDriveセルを有効にする。
             self.delegate?.receiveSignInState(0, state: true)
 
             // テーブルビューを更新する。

@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyDropbox
+import OneDriveSDK
 
 /**
  メニュー画面クラス
@@ -40,7 +41,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
 //        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleICloud),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleDropbox),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleGoogleDrive),
-//        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOneDrive)
+        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOneDrive)
     ]
 
     /// ヘルプセクションタイトルリスト
@@ -179,6 +180,19 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
                 }
                 break
 
+            case CloudIndex.OneDrive.rawValue:
+                // OneDriveセルの場合
+                let client = ODClient.loadCurrentClient()
+                if client != nil {
+                    // サインイン済みの場合
+                    cell.textLabel?.enabled = true
+
+                } else {
+                    // 未サインインの場合
+                    cell.textLabel?.enabled = false
+                }
+                break
+
             default:
                 // 上記以外、何もしない。
                 break
@@ -250,6 +264,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
                 break
 
             case CloudIndex.OneDrive.rawValue:
+                // OneDriveの場合
                 break
 
             default:

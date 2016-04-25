@@ -353,9 +353,6 @@ class FileUtils: NSObject {
         }
         return dstString
     }
-
-
-
     
     class func getFileEncoding(filePathName: String) -> NSStringEncoding {
         if filePathName.isEmpty {
@@ -391,5 +388,15 @@ class FileUtils: NSObject {
         }
 
         return 0
+    }
+
+    class func getFileExtention(fileName: String) -> String {
+        if fileName.isEmpty {
+            return ""
+        }
+        let fileNames = fileName.componentsSeparatedByString(".")
+        let count = fileNames.count
+        let fileExtention = fileNames[count - 1]
+        return fileExtention
     }
 }

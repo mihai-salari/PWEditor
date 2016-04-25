@@ -31,6 +31,7 @@ AlertMessageNotTextFileError = "このファイルはテキストファイルで
 AlertMessageCovertEncodingError = "ファイルデータを指定の文字エンコーディングに変換できません。";
 AlertMessageSignOutGoogleDrive = "Google driveからサインアウトしますか。";
 AlertMessageDeleteFileError = "%@を削除できませんでした。";
+AlertMessageSignOutOneDrive = "One driveからサインアウトしますか。";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "ローカルファイル操作";
@@ -62,6 +63,7 @@ MenuCellTitleICloud = "iCloudファイル一覧";
 MenuCellTitleDropbox = "Dropboxファイル一覧";
 MenuCellTitleGoogleDrive = "Google driveファイル一覧";
 MenuCellTitleOneDrive = "One driveファイル一覧";
+MenuCellTitleBox = "Boxファイル一覧";
 MenuCellTitleSettings = "設定";
 MenuCellTitleAbout = "このアプリについて";
 MenuCellTitleHistory = "更新履歴";
@@ -159,6 +161,9 @@ CreateGoogleDriveFileFileCreateError = "%@を作成できませんでした。";
 EditGoogleDriveFileDownloadError = "%@のダウンロードでエラーが発生しました。";
 EditGoogleDriveFileDownloadDataError = "%@をダウンロードできませんでした。";
 
+// OneDriveファイル一覧画面
+OneDriveFileListScreenTitle = "One driveファイル一覧";
+
 // 設定画面
 SettingsScreenTitle = "設定";
 SettingsSectionTitleFont = "フォント";
@@ -168,6 +173,8 @@ SettingsCellTitleEnterDataFontSize = "入力用フォントサイズ";
 SettingsCellTitleDropbox = "Dropbox";
 SettingsCellTitleGoogleDrive = "GoogleDrive";
 SettingsCellTitleOneDrive = "OneDrive";
+SettingsSignInOneDriveError = "One driveのサインインでエラーが発生しました。";
+SettingsSignOutOneDriveError = "One driveのサインアウトでエラーが発生しました。";
 
 // 更新履歴画面
 HistoryScreenTitle = "更新履歴";

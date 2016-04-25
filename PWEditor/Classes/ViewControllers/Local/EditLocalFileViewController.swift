@@ -49,6 +49,9 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
     /// テキスト変更フラグ
     var textChanged = false
 
+    /// シンタックスハイライトパターン
+    var pattern: String!
+
     // MARK: - Initializer
 
     /**
@@ -76,6 +79,9 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         self.encodingType = encodingType
         self.retCodeType = retCodeType
         self.encoding = CommonConst.EncodingList[self.encodingType]
+
+        let fileExtention = FileUtils.getFileExtention(fileName)
+        pattern = ReserveWordUtils.getPattern(fileExtention)
 
         // スーパークラスのイニシャライザを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -133,6 +139,19 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
 
         // スーパークラスのメソッドを呼び出す。
         super.didReceiveMemoryWarning()
+    }
+
+    /**
+     画面が表示される前に呼び出される。
+ 
+     - Parameter animated: アニメーション指定
+     */
+    override func viewWillAppear(animated: Bool) {
+        // スーパークラスのメソッドを呼び出す。
+        super.viewWillAppear(animated)
+
+        myView.textView.scrollRectToVisible(CGRectZero, animated: true, consideringInsets: true)
+        myView.textView.scrollToMatch(pattern)
     }
 
     /**
@@ -210,10 +229,12 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
      */
     func textChanged(notification: NSNotification?) -> (Void) {
         textChanged = true
+        myView.textView.scrollToMatch(pattern)
     }
 
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         LogUtils.d("textViewShouldBeginEditing")
+        myView.textView.scrollToMatch(pattern)
         return true
     }
     func textViewDidBeginEditing(textView: UITextView){
@@ -228,17 +249,11 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
     }
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         LogUtils.d("shouldChangeTextInRange")
+        myView.textView.scrollToMatch(pattern)
         return true
     }
     func textViewDidChange(textView: UITextView) {
         LogUtils.d("textViewDidChange")
-        searchMatchInDrection("m")
-    }
-    func searchMatchInDrection(word: String) {
-        let result = myView.textView.scrollToString(word, searchDirection: ICTextViewSearchDirectionForward)
-        if result {
-
-        }
     }
 
     // MARK: - Private Method

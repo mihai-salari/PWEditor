@@ -31,6 +31,7 @@ AlertMessageNotTextFileError = "This file not text file.";
 AlertMessageCovertEncodingError = "Convert char encoding failed.";
 AlertMessageSignOutGoogleDrive = "Sign out from google drive?";
 AlertMessageDeleteFileError = "Delete %@ failed.";
+AlertMessageSignOutOneDrive = "Sign out from one drive?";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "Local file operation";
@@ -60,8 +61,9 @@ MenuCellTitleLocalFileList = "Local file list";
 MenuCellTitleRecentFileList = "Recent file list";
 MenuCellTitleICloud = "iCloud file list";
 MenuCellTitleDropbox = "Dropbox file list";
-MenuCellTitleGoogleDrive = "GoogleDrive file list";
-MenuCellTitleOneDrive = "OneDrive file list";
+MenuCellTitleGoogleDrive = "Google drive file list";
+MenuCellTitleOneDrive = "One drive file list";
+MenuCellTitleBox = "Box file list";
 MenuCellTitleSettings = "Settings";
 MenuCellTitleAbout = "About";
 MenuCellTitleHistory = "History";
@@ -159,6 +161,9 @@ CreateGoogleDriveFileFileCreateError = "Create %@ failed.";
 EditGoogleDriveFileDownloadError = "Download %@ error.";
 EditGoogleDriveFileDownloadDataError = "Download %@ failed.";
 
+// OneDriveファイル一覧画面
+OneDriveFileListScreenTitle = "One drive file list";
+
 // 設定画面
 SettingsScreenTitle = "Setting";
 SettingsSectionTitleFont = "Font";
@@ -168,6 +173,8 @@ SettingsCellTitleEnterDataFontSize = "Font size for enter data";
 SettingsCellTitleDropbox = "Dropbox";
 SettingsCellTitleGoogleDrive = "GoogleDrive";
 SettingsCellTitleOneDrive = "OneDrive";
+SettingsSignInOneDriveError = "Sign in one drive failed.";
+SettingsSignOutOneDriveError = "Sign out one drive failed.";
 
 // 更新履歴画面
 HistoryScreenTitle = "Change log";

@@ -34,6 +34,7 @@ struct LocalizableConst {
     static let kAlertMessageCovertEncodingError = "AlertMessageCovertEncodingError"
     static let kAlertMessageSignOutGoogleDrive = "AlertMessageSignOutGoogleDrive"
     static let kAlertMessageDeleteFileError = "AlertMessageDeleteFileError"
+    static let kAlertMessageSignOutOneDrive = "AlertMessageSignOutOneDrive"
 
     // アクションシートタイトル
     static let kActionSheetTitleLocalFile = "ActionSheetTitleLocalFile"
@@ -67,6 +68,7 @@ struct LocalizableConst {
     static let kMenuCellTitleDropbox = "MenuCellTitleDropbox"
     static let kMenuCellTitleGoogleDrive = "MenuCellTitleGoogleDrive"
     static let kMenuCellTitleOneDrive = "MenuCellTitleOneDrive"
+    static let kMenuCellTitleBox = "MenuCellTitleBox"
     static let kMenuCellTitleSettings = "MenuCellTitleSettings"
     static let kMenuCellTitleAbout = "MenuCellTitleAbout"
     static let kMenuCellTitleHistory = "MenuCellTitleHistory"
@@ -164,6 +166,9 @@ struct LocalizableConst {
     static let kEditGoogleDriveFileDownloadError = "EditGoogleDriveFileDownloadError";
     static let kEditGoogleDriveFileDownloadDataError = "EditGoogleDriveFileDownloadDataError";
 
+    // OneDriveファイル一覧画面
+    static let kOneDriveFileListScreenTitle = "OneDriveFileListScreenTitle"
+
     // 設定画面
     static let kSettingsScreenTitle = "SettingsScreenTitle"
     static let kSettingsSectionTitleFont = "SettingsSectionTitleFont"
@@ -173,6 +178,8 @@ struct LocalizableConst {
     static let kSettingsCellTitleDropbox = "SettingsCellTitleDropbox"
     static let kSettingsCellTitleGoogleDrive = "SettingsCellTitleGoogleDrive"
     static let kSettingsCellTitleOneDrive = "SettingsCellTitleOneDrive"
+    static let kSettingsSignInOneDriveError = "SettingsSignInOneDriveError"
+    static let kSettingsSignOutOneDriveError = "SettingsSignOutOneDriveError"
 
     // 更新履歴画面
     static let kHistoryScreenTitle = "HistoryScreenTitle"

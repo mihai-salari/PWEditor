@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct CommonConst {
 
@@ -16,6 +17,7 @@ struct CommonConst {
         static let kDropBoxAppKey = "dropboxAppKey"
         static let kDropBoxAppSecret = "dropboxAppSecret"
         static let kGoogleDriveClientId = "googleDriveClientId"
+        static let kOneDriveClientId = "oneDriveClientId"
     }
 
     struct SlidingViewSetting {
@@ -115,5 +117,9 @@ struct CommonConst {
     struct MimeType {
         static let kText = "text/plain"
         static let kFolder = "application/vnd.google-apps.folder"
+    }
+
+    struct OneDrive {
+        static let kScopes = ["onedrive.readwrite"]
     }
 }
