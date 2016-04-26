@@ -28,6 +28,9 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
     /// プレビューツールバーボタン
     @IBOutlet weak var previewToolbarButton: UIBarButtonItem!
 
+    /// 検索ツールバーボタン
+    @IBOutlet weak var searchToolbarButton: UIBarButtonItem!
+
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
@@ -167,8 +170,9 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         // スーパークラスのメソッドを呼び出す。
         super.viewWillAppear(animated)
 
-        myView.textView.scrollRectToVisible(CGRectZero, animated: true, consideringInsets: true)
-        myView.textView.scrollToMatch(pattern)
+        // TODO: ハイライト表示テスト用
+//        myView.textView.scrollRectToVisible(CGRectZero, animated: true, consideringInsets: true)
+//        myView.textView.scrollToMatch(pattern)
 
         preOffset = myView.textView.contentOffset
     }
@@ -207,7 +211,8 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-        
+
+        // スーパークラスのメソッドを呼び出す。
         super.viewDidDisappear(animated)
     }
 
@@ -354,6 +359,18 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         // プレビュー画面に遷移する。
         let fileData = myView.textView.text
         let vc = PreviewWebViewController(fileName: fileName, fileData: fileData)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    /**
+     検索ツールバーボタン押下時に呼び出される。
+ 
+     - Parameter sender: 検索ツールバーボタン
+     */
+    @IBAction func searchToolbarButtonPressed(sender: AnyObject) {
+        let searchWord = ""
+        let fileData = myView.textView.text
+        let vc = SearchWordViewController(searchWord: searchWord, fileData: fileData)
         navigationController?.pushViewController(vc, animated: true)
     }
 

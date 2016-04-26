@@ -74,6 +74,9 @@ struct LocalizableConst {
     static let kMenuCellTitleHistory = "MenuCellTitleHistory"
     static let kMenuCellTitleOpenSourceLicense = "MenuCellTitleOpenSourceLicense"
 
+    // 単語検索画面
+    static let kSearchWordScreenTitle = "SearchWordScreenTitle"
+
     // ローカルファイル一覧画面
     static let kLocalFileListScreenTitle = "LocalFileListScreenTitle"
     static let kLocalFileListScreenTitleSearch = "LocalFileListScreenTitleSearch"

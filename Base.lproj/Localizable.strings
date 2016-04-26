@@ -69,6 +69,9 @@ MenuCellTitleAbout = "About";
 MenuCellTitleHistory = "History";
 MenuCellTitleOpenSourceLicense = "Open source license";
 
+// 単語検索画面
+SearchWordScreenTitle = "Search word";
+
 // ローカルファイル一覧画面
 LocalFileListScreenTitle = "Local file list";
 LocalFileListScreenTitleSearch = "Search result list";

@@ -154,11 +154,13 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         let item = itemList[row]
         cell.textLabel?.text = item.name
 
-        let folder = item.folder
-        if folder != nil {
+        let file = item.file
+        if file != nil {
+            // ファイルの場合
             cell.accessoryType = .DisclosureIndicator
 
         } else {
+            // フォルダの場合
             cell.accessoryType = .DetailButton
         }
 
@@ -180,20 +182,30 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
 
     // MARK: - One Drive API
 
+    /**
+     OneDriveファイルリストを取得する。
+     */
     func getDriveFileList() {
         let client = ODClient.loadCurrentClient()
+        if client == nil {
+            return
+        }
+
+        // OneDriveファイルリストを取得する。
         client.drive().items(pathName).children().request().getWithCompletion( { (children: ODCollection?, nextRequest: ODChildrenCollectionRequest?, error: NSError?) -> Void in
             if error != nil {
+                // エラーの場合
                 return
             }
             if children == nil {
-
+                return
             }
             self.itemList.removeAll(keepCapacity: false)
             for item in children!.value as! [ODItem] {
                 self.itemList.append(item)
             }
 
+            // テーブルビューを更新する。
             self.tableView.reloadData()
         })
     }

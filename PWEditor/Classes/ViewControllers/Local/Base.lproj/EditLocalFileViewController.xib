@@ -10,6 +10,7 @@
                 <outlet property="bannerView" destination="Azw-nO-S3v" id="qqA-Ne-kgF"/>
                 <outlet property="myView" destination="aHn-LG-j2h" id="CaY-8e-K4W"/>
                 <outlet property="previewToolbarButton" destination="2ZE-pY-FqZ" id="6e5-X3-V8q"/>
+                <outlet property="searchToolbarButton" destination="rbh-kr-45U" id="66d-Dt-3pJ"/>
                 <outlet property="toolbar" destination="0JG-jN-3Kz" id="Vdh-YA-azr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -35,6 +36,11 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="HXc-xK-V2q"/>
+                        <barButtonItem systemItem="search" id="rbh-kr-45U">
+                            <connections>
+                                <action selector="searchToolbarButtonPressed:" destination="-1" id="1tv-qL-Rqt"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azw-nO-S3v" customClass="GADBannerView">
