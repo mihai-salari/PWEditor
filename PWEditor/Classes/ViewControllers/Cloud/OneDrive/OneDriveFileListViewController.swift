@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMobileAds
+import OneDriveSDK
 
 /**
  OneDriveファイル一覧画面
@@ -38,6 +39,9 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
 
     /// パス名
     var pathName: String!
+
+    /// アイテムリスト
+    var itemList = [ODItem]()
 
     // MARK: - Initializer
 
@@ -106,13 +110,91 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         // スーパークラスのメソッドを呼び出す。
         super.viewWillAppear(animated)
         
-        // GoogleDriveファイルリストを取得する。
+        // OneDriveファイルリストを取得する。
         getDriveFileList()
+    }
+
+    // MARK: - UITableViewDataSource
+
+    /**
+     セクション内のセル数を返却する。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter section: セクション番号
+     - Returns: セクション内のセル数
+     */
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // アイテムリストの件数を返却する。
+        let count = itemList.count
+        return count
+    }
+
+    /**
+     セルを返却する。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter indexPath: インデックスパス
+     - Returns: セル
+     */
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // セルを取得する。
+        let cell = getTableViewCell(tableView)
+
+        // アイテムリストが未取得の場合、処理を終了する。
+        let row = indexPath.row
+        let count = itemList.count
+        if row + 1 > count {
+            return cell
+        }
+
+        // セル内容をクリアする。
+        cell.textLabel?.text = ""
+        cell.accessoryType = .None
+
+        let item = itemList[row]
+        cell.textLabel?.text = item.name
+
+        let folder = item.folder
+        if folder != nil {
+            cell.accessoryType = .DisclosureIndicator
+
+        } else {
+            cell.accessoryType = .DetailButton
+        }
+
+        return cell
+    }
+
+    // MARK: - UITableViewDelegate
+
+    /**
+     セルが選択された時に呼び出される。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter indexPath: インデックスパス
+     */
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // セルの選択状態を解除する。
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     // MARK: - One Drive API
 
     func getDriveFileList() {
+        let client = ODClient.loadCurrentClient()
+        client.drive().items(pathName).children().request().getWithCompletion( { (children: ODCollection?, nextRequest: ODChildrenCollectionRequest?, error: NSError?) -> Void in
+            if error != nil {
+                return
+            }
+            if children == nil {
 
+            }
+            self.itemList.removeAll(keepCapacity: false)
+            for item in children!.value as! [ODItem] {
+                self.itemList.append(item)
+            }
+
+            self.tableView.reloadData()
+        })
     }
 }

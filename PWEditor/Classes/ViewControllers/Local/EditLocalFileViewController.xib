@@ -2,13 +2,15 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditLocalFileViewController">
             <connections>
                 <outlet property="bannerView" destination="Azw-nO-S3v" id="qqA-Ne-kgF"/>
-                <outlet property="myView" destination="RYU-v9-VbS" id="0RI-GQ-8WI"/>
+                <outlet property="myView" destination="aHn-LG-j2h" id="CaY-8e-K4W"/>
+                <outlet property="previewToolbarButton" destination="2ZE-pY-FqZ" id="6e5-X3-V8q"/>
+                <outlet property="toolbar" destination="0JG-jN-3Kz" id="Vdh-YA-azr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,10 +19,24 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYU-v9-VbS" customClass="MyView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHn-LG-j2h" customClass="MyView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="474"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0JG-jN-3Kz">
+                    <rect key="frame" x="0.0" y="474" width="320" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="kvq-1z-qRi"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem title="Preview" id="2ZE-pY-FqZ">
+                            <connections>
+                                <action selector="previewToolbarButtonPressed:" destination="-1" id="niY-7a-N9R"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HXc-xK-V2q"/>
+                    </items>
+                </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azw-nO-S3v" customClass="GADBannerView">
                     <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,11 +51,15 @@
                 <constraint firstAttribute="trailing" secondItem="Azw-nO-S3v" secondAttribute="trailing" id="8wC-0m-BJU"/>
                 <constraint firstItem="Azw-nO-S3v" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="95f-qt-jLC"/>
                 <constraint firstAttribute="bottom" secondItem="Azw-nO-S3v" secondAttribute="bottom" id="BdM-MP-kca"/>
-                <constraint firstItem="RYU-v9-VbS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="IaF-mI-MIN"/>
-                <constraint firstItem="RYU-v9-VbS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="OtR-NE-ikv"/>
-                <constraint firstItem="RYU-v9-VbS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cMr-8w-xcl"/>
-                <constraint firstAttribute="trailing" secondItem="RYU-v9-VbS" secondAttribute="trailing" id="hDM-yY-NQo"/>
-                <constraint firstItem="Azw-nO-S3v" firstAttribute="top" secondItem="RYU-v9-VbS" secondAttribute="bottom" id="rrx-Qk-hvp"/>
+                <constraint firstItem="0JG-jN-3Kz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Pgx-Pp-eVB"/>
+                <constraint firstItem="aHn-LG-j2h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="R0G-tV-jLQ"/>
+                <constraint firstItem="0JG-jN-3Kz" firstAttribute="top" secondItem="aHn-LG-j2h" secondAttribute="bottom" id="W7E-Mr-BxV"/>
+                <constraint firstItem="aHn-LG-j2h" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aUv-pT-SJU"/>
+                <constraint firstItem="Azw-nO-S3v" firstAttribute="top" secondItem="0JG-jN-3Kz" secondAttribute="bottom" id="b9B-Jw-BlC"/>
+                <constraint firstItem="0JG-jN-3Kz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gCa-YB-0Ce"/>
+                <constraint firstItem="aHn-LG-j2h" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="idg-bI-E5C"/>
+                <constraint firstAttribute="trailing" secondItem="0JG-jN-3Kz" secondAttribute="trailing" id="iyN-AW-90t"/>
+                <constraint firstAttribute="trailing" secondItem="aHn-LG-j2h" secondAttribute="trailing" id="wuv-LU-G5a"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

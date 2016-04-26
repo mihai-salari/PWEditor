@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PreviewWebViewController" customModule="PWEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="bannerView" destination="d4m-Ol-p0J" id="kSm-V6-t5C"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="awK-6d-3Wu" id="BLV-hw-dMi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awK-6d-3Wu">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                </webView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4m-Ol-p0J" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="sT6-dU-cUI"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="d4m-Ol-p0J" firstAttribute="top" secondItem="awK-6d-3Wu" secondAttribute="bottom" id="DAw-ZI-qqd"/>
+                <constraint firstItem="awK-6d-3Wu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="agF-PM-g0d"/>
+                <constraint firstAttribute="trailing" secondItem="d4m-Ol-p0J" secondAttribute="trailing" id="bQd-ui-cgv"/>
+                <constraint firstItem="d4m-Ol-p0J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="co0-Es-Wo8"/>
+                <constraint firstItem="awK-6d-3Wu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="d4i-lw-B4B"/>
+                <constraint firstItem="awK-6d-3Wu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ehC-kq-v76"/>
+                <constraint firstAttribute="bottom" secondItem="d4m-Ol-p0J" secondAttribute="bottom" id="ibq-xk-MBM"/>
+                <constraint firstAttribute="trailing" secondItem="awK-6d-3Wu" secondAttribute="trailing" id="jRU-GH-0Le"/>
+                <constraint firstItem="d4m-Ol-p0J" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vW5-um-rtA"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

@@ -52,8 +52,8 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
     /// クラウドセルタイトル
     let kCloudCellTitleList = [
         LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleDropbox),
-        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleGoogleDrive),
-        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleOneDrive)
+//        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleGoogleDrive),
+//        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleOneDrive)
     ]
 
     /// セクションインデックス

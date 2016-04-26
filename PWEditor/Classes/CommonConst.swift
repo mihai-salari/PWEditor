@@ -122,4 +122,16 @@ struct CommonConst {
     struct OneDrive {
         static let kScopes = ["onedrive.readwrite"]
     }
+
+    struct FileExtention {
+        static let kHTML = "html"
+        static let kHTM = "htm"
+        static let kMarkdown = "md"
+    }
+
+    enum FileType: Int {
+        case HTML
+        case Markdown
+        case Other
+    }
 }

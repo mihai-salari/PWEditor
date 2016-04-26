@@ -88,6 +88,11 @@ class BaseWebViewController: BaseViewController {
         webView.loadHTMLString(loadString, baseURL: NSURL(string: path)!)
     }
 
+    func loadHtmlData(data: String, webView: UIWebView) {
+        let path = getPath("normal", type: "html")
+        webView.loadHTMLString(data, baseURL: NSURL(string: path)!)
+    }
+
     /**
      パスを取得する。
 

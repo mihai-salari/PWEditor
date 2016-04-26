@@ -86,7 +86,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         super.init(nibName: nil, bundle: nil)
     }
 
-    // MARK: - UIViewControllerDelegate
+    // MARK: - UIViewController
 
     /**
     インスタンスが生成された時に呼び出される。

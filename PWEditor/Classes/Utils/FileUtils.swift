@@ -399,4 +399,16 @@ class FileUtils: NSObject {
         let fileExtention = fileNames[count - 1]
         return fileExtention
     }
+
+    class func getFileType(fileName: String) -> Int {
+        let fileExtention = getFileExtention(fileName)
+        if fileExtention == CommonConst.FileExtention.kHTML ||
+            fileExtention == CommonConst.FileExtention.kHTM {
+            return CommonConst.FileType.HTML.rawValue
+        } else if fileExtention == CommonConst.FileExtention.kMarkdown {
+            return CommonConst.FileType.Markdown.rawValue
+        } else {
+            return CommonConst.FileType.Other.rawValue
+        }
+    }
 }

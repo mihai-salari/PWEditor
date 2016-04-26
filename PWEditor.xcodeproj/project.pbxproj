@@ -73,6 +73,11 @@
 		3F165E791C7A7FF5001CBC38 /* SelectNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E771C7A7FF5001CBC38 /* SelectNumberViewController.swift */; };
 		3F165E7A1C7A7FF5001CBC38 /* SelectNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E781C7A7FF5001CBC38 /* SelectNumberViewController.xib */; };
 		3F165E7C1C7A8039001CBC38 /* SettingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E7B1C7A8039001CBC38 /* SettingUtils.swift */; };
+		3F17F03F1CCF712700A1F280 /* marked.html in Resources */ = {isa = PBXBuildFile; fileRef = 3F17F03D1CCF712700A1F280 /* marked.html */; };
+		3F17F0401CCF712700A1F280 /* marked.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 3F17F03E1CCF712700A1F280 /* marked.min.js */; };
+		3F17F0481CCF716800A1F280 /* PreviewWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F17F0461CCF716800A1F280 /* PreviewWebViewController.swift */; };
+		3F17F0491CCF716800A1F280 /* PreviewWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F17F0471CCF716800A1F280 /* PreviewWebViewController.xib */; };
+		3F17F04B1CD00CB300A1F280 /* normal.html in Resources */ = {isa = PBXBuildFile; fileRef = 3F17F04A1CD00CB300A1F280 /* normal.html */; };
 		3F1915471C8CCE8D0042D306 /* CharCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1915461C8CCE8D0042D306 /* CharCode.swift */; };
 		3F1915491C8CCEB40042D306 /* FileType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1915481C8CCEB40042D306 /* FileType.swift */; };
 		3F19154B1C8CCEFE0042D306 /* ReadJEnc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F19154A1C8CCEFE0042D306 /* ReadJEnc.swift */; };
@@ -259,6 +264,11 @@
 		3F165E781C7A7FF5001CBC38 /* SelectNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectNumberViewController.xib; path = Classes/ViewControllers/Common/SelectNumberViewController.xib; sourceTree = "<group>"; };
 		3F165E7B1C7A8039001CBC38 /* SettingUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingUtils.swift; path = Classes/Utils/SettingUtils.swift; sourceTree = "<group>"; };
 		3F17F0351CCE238500A1F280 /* OneDriveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OneDriveSDK.framework; path = "Build/Products/Debug-iphoneos/OneDriveSDK.framework"; sourceTree = "<group>"; };
+		3F17F03D1CCF712700A1F280 /* marked.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = marked.html; path = Resources/Html/marked.html; sourceTree = "<group>"; };
+		3F17F03E1CCF712700A1F280 /* marked.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = marked.min.js; path = Resources/Html/marked.min.js; sourceTree = "<group>"; };
+		3F17F0461CCF716800A1F280 /* PreviewWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewWebViewController.swift; path = Classes/ViewControllers/Common/PreviewWebViewController.swift; sourceTree = "<group>"; };
+		3F17F0471CCF716800A1F280 /* PreviewWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreviewWebViewController.xib; path = Classes/ViewControllers/Common/PreviewWebViewController.xib; sourceTree = "<group>"; };
+		3F17F04A1CD00CB300A1F280 /* normal.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = normal.html; path = Resources/Html/normal.html; sourceTree = "<group>"; };
 		3F1915461C8CCE8D0042D306 /* CharCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharCode.swift; path = Classes/External/ReadJEnc/CharCode.swift; sourceTree = "<group>"; };
 		3F1915481C8CCEB40042D306 /* FileType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileType.swift; path = Classes/External/ReadJEnc/FileType.swift; sourceTree = "<group>"; };
 		3F19154A1C8CCEFE0042D306 /* ReadJEnc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReadJEnc.swift; path = Classes/External/ReadJEnc/ReadJEnc.swift; sourceTree = "<group>"; };
@@ -363,6 +373,8 @@
 				3F165E781C7A7FF5001CBC38 /* SelectNumberViewController.xib */,
 				3F447C851C8904FD001A3518 /* SelectEncodingViewController.swift */,
 				3F447C861C8904FD001A3518 /* SelectEncodingViewController.xib */,
+				3F17F0461CCF716800A1F280 /* PreviewWebViewController.swift */,
+				3F17F0471CCF716800A1F280 /* PreviewWebViewController.xib */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -531,10 +543,13 @@
 		3F165E4C1C7A75E2001CBC38 /* Html */ = {
 			isa = PBXGroup;
 			children = (
+				3F17F04A1CD00CB300A1F280 /* normal.html */,
 				3F165E4D1C7A75F9001CBC38 /* content.html */,
 				3F165E5D1C7A776F001CBC38 /* highlight.pack.js */,
 				3F165E5E1C7A776F001CBC38 /* highlightjs-line-numbers.min.js */,
 				3F165E5F1C7A776F001CBC38 /* xcode.css */,
+				3F17F03D1CCF712700A1F280 /* marked.html */,
+				3F17F03E1CCF712700A1F280 /* marked.min.js */,
 			);
 			name = Html;
 			sourceTree = "<group>";
@@ -895,12 +910,14 @@
 				3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */,
 				3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */,
 				3F165E511C7A75F9001CBC38 /* content.html in Resources */,
+				3F17F03F1CCF712700A1F280 /* marked.html in Resources */,
 				3F5AE4691CC9828200E262AC /* C.txt in Resources */,
 				3F165E6E1C7A7D0B001CBC38 /* HighlightLicense.txt in Resources */,
 				3F5AE4671CC9819200E262AC /* Java.txt in Resources */,
 				3F003D201C767A2100ECC371 /* InfoPlist.strings in Resources */,
 				3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */,
 				3F12E86E1CC594430008DDEE /* GoogleDriveFileListViewController.xib in Resources */,
+				3F17F0401CCF712700A1F280 /* marked.min.js in Resources */,
 				3F5AE4531CC8420D00E262AC /* GoogleApiObjectiveCClient.txt in Resources */,
 				3F165E411C7A690C001CBC38 /* ECSlidingViewControllerLicense.txt in Resources */,
 				3F165E7A1C7A7FF5001CBC38 /* SelectNumberViewController.xib in Resources */,
@@ -909,6 +926,7 @@
 				3F165E451C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf in Resources */,
 				3F1620E81CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib in Resources */,
 				3F165E6D1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt in Resources */,
+				3F17F0491CCF716800A1F280 /* PreviewWebViewController.xib in Resources */,
 				3F0F829E1C90D1510090632E /* ICTextViewLicense.txt in Resources */,
 				3F165E611C7A776F001CBC38 /* highlightjs-line-numbers.min.js in Resources */,
 				3F165E421C7A690C001CBC38 /* SourceHanCodeJPLicense.txt in Resources */,
@@ -938,6 +956,7 @@
 				3F165E431C7A690C001CBC38 /* TextKitLineNumbers.txt in Resources */,
 				3F4873701C75DB9C006594A6 /* Config.txt in Resources */,
 				3F165E621C7A776F001CBC38 /* xcode.css in Resources */,
+				3F17F04B1CD00CB300A1F280 /* normal.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1065,6 +1084,7 @@
 				3F165E481C7A6CE0001CBC38 /* HistoryViewController.swift in Sources */,
 				3F165E351C7A687C001CBC38 /* GrepLocalFileListViewController.swift in Sources */,
 				3F165E671C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift in Sources */,
+				3F17F0481CCF716800A1F280 /* PreviewWebViewController.swift in Sources */,
 				3F48736E1C75DB6A006594A6 /* ConfigUtils.swift in Sources */,
 				3F3A15A91CBD2977008DED48 /* UITextViewExtention.swift in Sources */,
 				3F003D3D1C767DFB00ECC371 /* BaseViewController.swift in Sources */,

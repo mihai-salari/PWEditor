@@ -22,6 +22,12 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
     /// マイビュー
     @IBOutlet weak var myView: MyView!
 
+    /// ツールバー
+    @IBOutlet weak var toolbar: UIToolbar!
+
+    /// プレビューツールバーボタン
+    @IBOutlet weak var previewToolbarButton: UIBarButtonItem!
+
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
@@ -87,7 +93,7 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         super.init(nibName: nil, bundle: nil)
     }
 
-    // MARK: - UIViewDelegate
+    // MARK: - UIViewController
 
     /**
     インスタンスが生成された時に呼び出される。
@@ -111,6 +117,17 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         myView.textView.circularSearch = true
         myView.textView.scrollPosition = ICTextViewScrollPositionMiddle
         myView.textView.searchOptions = .CaseInsensitive
+
+        let fileType = FileUtils.getFileType(fileName)
+        if fileType == CommonConst.FileType.HTML.rawValue ||
+            fileType == CommonConst.FileType.Markdown.rawValue {
+            // プレビュー対象ファイルの場合
+            previewToolbarButton.enabled = true
+
+        } else {
+            // プレビュー対象ファイルでは無い場合
+            previewToolbarButton.enabled = false
+        }
 
         // バナービューを設定する。
         setupBannerView(bannerView)
@@ -152,6 +169,8 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
 
         myView.textView.scrollRectToVisible(CGRectZero, animated: true, consideringInsets: true)
         myView.textView.scrollToMatch(pattern)
+
+        preOffset = myView.textView.contentOffset
     }
 
     /**
@@ -322,6 +341,20 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
      */
     func keyboardDidHide(notification: NSNotification) {
         myView.textView.setContentOffset(preOffset!, animated: true)
+    }
+
+    // MARK: - Toolbar Button
+
+    /**
+     プレビューツールバーボタン押下時に呼び出される。
+ 
+     - Parameter sender: プレビューツールバーボタン
+     */
+    @IBAction func previewToolbarButtonPressed(sender: AnyObject) {
+        // プレビュー画面に遷移する。
+        let fileData = myView.textView.text
+        let vc = PreviewWebViewController(fileName: fileName, fileData: fileData)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: - Private method
