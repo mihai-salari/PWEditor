@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OneDriveFileDetailViewController" customModule="PWEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="bannerView" destination="8fS-e9-0wu" id="HHT-rO-zBC"/>
+                <outlet property="deleteToolbarButton" destination="emh-M4-4qh" id="0G1-gu-dzX"/>
+                <outlet property="editToolbarButton" destination="bpC-99-mzF" id="TAV-aV-2et"/>
+                <outlet property="tableView" destination="5O4-ii-sGd" id="vpy-cp-Tfm"/>
+                <outlet property="toolbar" destination="Lup-ML-cWm" id="Nqi-UN-HiJ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5O4-ii-sGd">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="474"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lup-ML-cWm">
+                    <rect key="frame" x="0.0" y="474" width="320" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="DZe-yJ-sdX"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem systemItem="edit" id="bpC-99-mzF">
+                            <connections>
+                                <action selector="editToolbarButtonPressed:" destination="-1" id="V3p-Ou-qRT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="gFj-on-vfz"/>
+                        <barButtonItem systemItem="trash" id="emh-M4-4qh">
+                            <connections>
+                                <action selector="deleteToolbarButtonPressed:" destination="-1" id="qiC-9s-Y4h"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fS-e9-0wu" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="8mx-x4-WQm"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="5O4-ii-sGd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3Tc-gi-rWd"/>
+                <constraint firstAttribute="bottom" secondItem="8fS-e9-0wu" secondAttribute="bottom" id="9pE-78-A2d"/>
+                <constraint firstItem="Lup-ML-cWm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="B6b-ms-BkP"/>
+                <constraint firstItem="5O4-ii-sGd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DO3-9P-scB"/>
+                <constraint firstItem="8fS-e9-0wu" firstAttribute="top" secondItem="Lup-ML-cWm" secondAttribute="bottom" id="YX9-OR-PKD"/>
+                <constraint firstAttribute="trailing" secondItem="Lup-ML-cWm" secondAttribute="trailing" id="Yk9-i0-4em"/>
+                <constraint firstAttribute="trailing" secondItem="8fS-e9-0wu" secondAttribute="trailing" id="hs9-4K-fBg"/>
+                <constraint firstItem="Lup-ML-cWm" firstAttribute="top" secondItem="5O4-ii-sGd" secondAttribute="bottom" id="lWu-Cf-hn9"/>
+                <constraint firstItem="5O4-ii-sGd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="quE-K6-6tX"/>
+                <constraint firstAttribute="trailing" secondItem="5O4-ii-sGd" secondAttribute="trailing" id="r4r-AT-5jD"/>
+                <constraint firstItem="8fS-e9-0wu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ufM-Mt-dlH"/>
+                <constraint firstItem="Lup-ML-cWm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yMI-pv-CgA"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

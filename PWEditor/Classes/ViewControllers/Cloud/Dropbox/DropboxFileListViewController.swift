@@ -161,6 +161,8 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
 
         let fileInfo = fileInfoList[row]
         cell.textLabel?.text = fileInfo.name
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .ByWordWrapping
 
         let isDir = fileInfo.isDir
         if isDir {

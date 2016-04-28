@@ -217,6 +217,8 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         // ファイル名、ディレクトリ名を設定する。
         let fileInfo = fileInfoList[row]
         cell.textLabel?.text = fileInfo.name
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .ByWordWrapping
 
         let isDir = fileInfo.isDir
         if isDir {

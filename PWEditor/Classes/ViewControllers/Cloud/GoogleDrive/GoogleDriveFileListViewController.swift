@@ -152,6 +152,8 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
 
         let driveFile = driveFileList[row]
         cell.textLabel?.text = driveFile.name
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .ByWordWrapping
 
         let dir = GoogleDriveUtils.isDir(driveFile)
         if dir {

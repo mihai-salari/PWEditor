@@ -176,61 +176,60 @@ class LocalFileInfoViewController: BaseTableViewController {
      */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // セルを取得する。
-        var cell = tableView.dequeueReusableCellWithIdentifier(kCellName) as UITableViewCell?
-        // セルが取得できない場合
-        if (cell == nil || cell?.detailTextLabel == nil) {
-            // セルを生成する。
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: kCellName)
-        }
+        let cell = getTableViewDetailCell(tableView)
 
         // セル番号を取得する。
         let row = indexPath.row
 
         switch row {
         case CellIndex.PathName.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitlePathName)
-            cell?.detailTextLabel?.text = "/\(pathName)"
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitlePathName)
+            cell.detailTextLabel?.text = "/\(pathName)"
+            cell.detailTextLabel?.numberOfLines = 0
+            cell.detailTextLabel?.lineBreakMode = .ByWordWrapping
             break
 
         case CellIndex.FileName.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleFileName)
-            cell?.detailTextLabel?.text = fileName
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleFileName)
+            cell.detailTextLabel?.text = fileName
+            cell.detailTextLabel?.numberOfLines = 0
+            cell.detailTextLabel?.lineBreakMode = .ByWordWrapping
             break
 
         case CellIndex.Size.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleSize)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleSize)
             let fileSize = Int(fileAttrInfo!.fileSize())
-            cell?.detailTextLabel?.text = StringUtils.numberWithComma(fileSize)
+            cell.detailTextLabel?.text = StringUtils.numberWithComma(fileSize)
             break
 
         case CellIndex.CharNum.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleCharNum)
-            cell?.detailTextLabel?.text = StringUtils.numberWithComma(charNum)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleCharNum)
+            cell.detailTextLabel?.text = StringUtils.numberWithComma(charNum)
             break
 
         case CellIndex.LineNum.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleLineNum)
-            cell?.detailTextLabel?.text = StringUtils.numberWithComma(lineNum)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleLineNum)
+            cell.detailTextLabel?.text = StringUtils.numberWithComma(lineNum)
             break
 
         case CellIndex.RetCodeType.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleRetCodeType)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleRetCodeType)
             let text = CommonConst.RetCodeNameList[retCodeType]
-            cell?.detailTextLabel?.text = text
+            cell.detailTextLabel?.text = text
             break
 
         case CellIndex.UpdateDate.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleUpdateDate)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleUpdateDate)
             let updateDate = fileAttrInfo!.fileModificationDate()!
             let updateDateString = DateUtils.getDateString(updateDate)
-            cell?.detailTextLabel?.text = String(updateDateString)
+            cell.detailTextLabel?.text = String(updateDateString)
             break
 
         default:
             break
         }
 
-        return cell!
+        return cell
     }
 
     // MARK: - UITableViewDelegate

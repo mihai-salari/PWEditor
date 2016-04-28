@@ -40,8 +40,8 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
     let kCloudTitleList = [
 //        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleICloud),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleDropbox),
-//        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleGoogleDrive),
-//        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOneDrive)
+        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleGoogleDrive),
+        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOneDrive)
     ]
 
     /// ヘルプセクションタイトルリスト
@@ -265,8 +265,8 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
 
             case CloudIndex.OneDrive.rawValue:
                 // OneDriveの場合
-                let pathName = "root"
-                let vc = OneDriveFileListViewController(pathName: pathName)
+                let itemId = "root"
+                let vc = OneDriveFileListViewController(itemId: itemId)
                 resetTopView(vc)
                 break
 

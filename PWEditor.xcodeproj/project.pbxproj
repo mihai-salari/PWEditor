@@ -105,6 +105,12 @@
 		3F4873741C75DD6D006594A6 /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4873731C75DD6D006594A6 /* FileInfo.swift */; };
 		3F49306D1C7BAF590088A454 /* LocalFileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49306B1C7BAF590088A454 /* LocalFileInfoViewController.swift */; };
 		3F49306E1C7BAF590088A454 /* LocalFileInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F49306C1C7BAF590088A454 /* LocalFileInfoViewController.xib */; };
+		3F57FECD1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57FECB1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift */; };
+		3F57FECE1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F57FECC1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib */; };
+		3F57FED11CD17B76002ADAC8 /* EditOneDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57FECF1CD17B76002ADAC8 /* EditOneDriveFileViewController.swift */; };
+		3F57FED21CD17B76002ADAC8 /* EditOneDriveFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F57FED01CD17B76002ADAC8 /* EditOneDriveFileViewController.xib */; };
+		3F57FED51CD17BA3002ADAC8 /* CreateOneDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57FED31CD17BA3002ADAC8 /* CreateOneDriveFileViewController.swift */; };
+		3F57FED61CD17BA3002ADAC8 /* CreateOneDriveFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F57FED41CD17BA3002ADAC8 /* CreateOneDriveFileViewController.xib */; };
 		3F5AE4491CC788C600E262AC /* CreateGoogleDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5AE4471CC788C600E262AC /* CreateGoogleDriveFileViewController.swift */; };
 		3F5AE44A1CC788C600E262AC /* CreateGoogleDriveFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5AE4481CC788C600E262AC /* CreateGoogleDriveFileViewController.xib */; };
 		3F5AE4511CC833E600E262AC /* GoogleDriveUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5AE4501CC833E600E262AC /* GoogleDriveUtils.swift */; };
@@ -118,10 +124,6 @@
 		3F5AE4691CC9828200E262AC /* C.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F5AE4681CC9828200E262AC /* C.txt */; };
 		3F5AE46B1CC9833C00E262AC /* CPP.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F5AE46A1CC9833C00E262AC /* CPP.txt */; };
 		3F5AE46D1CC9884F00E262AC /* ReserveWordUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5AE46C1CC9884F00E262AC /* ReserveWordUtils.swift */; };
-		3F5AE48C1CCC230D00E262AC /* StringUtilsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5AE48B1CCC230D00E262AC /* StringUtilsSpec.swift */; };
-		3F5AE4C01CCC41D200E262AC /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D2F1C767C2600ECC371 /* StringUtils.swift */; };
-		3F5AE4C61CCC421500E262AC /* CommonConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D1A1C7676C500ECC371 /* CommonConst.swift */; };
-		3F5AE4CB1CCC502900E262AC /* PWEditor-Bridging-Header.h in Resources */ = {isa = PBXBuildFile; fileRef = 3F4873661C75D83A006594A6 /* PWEditor-Bridging-Header.h */; };
 		3F68715C1CBD937E009E45B2 /* MethodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68715B1CBD937E009E45B2 /* MethodUtils.swift */; };
 		3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F74947F1C753B0B002A0544 /* Assets.xcassets */; };
 		3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */; };
@@ -129,7 +131,6 @@
 		3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */; };
 		3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */; };
 		40C44389B3CB69C698058540 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D11AD2E8D3B26F561B704230 /* Pods.framework */; };
-		52ED7DFA463F1AE58D692AA4 /* Pods_PWEditorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A87BBD16522C73BC5687737F /* Pods_PWEditorTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,13 +168,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 4F1AD9020B71603F00DC0485;
 			remoteInfo = OSXDevTool;
-		};
-		3F5AE4791CCC1FC700E262AC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3F74946D1C753B0A002A0544 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F7494741C753B0A002A0544;
-			remoteInfo = PWEditor;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -303,6 +297,12 @@
 		3F4873731C75DD6D006594A6 /* FileInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileInfo.swift; path = Classes/Utils/FileInfo.swift; sourceTree = "<group>"; };
 		3F49306B1C7BAF590088A454 /* LocalFileInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalFileInfoViewController.swift; path = Classes/ViewControllers/Local/LocalFileInfoViewController.swift; sourceTree = "<group>"; };
 		3F49306C1C7BAF590088A454 /* LocalFileInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalFileInfoViewController.xib; path = Classes/ViewControllers/Local/LocalFileInfoViewController.xib; sourceTree = "<group>"; };
+		3F57FECB1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OneDriveFileDetailViewController.swift; path = Classes/ViewControllers/Cloud/OneDrive/OneDriveFileDetailViewController.swift; sourceTree = "<group>"; };
+		3F57FECC1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OneDriveFileDetailViewController.xib; path = Classes/ViewControllers/Cloud/OneDrive/OneDriveFileDetailViewController.xib; sourceTree = "<group>"; };
+		3F57FECF1CD17B76002ADAC8 /* EditOneDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditOneDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/OneDrive/EditOneDriveFileViewController.swift; sourceTree = "<group>"; };
+		3F57FED01CD17B76002ADAC8 /* EditOneDriveFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditOneDriveFileViewController.xib; path = Classes/ViewControllers/Cloud/OneDrive/EditOneDriveFileViewController.xib; sourceTree = "<group>"; };
+		3F57FED31CD17BA3002ADAC8 /* CreateOneDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateOneDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/OneDrive/CreateOneDriveFileViewController.swift; sourceTree = "<group>"; };
+		3F57FED41CD17BA3002ADAC8 /* CreateOneDriveFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateOneDriveFileViewController.xib; path = Classes/ViewControllers/Cloud/OneDrive/CreateOneDriveFileViewController.xib; sourceTree = "<group>"; };
 		3F5AE4471CC788C600E262AC /* CreateGoogleDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateGoogleDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/GoogleDrive/CreateGoogleDriveFileViewController.swift; sourceTree = "<group>"; };
 		3F5AE4481CC788C600E262AC /* CreateGoogleDriveFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateGoogleDriveFileViewController.xib; path = Classes/ViewControllers/Cloud/GoogleDrive/CreateGoogleDriveFileViewController.xib; sourceTree = "<group>"; };
 		3F5AE4501CC833E600E262AC /* GoogleDriveUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleDriveUtils.swift; path = Classes/Utils/GoogleDriveUtils.swift; sourceTree = "<group>"; };
@@ -315,7 +315,6 @@
 		3F5AE4681CC9828200E262AC /* C.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = C.txt; path = Resources/ReserveWordList/C.txt; sourceTree = "<group>"; };
 		3F5AE46A1CC9833C00E262AC /* CPP.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CPP.txt; path = Resources/ReserveWordList/CPP.txt; sourceTree = "<group>"; };
 		3F5AE46C1CC9884F00E262AC /* ReserveWordUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReserveWordUtils.swift; path = Classes/Utils/ReserveWordUtils.swift; sourceTree = "<group>"; };
-		3F5AE4741CCC1FC700E262AC /* PWEditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PWEditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5AE4781CCC1FC700E262AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F5AE48B1CCC230D00E262AC /* StringUtilsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringUtilsSpec.swift; path = Classes/Utils/StringUtilsSpec.swift; sourceTree = "<group>"; };
 		3F68715B1CBD937E009E45B2 /* MethodUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MethodUtils.swift; path = Classes/Utils/MethodUtils.swift; sourceTree = "<group>"; };
@@ -334,14 +333,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3F5AE4711CCC1FC700E262AC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				52ED7DFA463F1AE58D692AA4 /* Pods_PWEditorTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3F7494721C753B0A002A0544 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -661,6 +652,12 @@
 			children = (
 				3F5AE4551CC8470B00E262AC /* OneDriveFileListViewController.swift */,
 				3F5AE4561CC8470B00E262AC /* OneDriveFileListViewController.xib */,
+				3F57FECB1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift */,
+				3F57FECC1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib */,
+				3F57FED31CD17BA3002ADAC8 /* CreateOneDriveFileViewController.swift */,
+				3F57FED41CD17BA3002ADAC8 /* CreateOneDriveFileViewController.xib */,
+				3F57FECF1CD17B76002ADAC8 /* EditOneDriveFileViewController.swift */,
+				3F57FED01CD17B76002ADAC8 /* EditOneDriveFileViewController.xib */,
 			);
 			name = OneDrive;
 			sourceTree = "<group>";
@@ -722,7 +719,6 @@
 			isa = PBXGroup;
 			children = (
 				3F7494751C753B0A002A0544 /* PWEditor.app */,
-				3F5AE4741CCC1FC700E262AC /* PWEditorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -766,27 +762,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F5AE4731CCC1FC700E262AC /* PWEditorTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3F5AE4821CCC1FC700E262AC /* Build configuration list for PBXNativeTarget "PWEditorTests" */;
-			buildPhases = (
-				8DEBCC2186B7EC78AD525969 /* Check Pods Manifest.lock */,
-				3F5AE4701CCC1FC700E262AC /* Sources */,
-				3F5AE4711CCC1FC700E262AC /* Frameworks */,
-				3F5AE4721CCC1FC700E262AC /* Resources */,
-				98FC24AFC38DD8154BAF2522 /* Embed Pods Frameworks */,
-				FD34972DF470B012B9B2145A /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3F5AE47A1CCC1FC700E262AC /* PBXTargetDependency */,
-			);
-			name = PWEditorTests;
-			productName = PWEditorTests;
-			productReference = 3F5AE4741CCC1FC700E262AC /* PWEditorTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		3F7494741C753B0A002A0544 /* PWEditor */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F7494871C753B0B002A0544 /* Build configuration list for PBXNativeTarget "PWEditor" */;
@@ -818,10 +793,6 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Masatsugu Futamata";
 				TargetAttributes = {
-					3F5AE4731CCC1FC700E262AC = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = 3F7494741C753B0A002A0544;
-					};
 					3F7494741C753B0A002A0544 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 5Q7YHJUK8E;
@@ -854,7 +825,6 @@
 			projectRoot = "";
 			targets = (
 				3F7494741C753B0A002A0544 /* PWEditor */,
-				3F5AE4731CCC1FC700E262AC /* PWEditorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -898,14 +868,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3F5AE4721CCC1FC700E262AC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3F5AE4CB1CCC502900E262AC /* PWEditor-Bridging-Header.h in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3F7494731C753B0A002A0544 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -916,6 +878,7 @@
 				3F165E741C7A7E7C001CBC38 /* SelectFontViewController.xib in Resources */,
 				3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */,
 				3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */,
+				3F57FED61CD17BA3002ADAC8 /* CreateOneDriveFileViewController.xib in Resources */,
 				3F165E511C7A75F9001CBC38 /* content.html in Resources */,
 				3F17F03F1CCF712700A1F280 /* marked.html in Resources */,
 				3F5AE4691CC9828200E262AC /* C.txt in Resources */,
@@ -932,6 +895,7 @@
 				3F37CF4B1C85AC1800B138C9 /* DropboxFileInfoViewController.xib in Resources */,
 				3F165E451C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf in Resources */,
 				3F1620E81CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib in Resources */,
+				3F57FED21CD17B76002ADAC8 /* EditOneDriveFileViewController.xib in Resources */,
 				3F165E6D1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt in Resources */,
 				3F17F0491CCF716800A1F280 /* PreviewWebViewController.xib in Resources */,
 				3F0F829E1C90D1510090632E /* ICTextViewLicense.txt in Resources */,
@@ -945,6 +909,7 @@
 				3F17F04C1CD01B0400A1F280 /* EditLocalFileViewController.xib in Resources */,
 				3F5AE4651CC9801F00E262AC /* Swift.txt in Resources */,
 				3F5AE4581CC8470B00E262AC /* OneDriveFileListViewController.xib in Resources */,
+				3F57FECE1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib in Resources */,
 				3F0F82A21C90DAD20090632E /* HighlightViewController.xib in Resources */,
 				3F49306E1C7BAF590088A454 /* LocalFileInfoViewController.xib in Resources */,
 				3F5AE46B1CC9833C00E262AC /* CPP.txt in Resources */,
@@ -1001,36 +966,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8DEBCC2186B7EC78AD525969 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		98FC24AFC38DD8154BAF2522 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PWEditorTests/Pods-PWEditorTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C8D38FFCA70F41DF81F01A62 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1046,34 +981,9 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		FD34972DF470B012B9B2145A /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PWEditorTests/Pods-PWEditorTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3F5AE4701CCC1FC700E262AC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3F5AE4C61CCC421500E262AC /* CommonConst.swift in Sources */,
-				3F5AE4C01CCC41D200E262AC /* StringUtils.swift in Sources */,
-				3F5AE48C1CCC230D00E262AC /* StringUtilsSpec.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3F7494711C753B0A002A0544 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1091,7 +1001,9 @@
 				3F003D2C1C767C1B00ECC371 /* EnvUtils.swift in Sources */,
 				3F165E481C7A6CE0001CBC38 /* HistoryViewController.swift in Sources */,
 				3F165E351C7A687C001CBC38 /* GrepLocalFileListViewController.swift in Sources */,
+				3F57FECD1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift in Sources */,
 				3F165E671C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift in Sources */,
+				3F57FED51CD17BA3002ADAC8 /* CreateOneDriveFileViewController.swift in Sources */,
 				3F17F0531CD01C6A00A1F280 /* SearchWordViewController.swift in Sources */,
 				3F17F0481CCF716800A1F280 /* PreviewWebViewController.swift in Sources */,
 				3F48736E1C75DB6A006594A6 /* ConfigUtils.swift in Sources */,
@@ -1121,6 +1033,7 @@
 				3F23F9651C7BD19D004852B3 /* DateUtils.swift in Sources */,
 				3F003D1B1C7676C500ECC371 /* CommonConst.swift in Sources */,
 				3F165E331C7A687C001CBC38 /* EditLocalFileViewController.swift in Sources */,
+				3F57FED11CD17B76002ADAC8 /* EditOneDriveFileViewController.swift in Sources */,
 				3F5AE4571CC8470B00E262AC /* OneDriveFileListViewController.swift in Sources */,
 				3F12E86D1CC594430008DDEE /* GoogleDriveFileListViewController.swift in Sources */,
 				3F165E791C7A7FF5001CBC38 /* SelectNumberViewController.swift in Sources */,
@@ -1140,14 +1053,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3F5AE47A1CCC1FC700E262AC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3F7494741C753B0A002A0544 /* PWEditor */;
-			targetProxy = 3F5AE4791CCC1FC700E262AC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3F003D221C767A2100ECC371 /* InfoPlist.strings */ = {
@@ -1190,36 +1095,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3F5AE47B1CCC1FC700E262AC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F9D2010F7486BD9895A4387 /* Pods-PWEditorTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = PWEditorTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditorTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PWEditor.app/PWEditor";
-			};
-			name = Debug;
-		};
-		3F5AE47C1CCC1FC700E262AC /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2477735DD8B7F57B3E397BFB /* Pods-PWEditorTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = PWEditorTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditorTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PWEditor.app/PWEditor";
-			};
-			name = Release;
-		};
 		3F7494851C753B0B002A0544 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1308,8 +1183,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PWEditor/PWEditor.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Masatsugu Futamata (9PR8LH7797)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Masatsugu Futamata (9PR8LH7797)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1333,7 +1208,7 @@
 				OTHER_SWIFT_FLAGS = "-D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "a0b3cf2c-d9ad-4a3d-9e4a-695a58a8c234";
 				SWIFT_OBJC_BRIDGING_HEADER = "PWEditor/PWEditor-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1347,8 +1222,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PWEditor/PWEditor.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Masatsugu Futamata (5Q7YHJUK8E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Masatsugu Futamata (5Q7YHJUK8E)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1372,7 +1247,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "baf807b5-8d24-420a-839f-410e9e0acda8";
 				SWIFT_OBJC_BRIDGING_HEADER = "PWEditor/PWEditor-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1381,15 +1256,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3F5AE4821CCC1FC700E262AC /* Build configuration list for PBXNativeTarget "PWEditorTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3F5AE47B1CCC1FC700E262AC /* Debug */,
-				3F5AE47C1CCC1FC700E262AC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3F7494701C753B0A002A0544 /* Build configuration list for PBXProject "PWEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

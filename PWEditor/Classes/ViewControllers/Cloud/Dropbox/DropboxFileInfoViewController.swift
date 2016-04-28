@@ -117,50 +117,49 @@ class DropboxFileInfoViewController: BaseTableViewController {
      */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // セルを取得する。
-        var cell = tableView.dequeueReusableCellWithIdentifier(kCellName) as UITableViewCell?
-        // セルが取得できない場合
-        if (cell == nil || cell?.detailTextLabel == nil) {
-            // セルを生成する。
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: kCellName)
-        }
+        let cell = getTableViewDetailCell(tableView)
 
         // セル番号を取得する。
         let row = indexPath.row
 
         switch row {
         case CellIndex.Id.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleId)
-            cell?.detailTextLabel?.text = fileInfo.id
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleId)
+            cell.detailTextLabel?.text = fileInfo.id
             break
 
         case CellIndex.Name.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleName)
-            cell?.detailTextLabel?.text = fileInfo.name
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleName)
+            cell.detailTextLabel?.text = fileInfo.name
+            cell.detailTextLabel?.numberOfLines = 0
+            cell.detailTextLabel?.lineBreakMode = .ByWordWrapping
             break
 
         case CellIndex.PathLower.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitlePathLower)
-            cell?.detailTextLabel?.text = fileInfo.pathLower
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitlePathLower)
+            cell.detailTextLabel?.text = fileInfo.pathLower
+            cell.detailTextLabel?.numberOfLines = 0
+            cell.detailTextLabel?.lineBreakMode = .ByWordWrapping
             break
 
         case CellIndex.Size.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleSize)
-            cell?.detailTextLabel?.text = String(fileInfo.size)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleSize)
+            cell.detailTextLabel?.text = String(fileInfo.size)
             break
 
         case CellIndex.Rev.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleRev)
-            cell?.detailTextLabel?.text = fileInfo.rev
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleRev)
+            cell.detailTextLabel?.text = fileInfo.rev
             break
 
         case CellIndex.ServerModified.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleServerModified)
-            cell?.detailTextLabel?.text = DateUtils.getDateString(fileInfo.serverModified)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleServerModified)
+            cell.detailTextLabel?.text = DateUtils.getDateString(fileInfo.serverModified)
             break
 
         case CellIndex.ClientModified.rawValue:
-            cell?.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleClientModified)
-            cell?.detailTextLabel?.text = DateUtils.getDateString(fileInfo.clientModified)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleClientModified)
+            cell.detailTextLabel?.text = DateUtils.getDateString(fileInfo.clientModified)
             break
 
 
@@ -168,6 +167,6 @@ class DropboxFileInfoViewController: BaseTableViewController {
             break
         }
 
-        return cell!
+        return cell
     }
 }

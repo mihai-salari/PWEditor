@@ -1,6 +1,12 @@
+Ver.1.0.5
+新規機能
+・GoogleDriveに対応
+・OneDriveに対応
+
 Ver.1.0.4
 新規機能
 ・HTMLとMarkdownのプレビューに対応
+・単語検索に対応
 バグ改修
 ・Dropboxファイル一覧の画面レイアウト崩れを修正
 

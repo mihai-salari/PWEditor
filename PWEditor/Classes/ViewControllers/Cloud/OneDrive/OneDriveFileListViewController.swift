@@ -37,8 +37,8 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
-    /// パス名
-    var pathName: String!
+    /// アイテムID
+    var itemId: String!
 
     /// アイテムリスト
     var itemList = [ODItem]()
@@ -58,11 +58,11 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
     /**
      イニシャライザ
 
-     - Parameter pathName: パス名
+     - Parameter itemId: アイテムID
      */
-    init(pathName: String) {
+    init(itemId: String) {
         // 引数のデータを保存する。
-        self.pathName = pathName
+        self.itemId = itemId
 
         // スーパークラスのメソッドを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -75,8 +75,8 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         // 画面タイトルを設定する。
         navigationItem.title = kScreenTitle
 
-        if pathName == CommonConst.GoogleDrive.kRootParentId {
-            // 親IDがrootの場合
+        if itemId == CommonConst.GoogleDrive.kRootParentId {
+            // アイテムIDがrootの場合
             // 左バーボタンを作成する。
             createLeftBarButton()
         }
@@ -114,6 +114,19 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         getDriveFileList()
     }
 
+    /**
+     画面が非表示になった時に呼び出される。
+ 
+     - Paramenter animated: アニメーション指定
+     */
+    override func viewDidDisappear(animated: Bool) {
+        // スーパークラスのメソッドを呼び出す。
+        super.viewDidDisappear(animated)
+
+        // ネットワークアクセス通知を消す。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    }
+
     // MARK: - UITableViewDataSource
 
     /**
@@ -147,21 +160,20 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
             return cell
         }
 
-        // セル内容をクリアする。
-        cell.textLabel?.text = ""
-        cell.accessoryType = .None
-
+        // ファイル名、フォルダ名を設定する。
         let item = itemList[row]
         cell.textLabel?.text = item.name
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .ByWordWrapping
 
         let file = item.file
         if file != nil {
             // ファイルの場合
-            cell.accessoryType = .DisclosureIndicator
+            cell.accessoryType = .DetailDisclosureButton
 
         } else {
             // フォルダの場合
-            cell.accessoryType = .DetailButton
+            cell.accessoryType = .DisclosureIndicator
         }
 
         return cell
@@ -178,6 +190,50 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // セルの選択状態を解除する。
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+        // アイテムリストが未取得の場合、処理を終了する。
+        let row = indexPath.row
+        let count = itemList.count
+        if row + 1 > count {
+            return
+        }
+
+        let item = itemList[row]
+        let file = item.file
+        if file != nil {
+            // ファイルの場合
+            // OneDrive編集画面に遷移する。
+            let vc = EditOneDriveFileViewController(item: item)
+            navigationController?.pushViewController(vc, animated: true)
+
+        } else {
+            // フォルダーの場合
+            // OneDriveファイル一覧画面に遷移する。
+            let itemId = item.id
+            let vc = OneDriveFileListViewController(itemId: itemId)
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+
+    /**
+     アクセサリボタンが押下された時に呼び出される。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter indexPath: インデックスパス
+     */
+    func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+
+        // アイテムリストが未取得の場合、処理を終了する。
+        let row = indexPath.row
+        let count = itemList.count
+        if row + 1 > count {
+            return
+        }
+
+        // OneDriveファイル詳細画面に遷移する。
+        let item = itemList[row]
+        let vc = OneDriveFileDetailViewController(item: item)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: - One Drive API
@@ -188,16 +244,31 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
     func getDriveFileList() {
         let client = ODClient.loadCurrentClient()
         if client == nil {
+            // OneDriveが無効な場合
+            // 画面構成をリセットする。
+            resetScreen()
             return
         }
 
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
         // OneDriveファイルリストを取得する。
-        client.drive().items(pathName).children().request().getWithCompletion( { (children: ODCollection?, nextRequest: ODChildrenCollectionRequest?, error: NSError?) -> Void in
+        client.drive().items(itemId).children().request().getWithCompletion( { (children: ODCollection?, nextRequest: ODChildrenCollectionRequest?, error: NSError?) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
             if error != nil {
                 // エラーの場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = "ファイルリストの取得でエラーが発生しました。"
+                self.showAlert(title, message: message)
                 return
             }
             if children == nil {
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = "ファイルリストが取得できません。"
+                self.showAlert(title, message: message)
                 return
             }
             self.itemList.removeAll(keepCapacity: false)
@@ -205,8 +276,11 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
                 self.itemList.append(item)
             }
 
-            // テーブルビューを更新する。
-            self.tableView.reloadData()
+
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                // テーブルビューを更新する。
+                self.tableView.reloadData()
+            })
         })
     }
 }

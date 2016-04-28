@@ -172,6 +172,13 @@ struct LocalizableConst {
     // OneDriveファイル一覧画面
     static let kOneDriveFileListScreenTitle = "OneDriveFileListScreenTitle"
 
+    // OneDriveファイル詳細画面
+    static let kOneDriveFileDetailScreenTitle = "OneDriveFileDetailScreenTitle"
+    static let kOneDriveFileDetailCellTitleName = "OneDriveFileDetailCellTitleName"
+    static let kOneDriveFileDetailCellTitleSize = "OneDriveFileDetailCellTitleSize"
+    static let kOneDriveFileDetailCellTitleCreatedDateTime = "OneDriveFileDetailCellTitleCreatedDateTime"
+    static let kOneDriveFileDetailCellTitleLastModifiedDateTime = "OneDriveFileDetailCellTitleLastModifiedDateTime"
+
     // 設定画面
     static let kSettingsScreenTitle = "SettingsScreenTitle"
     static let kSettingsSectionTitleFont = "SettingsSectionTitleFont"

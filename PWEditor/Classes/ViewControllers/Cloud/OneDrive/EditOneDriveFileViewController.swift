@@ -1,21 +1,22 @@
 //
-//  EditGoogleDriveFileViewController.swift
+//  EditOneDriveFileViewController.swift
 //  PWEditor
 //
-//  Created by mfuta1971 on 2016/04/20.
+//  Created by mfuta1971 on 2016/04/28.
 //  Copyright © 2016年 Masatsugu Futamata. All rights reserved.
 //
 
 import UIKit
 import GoogleMobileAds
+import OneDriveSDK
 
 /**
- GoogleDriveファイル編集画面
- 
+ OneDriveファイル編集画面
+
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate {
+class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
 
     // MARK: - Variables
 
@@ -25,8 +26,8 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
-    // GoogleDriveファイル
-    var driveFile: GTLDriveFile!
+    /// アイテム
+    var item: ODItem!
 
     /// 文字エンコーディングタイプ
     var encodingType: Int!
@@ -55,13 +56,13 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
     /**
      イニシャライザ
 
-     - Parameter driveFile: GoogleDriveファイル
+     - Parameter item: アイテム
      - Parameter encodingType: 文字エンコーディングタイプ(デフォルト"UTF-8")
      - Parameter retCodeType: 改行コードタイプ(デフォルト"Unix(LF)")
      */
-    init(driveFile: GTLDriveFile, encodingType: Int = CommonConst.EncodingType.Utf8.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue) {
+    init(item: ODItem, encodingType: Int = CommonConst.EncodingType.Utf8.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue) {
         // 引数を保存する。
-        self.driveFile = driveFile
+        self.item = item
         self.encodingType = encodingType
         self.retCodeType = retCodeType
         self.encoding = CommonConst.EncodingList[self.encodingType]
@@ -71,7 +72,7 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
     }
 
     // MARK: - UIViewController
- 
+
     /**
      インスタンスが生成された時に呼び出される。
      */
@@ -80,7 +81,7 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
         super.viewDidLoad()
 
         // 画面タイトルを設定する。
-        let fileName = driveFile.name
+        let fileName = item.name
         navigationItem.title = fileName
 
         // 右上ボタンを設定する。
@@ -93,8 +94,6 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
         let selector = #selector(EditDropboxFileViewController.textChanged(_:))
         NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: UITextViewTextDidChangeNotification, object: nil)
         myView.textView.delegate = self
-        // TODO: 暫定で編集不可とする(正式対応時にはこの処理は削除する)
-        myView.textView.editable = true
 
         // バナービューを設定する。
         setupBannerView(bannerView)
@@ -131,8 +130,8 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
 
         // 右バーボタンはデフォルト無効にする。
         self.navigationItem.rightBarButtonItem?.enabled = false
-
-        // Dropboxファイルをダウンロードする。
+        
+        // OneDriveファイルをダウンロードする。
         downloadFile()
     }
 
@@ -231,12 +230,12 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
 
         // 改行コードを変換する。
         let convertedFileData = FileUtils.convertRetCode(fileData, encoding: encoding, retCodeType: retCodeType)
-
+        
         // 変換されたファイルデータをアップロードする。
         uploadFile(convertedFileData)
     }
-
-    // MARK: - Google Drive API
+    
+    // MARK: - One Drive API
 
     /**
      ファイルをダウンロードする。
@@ -244,70 +243,6 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
     func downloadFile() {
         // ネットワークアクセス通知を表示する。
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-
-        let id = driveFile.identifier
-        let urlString = "https://www.googleapis.com/drive/v3/files/\(id)?alt=media"
-        let appDelegate = EnvUtils.getAppDelegate()
-        let serviceDrive = appDelegate.googleDriveServiceDrive
-        let fetcher = serviceDrive.fetcherService.fetcherWithURLString(urlString)
-        fetcher.beginFetchWithCompletionHandler( { (data: NSData?, error: NSError?) -> Void in
-            // ネットワークアクセス通知を消す。
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-
-            if error != nil {
-                // エラーの場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let fileName = self.driveFile.name
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditGoogleDriveFileDownloadError, fileName)
-                self.showAlert(title, message: message, handler: { () -> Void in
-                    // 遷移元画面に戻る。
-                    self.popViewController()
-                })
-                return
-            }
-
-            if data == nil {
-                // データが取得できない場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let fileName = self.driveFile.name
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditGoogleDriveFileDownloadDataError, fileName)
-                self.showAlert(title, message: message, handler: { () -> Void in
-                    // 遷移元画面に戻る。
-                    self.popViewController()
-                })
-                return
-            }
-
-            if !FileUtils.isTextData(data!) {
-                // テキストデータではない場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageNotTextFileError)
-                self.showAlert(title, message: message, handler: { () -> Void in
-                    // 遷移元画面に戻る。
-                    self.popViewController()
-                })
-                return
-            }
-
-            // 文字列に変換する。
-            let text = String(data: data!, encoding: self.encoding)
-            if text == nil {
-                // 文字列に変換できない場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCovertEncodingError)
-                self.showAlert(title, message: message, handler: { () -> Void in
-                    // 遷移元画面に戻る。
-                    self.popViewController()
-                })
-                return
-            }
-
-            // 右バーボタンを有効にする。
-            self.navigationItem.rightBarButtonItem?.enabled = true
-
-            // ファイルデータ文字列をテキストビューに設定する。
-            self.myView.textView.text = text
-        })
     }
 
     /**
@@ -316,59 +251,5 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
      - Parameter fileData: ファイルデータ文字列
      */
     func uploadFile(fileData: String) {
-        let data = fileData.dataUsingEncoding(encoding)
-        if data == nil {
-            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = "ファイルデータがありません。"
-            showAlert(title, message: message)
-            return
-        }
-
-        // ネットワークアクセス通知を表示する。
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-
-        let mimeType = CommonConst.MimeType.kText
-        let uploadParameters = GTLUploadParameters(data: data!, MIMEType: mimeType)
-
-        let fileId = driveFile.identifier
-        let query = GTLQueryDrive.queryForFilesUpdateWithObject(driveFile, fileId: fileId, uploadParameters: uploadParameters)
-        let appDelegate = EnvUtils.getAppDelegate()
-        let serviceDrive = appDelegate.googleDriveServiceDrive
-        serviceDrive.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, updatedFile: AnyObject!, error: NSError!) -> Void in
-            // ネットワークアクセス通知を消す。
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-
-            if error != nil {
-                // エラーの場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = error.description
-                self.showAlert(title, message: message)
-                return
-            }
-
-            // 遷移元画面に戻る。
-            self.popViewController()
-        })
-    }
-
-    // MARK: - Private method
-
-    /**
-     遷移元画面に戻る。
-     文字エンコーディング選択画面から遷移した場合、GoogleDriveファイル一覧画面に戻るための対応
-     */
-    func popViewController() {
-        // 画面遷移数を取得する。
-        let count = navigationController?.viewControllers.count
-        // 最後に表示した画面から画面遷移数確認する。
-        for var i = count! - 1; i >= 0; i-- {
-            let vc = navigationController?.viewControllers[i]
-            if vc!.dynamicType == GoogleDriveFileListViewController.self {
-                // 表示した画面がGoogleDriveファイル一覧画面の場合
-                // 画面を戻す。
-                navigationController?.popToViewController(vc!, animated: true)
-                break
-            }
-        }
     }
 }

@@ -125,18 +125,13 @@ class GrepLocalFileListViewController: BaseTableViewController, UISearchBarDeleg
      */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // セルを取得する。
-        var cell = tableView.dequeueReusableCellWithIdentifier(kCellName) as UITableViewCell?
-        // セルが取得できない場合
-        if (cell == nil || cell?.detailTextLabel == nil) {
-            // セルを生成する。
-            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: kCellName)
-        }
+        var cell = getTableViewDetailCell(tableView)
 
         // grep結果情報リストが未取得の場合、処理を終了する。
         let row = indexPath.row
         let count = grepResultInfoList.count
         if row + 1 > count {
-            return cell!
+            return cell
         }
 
         // セル番号のgrep結果情報を取得する。
@@ -145,18 +140,18 @@ class GrepLocalFileListViewController: BaseTableViewController, UISearchBarDeleg
         // セルのラベルにファイル名+行番号を設定する。
         let fileName = grepResultInfo.fileName
         let line = grepResultInfo.line
-        cell?.textLabel!.text = "\(fileName)(\(line))"
-        cell?.textLabel!.lineBreakMode = .ByTruncatingMiddle
+        cell.textLabel!.text = "\(fileName)(\(line))"
+        cell.textLabel!.lineBreakMode = .ByTruncatingMiddle
 
         // セルの詳細ラベルにファイルデータを設定する。
         let data = grepResultInfo.data
-        cell?.detailTextLabel!.text = data
+        cell.detailTextLabel!.text = data
 
         // アクセサリを設定する。
-        cell?.accessoryType = .DisclosureIndicator
+        cell.accessoryType = .DisclosureIndicator
 
         // セルを返却する。
-        return cell!
+        return cell
     }
 
     // MARK: - UITableViewDelagete

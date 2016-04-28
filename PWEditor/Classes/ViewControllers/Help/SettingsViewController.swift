@@ -52,8 +52,8 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
     /// クラウドセルタイトル
     let kCloudCellTitleList = [
         LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleDropbox),
-//        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleGoogleDrive),
-//        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleOneDrive)
+        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleGoogleDrive),
+        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleOneDrive)
     ]
 
     /// セクションインデックス
@@ -418,11 +418,13 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
 
                             ODClient.setCurrentClient(nil)
 
-                            // メニュー画面のOneDriveセルを無効にする。
-                            self.delegate?.receiveSignInState(0, state: true)
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                // メニュー画面のOneDriveセルを無効にする。
+                                self.delegate?.receiveSignInState(0, state: true)
 
-                            // テーブルを更新する。
-                            self.tableView.reloadData()
+                                // テーブルビューを更新する。
+                                self.tableView.reloadData()
+                            })
                         })
                     })
 
@@ -442,11 +444,13 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
 
                         ODClient.setCurrentClient(client)
 
-                        // メニュー画面のOneDriveセルを有効にする。
-                        self.delegate?.receiveSignInState(0, state: true)
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            // メニュー画面のOneDriveセルを有効にする。
+                            self.delegate?.receiveSignInState(0, state: true)
 
-                        // テーブルを更新する。
-                        self.tableView.reloadData()
+                            // テーブルビューを更新する。
+                            self.tableView.reloadData()
+                        })
                     })
                 }
                 break

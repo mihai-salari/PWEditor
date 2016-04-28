@@ -167,6 +167,13 @@ EditGoogleDriveFileDownloadDataError = "%@をダウンロードできません�
 // OneDriveファイル一覧画面
 OneDriveFileListScreenTitle = "One driveファイル一覧";
 
+// OneDriveファイル詳細画面
+OneDriveFileDetailScreenTitle = "One driveファイル詳細";
+OneDriveFileDetailCellTitleName = "ファイル名";
+OneDriveFileDetailCellTitleSize = "サイズ";
+OneDriveFileDetailCellTitleCreatedDateTime = "作成日時";
+OneDriveFileDetailCellTitleLastModifiedDateTime = "最終更新日時";
+
 // 設定画面
 SettingsScreenTitle = "設定";
 SettingsSectionTitleFont = "フォント";
