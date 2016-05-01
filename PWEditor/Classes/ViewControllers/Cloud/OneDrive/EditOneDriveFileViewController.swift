@@ -267,7 +267,7 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileDownloadError, fileName)
                 self.showAlert(title, message: message) {
                     // 遷移元画面に戻る。
-                    self.popViewControllerInMainThread()
+                    self.popViewController()
                 }
                 return
             }
@@ -279,7 +279,7 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileFilePathInvalid, fileName)
                 self.showAlert(title, message: message) {
                     // 遷移元画面に戻る。
-                    self.popViewControllerInMainThread()
+                    self.popViewController()
                 }
                 return
             }
@@ -292,7 +292,7 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileDownloadDataError, fileName)
                 self.showAlert(title, message: message) {
                     // 遷移元画面に戻る。
-                    self.popViewControllerInMainThread()
+                    self.popViewController()
                 }
                 return
             }
@@ -303,7 +303,7 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
                 let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageNotTextFileError)
                 self.showAlert(title, message: message) {
                     // 遷移元画面に戻る。
-                    self.popViewControllerInMainThread()
+                    self.popViewController()
                 }
                 return
             }
@@ -315,7 +315,7 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
                 let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCovertEncodingError)
                 self.showAlert(title, message: message) {
                     // 遷移元画面に戻る。
-                    self.popViewControllerInMainThread()
+                    self.popViewController()
                 }
                 return
             }
@@ -373,8 +373,11 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
                 return
             }
 
-            // 遷移元画面に戻る。
-            self.popViewControllerInMainThread()
+            // UI操作はメインスレッドで行う。
+            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                // 遷移元画面に戻る。
+                self.popViewController()
+            })
         })
     }
 
@@ -394,29 +397,6 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
                 // 表示した画面がOneDriveファイル一覧画面の場合
                 // 画面を戻す。
                 navigationController?.popToViewController(vc!, animated: true)
-                break
-            }
-        }
-    }
-
-    /**
-     遷移元画面に戻る。
-     UI操作はメインスレッドで行う。
-     文字エンコーディング選択画面から遷移した場合、OneDriveファイル一覧画面に戻るための対応
-     */
-    func popViewControllerInMainThread() {
-        // 画面遷移数を取得する。
-        let count = navigationController?.viewControllers.count
-        // 最後に表示した画面から画面遷移数確認する。
-        for var i = count! - 1; i >= 0; i-- {
-            let vc = navigationController?.viewControllers[i]
-            if vc!.dynamicType == OneDriveFileListViewController.self {
-                // 表示した画面がOneDriveファイル一覧画面の場合
-                // 画面を戻す。
-                // UI操作はメインスレッドで行う。
-                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-                    self.navigationController?.popToViewController(vc!, animated: true)
-                })
                 break
             }
         }

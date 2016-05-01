@@ -142,7 +142,11 @@ struct CommonConst {
     }
 
     struct OneDrive {
-        static let kScopes = ["onedrive.readwrite"]
+        static let kScopes = [
+            "wl.signin",
+            "wl.offline_access",
+            "onedrive.readwrite"
+        ]
     }
 
     struct FileExtention {

@@ -356,43 +356,62 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             self.showAlert(title, message: message)
             return
         }
+
+        // ベースURLを取得する。
         let baseURL = client.baseURL
+
+        // アクセストークンを取得する。
         let accountSession = client.authProvider.accountSession!()
         let accessToken = accountSession.accessToken
 
-        //let urlString = "\(baseURL)/drive/items/\(parentId)/\(fileName)/content?@name.conflictBehavior=rename"
+        // URL文字列を生成する。
         let urlString = "\(baseURL)/drive/items/\(parentId)/children/\(fileName)/content"
+        // URLを生成する。
         let url = NSURL(string: urlString)
         if url == nil {
+            // URLが生成できない場合
+            // エラーアラートを表示して終了する。
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlError)
             showAlert(title, message: message)
             return
         }
+
+        // HTTPリクエストを生成する。
         let request = NSMutableURLRequest(URL: url!)
+
+        // キャッシュをオフにする。
+        request.cachePolicy = .ReloadIgnoringLocalCacheData
 
         // HTTPメソッドを設定する。
         request.HTTPMethod = CommonConst.Http.Method.kPUT
 
+        // Content-Typeを設定する。
         let contentType = CommonConst.Http.HTTPHeaderField.Key.kContentType
         let kTextPlain = CommonConst.Http.HTTPHeaderField.Value.kTextPlain
         request.setValue(kTextPlain, forHTTPHeaderField: contentType)
 
+        // Authorizationを設定する。
         let authorization = CommonConst.Http.HTTPHeaderField.Key.kAuthorization
         let bearer = String(format: CommonConst.Http.HTTPHeaderField.Value.kBearer, accessToken)
         request.setValue(bearer, forHTTPHeaderField: authorization)
 
-        request.HTTPBody = "".dataUsingEncoding(NSUTF8StringEncoding)
+        // ファイルデータを設定する。
+        // 新規作成の場合、データは空とする。
+        request.HTTPBody = NSData()
 
         // ネットワークアクセス通知を表示する。
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
+        // 通信タスクを生成する。
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
             (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             // ネットワークアクセス通知を消す。
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
             if error != nil {
+                // エラーの場合
+                // エラーアラートを表示して終了する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageHttpRequestError)
                 self.showAlert(title, message: message)
@@ -403,9 +422,13 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 message = String(data: data!, encoding: NSUTF8StringEncoding)!
             }
 
+            // HTTPステータスコードを取得する。
             let statusCode = (response as! NSHTTPURLResponse).statusCode
+            // HTTPステータスコード別に処理を振り分ける。
             switch statusCode {
             case 200, 201:
+                // 正常終了の場合
+                // UI操作はメインスレッドを行う。
                 dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                     // 遷移元画面に戻る。
                     self.navigationController?.popViewControllerAnimated(true)
@@ -413,6 +436,8 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 break
 
             default:
+                // エラーの場合
+                // エラーアラートを表示して終了する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageHttpStatusError, statusCode, message)
                 self.showAlert(title, message: message)
@@ -436,33 +461,51 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             self.showAlert(title, message: message)
             return
         }
+
+        // ベースURLを取得する。
         let baseURL = client.baseURL
+
+        // アクセストークンを取得する。
         let accountSession = client.authProvider.accountSession!()
         let accessToken = accountSession.accessToken
 
-        let url = NSURL(string: "\(baseURL)/drive/items/\(parentId)/children")
+        // URL文字列を生成する。
+        let urlString = "\(baseURL)/drive/items/\(parentId)/children"
+        // URLを生成する。
+        let url = NSURL(string: urlString)
         if url == nil {
+            // URLを生成できない場合
+            // エラーアラートを表示して終了する。
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlError)
             showAlert(title, message: message)
             return
         }
+
+        // HTTPリクエストを生成する。
         let request = NSMutableURLRequest(URL: url!)
+
+        // キャッシュをオフにする。
+        request.cachePolicy = .ReloadIgnoringLocalCacheData
+
+        // HTTPメソッドを設定する。
         request.HTTPMethod = CommonConst.Http.Method.kPOST
 
+        // Content-Typeを設定する。
         let contentType = CommonConst.Http.HTTPHeaderField.Key.kContentType
         let applicationJson = CommonConst.Http.HTTPHeaderField.Value.kApplicationJson
         request.setValue(applicationJson, forHTTPHeaderField: contentType)
 
+        // Authorizationを設定する。
         let authorization = CommonConst.Http.HTTPHeaderField.Key.kAuthorization
         let bearer = String(format: CommonConst.Http.HTTPHeaderField.Value.kBearer, accessToken)
         request.setValue(bearer, forHTTPHeaderField: authorization)
 
+        // HTTPパラメータを生成し、設定する。
         let emptyParams = Dictionary<String, String>()
         let params = ["name": dirName,
                       "folder": emptyParams,
                       "@name.conflictBehavior": "rename"]
-
         do {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
         } catch {
@@ -475,12 +518,15 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
         // ネットワークアクセス通知を表示する。
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
+        // HTTP通信タスクを生成する。
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
             (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             // ネットワークアクセス通知を消す。
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
             if error != nil {
+                // エラーの場合
+                // エラーアラートを表示して終了する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageHttpRequestError)
                 self.showAlert(title, message: message)
@@ -488,12 +534,18 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             }
             var message = ""
             if data != nil {
+                // データがある場合
+                // メッセージを取得する。
                 message = String(data: data!, encoding: NSUTF8StringEncoding)!
             }
 
+            // HTTPステータスコードを取得する。
             let statusCode = (response as! NSHTTPURLResponse).statusCode
+            // HTTPステータスコード別に処理を振り分ける。
             switch statusCode {
             case 200, 201:
+                // 正常終了の場合
+                // UI操作はメインスレッドを行う。
                 dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                     // 遷移元画面に戻る。
                     self.navigationController?.popViewControllerAnimated(true)
@@ -501,12 +553,16 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 break
 
             default:
+                // エラーの場合
+                // エラーアラートを表示して終了する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageHttpStatusError, statusCode, message)
                 self.showAlert(title, message: message)
                 break
             }
         })
+
+        // HTTP通信タスクを実行する。
         task.resume()
     }
 }
