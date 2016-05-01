@@ -37,10 +37,10 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
-    /// アイテムID
+    /// OneDriveアイテムID
     var itemId: String!
 
-    /// アイテムリスト
+    /// OneDriveアイテムリスト
     var itemList = [ODItem]()
 
     // MARK: - Initializer
@@ -109,14 +109,14 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
     override func viewWillAppear(animated: Bool) {
         // スーパークラスのメソッドを呼び出す。
         super.viewWillAppear(animated)
-        
+
         // OneDriveファイルリストを取得する。
-        getDriveFileList()
+        self.getOneDriveFileList()
     }
 
     /**
      画面が非表示になった時に呼び出される。
- 
+
      - Paramenter animated: アニメーション指定
      */
     override func viewDidDisappear(animated: Bool) {
@@ -137,7 +137,7 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
      - Returns: セクション内のセル数
      */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // アイテムリストの件数を返却する。
+        // OneDriveアイテムリストの件数を返却する。
         let count = itemList.count
         return count
     }
@@ -153,7 +153,7 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         // セルを取得する。
         let cell = getTableViewCell(tableView)
 
-        // アイテムリストが未取得の場合、処理を終了する。
+        // OneDriveアイテムリストが未取得の場合、処理を終了する。
         let row = indexPath.row
         let count = itemList.count
         if row + 1 > count {
@@ -191,7 +191,7 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         // セルの選択状態を解除する。
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        // アイテムリストが未取得の場合、処理を終了する。
+        // OneDriveアイテムリストが未取得の場合、処理を終了する。
         let row = indexPath.row
         let count = itemList.count
         if row + 1 > count {
@@ -223,7 +223,7 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
      */
     func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
 
-        // アイテムリストが未取得の場合、処理を終了する。
+        // OneDriveアイテムリストが未取得の場合、処理を終了する。
         let row = indexPath.row
         let count = itemList.count
         if row + 1 > count {
@@ -236,17 +236,147 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    // MARK: - Cell long press
+
+    /**
+     セルロングタップを生成する。
+     */
+    func createCellLogPressed() {
+        let selector = #selector(cellLongPressed(_:))
+        let cellLongPressedAction = selector
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: cellLongPressedAction)
+        longPressRecognizer.delegate = self
+        tableView.addGestureRecognizer(longPressRecognizer)
+    }
+
+    /**
+     セルロングタップ時に呼び出される。
+
+     - Parameter recognizer: ジェスチャー
+     */
+    override func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
+        let point = recognizer.locationInView(tableView)
+        let indexPath = tableView!.indexPathForRowAtPoint(point)
+
+        if indexPath == nil {
+            return
+        }
+
+        if recognizer.state == UIGestureRecognizerState.Began {
+            let row = indexPath!.row
+            let count = itemList.count
+            if row + 1 > count {
+                return
+            }
+
+            let item = itemList[row]
+            let cell = tableView.cellForRowAtIndexPath(indexPath!)
+            showOperateOneDriveFileActionSheet(item, index: row, cell: cell!)
+        }
+    }
+
+    // MARK: - ActionSheet
+
+    /**
+     OneDriveファイル操作アクションシートを表示する。
+
+     - Parameter item: OneDriveアイテム
+     - Parameter index: GoogleDriveファイルの位置
+     - Parameter cell: テーブルビューセル
+     */
+    private func showOperateOneDriveFileActionSheet(item: ODItem, index: Int, cell: UITableViewCell) {
+        // OneDriveファイル操作アクションシートを生成する。
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kActionSheetTitleOneDriveFile)
+        let alert = UIAlertController(title: alertTitle, message: "", preferredStyle: .ActionSheet)
+        // iPadでクラッシュする対応
+        alert.popoverPresentationController?.sourceView = view
+        alert.popoverPresentationController?.sourceRect = cell.frame
+
+        // キャンセルボタンを生成する。
+        let cancelButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+        // 文字エンコーディングを指定して開くボタンを生成する。
+        let openCharButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleOpenChar)
+        let openCharAction = UIAlertAction(title: openCharButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // 文字エンコーディング選択画面に遷移する。
+            let sourceClassName = self.dynamicType.description()
+            let vc = SelectEncodingViewController(sourceClassName: sourceClassName, item: item)
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(openCharAction)
+
+        // 削除ボタンを生成する。
+        let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+        let deleteAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // ファイル削除確認アラートを表示する。
+            self.showDeleteFileConfirmAlert(item, index: index)
+        })
+        alert.addAction(deleteAction)
+
+        // アラートを表示する。
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    /**
+     ファイル削除確認アラートを表示する。
+
+     - Parameter item: OneDriveアイテム
+     - Parameter index: ファイル情報の位置
+     */
+    private func showDeleteFileConfirmAlert(item: ODItem, index: Int) {
+        // ファイル削除確認アラートを生成する。
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kAlertTitleConfirm)
+        let name = item.name
+        let alertMessage = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageDeleteConfirm, name)
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .Alert)
+
+        // キャンセルボタンを生成する。
+        let cancelButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+        // 削除ボタンを生成する。
+        let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+        let okAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // 削除する。
+            self.deleteOneDriveFile(item, index: index)
+        })
+        alert.addAction(okAction)
+
+        // アラートを表示する。
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    // MARK: - Toolbar Button
+
+    /**
+     作成ツールバーボタン押下時に呼び出される。
+ 
+     - Parameter sender: 作成ツールバーボタン
+     */
+    @IBAction func createToolbarButtonPressed(sender: AnyObject) {
+        // OneDriveファイル作成画面に遷移する。
+        let vc = CreateOneDriveFileViewController(parentId: itemId)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
     // MARK: - One Drive API
 
     /**
      OneDriveファイルリストを取得する。
      */
-    func getDriveFileList() {
+    func getOneDriveFileList() {
         let client = ODClient.loadCurrentClient()
         if client == nil {
             // OneDriveが無効な場合
-            // 画面構成をリセットする。
-            resetScreen()
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
+            self.showAlert(title, message: message) {
+                // 画面構成をリセットする。
+                self.resetScreen()
+            }
             return
         }
 
@@ -261,21 +391,67 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
             if error != nil {
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = "ファイルリストの取得でエラーが発生しました。"
+                let errorCode = error!.code
+                let errorMessage = error!.localizedDescription
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageGetFileListError, errorCode, errorMessage)
                 self.showAlert(title, message: message)
                 return
             }
+
             if children == nil {
+                // OneDriveファイルリストが取得できない場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = "ファイルリストが取得できません。"
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageGetFileListFailed)
                 self.showAlert(title, message: message)
                 return
             }
+
             self.itemList.removeAll(keepCapacity: false)
             for item in children!.value as! [ODItem] {
                 self.itemList.append(item)
             }
 
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                // テーブルビューを更新する。
+                self.tableView.reloadData()
+            })
+        })
+    }
+
+    /**
+     OneDriveファイルを削除する。
+
+     - Parameter item: OneDriveアイテム
+     - Parameter index: インデックス
+     */
+    func deleteOneDriveFile(item: ODItem, index: Int) {
+        let client = ODClient.loadCurrentClient()
+        if client == nil {
+            // OneDriveが無効な場合
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
+            self.showAlert(title, message: message)
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        let itemId = item.id
+        client.drive().items(itemId).request().deleteWithCompletion( { (error: NSError?) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                // エラーの場合、エラーアラートを表示して終了する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDeleteFileError)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            // OneDriveファイルリストから削除する。
+            self.itemList.removeAtIndex(index)
 
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 // テーブルビューを更新する。

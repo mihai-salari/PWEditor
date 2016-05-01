@@ -418,7 +418,7 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
 
                             ODClient.setCurrentClient(nil)
 
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                                 // メニュー画面のOneDriveセルを無効にする。
                                 self.delegate?.receiveSignInState(0, state: true)
 
@@ -444,7 +444,7 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
 
                         ODClient.setCurrentClient(client)
 
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                             // メニュー画面のOneDriveセルを有効にする。
                             self.delegate?.receiveSignInState(0, state: true)
 

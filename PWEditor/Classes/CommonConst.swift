@@ -106,6 +106,28 @@ struct CommonConst {
         "Mac(CR)"
     ]
 
+    struct Http {
+        struct Method {
+            static let kGET = "GET"
+            static let kPOST = "POST"
+            static let kPUT = "PUT"
+            static let kDELETE = "DELETE"
+        }
+
+        struct HTTPHeaderField {
+            struct Key {
+                static let kContentType = "Content-Type"
+                static let kAuthorization = "Authorization"
+            }
+
+            struct Value {
+                static let kApplicationJson = "application/json"
+                static let kTextPlain = "text/plain"
+                static let kBearer = "Bearer %@"
+            }
+        }
+    }
+
     struct GoogleDrive {
         static let kKeychainItemName = "GoogleDrive"
         static let kRootParentId = "root"

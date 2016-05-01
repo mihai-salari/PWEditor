@@ -31,12 +31,21 @@ AlertMessageNotTextFileError = "This file not text file.";
 AlertMessageCovertEncodingError = "Convert char encoding failed.";
 AlertMessageSignOutGoogleDrive = "Sign out from google drive?";
 AlertMessageDeleteFileError = "Delete %@ failed.";
+AlertMessageOneDriveInvalid = "One drive invalid.";
 AlertMessageSignOutOneDrive = "Sign out from one drive?";
+AlertMessageFileDataNotFound = "File data not found.";
+AlertMessageGetFileListError = "Get file list failed.\nerror code=%d\nerror message=%@";
+AlertMessageGetFileListFailed = "Get file list failed.";
+AlertMessageUrlError = "Invalid URL.";
+AlertMessageUrlParamsError = "Invalid URL parameters.";
+AlertMessageHttpRequestError = "HTTP communication failed.";
+AlertMessageHttpStatusError = "HTTP communication result failed.\nerror code=%d\nerror message=%@";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "Local file operation";
 ActionSheetTitleDropboxFile = "Dropbox file operation";
 ActionSheetTitleGoogleDriveFile = "Google drive file operation";
+ActionSheetTitleOneDriveFile = "One drive file operation";
 
 // その他
 FontSize = "Font size";
@@ -173,6 +182,19 @@ OneDriveFileDetailCellTitleName = "File name";
 OneDriveFileDetailCellTitleSize = "Size";
 OneDriveFileDetailCellTitleCreatedDateTime = "Created date";
 OneDriveFileDetailCellTitleLastModifiedDateTime = "Last modified date";
+
+// OneDriveファイル作成画面
+CreateOneDriveFileScreenTitle = "Create one drive";
+CreateOneDriveFileSectionTitleFileName = "Name";
+CreateOneDriveFileSectionTitleFileType = "Type";
+CreateOneDriveFileCellTitleFile = "File";
+CreateOneDriveFileCellTitleDir = "Directory";
+CreateOneDriveFileEnterNameError = "Create %@ failed.";
+
+// OneDrive編集画面
+EditOneDriveFileDownloadError = "Download %@ error.";
+EditOneDriveFileFilePathInvalid = "%@ file path invalid.";
+EditOneDriveFileDownloadDataError = "Download %@ failed.";
 
 // 設定画面
 SettingsScreenTitle = "Setting";

@@ -31,12 +31,21 @@ AlertMessageNotTextFileError = "このファイルはテキストファイルで
 AlertMessageCovertEncodingError = "ファイルデータを指定の文字エンコーディングに変換できません。";
 AlertMessageSignOutGoogleDrive = "Google driveからサインアウトしますか。";
 AlertMessageDeleteFileError = "%@を削除できませんでした。";
+AlertMessageOneDriveInvalid = "One driveが無効です。";
 AlertMessageSignOutOneDrive = "One driveからサインアウトしますか。";
+AlertMessageFileDataNotFound = "ファイルデータがありません。";
+AlertMessageGetFileListError = "ファイルリストの取得でエラーが発生しました。\nエラーコード=%d\nエラーメッセージ=%@";
+AlertMessageGetFileListFailed = "ファイルリストが取得できません。";
+AlertMessageUrlError = "不正なURLです。";
+AlertMessageUrlParamsError = "不正なURLパラメータです。";
+AlertMessageHttpRequestError = "HTTP通信でエラーが発生しました。";
+AlertMessageHttpStatusError = "HTTP通信結果がエラーです。\nエラーコード=%d\nエラーメッセージ=%@";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "ローカルファイル操作";
 ActionSheetTitleDropboxFile = "Dropboxファイル操作";
 ActionSheetTitleGoogleDriveFile = "Google driveファイル操作";
+ActionSheetTitleOneDriveFile = "One driveファイル操作";
 
 // その他
 FontSize = "フォントサイズ";
@@ -173,6 +182,19 @@ OneDriveFileDetailCellTitleName = "ファイル名";
 OneDriveFileDetailCellTitleSize = "サイズ";
 OneDriveFileDetailCellTitleCreatedDateTime = "作成日時";
 OneDriveFileDetailCellTitleLastModifiedDateTime = "最終更新日時";
+
+// OneDriveファイル作成画面
+CreateOneDriveFileScreenTitle = "One driveファイル作成";
+CreateOneDriveFileSectionTitleFileName = "名前";
+CreateOneDriveFileSectionTitleFileType = "タイプ";
+CreateOneDriveFileCellTitleFile = "ファイル";
+CreateOneDriveFileCellTitleDir = "ディレクトリ";
+CreateOneDriveFileEnterNameError = "%@を作成できませんでした。";
+
+// OneDrive編集画面
+EditOneDriveFileDownloadError = "%@のダウンロードでエラーが発生しました。";
+EditOneDriveFileFilePathInvalid = "%@のファイルパスが無効です。";
+EditOneDriveFileDownloadDataError = "%@をダウンロードできませんでした。";
 
 // 設定画面
 SettingsScreenTitle = "設定";

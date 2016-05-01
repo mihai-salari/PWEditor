@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMobileAds
+import OneDriveSDK
 
 class SelectEncodingViewController: BaseTableViewController {
 
@@ -75,6 +76,9 @@ class SelectEncodingViewController: BaseTableViewController {
     /// GoogleDriveファイル
     var driveFile: GTLDriveFile?
 
+    /// OneDriveファイル
+    var item: ODItem?
+
     // MARK: - Initializer
 
     /**
@@ -109,13 +113,28 @@ class SelectEncodingViewController: BaseTableViewController {
      イニシャライザ
 
      - Parameter sourceClassName: 遷移元クラス名
-     - Parameter pathName: パス名
-     - Parameter fileName: ファイル名
+     - Parameter driveFile: GoogleDriveファイル
      */
     init(sourceClassName: String, driveFile: GTLDriveFile) {
         // 引数のデータを保存する。
         self.sourceClassName = sourceClassName
         self.driveFile = driveFile
+
+        // スーパークラスのメソッドを呼び出す。
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    /**
+     イニシャライザ
+
+     - Parameter sourceClassName: 遷移元クラス名
+     - Parameter pathName: パス名
+     - Parameter item: OneDriveアイテム
+     */
+    init(sourceClassName: String, item: ODItem) {
+        // 引数のデータを保存する。
+        self.sourceClassName = sourceClassName
+        self.item = item
 
         // スーパークラスのメソッドを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -346,6 +365,13 @@ class SelectEncodingViewController: BaseTableViewController {
             // GoogleDriveファイル一覧画面の場合
             // GoogleDriveファイル編集画面に遷移する。
             let vc = EditGoogleDriveFileViewController(driveFile: driveFile!, encodingType: encodingType, retCodeType: retCodeType)
+            navigationController?.pushViewController(vc, animated: true)
+            break
+
+        case OneDriveFileListViewController.self.description():
+            // OneDriveファイル一覧画面の場合
+            // OneDriveファイル編集画面に遷移する。
+            let vc = EditOneDriveFileViewController(item: item!, encodingType: encodingType, retCodeType: retCodeType)
             navigationController?.pushViewController(vc, animated: true)
             break
 

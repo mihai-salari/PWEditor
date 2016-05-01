@@ -7,29 +7,506 @@
 //
 
 import UIKit
+import GoogleMobileAds
+import OneDriveSDK
 
-class CreateOneDriveFileViewController: BaseTableViewController {
+/**
+ OneDriveファイル作成画面
 
+ - Version: 1.0 新規作成
+ - Author: paveway.info@gmail.com
+ */
+class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDelegate {
+
+    // MARK: - Constants
+
+    /// 画面タイトル
+    private let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kCreateOneDriveFileScreenTitle)
+
+    /// セクションタイトルリスト
+    private let kSectionTitleList = [
+        LocalizableUtils.getString(LocalizableConst.kCreateOneDriveFileSectionTitleFileName),
+        LocalizableUtils.getString(LocalizableConst.kCreateOneDriveFileSectionTitleFileType)
+    ]
+
+    /// ファイルタイプセルタイトルリスト
+    private let kFileTypeCellTitleList = [
+        LocalizableUtils.getString(LocalizableConst.kCreateOneDriveFileCellTitleFile),
+        LocalizableUtils.getString(LocalizableConst.kCreateOneDriveFileCellTitleDir)
+    ]
+
+    /// セクションインデックス
+    private enum SectionIndex: Int {
+        case FileName = 0
+        case FileType = 1
+    }
+
+    /// ファイルタイプセルインデックス
+    private enum FileTypeCellIndex: Int {
+        case File = 0
+        case Dir = 1
+    }
+
+    // MARK: - Variables
+
+    /// テーブルビュー
+    @IBOutlet weak var tableView: UITableView!
+
+    /// バナービュー
+    @IBOutlet weak var bannerView: GADBannerView!
+
+
+    /// 親ID
+    var parentId: String!
+
+    // MARK: - Initializer
+
+    /**
+     イニシャライザ
+
+     - Parameter coder: デコーダー
+     */
+    required init?(coder aDecoder: NSCoder) {
+        // スーパークラスのメソッドを呼び出す。
+        super.init(coder: aDecoder)
+    }
+
+    /**
+     イニシャライザ
+
+     - Parameter parentId: 親ID
+     */
+    init(parentId: String) {
+        // 引数のデータを保存する。
+        self.parentId = parentId
+
+        // スーパークラスのメソッドを呼び出す。
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    // MARK: - UIViewController
+
+    /**
+     インスタンスが生成された時に呼び出される。
+     */
     override func viewDidLoad() {
+        // スーパークラスのメソッドを呼び出す。
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // 画面タイトルを設定する。
+        navigationItem.title = kScreenTitle
+
+        // 右バーボタンを作成する。
+        createRightBarButton()
+
+        // テーブルビューを設定する。
+        setupTableView(tableView)
+
+        // カスタムテーブルビューセルを設定する。
+        let nib  = UINib(nibName: kLineDataTableViewCellNibName, bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: kLineDataCellName)
+
+        // バナービューを設定する。
+        setupBannerView(bannerView)
     }
 
+    /**
+     メモリ不足の時に呼び出される。
+     */
     override func didReceiveMemoryWarning() {
+        LogUtils.w("memory error.")
+
+        // スーパークラスのメソッドを呼び出す。
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
+    // MARK: - UITableViewDataSource
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    /**
+     セクション数を返却する。
+
+     - Parameter tableView: テーブルビュー
+     - Returns: セクション数
+     */
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return kSectionTitleList.count
     }
-    */
 
+    /**
+     セクションのタイトルを返却する。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter section: セクション番号
+     - Returns: セクションのタイトル
+     */
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return kSectionTitleList[section] as String
+    }
+
+    /**
+     セクション内のセル数を返却する。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter section: セクション番号
+     - Returns: セクション内のセル数
+     */
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case SectionIndex.FileName.rawValue:
+            // ファイル名セクションの場合
+            return 1
+
+        case SectionIndex.FileType.rawValue:
+            // ファイルタイプセクションの場合
+            return kFileTypeCellTitleList.count
+
+        default:
+            // 上記以外
+            return 0;
+        }
+    }
+
+    /**
+     セルを返却する。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter indexPath: インデックスパス
+     - Returns: セル
+     */
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let section = indexPath.section
+        let row = indexPath.row
+
+        var cell: UITableViewCell?
+
+        // セクションにより処理を振り分ける。
+        var title = ""
+        switch section {
+        case SectionIndex.FileName.rawValue:
+            // ファイル名セクションの場合
+            var lineDataCell = tableView.dequeueReusableCellWithIdentifier(kLineDataCellName) as? EnterLineDataTableViewCell
+            if (lineDataCell == nil) {
+                // セルを生成する。
+                lineDataCell = EnterLineDataTableViewCell()
+            }
+
+            let textField = lineDataCell?.textField
+            textField?.delegate = self
+            textField?.keyboardType = .ASCIICapable
+            textField?.returnKeyType = .Done
+            cell = lineDataCell! as UITableViewCell
+            break
+
+        case SectionIndex.FileType.rawValue:
+            // ファイルタイプセクションの場合
+            cell = getTableViewCell(tableView)
+            title = kFileTypeCellTitleList[row]
+            cell!.textLabel?.text = title
+
+            if row == FileTypeCellIndex.File.rawValue {
+                // ファイルタイプがファイルの場合
+                cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+
+            } else {
+                // ファイルタイプがディレクトリの場合
+                cell?.accessoryType = UITableViewCellAccessoryType.None
+            }
+            break
+
+        default:
+            // 上記以外、何もしない。
+            break
+        }
+
+        return cell!
+    }
+
+    // MARK: - UITableViewDelegate
+
+    /**
+     セルが選択された時に呼び出される。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter indexPath: インデックスパス
+     */
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // 選択状態を解除する。
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+        let section = indexPath.section
+        let row = indexPath.row
+
+        switch section {
+        case SectionIndex.FileType.rawValue:
+            // セル位置のセルを取得する。
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+
+            // チェックマークを設定する
+            cell?.accessoryType = .Checkmark
+
+            // 選択されていないセルのチェックマークを外す。
+            let valuesNum = kFileTypeCellTitleList.count
+            for i in 0 ..< valuesNum {
+                if i != row {
+                    let unselectedIndexPath = NSIndexPath(forRow: i, inSection: section)
+                    let unselectedCell = tableView.cellForRowAtIndexPath(unselectedIndexPath)
+                    unselectedCell?.accessoryType = .None
+                }
+            }
+            break
+
+        default:
+            // 上記以外、何もしない。
+            break
+        }
+    }
+
+    // MARK: - UITextFieldDelegate
+
+    /**
+     リターンキーが押下された時に呼び出される。
+
+     - Parameter textField: テキストフィールド
+     - Returns: 処理結果
+     */
+    func textFieldShouldReturn(textField: UITextField) -> Bool{
+        // キーボードを閉じる。
+        let result = textField.resignFirstResponder()
+        return result
+    }
+
+    // MARK: - Button Handler
+
+    /**
+     右バーボタン押下時に呼び出される。
+
+     - Parameter sender: 右バーボタン
+     */
+    override func rightBarButtonPressed(sender: UIButton) {
+        let section = SectionIndex.FileName.rawValue
+        let indexPath = NSIndexPath(forItem: 0, inSection: section)
+        let cell = tableView?.cellForRowAtIndexPath(indexPath) as! EnterLineDataTableViewCell
+        let textField = cell.textField
+        textField.resignFirstResponder()
+
+        // 入力された名前を取得する。
+        let name = textField.text!
+        if name.isEmpty {
+            // 名前が未入力の場合
+            // エラーアラートを表示して、処理終了
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kCreateGoogleDriveFileEnterNameError)
+            let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
+            showAlert(title, message: message, okButtonTitle: okButtonTitle)
+            return
+        }
+
+        // 選択されたファイルタイプを取得する。
+        var fileType = -1
+        let fileTypeSection = SectionIndex.FileType.rawValue
+        let fileTypeRowNum = tableView?.numberOfRowsInSection(fileTypeSection)
+        for (var i = 0; i < fileTypeRowNum; i++) {
+            let indexPath = NSIndexPath(forItem: i, inSection: fileTypeSection)
+            let cell = tableView?.cellForRowAtIndexPath(indexPath)
+            let check = cell?.accessoryType
+
+            if check == UITableViewCellAccessoryType.Checkmark {
+                fileType = indexPath.row
+                break
+            }
+        }
+        if fileType == -1 {
+            // ファイルタイプが取得できない場合、処理終了
+            return
+        }
+
+        // ファイルタイプにより処理を振り分ける。
+        switch fileType {
+        case FileTypeCellIndex.File.rawValue:
+            // ファイルタイプがファイルの場合
+            // ファイルを作成する。
+            self.createFile(name)
+            break
+            
+        case FileTypeCellIndex.Dir.rawValue:
+            // ファイルタイプがディレクトリの場合
+            // ディレクトリを作成する。
+            self.createDir(name)
+            break
+            
+        default:
+            // 上記以外、処理終了
+            return
+        }
+    }
+
+    // MARK: - One Drive API
+
+    /**
+     ファイルを作成する。
+ 
+     - Parameter fileName: ファイル名
+     */
+    private func createFile(fileName: String) {
+        let client = ODClient.loadCurrentClient()
+        if client == nil {
+            // OneDriveが無効な場合
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
+            self.showAlert(title, message: message)
+            return
+        }
+        let baseURL = client.baseURL
+        let accountSession = client.authProvider.accountSession!()
+        let accessToken = accountSession.accessToken
+
+        //let urlString = "\(baseURL)/drive/items/\(parentId)/\(fileName)/content?@name.conflictBehavior=rename"
+        let urlString = "\(baseURL)/drive/items/\(parentId)/children/\(fileName)/content"
+        let url = NSURL(string: urlString)
+        if url == nil {
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlError)
+            showAlert(title, message: message)
+            return
+        }
+        let request = NSMutableURLRequest(URL: url!)
+
+        // HTTPメソッドを設定する。
+        request.HTTPMethod = CommonConst.Http.Method.kPUT
+
+        let contentType = CommonConst.Http.HTTPHeaderField.Key.kContentType
+        let kTextPlain = CommonConst.Http.HTTPHeaderField.Value.kTextPlain
+        request.setValue(kTextPlain, forHTTPHeaderField: contentType)
+
+        let authorization = CommonConst.Http.HTTPHeaderField.Key.kAuthorization
+        let bearer = String(format: CommonConst.Http.HTTPHeaderField.Value.kBearer, accessToken)
+        request.setValue(bearer, forHTTPHeaderField: authorization)
+
+        request.HTTPBody = "".dataUsingEncoding(NSUTF8StringEncoding)
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageHttpRequestError)
+                self.showAlert(title, message: message)
+                return
+            }
+            var message = ""
+            if data != nil {
+                message = String(data: data!, encoding: NSUTF8StringEncoding)!
+            }
+
+            let statusCode = (response as! NSHTTPURLResponse).statusCode
+            switch statusCode {
+            case 200, 201:
+                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                    // 遷移元画面に戻る。
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
+                break
+
+            default:
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageHttpStatusError, statusCode, message)
+                self.showAlert(title, message: message)
+                break
+            }
+        })
+        task.resume()
+    }
+
+    /**
+     ディレクトリを作成する。
+ 
+     - Parameter dirName: ディレクトリ名
+     */
+    private func createDir(dirName: String) {
+        let client = ODClient.loadCurrentClient()
+        if client == nil {
+            // OneDriveが無効な場合
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
+            self.showAlert(title, message: message)
+            return
+        }
+        let baseURL = client.baseURL
+        let accountSession = client.authProvider.accountSession!()
+        let accessToken = accountSession.accessToken
+
+        let url = NSURL(string: "\(baseURL)/drive/items/\(parentId)/children")
+        if url == nil {
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlError)
+            showAlert(title, message: message)
+            return
+        }
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = CommonConst.Http.Method.kPOST
+
+        let contentType = CommonConst.Http.HTTPHeaderField.Key.kContentType
+        let applicationJson = CommonConst.Http.HTTPHeaderField.Value.kApplicationJson
+        request.setValue(applicationJson, forHTTPHeaderField: contentType)
+
+        let authorization = CommonConst.Http.HTTPHeaderField.Key.kAuthorization
+        let bearer = String(format: CommonConst.Http.HTTPHeaderField.Value.kBearer, accessToken)
+        request.setValue(bearer, forHTTPHeaderField: authorization)
+
+        let emptyParams = Dictionary<String, String>()
+        let params = ["name": dirName,
+                      "folder": emptyParams,
+                      "@name.conflictBehavior": "rename"]
+
+        do {
+            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
+        } catch {
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlParamsError)
+            showAlert(title, message: message)
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageHttpRequestError)
+                self.showAlert(title, message: message)
+                return
+            }
+            var message = ""
+            if data != nil {
+                message = String(data: data!, encoding: NSUTF8StringEncoding)!
+            }
+
+            let statusCode = (response as! NSHTTPURLResponse).statusCode
+            switch statusCode {
+            case 200, 201:
+                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                    // 遷移元画面に戻る。
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
+                break
+
+            default:
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageHttpStatusError, statusCode, message)
+                self.showAlert(title, message: message)
+                break
+            }
+        })
+        task.resume()
+    }
 }

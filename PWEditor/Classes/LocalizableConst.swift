@@ -34,12 +34,22 @@ struct LocalizableConst {
     static let kAlertMessageCovertEncodingError = "AlertMessageCovertEncodingError"
     static let kAlertMessageSignOutGoogleDrive = "AlertMessageSignOutGoogleDrive"
     static let kAlertMessageDeleteFileError = "AlertMessageDeleteFileError"
+    static let kAlertMessageOneDriveInvalid = "AlertMessageOneDriveInvalid"
     static let kAlertMessageSignOutOneDrive = "AlertMessageSignOutOneDrive"
+    static let kAlertMessageFileDataNotFound = "AlertMessageFileDataNotFound"
+    static let kAlertMessageGetFileListError = "AlertMessageGetFileListError"
+    static let kAlertMessageGetFileListFailed = "AlertMessageGetFileListFailed"
+
+    static let kAlertMessageUrlError = "AlertMessageUrlError";
+    static let kAlertMessageUrlParamsError = "AlertMessageUrlParamsError";
+    static let kAlertMessageHttpRequestError = "AlertMessageHttpRequestError";
+    static let kAlertMessageHttpStatusError = "AlertMessageHttpStatusError";
 
     // アクションシートタイトル
     static let kActionSheetTitleLocalFile = "ActionSheetTitleLocalFile"
     static let kActionSheetTitleDropboxFile = "ActionSheetTitleDropboxFile"
     static let kActionSheetTitleGoogleDriveFile = "ActionSheetTitleGoogleDriveFile"
+    static let kActionSheetTitleOneDriveFile = "ActionSheetTitleOneDriveFile"
 
     // その他
     static let kFontSize = "FontSize"
@@ -178,6 +188,19 @@ struct LocalizableConst {
     static let kOneDriveFileDetailCellTitleSize = "OneDriveFileDetailCellTitleSize"
     static let kOneDriveFileDetailCellTitleCreatedDateTime = "OneDriveFileDetailCellTitleCreatedDateTime"
     static let kOneDriveFileDetailCellTitleLastModifiedDateTime = "OneDriveFileDetailCellTitleLastModifiedDateTime"
+
+    // OneDriveファイル作成画面
+    static let kCreateOneDriveFileScreenTitle = "CreateOneDriveFileScreenTitle"
+    static let kCreateOneDriveFileSectionTitleFileName = "CreateOneDriveFileSectionTitleFileName"
+    static let kCreateOneDriveFileSectionTitleFileType = "CreateOneDriveFileSectionTitleFileType"
+    static let kCreateOneDriveFileCellTitleFile = "CreateOneDriveFileCellTitleFile"
+    static let kCreateOneDriveFileCellTitleDir = "CreateOneDriveFileCellTitleDir"
+    static let kCreateOneDriveFileEnterNameError = "CreateOneDriveFileEnterNameError"
+
+    // OneDrive編集画面
+    static let kEditOneDriveFileDownloadError = "EditOneDriveFileDownloadError";
+    static let kEditOneDriveFileFilePathInvalid = "EditOneDriveFileFilePathInvalid";
+    static let kEditOneDriveFileDownloadDataError = "EditOneDriveFileDownloadDataError";
 
     // 設定画面
     static let kSettingsScreenTitle = "SettingsScreenTitle"

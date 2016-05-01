@@ -319,7 +319,7 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
         let data = fileData.dataUsingEncoding(encoding)
         if data == nil {
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = "ファイルデータがありません。"
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageFileDataNotFound)
             showAlert(title, message: message)
             return
         }

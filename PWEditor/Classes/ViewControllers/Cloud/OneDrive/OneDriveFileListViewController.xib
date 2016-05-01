@@ -29,7 +29,11 @@
                         <constraint firstAttribute="height" constant="44" id="HGo-UH-qeC"/>
                     </constraints>
                     <items>
-                        <barButtonItem systemItem="add" id="i72-oH-6er"/>
+                        <barButtonItem systemItem="add" id="i72-oH-6er">
+                            <connections>
+                                <action selector="createToolbarButtonPressed:" destination="-1" id="Grn-nW-g5C"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D3T-Pf-2Mh" customClass="GADBannerView">
