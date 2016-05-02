@@ -21,23 +21,23 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
     // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kMenuScreenTitle)
+    private let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kMenuScreenTitle)
 
     /// セクションタイトルリスト
-    let kSectionTitleList = [
+    private let kSectionTitleList = [
         LocalizableUtils.getString(LocalizableConst.kMenuSectionTitleLocal),
         LocalizableUtils.getString(LocalizableConst.kMenuSectionTitleCloud),
         LocalizableUtils.getString(LocalizableConst.kMenuSectionTitleHelp),
     ]
 
     /// ローカルセクションタイトルリスト
-    let kLocalTitleList = [
+    private let kLocalTitleList = [
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleLocalFileList),
 //        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleRecentFileList)
     ]
 
     /// クラウドセクションタイトルリスト
-    let kCloudTitleList = [
+    private let kCloudTitleList = [
 //        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleICloud),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleDropbox),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleGoogleDrive),
@@ -45,7 +45,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
     ]
 
     /// ヘルプセクションタイトルリスト
-    let kHelpTitleList = [
+    private let kHelpTitleList = [
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleSettings),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleAbout),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleHistory),
@@ -53,20 +53,20 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
     ]
 
     /// セクションインデックス
-    enum SectionIndex: Int {
+    private enum SectionIndex: Int {
         case Local = 0
         case Cloud = 1
         case Help = 2
     }
 
     /// ローカルセクションインデックス
-    enum LocalIndex: Int {
+    private enum LocalIndex: Int {
         case LocalFileList = 0
         case RecentFileList = 1
     }
 
     /// クラウドセクションインデックス
-    enum CloudIndex: Int {
+    private enum CloudIndex: Int {
 //        case ICloud = 0
         case Dropbox = 0
         case GoogleDrive = 1
@@ -74,7 +74,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
     }
 
     /// ヘルプセクションインデックス
-    enum HelpIndex: Int {
+    private enum HelpIndex: Int {
         case Settings = 0
         case About = 1
         case History = 2
@@ -82,7 +82,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
     }
 
     /// ルートパス名
-    let kRootPathName = ""
+    private let kRootPathName = ""
 
     // MARK: - Variables
 
@@ -244,7 +244,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
 
             case CloudIndex.Dropbox.rawValue:
                 if Dropbox.authorizedClient != nil {
-                    // Dropboxにログイン済みの場合
+                    // サインイン済みの場合
                     // Dropboxファイル一覧画面に遷移する。
                     let vc = DropboxFileListViewController(pathName: kRootPathName)
                     resetTopView(vc)
@@ -256,7 +256,8 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
                 let appDelegate = EnvUtils.getAppDelegate()
                 let serviceDrive = appDelegate.googleDriveServiceDrive
                 if let authorizer = serviceDrive.authorizer, canAuth = authorizer.canAuthorize where canAuth {
-                    // ログイン済みの場合、GoogleDriveファイル一覧画面を表示する。
+                    // サインイン済みの場合
+                    // GoogleDriveファイル一覧画面に遷移する。
                     let parentId = CommonConst.GoogleDrive.kRootParentId
                     let vc = GoogleDriveFileListViewController(parentId: parentId)
                     resetTopView(vc)
@@ -265,12 +266,18 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
 
             case CloudIndex.OneDrive.rawValue:
                 // OneDriveの場合
-                let itemId = "root"
-                let vc = OneDriveFileListViewController(itemId: itemId)
-                resetTopView(vc)
+                let client = ODClient.loadCurrentClient()
+                if client != nil {
+                    // サインイン済みの場合
+                    // OneDriveファイル一覧画面に遷移する。
+                    let itemId = "root"
+                    let vc = OneDriveFileListViewController(itemId: itemId)
+                    resetTopView(vc)
+                }
                 break
 
             default:
+                // 上記以外、何もしない。
                 break
             }
             break
@@ -360,7 +367,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
      - Parameter authResult: 認証結果
      - Parameter error: エラー情報
      */
-    func viewAuthController(vc: UIViewController, finishedWithAuth authResult: GTMOAuth2Authentication, error: NSError?) {
+    @objc private func viewAuthController(vc: UIViewController, finishedWithAuth authResult: GTMOAuth2Authentication, error: NSError?) {
         let appDelegate = EnvUtils.getAppDelegate()
         let serviceDrive = appDelegate.googleDriveServiceDrive
         if let error = error {

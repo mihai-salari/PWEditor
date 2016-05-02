@@ -357,6 +357,9 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             return
         }
 
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
         // ベースURLを取得する。
         let baseURL = client.baseURL
 
@@ -365,15 +368,18 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
         let accessToken = accountSession.accessToken
 
         // URL文字列を生成する。
-        let urlString = "\(baseURL)/drive/items/\(parentId)/children/\(fileName)/content"
+        let urlString = "\(baseURL)/drive/items/\(self.parentId)/children/\(fileName)/content"
         // URLを生成する。
         let url = NSURL(string: urlString)
         if url == nil {
             // URLが生成できない場合
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
             // エラーアラートを表示して終了する。
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlError)
-            showAlert(title, message: message)
+            self.showAlert(title, message: message)
             return
         }
 
@@ -400,12 +406,8 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
         // 新規作成の場合、データは空とする。
         request.HTTPBody = NSData()
 
-        // ネットワークアクセス通知を表示する。
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-
         // 通信タスクを生成する。
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
-            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             // ネットワークアクセス通知を消す。
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
@@ -417,6 +419,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 self.showAlert(title, message: message)
                 return
             }
+
             var message = ""
             if data != nil {
                 message = String(data: data!, encoding: NSUTF8StringEncoding)!
@@ -428,7 +431,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             switch statusCode {
             case 200, 201:
                 // 正常終了の場合
-                // UI操作はメインスレッドを行う。
+                // UI処理はメインスレッドで行う。
                 dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                     // 遷移元画面に戻る。
                     self.navigationController?.popViewControllerAnimated(true)
@@ -444,6 +447,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 break
             }
         })
+        // HTTP通信タスクを実行する。
         task.resume()
     }
 
@@ -462,6 +466,9 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             return
         }
 
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
         // ベースURLを取得する。
         let baseURL = client.baseURL
 
@@ -470,15 +477,18 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
         let accessToken = accountSession.accessToken
 
         // URL文字列を生成する。
-        let urlString = "\(baseURL)/drive/items/\(parentId)/children"
+        let urlString = "\(baseURL)/drive/items/\(self.parentId)/children"
         // URLを生成する。
         let url = NSURL(string: urlString)
         if url == nil {
             // URLを生成できない場合
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
             // エラーアラートを表示して終了する。
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlError)
-            showAlert(title, message: message)
+            self.showAlert(title, message: message)
             return
         }
 
@@ -504,23 +514,19 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
         // HTTPパラメータを生成し、設定する。
         let emptyParams = Dictionary<String, String>()
         let params = ["name": dirName,
-                      "folder": emptyParams,
-                      "@name.conflictBehavior": "rename"]
+                    "folder": emptyParams,
+                    "@name.conflictBehavior": "rename"]
         do {
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
         } catch {
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlParamsError)
-            showAlert(title, message: message)
+            self.showAlert(title, message: message)
             return
         }
 
-        // ネットワークアクセス通知を表示する。
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-
         // HTTP通信タスクを生成する。
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
-            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             // ネットワークアクセス通知を消す。
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
@@ -532,6 +538,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 self.showAlert(title, message: message)
                 return
             }
+
             var message = ""
             if data != nil {
                 // データがある場合
@@ -545,7 +552,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             switch statusCode {
             case 200, 201:
                 // 正常終了の場合
-                // UI操作はメインスレッドを行う。
+                // UI処理はメインスレッドで行う。
                 dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                     // 遷移元画面に戻る。
                     self.navigationController?.popViewControllerAnimated(true)
@@ -561,7 +568,6 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 break
             }
         })
-
         // HTTP通信タスクを実行する。
         task.resume()
     }

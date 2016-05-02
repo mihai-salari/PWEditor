@@ -71,8 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // OneDriveクライアントIDを取得する。
         let oneDriveClientId = ConfigUtils.getConfigValue(CommonConst.ConfigKey.kOneDriveClientId)
-        let scopse = CommonConst.OneDrive.kScopes
-        ODClient.setMicrosoftAccountAppId(oneDriveClientId, scopes: scopse)
+        let scopes = CommonConst.OneDrive.kScopes
+        ODClient.setMicrosoftAccountAppId(oneDriveClientId, scopes: scopes)
 
         // トップ画面を作成する。
         let topVc = LocalFileListViewController(pathName: "")

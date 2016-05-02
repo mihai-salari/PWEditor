@@ -384,7 +384,7 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
         // OneDriveファイルリストを取得する。
-        client.drive().items(itemId).children().request().getWithCompletion( { (children: ODCollection?, nextRequest: ODChildrenCollectionRequest?, error: NSError?) -> Void in
+        client.drive().items(self.itemId).children().request().getWithCompletion( { (children: ODCollection?, nextRequest: ODChildrenCollectionRequest?, error: NSError?) -> Void in
             // ネットワークアクセス通知を消す。
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
@@ -411,6 +411,7 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
                 self.itemList.append(item)
             }
 
+            // UI操作はメインスレッドで行う。
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 // テーブルビューを更新する。
                 self.tableView.reloadData()
@@ -453,7 +454,8 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
             // OneDriveファイルリストから削除する。
             self.itemList.removeAtIndex(index)
 
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            // UI処理はメインスレッドで行う。
+            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                 // テーブルビューを更新する。
                 self.tableView.reloadData()
             })

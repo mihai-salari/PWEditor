@@ -431,7 +431,6 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
                 } else {
                     // 未サインインの場合
                     // サインインする。
-                    //ODClient.authenticatedClientWithCompletion( { (client: ODClient?, error: NSError?) -> Void in
                     ODClient.clientWithCompletion( { (client: ODClient?, error: NSError?) -> Void in
                         if error != nil {
                             // エラーの場合  

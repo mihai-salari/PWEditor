@@ -22,6 +22,7 @@ struct LocalizableConst {
     static let kAlertTitleError = "AlertTitleError"
     static let kAlertTitleAbout = "AlertTitleAbout"
     static let kAlertTitleConfirm = "AlertTitleConfirm"
+    static let kAlertTitleProcessing = "AlertTitleProcessing"
 
     // アラートメッセージ
     static let kAlertMessageAbout = "AlertMessageAbout"
@@ -39,6 +40,7 @@ struct LocalizableConst {
     static let kAlertMessageFileDataNotFound = "AlertMessageFileDataNotFound"
     static let kAlertMessageGetFileListError = "AlertMessageGetFileListError"
     static let kAlertMessageGetFileListFailed = "AlertMessageGetFileListFailed"
+    static let kAlertMessageProcessing = "AlertMessageProcessing"
 
     static let kAlertMessageUrlError = "AlertMessageUrlError";
     static let kAlertMessageUrlParamsError = "AlertMessageUrlParamsError";

@@ -50,6 +50,12 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
     /// 閉じるボタンタイトル
     let kCloseButtonTitle = "↓"
 
+    /// タイムアウト間隔(秒)
+    let kTimeoutInterval = 1.0
+
+    /// タイムアウトカウント
+    let kTimeoutCount = 30
+
     // MARK: - Variables
 
     /// 対象のビュー
@@ -61,6 +67,13 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
     var undoButton: UIBarButtonItem?
 
     var redoButton: UIBarButtonItem?
+
+    /// 処理中アラート
+    var processingAlert: UIAlertController?
+
+    weak var timeoutTimer: NSTimer?
+
+    var timeoutCount: Int?
 
     // MARK: - UIViewControllerDelegate
 
@@ -151,7 +164,7 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
         appDelegate.slidingViewController = slidingViewController
     }
 
-    // MARK: - Button handler
+    // MARK: - Navigation bar button
 
     /**
      左バーボタンが押下された時に呼び出される。
@@ -238,6 +251,94 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
         alert.addAction(okAction)
         presentViewController(alert, animated: true, completion: nil)
     }
+
+    // MARK: - Processing alert
+
+    /**
+     処理中アラートを表示する。
+     */
+    func showProcessingAlert(completionHandler: (() -> Void)? = nil) {
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        if processingAlert != nil {
+            // 処理中アラートが表示中の場合、何もしない。
+            return
+        }
+
+        // 処理中アラートを生成し、表示する。
+        let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleProcessing)
+        let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageProcessing)
+        processingAlert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        presentViewController(processingAlert!, animated: true, completion: { () -> Void in
+            self.startTimeoutTimer()
+            completionHandler?()
+        })
+    }
+
+    /**
+     処理中アラートを閉じる。
+     */
+    func dismissProcessingAlert(completionHandler: (() -> Void)? = nil) {
+        // タイムアウトタイマーを停止する。
+        stopTimeoutTimer()
+
+        if processingAlert != nil {
+            // 処理中アラートが有効な場合、処理中アラートを閉じる。
+            processingAlert?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                self.processingAlert = nil
+
+                // ネットワークアクセス通知を消す。
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+                completionHandler?()
+            })
+
+        } else {
+            // 念のため
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            completionHandler?()
+        }
+    }
+
+    /**
+     タイムアウトタイマーを開始する。
+     */
+    func startTimeoutTimer() {
+        timeoutCount = kTimeoutCount
+        let selector = #selector(BaseViewController.timeout(_:))
+        timeoutTimer = NSTimer.scheduledTimerWithTimeInterval(kTimeoutInterval, target: self, selector: selector, userInfo: nil, repeats: true)
+        timeoutTimer?.fire()
+    }
+
+    /**
+     タイムアウトタイマーを停止する。
+     */
+    func stopTimeoutTimer() {
+        if timeoutTimer != nil {
+            // タイムアウトタイマーが有効な場合、タイマーを停止する。
+            timeoutTimer?.invalidate()
+            timeoutTimer = nil
+        }
+    }
+
+    /**
+     タイムアウト間隔ごとに呼び出される。
+     */
+    func timeout(timer: NSTimer) {
+        if timeoutCount == 0 {
+            // タイムアウトの場合、処理中アラートを閉じる。
+            dismissProcessingAlert()
+
+        } else {
+            // タイムアウトではない場合、タイムアウトカウントを更新する。
+            timeoutCount! -= 1
+        }
+    }
+
+    // MARK: - Rest screen
 
     /**
      画面構成をリセットする。

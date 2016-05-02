@@ -256,79 +256,79 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
         // ネットワークアクセス通知を表示する。
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
-        client.drive().items(item.id).contentRequest().downloadWithCompletion( { (filePath: NSURL?, urlResponse: NSURLResponse?, error: NSError?) -> Void in
-            // ネットワークアクセス通知を消す。
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            client.drive().items(self.item.id).contentRequest().downloadWithCompletion( { (filePath: NSURL?, urlResponse: NSURLResponse?, error: NSError?) -> Void in
+                // ネットワークアクセス通知を消す。
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
-            if error != nil {
-                // エラーの場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let fileName = self.item.name
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileDownloadError, fileName)
-                self.showAlert(title, message: message) {
-                    // 遷移元画面に戻る。
-                    self.popViewController()
+                if error != nil {
+                    // エラーの場合
+                    let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                    let fileName = self.item.name
+                    let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileDownloadError, fileName)
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController()
+                    }
+                    return
                 }
-                return
-            }
 
-            if filePath == nil {
-                // ファイルパスが取得できない場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let fileName = self.item.name
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileFilePathInvalid, fileName)
-                self.showAlert(title, message: message) {
-                    // 遷移元画面に戻る。
-                    self.popViewController()
+                if filePath == nil {
+                    // ファイルパスが取得できない場合
+                    let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                    let fileName = self.item.name
+                    let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileFilePathInvalid, fileName)
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController()
+                    }
+                    return
                 }
-                return
-            }
 
-            let data = NSData(contentsOfURL: filePath!)
-            if data == nil {
-                // データが取得できない場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let fileName = self.item.name
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileDownloadDataError, fileName)
-                self.showAlert(title, message: message) {
-                    // 遷移元画面に戻る。
-                    self.popViewController()
+                let data = NSData(contentsOfURL: filePath!)
+                if data == nil {
+                    // データが取得できない場合
+                    let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                    let fileName = self.item.name
+                    let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileDownloadDataError, fileName)
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController()
+                    }
+                    return
                 }
-                return
-            }
 
-            if !FileUtils.isTextData(data!) {
-                // テキストデータではない場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageNotTextFileError)
-                self.showAlert(title, message: message) {
-                    // 遷移元画面に戻る。
-                    self.popViewController()
+                if !FileUtils.isTextData(data!) {
+                    // テキストデータではない場合
+                    let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                    let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageNotTextFileError)
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController()
+                    }
+                    return
                 }
-                return
-            }
 
-            let text = String(data: data!, encoding: self.encoding)
-            if text == nil {
-                // 文字列に変換できない場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCovertEncodingError)
-                self.showAlert(title, message: message) {
-                    // 遷移元画面に戻る。
-                    self.popViewController()
+                let text = String(data: data!, encoding: self.encoding)
+                if text == nil {
+                    // 文字列に変換できない場合
+                    let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                    let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCovertEncodingError)
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController()
+                    }
+                    return
                 }
-                return
-            }
 
-            // UI操作はメインスレッドで行う。
-            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-                // 右バーボタンを有効にする。
-                self.navigationItem.rightBarButtonItem?.enabled = true
+                // UI操作はメインスレッドで行う。
+                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                    // 右バーボタンを有効にする。
+                    self.navigationItem.rightBarButtonItem?.enabled = true
 
-                // ファイルデータ文字列をテキストビューに設定する。
-                self.myView.textView.text = text
+                    // ファイルデータ文字列をテキストビューに設定する。
+                    self.myView.textView.text = text
+                })
             })
-        })
     }
 
     /**
@@ -361,7 +361,7 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
         // ファイルデータをアップロードする。
-        client.drive().items(item.id).contentRequest().uploadFromData(data, completion: { (item: ODItem?, error: NSError?) -> Void in
+        client.drive().items(self.item.id).contentRequest().uploadFromData(data, completion: { (item: ODItem?, error: NSError?) -> Void in
             // ネットワークアクセス通知を消す。
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 

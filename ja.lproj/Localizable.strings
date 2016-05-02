@@ -19,6 +19,7 @@ ButtonTitleOpenChar = "文字エンコーディングを指定して開く";
 AlertTitleError = "エラー";
 AlertTitleConfirm = "確認";
 AlertTitleAbout = "%@ Ver.%@";
+AlertTitleProcessing = "処理中";
 
 // アラートメッセージ
 AlertMessageAbout = "Text editor for source code. \nCopyright(C) 2016 paveway.info.\nAll rights reserved.";
@@ -40,6 +41,7 @@ AlertMessageUrlError = "不正なURLです。";
 AlertMessageUrlParamsError = "不正なURLパラメータです。";
 AlertMessageHttpRequestError = "HTTP通信でエラーが発生しました。";
 AlertMessageHttpStatusError = "HTTP通信結果がエラーです。\nエラーコード=%d\nエラーメッセージ=%@";
+AlertMessageProcessing = "しばらくお待ちください。";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "ローカルファイル操作";
