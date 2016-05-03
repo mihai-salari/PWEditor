@@ -341,7 +341,7 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
             if error != nil {
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = error.description
+                let message = error.localizedDescription
                 self.showAlert(title, message: message)
                 return
             }

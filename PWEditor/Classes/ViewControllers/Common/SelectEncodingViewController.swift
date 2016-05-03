@@ -371,7 +371,7 @@ class SelectEncodingViewController: BaseTableViewController {
         case OneDriveFileListViewController.self.description():
             // OneDriveファイル一覧画面の場合
             // OneDriveファイル編集画面に遷移する。
-            let vc = EditOneDriveFileViewController(item: item!, encodingType: encodingType, retCodeType: retCodeType)
+            let vc = EditOneDriveFileViewController(item: item!, encodingType: encodingType, retCodeType: retCodeType, popType: true)
             navigationController?.pushViewController(vc, animated: true)
             break
 

@@ -38,6 +38,8 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
     /// 改行コードタイプ
     var retCodeType: Int!
 
+    var popType: Bool!
+
     /// プレオフセット
     var preOffset: CGPoint?
 
@@ -60,12 +62,13 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
      - Parameter encodingType: 文字エンコーディングタイプ(デフォルト"UTF-8")
      - Parameter retCodeType: 改行コードタイプ(デフォルト"Unix(LF)")
      */
-    init(item: ODItem, encodingType: Int = CommonConst.EncodingType.Utf8.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue) {
+    init(item: ODItem, encodingType: Int = CommonConst.EncodingType.Utf8.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue, popType: Bool = false) {
         // 引数を保存する。
         self.item = item
         self.encodingType = encodingType
         self.retCodeType = retCodeType
         self.encoding = CommonConst.EncodingList[self.encodingType]
+        self.popType = popType
 
         // スーパークラスのイニシャライザを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -388,23 +391,22 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
      文字エンコーディング選択画面から遷移した場合、OneDriveファイル一覧画面に戻るための対応
      */
     func popViewController() {
-        // 画面遷移数を取得する。
-        let count = navigationController?.viewControllers.count
-        // 最後に表示した画面から画面遷移数確認する。
-        for var i = count! - 1; i >= 0; i-- {
-            let vc = navigationController?.viewControllers[i]
-            if vc!.dynamicType == OneDriveFileListViewController.self {
-                // 表示した画面がOneDriveファイル一覧画面の場合
-                // 画面を戻す。
-                navigationController?.popToViewController(vc!, animated: true)
-                break
-
-            } else if vc!.dynamicType == EditOneDriveFileViewController.self {
-                // 表示した画面がOneDriveファイル編集画面の場合
-                // 画面を戻す。
-                navigationController?.popToViewController(vc!, animated: true)
-                break
+        if popType.boolValue {
+            // 画面遷移数を取得する。
+            let count = navigationController?.viewControllers.count
+            // 最後に表示した画面から画面遷移数確認する。
+            for var i = count! - 1; i >= 0; i-- {
+                let vc = navigationController?.viewControllers[i]
+                if vc!.dynamicType == OneDriveFileListViewController.self {
+                    // 表示した画面がOneDriveファイル一覧画面の場合
+                    // 画面を戻す。
+                    navigationController?.popToViewController(vc!, animated: true)
+                    break
+                }
             }
+
+        } else {
+            navigationController?.popViewControllerAnimated(true)
         }
     }
 }
