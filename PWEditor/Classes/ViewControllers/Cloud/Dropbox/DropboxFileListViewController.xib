@@ -29,7 +29,11 @@
                         <constraint firstAttribute="height" constant="44" id="QaY-2x-Eoj"/>
                     </constraints>
                     <items>
-                        <barButtonItem systemItem="add" id="Wg3-lr-CuQ"/>
+                        <barButtonItem systemItem="add" id="Wg3-lr-CuQ">
+                            <connections>
+                                <action selector="addToolbarButtonPressed:" destination="-1" id="m1Y-Hd-ZZQ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="oTN-m8-NvS"/>
                     </items>
                 </toolbar>

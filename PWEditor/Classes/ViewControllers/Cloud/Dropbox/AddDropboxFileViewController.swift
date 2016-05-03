@@ -365,9 +365,15 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
             return
         }
 
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
         let fileData = NSData()
         let filePathName = "\(pathName)/\(fileName)"
         client!.files.upload(path: filePathName, body: fileData).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            
             if error != nil || response == nil {
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
@@ -399,8 +405,14 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
             return
         }
 
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
         let dirName = "\(pathName)/\(dirName)"
         client!.files.createFolder(path: dirName).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
             if error != nil || response == nil {
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)

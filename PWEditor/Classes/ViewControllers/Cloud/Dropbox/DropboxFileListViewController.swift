@@ -382,8 +382,14 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
             return
         }
 
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
         // ディレクトリ内のファイル一覧を取得する。
         client!.files.listFolder(path: pathName).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
             if error != nil || response == nil {
                 // エラーの場合
                 // エラーアラートを表示する。
@@ -448,9 +454,15 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
             return
         }
 
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
         // ファイルを削除する。
         let filePathName = "\(pathName)/\(name)"
         client!.files.delete(path: filePathName).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
             if error != nil || response == nil {
                 // エラーの場合
                 // エラーアラートを表示する。

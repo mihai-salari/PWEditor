@@ -180,6 +180,9 @@ class OneDriveFileDetailViewController: BaseTableViewController {
      - Parameter sender: 編集ツールバーボタン
      */
     @IBAction func editToolbarButtonPressed(sender: AnyObject) {
+        // OneDriveファイル編集画面に遷移する。
+        let vc = EditOneDriveFileViewController(item: item)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     /**
@@ -188,5 +191,71 @@ class OneDriveFileDetailViewController: BaseTableViewController {
      - Parameter sender: 削除ツールバーボタン
      */
     @IBAction func deleteToolbarButtonPressed(sender: AnyObject) {
+        // ファイル削除確認アラートを表示する。
+        showDeleteFileConfirmAlert()
+    }
+
+    /**
+     ファイル削除確認アラートを表示する。
+     */
+    private func showDeleteFileConfirmAlert() {
+        // ファイル削除確認アラートを生成する。
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kAlertTitleConfirm)
+        let name = item.name
+        let alertMessage = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageDeleteConfirm, name)
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .Alert)
+
+        // キャンセルボタンを生成する。
+        let cancelButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+        // 削除ボタンを生成する。
+        let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+        let okAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // 削除する。
+            self.deleteOneDriveFile()
+        })
+        alert.addAction(okAction)
+
+        // アラートを表示する。
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    /**
+     OneDriveファイルを削除する。
+     */
+    func deleteOneDriveFile() {
+        let client = ODClient.loadCurrentClient()
+        if client == nil {
+            // OneDriveが無効な場合
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
+            self.showAlert(title, message: message)
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        let itemId = item.id
+        client.drive().items(itemId).request().deleteWithCompletion( { (error: NSError?) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                // エラーの場合、エラーアラートを表示して終了する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDeleteFileError)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            // UI処理はメインスレッドで行う。
+            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                // 遷移元画面に戻る。
+                self.navigationController?.popViewControllerAnimated(true)
+            })
+        })
     }
 }

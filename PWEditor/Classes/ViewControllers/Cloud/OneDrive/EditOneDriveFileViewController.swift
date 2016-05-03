@@ -398,6 +398,12 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
                 // 画面を戻す。
                 navigationController?.popToViewController(vc!, animated: true)
                 break
+
+            } else if vc!.dynamicType == EditOneDriveFileViewController.self {
+                // 表示した画面がOneDriveファイル編集画面の場合
+                // 画面を戻す。
+                navigationController?.popToViewController(vc!, animated: true)
+                break
             }
         }
     }

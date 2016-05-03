@@ -318,9 +318,15 @@ class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
             return directoryURL.URLByAppendingPathComponent(pathComponent)
         }
 
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
         // Dropboxファイルをダウンロードする。
         let filePathName = "\(pathName)/\(fileName)"
         client!.files.download(path: filePathName, destination: destination).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
             if error != nil || response == nil {
                 // エラーの場合
                 // エラーアラートを表示する。
@@ -416,12 +422,18 @@ class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
             return
         }
 
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
         // ファイルデータをアップロードする。
         let filePathName = "\(pathName)/\(fileName)"
         let fileData = fileDataString.dataUsingEncoding(encoding, allowLossyConversion: false)
         let rev = downloadFileInfo!.rev
         let date = NSDate()
         client!.files.upload(path: filePathName, mode: .Update(rev), clientModified: date, body: fileData!).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
             if error != nil || response == nil {
                 // エラーの場合
                 // エラーアラートを表示する。
