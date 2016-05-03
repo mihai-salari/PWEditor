@@ -1,5 +1,5 @@
 //
-//  AddDropboxFileViewController.swift
+//  CreateDropboxFileViewController.swift
 //  PWEditor
 //
 //  Created by 二俣征嗣 on 2016/03/01.
@@ -11,28 +11,28 @@ import GoogleMobileAds
 import SwiftyDropbox
 
 /**
- Dropboxファイル追加画面クラス
+ Dropboxファイル作成画面クラス
 
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
+class CreateDropboxFileViewController: BaseTableViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
 
     // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kAddDropboxFileScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kCreateDropboxFileScreenTitle)
 
     /// セクションタイトルリスト
     let kSectionTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kAddDropboxFileSectionTitleFileName),
-        LocalizableUtils.getString(LocalizableConst.kAddDropboxFileSectionTitleFileType)
+        LocalizableUtils.getString(LocalizableConst.kCreateDropboxFileSectionTitleFileName),
+        LocalizableUtils.getString(LocalizableConst.kCreateDropboxFileSectionTitleFileType)
     ]
 
     /// ファイルタイプセルタイトルリスト
     let kFileTypeCellTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kAddDropboxFileCellTitleFile),
-        LocalizableUtils.getString(LocalizableConst.kAddDropboxFileCellTitleDir)
+        LocalizableUtils.getString(LocalizableConst.kCreateDropboxFileCellTitleFile),
+        LocalizableUtils.getString(LocalizableConst.kCreateDropboxFileCellTitleDir)
     ]
 
     /// セクションインデックス
@@ -303,7 +303,7 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
             // 名前が未入力の場合
             // エラーアラートを表示して、処理終了
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAddDropboxFileEnterNameError)
+            let message = LocalizableUtils.getString(LocalizableConst.kCreateDropboxFileEnterNameError)
             let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
             showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: nil)
             return
@@ -377,7 +377,7 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
             if error != nil || response == nil {
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAddDropboxFileCreateError, fileName)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kCreateDropboxFileCreateError, fileName)
                 self.showAlert(title, message: message, handler: { () -> Void in
                     // 遷移元画面に戻る。
                     self.navigationController?.popViewControllerAnimated(true)
@@ -416,7 +416,7 @@ class AddDropboxFileViewController: BaseTableViewController, UIGestureRecognizer
             if error != nil || response == nil {
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAddDropboxFileCreateError, dirName)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kCreateDropboxFileCreateError, dirName)
                 self.showAlert(title, message: message, handler: { () -> Void in
                     // 遷移元画面に戻る。
                     self.navigationController?.popViewControllerAnimated(true)

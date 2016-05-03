@@ -130,26 +130,26 @@ struct LocalizableConst {
     static let kDropboxFileListScreenTitle = "DropboxFileListScreenTitle"
     static let kDropboxFileListGetFileInfoListError = "DropboxFileListGetFileInfoListError"
 
-    // Dropboxファイル情報画面
-    static let kDropboxFileInfoScreenTitle = "DropboxFileInfoScreenTitle"
-    static let kDropboxFileInfoCellTitleId = "DropboxFileInfoCellTitleId"
-    static let kDropboxFileInfoCellTitleName = "DropboxFileInfoCellTitleName"
-    static let kDropboxFileInfoCellTitlePathLower = "DropboxFileInfoCellTitlePathLower"
-    static let kDropboxFileInfoCellTitleSize = "DropboxFileInfoCellTitleSize"
-    static let kDropboxFileInfoCellTitleRev = "DropboxFileInfoCellTitleRev"
-    static let kDropboxFileInfoCellTitleServerModified = "DropboxFileInfoCellTitleServerModified"
-    static let kDropboxFileInfoCellTitleClientModified = "DropboxFileInfoCellTitleClientModified"
+    // Dropboxファイル詳細画面
+    static let kDropboxFileDetailScreenTitle = "DropboxFileDetailScreenTitle"
+    static let kDropboxFileDetailCellTitleId = "DropboxFileDetailCellTitleId"
+    static let kDropboxFileDetailCellTitleName = "DropboxFileDetailCellTitleName"
+    static let kDropboxFileDetailCellTitlePathLower = "DropboxFileDetailCellTitlePathLower"
+    static let kDropboxFileDetailCellTitleSize = "DropboxFileDetailCellTitleSize"
+    static let kDropboxFileDetailCellTitleRev = "DropboxFileDetailCellTitleRev"
+    static let kDropboxFileDetailCellTitleServerModified = "DropboxFileDetailCellTitleServerModified"
+    static let kDropboxFileDetailCellTitleClientModified = "DropboxFileDetailCellTitleClientModified"
 
-    // Dropboxファイル追加画面
-    static let kAddDropboxFileScreenTitle = "AddDropboxFileScreenTitle"
-    static let kAddDropboxFileSectionTitleFileName = "AddDropboxFileSectionTitleFileName"
-    static let kAddDropboxFileSectionTitleFileType = "AddDropboxFileSectionTitleFileType"
-    static let kAddDropboxFileCellTitleFile = "AddDropboxFileCellTitleFile"
-    static let kAddDropboxFileCellTitleDir = "AddDropboxFileCellTitleDir"
-    static let kAddDropboxFileEnterNameError = "AddDropboxFileEnterNameError"
-    static let kAddDropboxGetMetaDataError = "AddDropboxGetMetaDataError"
-    static let kAddDropboxFileSameNameError = "AddDropboxFileSameNameError"
-    static let kAddDropboxFileCreateError = "AddDropboxFileCreateError"
+    // Dropboxファイル作成画面
+    static let kCreateDropboxFileScreenTitle = "CreateDropboxFileScreenTitle"
+    static let kCreateDropboxFileSectionTitleFileName = "CreateDropboxFileSectionTitleFileName"
+    static let kCreateDropboxFileSectionTitleFileType = "CreateDropboxFileSectionTitleFileType"
+    static let kCreateDropboxFileCellTitleFile = "CreateDropboxFileCellTitleFile"
+    static let kCreateDropboxFileCellTitleDir = "CreateDropboxFileCellTitleDir"
+    static let kCreateDropboxFileEnterNameError = "CreateDropboxFileEnterNameError"
+    static let kCreateDropboxFileGetMetaDataError = "CreateDropboxFileGetMetaDataError"
+    static let kCreateDropboxFileSameNameError = "CreateDropboxFileSameNameError"
+    static let kCreateDropboxFileCreateError = "CreateDropboxFileCreateError"
 
     // Dropboxファイル編集画面
     static let kEditDropboxFileDownloadError = "EditDropboxFileDownloadError"

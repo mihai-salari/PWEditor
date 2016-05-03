@@ -124,26 +124,26 @@ ICloudFileListScreenTitle = "iCloud file list";
 DropboxFileListScreenTitle = "Dropbox file list";
 DropboxFileListGetFileInfoListError = "Get file info list failed.";
 
-// Dropboxファイル情報画面
-DropboxFileInfoScreenTitle = "Dropbox file info";
-DropboxFileInfoCellTitleId = "ID";
-DropboxFileInfoCellTitleName = "File name";
-DropboxFileInfoCellTitlePathLower = "Path name";
-DropboxFileInfoCellTitleSize = "Size";
-DropboxFileInfoCellTitleRev = "Rev";
-DropboxFileInfoCellTitleServerModified = "Server modified";
-DropboxFileInfoCellTitleClientModified = "Client modified";
+// Dropboxファイル詳細画面
+DropboxFileDetailScreenTitle = "Dropbox file detail";
+DropboxFileDetailCellTitleId = "ID";
+DropboxFileDetailCellTitleName = "File name";
+DropboxFileDetailCellTitlePathLower = "Path name";
+DropboxFileDetailCellTitleSize = "Size";
+DropboxFileDetailCellTitleRev = "Rev";
+DropboxFileDetailCellTitleServerModified = "Server modified";
+DropboxFileDetailCellTitleClientModified = "Client modified";
 
-// Dropboxファイル追加画面
-AddDropboxFileScreenTitle = "Add dropbox file";
-AddDropboxFileSectionTitleFileName = "Name";
-AddDropboxFileSectionTitleFileType = "Type";
-AddDropboxFileCellTitleFile = "File";
-AddDropboxFileCellTitleDir = "Directory";
-AddDropboxFileEnterNameError = "Please enter a name.";
-AddDropboxGetMetaDataError = "Get file information failed.";
-AddDropboxFileSameNameError = "Exist same name file or directory.";
-AddDropboxFileCreateError = "Create %@ failed.";
+// Dropboxファイル作成画面
+CreateDropboxFileScreenTitle = "Create dropbox file";
+CreateDropboxFileSectionTitleFileName = "Name";
+CreateDropboxFileSectionTitleFileType = "Type";
+CreateDropboxFileCellTitleFile = "File";
+CreateDropboxFileCellTitleDir = "Directory";
+CreateDropboxFileEnterNameError = "Please enter a name.";
+CreateDropboxFileGetMetaDataError = "Get file information failed.";
+CreateDropboxFileSameNameError = "Exist same name file or directory.";
+CreateDropboxFileCreateError = "Create %@ failed.";
 
 // Dropboxファイル編集画面
 EditDropboxFileDownloadError = "Download %@ failed.";

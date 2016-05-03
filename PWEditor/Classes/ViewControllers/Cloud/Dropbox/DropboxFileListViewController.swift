@@ -227,7 +227,7 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
         }
 
         let fileInfo = fileInfoList[row]
-        let vc = DropboxFileInfoViewController(fileInfo: fileInfo)
+        let vc = DropboxFileDetailViewController(fileInfo: fileInfo)
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -275,8 +275,8 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
      - Parameter sender: 追加ツールバーボタン
      */
     @IBAction func addToolbarButtonPressed(sender: AnyObject) {
-        // Dropboxファイル追加画面に遷移する。
-        let vc = AddDropboxFileViewController(pathName: pathName)
+        // Dropboxファイル作成画面に遷移する。
+        let vc = CreateDropboxFileViewController(pathName: pathName)
         navigationController?.pushViewController(vc, animated: true)
     }
 

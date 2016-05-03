@@ -124,26 +124,26 @@ ICloudFileListScreenTitle = "iCloudファイル一覧";
 DropboxFileListScreenTitle = "Dropboxファイル一覧";
 DropboxFileListGetFileInfoListError = "ファイル情報一覧を取得できませんでした。";
 
-// Dropboxファイル情報画面
-DropboxFileInfoScreenTitle = "Dropboxファイル情報";
-DropboxFileInfoCellTitleId = "ID";
-DropboxFileInfoCellTitleName = "ファイル名";
-DropboxFileInfoCellTitlePathLower = "パス名";
-DropboxFileInfoCellTitleSize = "サイズ";
-DropboxFileInfoCellTitleRev = "Rev";
-DropboxFileInfoCellTitleServerModified = "サーバ更新日時";
-DropboxFileInfoCellTitleClientModified = "クライアント更新日時";
+// Dropboxファイル詳細画面
+DropboxFileDetailScreenTitle = "Dropboxファイル詳細";
+DropboxFileDetailCellTitleId = "ID";
+DropboxFileDetailCellTitleName = "ファイル名";
+DropboxFileDetailCellTitlePathLower = "パス名";
+DropboxFileDetailCellTitleSize = "サイズ";
+DropboxFileDetailCellTitleRev = "Rev";
+DropboxFileDetailCellTitleServerModified = "サーバ更新日時";
+DropboxFileDetailCellTitleClientModified = "クライアント更新日時";
 
-// Dropboxファイル追加画面
-AddDropboxFileScreenTitle = "Dropboxファイル追加";
-AddDropboxFileSectionTitleFileName = "名前";
-AddDropboxFileSectionTitleFileType = "タイプ";
-AddDropboxFileCellTitleFile = "ファイル";
-AddDropboxFileCellTitleDir = "ディレクトリ";
-AddDropboxFileEnterNameError = "名前を入力してください。";
-AddDropboxGetMetaDataError = "ファイル情報が取得できませんでした。";
-AddDropboxFileSameNameError = "同名のファイルまたはディレクトリが存在します。";
-AddDropboxFileCreateError = "%@を作成できませんでした。";
+// Dropboxファイル作成画面
+CreateDropboxFileScreenTitle = "Dropboxファイル作成";
+CreateDropboxFileSectionTitleFileName = "名前";
+CreateDropboxFileSectionTitleFileType = "タイプ";
+CreateDropboxFileCellTitleFile = "ファイル";
+CreateDropboxFileCellTitleDir = "ディレクトリ";
+CreateDropboxFileEnterNameError = "名前を入力してください。";
+CreateDropboxFileGetMetaDataError = "ファイル情報が取得できませんでした。";
+CreateDropboxFileSameNameError = "同名のファイルまたはディレクトリが存在します。";
+CreateDropboxFileCreateError = "%@を作成できませんでした。";
 
 // Dropboxファイル編集画面
 EditDropboxFileDownloadError = "%@をダウンロードできませんでした。";

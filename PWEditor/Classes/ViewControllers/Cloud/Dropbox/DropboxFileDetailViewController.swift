@@ -1,5 +1,5 @@
 //
-//  DropboxFileInfoViewController.swift
+//  DropboxFileDetailViewController.swift
 //  PWEditor
 //
 //  Created by 二俣征嗣 on 2016/03/01.
@@ -9,12 +9,12 @@
 import UIKit
 import GoogleMobileAds
 
-class DropboxFileInfoViewController: BaseTableViewController {
+class DropboxFileDetailViewController: BaseTableViewController {
 
     // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kDropboxFileDetailScreenTitle)
 
     /// セルインデックス
     enum CellIndex: Int {
@@ -124,41 +124,41 @@ class DropboxFileInfoViewController: BaseTableViewController {
 
         switch row {
         case CellIndex.Id.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleId)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileDetailCellTitleId)
             cell.detailTextLabel?.text = fileInfo.id
             break
 
         case CellIndex.Name.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleName)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileDetailCellTitleName)
             cell.detailTextLabel?.text = fileInfo.name
             cell.detailTextLabel?.numberOfLines = 0
             cell.detailTextLabel?.lineBreakMode = .ByWordWrapping
             break
 
         case CellIndex.PathLower.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitlePathLower)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileDetailCellTitlePathLower)
             cell.detailTextLabel?.text = fileInfo.pathLower
             cell.detailTextLabel?.numberOfLines = 0
             cell.detailTextLabel?.lineBreakMode = .ByWordWrapping
             break
 
         case CellIndex.Size.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleSize)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileDetailCellTitleSize)
             cell.detailTextLabel?.text = String(fileInfo.size)
             break
 
         case CellIndex.Rev.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleRev)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileDetailCellTitleRev)
             cell.detailTextLabel?.text = fileInfo.rev
             break
 
         case CellIndex.ServerModified.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleServerModified)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileDetailCellTitleServerModified)
             cell.detailTextLabel?.text = DateUtils.getDateString(fileInfo.serverModified)
             break
 
         case CellIndex.ClientModified.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileInfoCellTitleClientModified)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kDropboxFileDetailCellTitleClientModified)
             cell.detailTextLabel?.text = DateUtils.getDateString(fileInfo.clientModified)
             break
 

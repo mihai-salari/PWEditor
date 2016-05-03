@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddDropboxFileViewController" customModule="PWEditor" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateDropboxFileViewController" customModule="PWEditor" customModuleProvider="target">
             <connections>
-                <outlet property="bannerView" destination="uwm-hO-XX9" id="WPx-FI-kU9"/>
-                <outlet property="tableView" destination="vPT-pP-Nqj" id="shS-d0-K8r"/>
+                <outlet property="bannerView" destination="uwm-hO-XX9" id="3w8-3q-hSk"/>
+                <outlet property="tableView" destination="vPT-pP-Nqj" id="blL-Mo-pjb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
