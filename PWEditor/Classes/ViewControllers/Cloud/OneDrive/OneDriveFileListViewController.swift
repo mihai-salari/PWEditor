@@ -362,12 +362,25 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         navigationController?.pushViewController(vc, animated: true)
     }
 
+    // MARK: - Refresh control
+
+    /**
+     引っ張って更新の処理を行う。
+     */
+    override func pullRefresh() {
+        // OneDriveファイル情報一覧を取得する。
+        getOneDriveFileList()
+    }
+
     // MARK: - One Drive API
 
     /**
      OneDriveファイルリストを取得する。
      */
     func getOneDriveFileList() {
+        // リフレッシュコントロールを停止する。
+        refreshControl?.endRefreshing()
+
         let client = ODClient.loadCurrentClient()
         if client == nil {
             // OneDriveが無効な場合
