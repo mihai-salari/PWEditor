@@ -30,8 +30,8 @@ class ICloudFileListViewController: BaseTableViewController {
     /// ツールバー
     @IBOutlet weak var toolbar: UIToolbar!
 
-    /// 追加ツールバーボタン
-    @IBOutlet weak var addToobarButton: UIBarButtonItem!
+    /// 作成ツールバーボタン
+    @IBOutlet weak var createToobarButton: UIBarButtonItem!
 
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
@@ -242,10 +242,10 @@ class ICloudFileListViewController: BaseTableViewController {
     // MARK: - Button handler
 
     /**
-     追加ツールボタンが押下された時に呼び出される。
+     作成ツールボタンが押下された時に呼び出される。
 
-     - Parameter sender: 追加ツールバーボタン
+     - Parameter sender: 作成ツールバーボタン
      */
-    @IBAction func addToolbarButtonPressed(sender: AnyObject) {
+    @IBAction func createToolbarButtonPressed(sender: AnyObject) {
     }
 }

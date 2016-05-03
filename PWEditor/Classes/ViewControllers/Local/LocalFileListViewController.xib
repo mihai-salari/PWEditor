@@ -7,8 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocalFileListViewController">
             <connections>
-                <outlet property="addToobarButton" destination="hOr-n3-5eU" id="FZ6-LB-kP0"/>
                 <outlet property="bannerView" destination="NiS-EW-deb" id="kff-Z9-3mf"/>
+                <outlet property="createToobarButton" destination="hOr-n3-5eU" id="LZO-68-8oS"/>
                 <outlet property="grepToolbarButton" destination="cGv-WT-JzY" id="ZfC-Mt-Mkt"/>
                 <outlet property="searchDisplayController" destination="w9g-Ol-o5B" id="gmE-7w-oXQ"/>
                 <outlet property="tableView" destination="1jL-Uh-XNV" id="Ig9-86-PhJ"/>
@@ -33,7 +33,7 @@
                     <items>
                         <barButtonItem systemItem="add" id="hOr-n3-5eU">
                             <connections>
-                                <action selector="addToolbarButtonPressed:" destination="-1" id="j54-o4-Mpb"/>
+                                <action selector="createToolbarButtonPressed:" destination="-1" id="fOq-Yw-uXX"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="tva-fp-fDH"/>

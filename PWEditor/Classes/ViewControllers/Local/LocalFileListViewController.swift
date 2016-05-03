@@ -30,8 +30,8 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
     /// ツールバー
     @IBOutlet weak var toolbar: UIToolbar!
 
-    /// 追加ツールバーボタン
-    @IBOutlet weak var addToobarButton: UIBarButtonItem!
+    /// 作成ツールバーボタン
+    @IBOutlet weak var createToobarButton: UIBarButtonItem!
 
     /// grepツールバーボタン
     @IBOutlet weak var grepToolbarButton: UIBarButtonItem!
@@ -479,11 +479,11 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
     }
 
     /**
-     追加ツールバーボタン押下時に呼び出される。
+     作成ツールバーボタン押下時に呼び出される。
 
-     - Parameter sender: 追加ツールバーボタン
+     - Parameter sender: 作成ツールバーボタン
      */
-    @IBAction func addToolbarButtonPressed(sender: AnyObject) {
+    @IBAction func createToolbarButtonPressed(sender: AnyObject) {
         // ファイル作成画面に遷移する。
         let vc = CreateLocalFileViewController(pathName: pathName)
         vc.delegate = self
@@ -493,7 +493,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
     /**
      grepツールバーボタン押下時に呼び出される。
 
-     - Parameter sender: 追加ツールバーボタン
+     - Parameter sender: grepツールバーボタン
      */
     @IBAction func grepToolbarButtonPressed(sender: AnyObject) {
         // Grep一覧画面に遷移する。

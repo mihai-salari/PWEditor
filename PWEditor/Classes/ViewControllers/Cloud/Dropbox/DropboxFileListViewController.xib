@@ -7,8 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DropboxFileListViewController">
             <connections>
-                <outlet property="addToobarButton" destination="Wg3-lr-CuQ" id="qQB-bf-ptF"/>
                 <outlet property="bannerView" destination="kA2-a6-P4c" id="nun-Yp-Zcs"/>
+                <outlet property="createToobarButton" destination="Wg3-lr-CuQ" id="EdT-Bp-lzc"/>
                 <outlet property="tableView" destination="kBn-g2-ZEb" id="R15-6R-hHG"/>
                 <outlet property="toolbar" destination="u0J-WJ-JFx" id="YNh-9x-6o6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -31,7 +31,7 @@
                     <items>
                         <barButtonItem systemItem="add" id="Wg3-lr-CuQ">
                             <connections>
-                                <action selector="addToolbarButtonPressed:" destination="-1" id="m1Y-Hd-ZZQ"/>
+                                <action selector="createToolbarButtonPressed:" destination="-1" id="eIE-jv-Fd8"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="oTN-m8-NvS"/>

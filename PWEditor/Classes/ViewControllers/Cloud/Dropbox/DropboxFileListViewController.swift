@@ -31,8 +31,8 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
     /// ツールバー
     @IBOutlet weak var toolbar: UIToolbar!
 
-    /// 追加ツールバーボタン
-    @IBOutlet weak var addToobarButton: UIBarButtonItem!
+    /// 作成ツールバーボタン
+    @IBOutlet weak var createToobarButton: UIBarButtonItem!
 
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
@@ -270,11 +270,11 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
     }
 
     /**
-     追加ツールバーボタンを押下した時に呼び出される。
+     作成ツールバーボタンを押下した時に呼び出される。
 
-     - Parameter sender: 追加ツールバーボタン
+     - Parameter sender: 作成ツールバーボタン
      */
-    @IBAction func addToolbarButtonPressed(sender: AnyObject) {
+    @IBAction func createToolbarButtonPressed(sender: AnyObject) {
         // Dropboxファイル作成画面に遷移する。
         let vc = CreateDropboxFileViewController(pathName: pathName)
         navigationController?.pushViewController(vc, animated: true)
