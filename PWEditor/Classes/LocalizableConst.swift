@@ -93,29 +93,29 @@ struct LocalizableConst {
     static let kLocalFileListScreenTitle = "LocalFileListScreenTitle"
     static let kLocalFileListScreenTitleSearch = "LocalFileListScreenTitleSearch"
 
-    // ローカルファイル追加画面
-    static let kAddLocalFileScreenTitle = "AddLocalFileScreenTitle"
-    static let kAddLocalFileSectionTitleFileName = "AddLocalFileSectionTitleFileName"
-    static let kAddLocalFileSectionTitleFileType = "AddLocalFileSectionTitleFileType"
-    static let kAddLocalFileCellTitleFile = "AddLocalFileCellTitleFile"
-    static let kAddLocalFileCellTitleDir = "AddLocalFileCellTitleDir"
-    static let kAddLocalFileEnterNameError = "AddLocalFileEnterNameError"
-    static let kAddLocalFileSameNameError = "AddLocalFileSameNameError"
-    static let kAddLocalFileCreateError = "AddLocalFileCreateError"
+    // ローカルファイル作成画面
+    static let kCreateLocalFileScreenTitle = "CreateLocalFileScreenTitle"
+    static let kCreateLocalFileSectionTitleFileName = "CreateLocalFileSectionTitleFileName"
+    static let kCreateLocalFileSectionTitleFileType = "CreateLocalFileSectionTitleFileType"
+    static let kCreateLocalFileCellTitleFile = "CreateLocalFileCellTitleFile"
+    static let kCreateLocalFileCellTitleDir = "CreateLocalFileCellTitleDir"
+    static let kCreateLocalFileEnterNameError = "CreateLocalFileEnterNameError"
+    static let kCreateLocalFileSameNameError = "CreateLocalFileSameNameError"
+    static let kCreateLocalFileCreateError = "CreateLocalFileCreateError"
     
     // ローカルファイル編集画面
     static let kEditLocalFileWriteFileDataError = "EditLocalFileWriteFileDataError"
 
-    // ローカルファイル情報画面
-    static let kLocalFileInfoScreenTitle = "LocalFileInfoScreenTitle"
-    static let kLocalFileInfoCellTitlePathName = "LocalFileInfoCellTitlePathName"
-    static let kLocalFileInfoCellTitleFileName = "LocalFileInfoCellTitleFileName"
-    static let kLocalFileInfoCellTitleSize = "LocalFileInfoCellTitleSize"
-    static let kLocalFileInfoCellTitleCharNum = "LocalFileInfoCellTitleCharNum"
-    static let kLocalFileInfoCellTitleLineNum = "LocalFileInfoCellTitleLineNum"
-    static let kLocalFileInfoCellTitleRetCodeType = "LocalFileInfoCellTitleRetCodeType"
-    static let kLocalFileInfoCellTitleCreateDate = "LocalFileInfoCellTitleCreateDate"
-    static let kLocalFileInfoCellTitleUpdateDate = "LocalFileInfoCellTitleUpdateDate"
+    // ローカルファイル詳細画面
+    static let kLocalFileDetailScreenTitle = "LocalFileDetailScreenTitle"
+    static let kLocalFileDetailCellTitlePathName = "LocalFileDetailCellTitlePathName"
+    static let kLocalFileDetailCellTitleFileName = "LocalFileDetailCellTitleFileName"
+    static let kLocalFileDetailCellTitleSize = "LocalFileDetailCellTitleSize"
+    static let kLocalFileDetailCellTitleCharNum = "LocalFileDetailCellTitleCharNum"
+    static let kLocalFileDetailCellTitleLineNum = "LocalFileDetailCellTitleLineNum"
+    static let kLocalFileDetailCellTitleRetCodeType = "LocalFileDetailCellTitleRetCodeType"
+    static let kLocalFileDetailCellTitleCreateDate = "LocalFileDetailCellTitleCreateDate"
+    static let kLocalFileDetailCellTitleUpdateDate = "LocalFileDetailCellTitleUpdateDate"
 
     // ローカルファイルgrep一覧画面
     static let kGrepLocalFileListScreenTitle = "GrepLocalFileListScreenTitle"

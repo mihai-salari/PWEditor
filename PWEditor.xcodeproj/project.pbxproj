@@ -40,8 +40,8 @@
 		3F1620DF1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1620DD1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.xib */; };
 		3F1620E71CC6D4B600ABECFE /* EditGoogleDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1620E51CC6D4B600ABECFE /* EditGoogleDriveFileViewController.swift */; };
 		3F1620E81CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1620E61CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib */; };
-		3F165E311C7A687C001CBC38 /* AddLocalFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E291C7A687C001CBC38 /* AddLocalFileViewController.swift */; };
-		3F165E321C7A687C001CBC38 /* AddLocalFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E2A1C7A687C001CBC38 /* AddLocalFileViewController.xib */; };
+		3F165E311C7A687C001CBC38 /* CreateLocalFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E291C7A687C001CBC38 /* CreateLocalFileViewController.swift */; };
+		3F165E321C7A687C001CBC38 /* CreateLocalFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E2A1C7A687C001CBC38 /* CreateLocalFileViewController.xib */; };
 		3F165E331C7A687C001CBC38 /* EditLocalFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E2B1C7A687C001CBC38 /* EditLocalFileViewController.swift */; };
 		3F165E351C7A687C001CBC38 /* GrepLocalFileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F165E2D1C7A687C001CBC38 /* GrepLocalFileListViewController.swift */; };
 		3F165E361C7A687C001CBC38 /* GrepLocalFileListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F165E2E1C7A687C001CBC38 /* GrepLocalFileListViewController.xib */; };
@@ -103,8 +103,8 @@
 		3F4873701C75DB9C006594A6 /* Config.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F48736F1C75DB9C006594A6 /* Config.txt */; };
 		3F4873721C75DBE6006594A6 /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4873711C75DBE6006594A6 /* FileUtils.swift */; };
 		3F4873741C75DD6D006594A6 /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4873731C75DD6D006594A6 /* FileInfo.swift */; };
-		3F49306D1C7BAF590088A454 /* LocalFileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49306B1C7BAF590088A454 /* LocalFileInfoViewController.swift */; };
-		3F49306E1C7BAF590088A454 /* LocalFileInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F49306C1C7BAF590088A454 /* LocalFileInfoViewController.xib */; };
+		3F49306D1C7BAF590088A454 /* LocalFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49306B1C7BAF590088A454 /* LocalFileDetailViewController.swift */; };
+		3F49306E1C7BAF590088A454 /* LocalFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F49306C1C7BAF590088A454 /* LocalFileDetailViewController.xib */; };
 		3F57FECD1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57FECB1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift */; };
 		3F57FECE1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F57FECC1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib */; };
 		3F57FED11CD17B76002ADAC8 /* EditOneDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57FECF1CD17B76002ADAC8 /* EditOneDriveFileViewController.swift */; };
@@ -226,8 +226,8 @@
 		3F1620DD1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GoogleDriveFileDetailViewController.xib; path = Classes/ViewControllers/Cloud/GoogleDrive/GoogleDriveFileDetailViewController.xib; sourceTree = "<group>"; };
 		3F1620E51CC6D4B600ABECFE /* EditGoogleDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditGoogleDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/GoogleDrive/EditGoogleDriveFileViewController.swift; sourceTree = "<group>"; };
 		3F1620E61CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditGoogleDriveFileViewController.xib; path = Classes/ViewControllers/Cloud/GoogleDrive/EditGoogleDriveFileViewController.xib; sourceTree = "<group>"; };
-		3F165E291C7A687C001CBC38 /* AddLocalFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddLocalFileViewController.swift; path = Classes/ViewControllers/Local/AddLocalFileViewController.swift; sourceTree = "<group>"; };
-		3F165E2A1C7A687C001CBC38 /* AddLocalFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddLocalFileViewController.xib; path = Classes/ViewControllers/Local/AddLocalFileViewController.xib; sourceTree = "<group>"; };
+		3F165E291C7A687C001CBC38 /* CreateLocalFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateLocalFileViewController.swift; path = Classes/ViewControllers/Local/CreateLocalFileViewController.swift; sourceTree = "<group>"; };
+		3F165E2A1C7A687C001CBC38 /* CreateLocalFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateLocalFileViewController.xib; path = Classes/ViewControllers/Local/CreateLocalFileViewController.xib; sourceTree = "<group>"; };
 		3F165E2B1C7A687C001CBC38 /* EditLocalFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditLocalFileViewController.swift; path = Classes/ViewControllers/Local/EditLocalFileViewController.swift; sourceTree = "<group>"; };
 		3F165E2D1C7A687C001CBC38 /* GrepLocalFileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GrepLocalFileListViewController.swift; path = Classes/ViewControllers/Local/GrepLocalFileListViewController.swift; sourceTree = "<group>"; };
 		3F165E2E1C7A687C001CBC38 /* GrepLocalFileListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GrepLocalFileListViewController.xib; path = Classes/ViewControllers/Local/GrepLocalFileListViewController.xib; sourceTree = "<group>"; };
@@ -295,8 +295,8 @@
 		3F48736F1C75DB9C006594A6 /* Config.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Config.txt; path = Resources/Config/Config.txt; sourceTree = "<group>"; };
 		3F4873711C75DBE6006594A6 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileUtils.swift; path = Classes/Utils/FileUtils.swift; sourceTree = "<group>"; };
 		3F4873731C75DD6D006594A6 /* FileInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileInfo.swift; path = Classes/Utils/FileInfo.swift; sourceTree = "<group>"; };
-		3F49306B1C7BAF590088A454 /* LocalFileInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalFileInfoViewController.swift; path = Classes/ViewControllers/Local/LocalFileInfoViewController.swift; sourceTree = "<group>"; };
-		3F49306C1C7BAF590088A454 /* LocalFileInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalFileInfoViewController.xib; path = Classes/ViewControllers/Local/LocalFileInfoViewController.xib; sourceTree = "<group>"; };
+		3F49306B1C7BAF590088A454 /* LocalFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalFileDetailViewController.swift; path = Classes/ViewControllers/Local/LocalFileDetailViewController.swift; sourceTree = "<group>"; };
+		3F49306C1C7BAF590088A454 /* LocalFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalFileDetailViewController.xib; path = Classes/ViewControllers/Local/LocalFileDetailViewController.xib; sourceTree = "<group>"; };
 		3F57FECB1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OneDriveFileDetailViewController.swift; path = Classes/ViewControllers/Cloud/OneDrive/OneDriveFileDetailViewController.swift; sourceTree = "<group>"; };
 		3F57FECC1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OneDriveFileDetailViewController.xib; path = Classes/ViewControllers/Cloud/OneDrive/OneDriveFileDetailViewController.xib; sourceTree = "<group>"; };
 		3F57FECF1CD17B76002ADAC8 /* EditOneDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditOneDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/OneDrive/EditOneDriveFileViewController.swift; sourceTree = "<group>"; };
@@ -478,10 +478,10 @@
 			children = (
 				3F165E2F1C7A687C001CBC38 /* LocalFileListViewController.swift */,
 				3F165E301C7A687C001CBC38 /* LocalFileListViewController.xib */,
-				3F49306B1C7BAF590088A454 /* LocalFileInfoViewController.swift */,
-				3F49306C1C7BAF590088A454 /* LocalFileInfoViewController.xib */,
-				3F165E291C7A687C001CBC38 /* AddLocalFileViewController.swift */,
-				3F165E2A1C7A687C001CBC38 /* AddLocalFileViewController.xib */,
+				3F49306B1C7BAF590088A454 /* LocalFileDetailViewController.swift */,
+				3F49306C1C7BAF590088A454 /* LocalFileDetailViewController.xib */,
+				3F165E291C7A687C001CBC38 /* CreateLocalFileViewController.swift */,
+				3F165E2A1C7A687C001CBC38 /* CreateLocalFileViewController.xib */,
 				3F165E2B1C7A687C001CBC38 /* EditLocalFileViewController.swift */,
 				3F17F04E1CD01B0400A1F280 /* EditLocalFileViewController.xib */,
 				3F165E2D1C7A687C001CBC38 /* GrepLocalFileListViewController.swift */,
@@ -891,7 +891,7 @@
 				3F5AE4531CC8420D00E262AC /* GoogleApiObjectiveCClient.txt in Resources */,
 				3F165E411C7A690C001CBC38 /* ECSlidingViewControllerLicense.txt in Resources */,
 				3F165E7A1C7A7FF5001CBC38 /* SelectNumberViewController.xib in Resources */,
-				3F165E321C7A687C001CBC38 /* AddLocalFileViewController.xib in Resources */,
+				3F165E321C7A687C001CBC38 /* CreateLocalFileViewController.xib in Resources */,
 				3F37CF4B1C85AC1800B138C9 /* DropboxFileDetailViewController.xib in Resources */,
 				3F165E451C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf in Resources */,
 				3F1620E81CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib in Resources */,
@@ -911,7 +911,7 @@
 				3F5AE4581CC8470B00E262AC /* OneDriveFileListViewController.xib in Resources */,
 				3F57FECE1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib in Resources */,
 				3F0F82A21C90DAD20090632E /* HighlightViewController.xib in Resources */,
-				3F49306E1C7BAF590088A454 /* LocalFileInfoViewController.xib in Resources */,
+				3F49306E1C7BAF590088A454 /* LocalFileDetailViewController.xib in Resources */,
 				3F5AE46B1CC9833C00E262AC /* CPP.txt in Resources */,
 				3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */,
 				3F165E601C7A776F001CBC38 /* highlight.pack.js in Resources */,
@@ -994,7 +994,7 @@
 				3F12E8561CC580260008DDEE /* MenuViewController.swift in Sources */,
 				3F165E7C1C7A8039001CBC38 /* SettingUtils.swift in Sources */,
 				3F003D1D1C7678B000ECC371 /* LocalizableConst.swift in Sources */,
-				3F49306D1C7BAF590088A454 /* LocalFileInfoViewController.swift in Sources */,
+				3F49306D1C7BAF590088A454 /* LocalFileDetailViewController.swift in Sources */,
 				3F165E731C7A7E7C001CBC38 /* SelectFontViewController.swift in Sources */,
 				3F003D3C1C767DFB00ECC371 /* BaseTableViewController.swift in Sources */,
 				3F447C871C8904FD001A3518 /* SelectEncodingViewController.swift in Sources */,
@@ -1042,7 +1042,7 @@
 				3F1620E71CC6D4B600ABECFE /* EditGoogleDriveFileViewController.swift in Sources */,
 				3F165E691C7A7B13001CBC38 /* OpenSourceLicenseListViewController.swift in Sources */,
 				3F4873741C75DD6D006594A6 /* FileInfo.swift in Sources */,
-				3F165E311C7A687C001CBC38 /* AddLocalFileViewController.swift in Sources */,
+				3F165E311C7A687C001CBC38 /* CreateLocalFileViewController.swift in Sources */,
 				3F157BFA1C84F4A6007C555E /* CreateDropboxFileViewController.swift in Sources */,
 				3F1915541C8CCF360042D306 /* MyView.m in Sources */,
 				3F1915531C8CCF360042D306 /* LineNumberTextView.m in Sources */,

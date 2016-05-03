@@ -87,29 +87,29 @@ SearchWordScreenTitle = "単語検索";
 LocalFileListScreenTitle = "ローカルファイル一覧";
 LocalFileListScreenTitleSearch = "検索結果一覧";
 
-// ローカルファイル追加画面
-AddLocalFileScreenTitle = "ローカルファイル追加";
-AddLocalFileSectionTitleFileName = "名前";
-AddLocalFileSectionTitleFileType = "タイプ";
-AddLocalFileCellTitleFile = "ファイル";
-AddLocalFileCellTitleDir = "ディレクトリ";
-AddLocalFileEnterNameError = "名前を入力してください。";
-AddLocalFileSameNameError = "同名のファイルまたはディレクトリが存在します。";
-AddLocalFileCreateError = "%@が作成できませんでした。";
+// ローカルファイル作成画面
+CreateLocalFileScreenTitle = "ローカルファイル作成";
+CreateLocalFileSectionTitleFileName = "名前";
+CreateLocalFileSectionTitleFileType = "タイプ";
+CreateLocalFileCellTitleFile = "ファイル";
+CreateLocalFileCellTitleDir = "ディレクトリ";
+CreateLocalFileEnterNameError = "名前を入力してください。";
+CreateLocalFileSameNameError = "同名のファイルまたはディレクトリが存在します。";
+CreateLocalFileCreateError = "%@が作成できませんでした。";
 
 // ローカルファイル編集画面
 EditLocalFileWriteFileError = "ファイルデータが書き込めません。";
 
-// ローカルファイル情報画面
-LocalFileInfoScreenTitle = "ローカルファイル情報";
-LocalFileInfoCellTitlePathName = "パス名";
-LocalFileInfoCellTitleFileName = "ファイル名";
-LocalFileInfoCellTitleSize = "サイズ";
-LocalFileInfoCellTitleCharNum = "文字数";
-LocalFileInfoCellTitleLineNum = "行数";
-LocalFileInfoCellTitleRetCodeType = "改行コード";
-LocalFileInfoCellTitleCreateDate = "作成日";
-LocalFileInfoCellTitleUpdateDate = "更新日";
+// ローカルファイル詳細画面
+LocalFileDetailScreenTitle = "ローカルファイル詳細";
+LocalFileDetailCellTitlePathName = "パス名";
+LocalFileDetailCellTitleFileName = "ファイル名";
+LocalFileDetailCellTitleSize = "サイズ";
+LocalFileDetailCellTitleCharNum = "文字数";
+LocalFileDetailCellTitleLineNum = "行数";
+LocalFileDetailCellTitleRetCodeType = "改行コード";
+LocalFileDetailCellTitleCreateDate = "作成日";
+LocalFileDetailCellTitleUpdateDate = "更新日";
 
 // ローカルファイルgrep一覧画面
 GrepLocalFileListScreenTitle = "ローカルファイルgrep一覧";

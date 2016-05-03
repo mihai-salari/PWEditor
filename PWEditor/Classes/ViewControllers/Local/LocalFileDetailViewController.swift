@@ -1,5 +1,5 @@
 //
-//  FileInfoViewController.swift
+//  LocalFileDetailViewController.swift
 //  PWEditor
 //
 //  Created by 二俣征嗣 on 2016/02/23.
@@ -10,17 +10,17 @@ import UIKit
 import GoogleMobileAds
 
 /**
- ローカルファイル情報画面クラス
+ ローカルファイル詳細画面クラス
 
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class LocalFileInfoViewController: BaseTableViewController {
+class LocalFileDetailViewController: BaseTableViewController {
 
     // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kLocalFileDetailScreenTitle)
 
     /// セルインデックス
     enum CellIndex: Int {
@@ -183,43 +183,43 @@ class LocalFileInfoViewController: BaseTableViewController {
 
         switch row {
         case CellIndex.PathName.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitlePathName)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileDetailCellTitlePathName)
             cell.detailTextLabel?.text = "/\(pathName)"
             cell.detailTextLabel?.numberOfLines = 0
             cell.detailTextLabel?.lineBreakMode = .ByWordWrapping
             break
 
         case CellIndex.FileName.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleFileName)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileDetailCellTitleFileName)
             cell.detailTextLabel?.text = fileName
             cell.detailTextLabel?.numberOfLines = 0
             cell.detailTextLabel?.lineBreakMode = .ByWordWrapping
             break
 
         case CellIndex.Size.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleSize)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileDetailCellTitleSize)
             let fileSize = Int(fileAttrInfo!.fileSize())
             cell.detailTextLabel?.text = StringUtils.numberWithComma(fileSize)
             break
 
         case CellIndex.CharNum.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleCharNum)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileDetailCellTitleCharNum)
             cell.detailTextLabel?.text = StringUtils.numberWithComma(charNum)
             break
 
         case CellIndex.LineNum.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleLineNum)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileDetailCellTitleLineNum)
             cell.detailTextLabel?.text = StringUtils.numberWithComma(lineNum)
             break
 
         case CellIndex.RetCodeType.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleRetCodeType)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileDetailCellTitleRetCodeType)
             let text = CommonConst.RetCodeNameList[retCodeType]
             cell.detailTextLabel?.text = text
             break
 
         case CellIndex.UpdateDate.rawValue:
-            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileInfoCellTitleUpdateDate)
+            cell.textLabel?.text = LocalizableUtils.getString(LocalizableConst.kLocalFileDetailCellTitleUpdateDate)
             let updateDate = fileAttrInfo!.fileModificationDate()!
             let updateDateString = DateUtils.getDateString(updateDate)
             cell.detailTextLabel?.text = String(updateDateString)

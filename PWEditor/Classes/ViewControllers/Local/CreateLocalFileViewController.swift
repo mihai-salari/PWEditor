@@ -1,5 +1,5 @@
 //
-//  AddFileViewController.swift
+//  CreateFileViewController.swift
 //  PWEditor
 //
 //  Created by 二俣征嗣 on 2016/02/19.
@@ -10,39 +10,39 @@ import UIKit
 import GoogleMobileAds
 
 /**
- ファイル追加通知デリゲート
+ ファイル作成通知デリゲート
  */
-@objc protocol NotifyAddFileDelegate {
+@objc protocol NotifyCreateFileDelegate {
 
     /**
-     ファイル追加を通知する。
+     ファイル作成を通知する。
      */
-    func notifyAddFile()
+    func notifyCreateFile()
 }
 
 /**
- ファイル追加画面クラス
+ ファイル作成画面クラス
 
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
+class CreateLocalFileViewController: BaseTableViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
 
     // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kAddLocalFileScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kCreateLocalFileScreenTitle)
 
     /// セクションタイトルリスト
     let kSectionTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kAddLocalFileSectionTitleFileName),
-        LocalizableUtils.getString(LocalizableConst.kAddLocalFileSectionTitleFileType)
+        LocalizableUtils.getString(LocalizableConst.kCreateLocalFileSectionTitleFileName),
+        LocalizableUtils.getString(LocalizableConst.kCreateLocalFileSectionTitleFileType)
     ]
 
     /// ファイルタイプタイトルリスト
     let kFileTypeTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kAddLocalFileCellTitleFile),
-        LocalizableUtils.getString(LocalizableConst.kAddLocalFileCellTitleDir)
+        LocalizableUtils.getString(LocalizableConst.kCreateLocalFileCellTitleFile),
+        LocalizableUtils.getString(LocalizableConst.kCreateLocalFileCellTitleDir)
     ]
 
     /// セクションインデックス
@@ -71,8 +71,8 @@ class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDe
     /// スクリーンタップジェスチャ
     var screenTapGesture: UITapGestureRecognizer!
 
-    /// ファイル追加通知デリゲート
-    var delegate: NotifyAddFileDelegate?
+    /// ファイル作成通知デリゲート
+    var delegate: NotifyCreateFileDelegate?
 
     // MARK: - Initializer
 
@@ -123,7 +123,7 @@ class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDe
         tableView.registerNib(nib, forCellReuseIdentifier: kLineDataCellName)
 
         // 画面タップジェスチャーを作成する。
-        let tapGestureAction = #selector(AddLocalFileViewController.screenTapped(_:))
+        let tapGestureAction = #selector(CreateLocalFileViewController.screenTapped(_:))
         screenTapGesture = UITapGestureRecognizer(target: self, action: tapGestureAction)
         screenTapGesture.delegate = self
         screenTapGesture.numberOfTapsRequired = 1
@@ -312,7 +312,7 @@ class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDe
             // 名前が未入力の場合
             // エラーアラートを表示して、処理終了
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAddLocalFileEnterNameError)
+            let message = LocalizableUtils.getString(LocalizableConst.kCreateLocalFileEnterNameError)
             let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
             showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: nil)
             return
@@ -343,7 +343,7 @@ class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDe
             // 同名のファイル・ディレクトリが存在する場合
             // エラーアラートを表示して、処理終了
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAddLocalFileSameNameError)
+            let message = LocalizableUtils.getString(LocalizableConst.kCreateLocalFileSameNameError)
             let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
             showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: nil)
             return
@@ -361,7 +361,7 @@ class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDe
                 // ファイルが作成できない場合
                 // エラーアラートを表示して、処理終了
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAddLocalFileCreateError, name)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kCreateLocalFileCreateError, name)
                 let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
                 showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: nil)
             }
@@ -376,7 +376,7 @@ class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDe
                 // エラーの場合
                 // エラーアラートを表示して、処理終了
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAddLocalFileCreateError, name)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kCreateLocalFileCreateError, name)
                 let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
                 showAlert(title, message: message, okButtonTitle: okButtonTitle, handler: nil)
                 return
@@ -388,8 +388,8 @@ class AddLocalFileViewController: BaseTableViewController, UIGestureRecognizerDe
             return
         }
 
-        // ファイル追加を通知する。
-        delegate?.notifyAddFile()
+        // ファイル作成を通知する。
+        delegate?.notifyCreateFile()
 
         // 遷移元画面に戻る。
         navigationController?.popViewControllerAnimated(true)

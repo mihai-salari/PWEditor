@@ -87,29 +87,29 @@ SearchWordScreenTitle = "Search word";
 LocalFileListScreenTitle = "Local file list";
 LocalFileListScreenTitleSearch = "Search result list";
 
-// ローカルファイル追加画面
-AddLocalFileScreenTitle = "Add local file";
-AddLocalFileSectionTitleFileName = "Name";
-AddLocalFileSectionTitleFileType = "Type";
-AddLocalFileCellTitleFile = "File";
-AddLocalFileCellTitleDir = "Directory";
-AddLocalFileEnterNameError = "Please enter a name.";
-AddLocalFileSameNameError = "Exist same name file or directory.";
-AddLocalFileCreateError = "Create %@ failed.";
+// ローカルファイル作成画面
+CreateLocalFileScreenTitle = "Create local file";
+CreateLocalFileSectionTitleFileName = "Name";
+CreateLocalFileSectionTitleFileType = "Type";
+CreateLocalFileCellTitleFile = "File";
+CreateLocalFileCellTitleDir = "Directory";
+CreateLocalFileEnterNameError = "Please enter a name.";
+CreateLocalFileSameNameError = "Exist same name file or directory.";
+CreateLocalFileCreateError = "Create %@ failed.";
 
 // ローカルファイル編集画面
 EditLocalFileWriteFileDataError = "Write file data failed.";
 
-// ローカルファイル情報画面
-LocalFileInfoScreenTitle = "Local File information";
-LocalFileInfoCellTitlePathName = "Path name";
-LocalFileInfoCellTitleFileName = "File name";
-LocalFileInfoCellTitleSize = "Size";
-LocalFileInfoCellTitleCharNum = "Char num";
-LocalFileInfoCellTitleLineNum = "Line num";
-LocalFileInfoCellTitleRetCodeType = "Return code";
-LocalFileInfoCellTitleCreateDate = "Create date";
-LocalFileInfoCellTitleUpdateDate = "Update date";
+// ローカルファイル詳細画面
+LocalFileDetailScreenTitle = "Local File detail";
+LocalFileDetailCellTitlePathName = "Path name";
+LocalFileDetailCellTitleFileName = "File name";
+LocalFileDetailCellTitleSize = "Size";
+LocalFileDetailCellTitleCharNum = "Char num";
+LocalFileDetailCellTitleLineNum = "Line num";
+LocalFileDetailCellTitleRetCodeType = "Return code";
+LocalFileDetailCellTitleCreateDate = "Create date";
+LocalFileDetailCellTitleUpdateDate = "Update date";
 
 // ローカルファイルgrep一覧画面
 GrepLocalFileListScreenTitle = "Local file grep list";

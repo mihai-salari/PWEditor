@@ -15,7 +15,7 @@ import GoogleMobileAds
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate, UISearchDisplayDelegate, UIGestureRecognizerDelegate, NotifyAddFileDelegate {
+class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate, UISearchDisplayDelegate, UIGestureRecognizerDelegate, NotifyCreateFileDelegate {
 
     // MARK: - Constants
 
@@ -324,10 +324,10 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             return
         }
 
-        // ローカルファイル情報画面に遷移する。
+        // ローカルファイル詳細画面に遷移する。
         let fileInfo = fileInfoList[row]
         let fileName = fileInfo.name
-        let vc = LocalFileInfoViewController(pathName: pathName, fileName: fileName, encoding: NSUTF8StringEncoding)
+        let vc = LocalFileDetailViewController(pathName: pathName, fileName: fileName, encoding: NSUTF8StringEncoding)
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -484,8 +484,8 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
      - Parameter sender: 追加ツールバーボタン
      */
     @IBAction func addToolbarButtonPressed(sender: AnyObject) {
-        // ファイル追加画面に遷移する。
-        let vc = AddLocalFileViewController(pathName: pathName)
+        // ファイル作成画面に遷移する。
+        let vc = CreateLocalFileViewController(pathName: pathName)
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -560,12 +560,12 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         return checkedFileInfoList
     }
 
-    // MARK: - NotifyAddFileDelegate
+    // MARK: - NotifyCreateFileDelegate
 
     /**
-     ファイル追加を通知する。
+     ファイル作成を通知する。
      */
-    func notifyAddFile() {
+    func notifyCreateFile() {
         // ファイル情報リストを再取得する。
         fileInfoList.removeAll(keepCapacity: false)
         let localPathName = FileUtils.getLocalPath(pathName)
