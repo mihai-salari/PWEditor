@@ -260,12 +260,9 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
             // ファイル情報を取得する。
             let fileInfo = fileInfoList[row]
 
-            // 名前を取得する。
-            let name = fileInfo.name
-
             // Dropbox操作アクションシートを表示する。
             let cell = tableView.cellForRowAtIndexPath(indexPath!)
-            showOperateDropboxActionSheet(name, index: row, cell: cell!)
+            showOperateDropboxActionSheet(fileInfo, index: row, cell: cell!)
         }
     }
 
@@ -293,11 +290,11 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
     /**
      Dropbox操作アクションシートを表示する。
 
-     - Parameter name: ファイル名またはディレクトリ名
+     - Parameter fileInfo: ファイル情報
      - Parameter index: ファイル情報の位置
      - Parameter cell: テーブルビューセル
      */
-    private func showOperateDropboxActionSheet(name: String, index: Int, cell: UITableViewCell) {
+    private func showOperateDropboxActionSheet(fileInfo: DropboxFileInfo, index: Int, cell: UITableViewCell) {
         // Dropbox操作アクションシートを生成する。
         let alertTitle = LocalizableUtils.getString(LocalizableConst.kActionSheetTitleDropboxFile)
         let alert = UIAlertController(title: alertTitle, message: "", preferredStyle: .ActionSheet)
@@ -310,14 +307,20 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
         let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
         alert.addAction(cancelAction)
 
-        // 文字エンコーディングを指定して開くボタンを生成する。
-        let openCharButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleOpenChar)
-        let openCharAction = UIAlertAction(title: openCharButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
-            // 文字エンコーディング選択画面に遷移する。
-            let vc = SelectEncodingViewController(sourceClassName: self.dynamicType.description(), pathName: self.pathName, fileName: name)
-            self.navigationController?.pushViewController(vc, animated: true)
-        })
-        alert.addAction(openCharAction)
+        // ファイル名またはディレクトリ名を取得する。
+        let name = fileInfo.name
+
+        if !fileInfo.isDir {
+            // ファイルの場合
+            // 文字エンコーディングを指定して開くボタンを生成する。
+            let openCharButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleOpenChar)
+            let openCharAction = UIAlertAction(title: openCharButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+                // 文字エンコーディング選択画面に遷移する。
+                let vc = SelectEncodingViewController(sourceClassName: self.dynamicType.description(), pathName: self.pathName, fileName: name)
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            alert.addAction(openCharAction)
+        }
 
         // 削除ボタンを生成する。
         let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)

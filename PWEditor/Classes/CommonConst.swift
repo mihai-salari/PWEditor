@@ -133,7 +133,7 @@ struct CommonConst {
         static let kRootParentId = "root"
 
         /// スコープリスト
-        static let kScopeList = [kGTLAuthScopeDrive]
+        static let kScopeList = [kGTLAuthScopeDrive, kGTLAuthScopeDriveFile]
     }
 
     struct MimeType {
