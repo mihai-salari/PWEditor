@@ -105,6 +105,7 @@
 		3F4873741C75DD6D006594A6 /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4873731C75DD6D006594A6 /* FileInfo.swift */; };
 		3F49306D1C7BAF590088A454 /* LocalFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49306B1C7BAF590088A454 /* LocalFileDetailViewController.swift */; };
 		3F49306E1C7BAF590088A454 /* LocalFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F49306C1C7BAF590088A454 /* LocalFileDetailViewController.xib */; };
+		3F55D4661CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F55D4651CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt */; };
 		3F57FECD1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57FECB1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift */; };
 		3F57FECE1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F57FECC1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib */; };
 		3F57FED11CD17B76002ADAC8 /* EditOneDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57FECF1CD17B76002ADAC8 /* EditOneDriveFileViewController.swift */; };
@@ -114,7 +115,7 @@
 		3F5AE4491CC788C600E262AC /* CreateGoogleDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5AE4471CC788C600E262AC /* CreateGoogleDriveFileViewController.swift */; };
 		3F5AE44A1CC788C600E262AC /* CreateGoogleDriveFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5AE4481CC788C600E262AC /* CreateGoogleDriveFileViewController.xib */; };
 		3F5AE4511CC833E600E262AC /* GoogleDriveUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5AE4501CC833E600E262AC /* GoogleDriveUtils.swift */; };
-		3F5AE4531CC8420D00E262AC /* GoogleApiObjectiveCClient.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F5AE4521CC8420D00E262AC /* GoogleApiObjectiveCClient.txt */; };
+		3F5AE4531CC8420D00E262AC /* GoogleApiObjectiveCClientLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F5AE4521CC8420D00E262AC /* GoogleApiObjectiveCClientLicense.txt */; };
 		3F5AE4571CC8470B00E262AC /* OneDriveFileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5AE4551CC8470B00E262AC /* OneDriveFileListViewController.swift */; };
 		3F5AE4581CC8470B00E262AC /* OneDriveFileListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5AE4561CC8470B00E262AC /* OneDriveFileListViewController.xib */; };
 		3F5AE45C1CC972A700E262AC /* ADALiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5AE45B1CC972A700E262AC /* ADALiOS.framework */; };
@@ -127,6 +128,9 @@
 		3F68715C1CBD937E009E45B2 /* MethodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68715B1CBD937E009E45B2 /* MethodUtils.swift */; };
 		3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F74947F1C753B0B002A0544 /* Assets.xcassets */; };
 		3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */; };
+		3FA0176F1CDADE2B00B632F4 /* PdfViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */; };
+		3FA017701CDADE2B00B632F4 /* PdfViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA0176E1CDADE2B00B632F4 /* PdfViewerViewController.xib */; };
+		3FA017771CDADF4C00B632F4 /* PdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA017761CDADF4C00B632F4 /* PdfView.swift */; };
 		3FF93E371C86595500621455 /* EditDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */; };
 		3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */; };
 		3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */; };
@@ -297,6 +301,7 @@
 		3F4873731C75DD6D006594A6 /* FileInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileInfo.swift; path = Classes/Utils/FileInfo.swift; sourceTree = "<group>"; };
 		3F49306B1C7BAF590088A454 /* LocalFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalFileDetailViewController.swift; path = Classes/ViewControllers/Local/LocalFileDetailViewController.swift; sourceTree = "<group>"; };
 		3F49306C1C7BAF590088A454 /* LocalFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalFileDetailViewController.xib; path = Classes/ViewControllers/Local/LocalFileDetailViewController.xib; sourceTree = "<group>"; };
+		3F55D4651CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OneDriveSDKiOSLicense.txt; path = Resources/Licenses/OneDriveSDKiOSLicense.txt; sourceTree = "<group>"; };
 		3F57FECB1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OneDriveFileDetailViewController.swift; path = Classes/ViewControllers/Cloud/OneDrive/OneDriveFileDetailViewController.swift; sourceTree = "<group>"; };
 		3F57FECC1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OneDriveFileDetailViewController.xib; path = Classes/ViewControllers/Cloud/OneDrive/OneDriveFileDetailViewController.xib; sourceTree = "<group>"; };
 		3F57FECF1CD17B76002ADAC8 /* EditOneDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditOneDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/OneDrive/EditOneDriveFileViewController.swift; sourceTree = "<group>"; };
@@ -306,7 +311,7 @@
 		3F5AE4471CC788C600E262AC /* CreateGoogleDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateGoogleDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/GoogleDrive/CreateGoogleDriveFileViewController.swift; sourceTree = "<group>"; };
 		3F5AE4481CC788C600E262AC /* CreateGoogleDriveFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateGoogleDriveFileViewController.xib; path = Classes/ViewControllers/Cloud/GoogleDrive/CreateGoogleDriveFileViewController.xib; sourceTree = "<group>"; };
 		3F5AE4501CC833E600E262AC /* GoogleDriveUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoogleDriveUtils.swift; path = Classes/Utils/GoogleDriveUtils.swift; sourceTree = "<group>"; };
-		3F5AE4521CC8420D00E262AC /* GoogleApiObjectiveCClient.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GoogleApiObjectiveCClient.txt; path = Resources/Licenses/GoogleApiObjectiveCClient.txt; sourceTree = "<group>"; };
+		3F5AE4521CC8420D00E262AC /* GoogleApiObjectiveCClientLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GoogleApiObjectiveCClientLicense.txt; path = Resources/Licenses/GoogleApiObjectiveCClientLicense.txt; sourceTree = "<group>"; };
 		3F5AE4551CC8470B00E262AC /* OneDriveFileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OneDriveFileListViewController.swift; path = Classes/ViewControllers/Cloud/OneDrive/OneDriveFileListViewController.swift; sourceTree = "<group>"; };
 		3F5AE4561CC8470B00E262AC /* OneDriveFileListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OneDriveFileListViewController.xib; path = Classes/ViewControllers/Cloud/OneDrive/OneDriveFileListViewController.xib; sourceTree = "<group>"; };
 		3F5AE45B1CC972A700E262AC /* ADALiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = ADALiOS.framework; path = "/Users/mfuta1971/Desktop/Github/PWEditor/PWEditor/Build/Products/Debug-iphoneos/ADALiOS.framework"; sourceTree = "<absolute>"; };
@@ -322,6 +327,9 @@
 		3F74947F1C753B0B002A0544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F7494821C753B0B002A0544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F7494841C753B0B002A0544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfViewerViewController.swift; path = Classes/ViewControllers/Common/PdfViewerViewController.swift; sourceTree = "<group>"; };
+		3FA0176E1CDADE2B00B632F4 /* PdfViewerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PdfViewerViewController.xib; path = Classes/ViewControllers/Common/PdfViewerViewController.xib; sourceTree = "<group>"; };
+		3FA017761CDADF4C00B632F4 /* PdfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfView.swift; path = Classes/ViewControllers/Common/PdfView.swift; sourceTree = "<group>"; };
 		3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDropboxFileViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.swift; sourceTree = "<group>"; };
 		3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.xib; sourceTree = "<group>"; };
 		3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SwiftyDropboxLicense.txt; path = Resources/Licenses/SwiftyDropboxLicense.txt; sourceTree = "<group>"; };
@@ -373,6 +381,9 @@
 				3F17F0471CCF716800A1F280 /* PreviewWebViewController.xib */,
 				3F17F0511CD01C6A00A1F280 /* SearchWordViewController.swift */,
 				3F17F0521CD01C6A00A1F280 /* SearchWordViewController.xib */,
+				3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */,
+				3FA0176E1CDADE2B00B632F4 /* PdfViewerViewController.xib */,
+				3FA017761CDADF4C00B632F4 /* PdfView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -516,8 +527,9 @@
 				3F165E6B1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt */,
 				3F165E3F1C7A690C001CBC38 /* SourceHanCodeJPLicense.txt */,
 				3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */,
+				3F5AE4521CC8420D00E262AC /* GoogleApiObjectiveCClientLicense.txt */,
+				3F55D4651CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt */,
 				3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */,
-				3F5AE4521CC8420D00E262AC /* GoogleApiObjectiveCClient.txt */,
 			);
 			name = Licenses;
 			sourceTree = "<group>";
@@ -888,7 +900,7 @@
 				3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */,
 				3F12E86E1CC594430008DDEE /* GoogleDriveFileListViewController.xib in Resources */,
 				3F17F0401CCF712700A1F280 /* marked.min.js in Resources */,
-				3F5AE4531CC8420D00E262AC /* GoogleApiObjectiveCClient.txt in Resources */,
+				3F5AE4531CC8420D00E262AC /* GoogleApiObjectiveCClientLicense.txt in Resources */,
 				3F165E411C7A690C001CBC38 /* ECSlidingViewControllerLicense.txt in Resources */,
 				3F165E7A1C7A7FF5001CBC38 /* SelectNumberViewController.xib in Resources */,
 				3F165E321C7A687C001CBC38 /* CreateLocalFileViewController.xib in Resources */,
@@ -900,6 +912,7 @@
 				3F17F0491CCF716800A1F280 /* PreviewWebViewController.xib in Resources */,
 				3F0F829E1C90D1510090632E /* ICTextViewLicense.txt in Resources */,
 				3F165E611C7A776F001CBC38 /* highlightjs-line-numbers.min.js in Resources */,
+				3F55D4661CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt in Resources */,
 				3F165E421C7A690C001CBC38 /* SourceHanCodeJPLicense.txt in Resources */,
 				3F19D2671C9225D6009ACAB2 /* SelectDirViewController.xib in Resources */,
 				3F5AE44A1CC788C600E262AC /* CreateGoogleDriveFileViewController.xib in Resources */,
@@ -917,6 +930,7 @@
 				3F165E601C7A776F001CBC38 /* highlight.pack.js in Resources */,
 				3F12E8571CC580260008DDEE /* MenuViewController.xib in Resources */,
 				3F003D271C767B1800ECC371 /* Localizable.strings in Resources */,
+				3FA017701CDADE2B00B632F4 /* PdfViewerViewController.xib in Resources */,
 				3F157C011C84F4F3007C555E /* ICloudFileListViewController.xib in Resources */,
 				3F165E6A1C7A7B13001CBC38 /* OpenSourceLicenseListViewController.xib in Resources */,
 				3F165E361C7A687C001CBC38 /* GrepLocalFileListViewController.xib in Resources */,
@@ -1013,6 +1027,8 @@
 				3F37CF4A1C85AC1800B138C9 /* DropboxFileDetailViewController.swift in Sources */,
 				3F003D311C767C2600ECC371 /* LogUtils.swift in Sources */,
 				3F4873681C75D83B006594A6 /* AppDelegate.swift in Sources */,
+				3FA0176F1CDADE2B00B632F4 /* PdfViewerViewController.swift in Sources */,
+				3FA017771CDADF4C00B632F4 /* PdfView.swift in Sources */,
 				3F157BFF1C84F4F3007C555E /* ICloudDocument.swift in Sources */,
 				3F4873721C75DBE6006594A6 /* FileUtils.swift in Sources */,
 				3F3E85BC1C776174002EFB6D /* EnterLineDataTableViewCell.swift in Sources */,

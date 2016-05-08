@@ -153,9 +153,10 @@ struct CommonConst {
         static let kHTML = "html"
         static let kHTM = "htm"
         static let kMarkdown = "md"
+        static let kPdf = "pdf"
     }
 
-    enum FileType: Int {
+    enum PreviewFileType: Int {
         case HTML
         case Markdown
         case Other

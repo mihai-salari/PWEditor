@@ -71,12 +71,12 @@ class PreviewWebViewController: BaseWebViewController {
         setupBannerView(bannerView)
 
         // ファイル拡張子を取得する。
-        let fileType = FileUtils.getFileType(fileName)
-        if fileType == CommonConst.FileType.HTML.rawValue {
+        let previewFileType = FileUtils.getPreviewFileType(fileName)
+        if previewFileType == CommonConst.PreviewFileType.HTML.rawValue {
             // HTMLファイルの場合
             loadHtmlData(fileData, webView: webView)
 
-        } else if fileType == CommonConst.FileType.Markdown.rawValue {
+        } else if previewFileType == CommonConst.PreviewFileType.Markdown.rawValue {
             // Markdownファイルの場合
             loadMarkdownData(fileData, webView: webView)
         }

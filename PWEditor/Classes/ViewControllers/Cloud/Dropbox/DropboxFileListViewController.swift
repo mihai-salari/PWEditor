@@ -43,6 +43,9 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
     /// Dropboxファイル情報リスト
     var fileInfoList = [DropboxFileInfo]()
 
+    /// ダウンロード先ローカルファイルパス名
+    var loacalFilePathName: String?
+
     // MARK: - Initializer
 
     /**
@@ -120,6 +123,22 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
 
         // ファイル情報リストを取得する。
         getFileInfoList(pathName)
+    }
+
+    /**
+     画面が閉じる前に呼び出される。
+
+     - Parameter animated: アニメーション指定
+     */
+    override func viewWillDisappear(animated: Bool) {
+        if loacalFilePathName != nil && !loacalFilePathName!.isEmpty {
+            // ダウンロード用ローカルファイルが存在する場合、削除する。
+            FileUtils.remove(loacalFilePathName!)
+            loacalFilePathName = nil
+        }
+
+        // スーパークラスのメソッドを呼び出す。
+        super.viewWillDisappear(animated)
     }
 
     // MARK: - UITableViewDataSource
@@ -205,10 +224,24 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
 
         } else {
             // ファイルの場合
-            // ファイル編集画面に遷移する。
             let fileName = fileInfo.name
-            let vc = EditDropboxFileViewController(pathName: pathName, fileName: fileName)
-            navigationController?.pushViewController(vc, animated: true)
+            let extention = CommonConst.FileExtention.kPdf
+            let isPdf = FileUtils.checkExtention(fileName, extention: extention)
+            if isPdf {
+                // PDFファイルの場合
+                // TODO: 対応中
+//                // PDFファイルをダウンロードする。
+//                downloadPdfData(fileName)
+                // ファイル編集画面に遷移する。
+                let vc = EditDropboxFileViewController(pathName: pathName, fileName: fileName)
+                navigationController?.pushViewController(vc, animated: true)
+
+            } else {
+                // PDFファイル以外の場合
+                // ファイル編集画面に遷移する。
+                let vc = EditDropboxFileViewController(pathName: pathName, fileName: fileName)
+                navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 
@@ -490,6 +523,81 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
                 print("Hello \(account.name.givenName)!")
             } else {
                 print(error!)
+            }
+        }
+    }
+
+    /**
+     Dropboxファイルをダウンロードする。
+     TODO: 対応中
+     
+     - Parameter fileName: ファイル名
+     */
+    func downloadPdfData(fileName: String) {
+        let client = Dropbox.authorizedClient
+        if client == nil {
+            // Dropboxが無効な場合
+            // 画面構成をリセットする。
+            resetScreen()
+            return
+        }
+
+        // ダウンロード先URLを取得する。
+        let destination : (NSURL, NSHTTPURLResponse) -> NSURL = { temporaryURL, response in
+            let fileManager = NSFileManager.defaultManager()
+            let directoryURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            // generate a unique name for this file in case we've seen it before
+            let UUID = NSUUID().UUIDString
+            let pathComponent = "\(UUID)-\(response.suggestedFilename!)"
+            return directoryURL.URLByAppendingPathComponent(pathComponent)
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        // Dropboxファイルをダウンロードする。
+        let filePathName = "\(pathName)/\(fileName)"
+        client!.files.download(path: filePathName, destination: destination).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil || response == nil {
+                // エラーの場合
+                // エラーアラートを表示する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditDropboxFileDownloadError, filePathName)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            if let (metadata, url) = response {
+                // ファイル属性情報を取得する。
+                if metadata.dynamicType != Files.FileMetadata.self {
+                    // ファイル属性情報ではない場合
+                    // エラーアラートを表示する。
+                    let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                    let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditDropboxFileDownloadError, filePathName)
+                    self.showAlert(title, message: message)
+                    return
+                }
+
+                // 画面遷移後の削除用にローカルファイルパス名を取得する。
+                self.loacalFilePathName = url.path
+
+                // ファイルデータを取得する。
+                let fileData = NSData(contentsOfURL: url)
+
+                if fileData == nil {
+                    // ファイルデータが取得できない場合
+                    let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                    let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageGetFileDataError)
+                    self.showAlert(title, message: message)
+                }
+
+                let fileDataString = String(data: fileData!, encoding: NSUTF8StringEncoding)
+                let url = NSURL(string: fileDataString!)
+                let vc = PdfViewerViewController(url: url!)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }

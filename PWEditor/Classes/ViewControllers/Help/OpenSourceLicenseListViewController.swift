@@ -27,7 +27,8 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "highlightjs-line-numbers.js",
         "SourceHanCodeJP",
         "SwiftyDropbox",
-        "Google APIs Client Library for Objective-C"
+        "Google APIs Client Library for Objective-C",
+        "One Drive SDK iOS",
 //        "ICTextView"
     ]
     
@@ -40,7 +41,8 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         case SourceHanCodeJP = 4
         case SwiftyDropbox = 5
         case GoogleApiObjectiveCClient = 6
-//        case ICTextView = 7
+        case OneDriveSDKiOS = 7
+//        case ICTextView = 8
     }
     
     /** URLリスト */
@@ -51,7 +53,8 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "https://github.com/wcoder/highlightjs-line-numbers.js",
         "https://github.com/adobe-fonts/source-han-code-jp",
         "https://github.com/dropbox/SwiftyDropbox",
-        "https://github.com/google/google-api-objectivec-client"
+        "https://github.com/google/google-api-objectivec-client",
+        "https://github.com/OneDrive/onedrive-sdk-ios",
 //        "https://github.com/Exile90/ICTextView"
     ]
 

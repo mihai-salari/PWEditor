@@ -121,9 +121,9 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         myView.textView.scrollPosition = ICTextViewScrollPositionMiddle
         myView.textView.searchOptions = .CaseInsensitive
 
-        let fileType = FileUtils.getFileType(fileName)
-        if fileType == CommonConst.FileType.HTML.rawValue ||
-            fileType == CommonConst.FileType.Markdown.rawValue {
+        let previewFileType = FileUtils.getPreviewFileType(fileName)
+        if previewFileType == CommonConst.PreviewFileType.HTML.rawValue ||
+            previewFileType == CommonConst.PreviewFileType.Markdown.rawValue {
             // プレビュー対象ファイルの場合
             previewToolbarButton.enabled = true
 

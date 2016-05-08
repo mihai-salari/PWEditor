@@ -284,12 +284,20 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
 
         } else {
             // ファイルの場合
-            // ファイル編集画面に遷移する。
             let fileName = fileInfo.name
-            let vc = EditLocalFileViewController(pathName: pathName, fileName: fileName)
-            // TODO: ハイライト表示確認用
-//            let vc = HighlightViewController()
-            navigationController?.pushViewController(vc, animated: true)
+            let extention = CommonConst.FileExtention.kPdf
+            let isPdf = FileUtils.checkExtention(fileName, extention: extention)
+            if isPdf {
+                // PDFファイルの場合
+                // PDFファイル表画面に遷移する。
+//                vc = PdfViewerViewController(pathName: pathName, fileName: fileName)
+
+            } else {
+                // PDFファイル以外の場合
+                // ローカルファイル編集画面に遷移する。
+                let vc = EditLocalFileViewController(pathName: pathName, fileName: fileName)
+                navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 

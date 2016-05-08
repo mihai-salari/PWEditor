@@ -332,6 +332,7 @@ class EditGoogleDriveFileViewController: BaseViewController, UITextViewDelegate 
 
         let fileId = driveFile.identifier
         let query = GTLQueryDrive.queryForFilesUpdateWithObject(driveFile, fileId: fileId, uploadParameters: uploadParameters)
+
         let appDelegate = EnvUtils.getAppDelegate()
         let serviceDrive = appDelegate.googleDriveServiceDrive
         serviceDrive.executeQuery(query, completionHandler: { (ticket: GTLServiceTicket!, updatedFile: AnyObject!, error: NSError!) -> Void in

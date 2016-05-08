@@ -23,6 +23,7 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "Source Han Code JP",
         "SwiftyDropbox",
         "Google APIs Client Library for Objective-C",
+        "One Drive SDK iOS",
         "ICTextView"
     ]
     
@@ -34,7 +35,8 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "Highlightjs-line-numbersLicense",
         "SourceHanCodeJPLicense",
         "SwiftyDropboxLicense",
-        "GoogleApiObjectiveCClient",
+        "GoogleApiObjectiveCClientLicense",
+        "OneDriveSDKiOSLicense",
         "ICTextViewLicense"
     ]
     

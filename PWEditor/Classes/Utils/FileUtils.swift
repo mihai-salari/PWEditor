@@ -400,15 +400,15 @@ class FileUtils: NSObject {
         return fileExtention
     }
 
-    class func getFileType(fileName: String) -> Int {
+    class func getPreviewFileType(fileName: String) -> Int {
         let fileExtention = getFileExtention(fileName)
         if fileExtention == CommonConst.FileExtention.kHTML ||
             fileExtention == CommonConst.FileExtention.kHTM {
-            return CommonConst.FileType.HTML.rawValue
+            return CommonConst.PreviewFileType.HTML.rawValue
         } else if fileExtention == CommonConst.FileExtention.kMarkdown {
-            return CommonConst.FileType.Markdown.rawValue
+            return CommonConst.PreviewFileType.Markdown.rawValue
         } else {
-            return CommonConst.FileType.Other.rawValue
+            return CommonConst.PreviewFileType.Other.rawValue
         }
     }
 }
