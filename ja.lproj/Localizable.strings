@@ -45,6 +45,7 @@ AlertMessageProcessing = "しばらくお待ちください。";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "ローカルファイル操作";
+ActionSheetTitleICloudFile = "iCloudファイル操作";
 ActionSheetTitleDropboxFile = "Dropboxファイル操作";
 ActionSheetTitleGoogleDriveFile = "Google driveファイル操作";
 ActionSheetTitleOneDriveFile = "One driveファイル操作";

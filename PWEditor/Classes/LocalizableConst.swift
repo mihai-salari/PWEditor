@@ -49,6 +49,7 @@ struct LocalizableConst {
 
     // アクションシートタイトル
     static let kActionSheetTitleLocalFile = "ActionSheetTitleLocalFile"
+    static let kActionSheetTitleICloudFile = "ActionSheetTitleICloudFile"
     static let kActionSheetTitleDropboxFile = "ActionSheetTitleDropboxFile"
     static let kActionSheetTitleGoogleDriveFile = "ActionSheetTitleGoogleDriveFile"
     static let kActionSheetTitleOneDriveFile = "ActionSheetTitleOneDriveFile"

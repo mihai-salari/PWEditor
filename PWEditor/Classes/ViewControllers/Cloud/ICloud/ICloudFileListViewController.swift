@@ -88,6 +88,9 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
         // テーブルビューを設定する。
         setupTableView(tableView)
 
+        // セルロングタップを設定する。
+        createCellLogPressed(tableView, delegate: self)
+
         // バナービューを設定する。
         setupBannerView(bannerView)
     }
@@ -226,7 +229,126 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
         navigationController?.pushViewController(vc, animated: true)
     }
 
-    // MARK: - Button handler
+    // MARK: - Cell long press
+
+    /**
+     セルロングタップを生成する。
+     */
+    func createCellLogPressed() {
+        let selector = #selector(cellLongPressed(_:))
+        let cellLongPressedAction = selector
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: cellLongPressedAction)
+        longPressRecognizer.delegate = self
+        tableView.addGestureRecognizer(longPressRecognizer)
+    }
+
+    /**
+     セルロングタップ時に呼び出される。
+
+     - Parameter recognizer: ジェスチャー
+     */
+    override func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
+        let point = recognizer.locationInView(tableView)
+        let indexPath = tableView!.indexPathForRowAtPoint(point)
+
+        if indexPath == nil {
+            return
+        }
+
+        if recognizer.state == UIGestureRecognizerState.Began {
+            let row = indexPath!.row
+            let count = fileInfoList.count
+            if row + 1 > count {
+                return
+            }
+
+            let fileInfo = fileInfoList[row] as! NSMetadataItem
+            let fileName = fileNameList[row] as! String
+            let cell = tableView.cellForRowAtIndexPath(indexPath!)
+            showOperateICloudFileActionSheet(fileInfo, fileName: fileName, index: row, cell: cell!)
+        }
+    }
+
+    // MARK: - ActionSheet
+
+    /**
+     iCloudファイル操作アクションシートを表示する。
+
+     - Parameter fileInfo: ファイル情報
+     - Parameter fileName: ファイル名
+     - Parameter index: ファイルの位置
+     - Parameter cell: テーブルビューセル
+     */
+    private func showOperateICloudFileActionSheet(fileInfo: NSMetadataItem, fileName: String, index: Int, cell: UITableViewCell) {
+        // iCloudファイル操作アクションシートを生成する。
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kActionSheetTitleICloudFile)
+        let alert = UIAlertController(title: alertTitle, message: "", preferredStyle: .ActionSheet)
+        // iPadでクラッシュする対応
+        alert.popoverPresentationController?.sourceView = view
+        alert.popoverPresentationController?.sourceRect = cell.frame
+
+        // キャンセルボタンを生成する。
+        let cancelButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+//        let dir = GoogleDriveUtils.isDir(driveFile)
+//        if !dir {
+//            // ファイルの場合
+//            // 文字エンコーディングを指定して開くボタンを生成する。
+//            let openCharButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleOpenChar)
+//            let openCharAction = UIAlertAction(title: openCharButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+//                // 文字エンコーディング選択画面に遷移する。
+//                let sourceClassName = self.dynamicType.description()
+//                let vc = SelectEncodingViewController(sourceClassName: sourceClassName, driveFile: driveFile)
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            })
+//            alert.addAction(openCharAction)
+//        }
+
+        // 削除ボタンを生成する。
+        let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+        let deleteAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // ファイル削除確認アラートを表示する。
+            self.showDeleteFileConfirmAlert(fileInfo, fileName: fileName, index: index)
+        })
+        alert.addAction(deleteAction)
+
+        // アラートを表示する。
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    /**
+     ファイル削除確認アラートを表示する。
+
+     - Parameter fileInfo: ファイル情報
+     - Parameter fileName: ファイル名
+     - Parameter index: ファイル情報の位置
+     */
+    private func showDeleteFileConfirmAlert(fileInfo: NSMetadataItem, fileName: String, index: Int) {
+        // ファイル削除確認アラートを生成する。
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kAlertTitleConfirm)
+        let alertMessage = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageDeleteConfirm, fileName)
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .Alert)
+
+        // キャンセルボタンを生成する。
+        let cancelButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+        // 削除ボタンを生成する。
+        let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+        let okAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // 削除する。
+            self.deleteICloudFile(fileName, index: index)
+        })
+        alert.addAction(okAction)
+
+        // アラートを表示する。
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    // MARK: - Toolbar button
 
     /**
      作成ツールボタンが押下された時に呼び出される。
@@ -237,6 +359,33 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
         // iCloudファイル作成画面に遷移する。
         let vc = CreateICloudFileViewController(pathName: "")
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    // MARK: - iCloud
+
+    /**
+     iCloudファイルを削除する。
+
+     - Parameter fileName: ファイル名
+     - Parameter index: インデックス
+     */
+    func deleteICloudFile(fileName: String, index: Int) {
+        let cloud = iCloud.sharedCloud()
+        cloud.deleteDocumentWithName(fileName, completion: { (error: NSError?) -> Void in
+            if error != nil {
+                // エラーの場合、エラーアラートを表示する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDeleteFileError)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            // ファイル情報リストから削除する。
+            self.fileInfoList.removeObjectAtIndex(index)
+
+            // テーブルビューを更新する。
+            self.tableView.reloadData()
+        })
     }
 
     // MARK: - iCloudDelegate

@@ -93,6 +93,8 @@
 		3F23F9651C7BD19D004852B3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F9641C7BD19D004852B3 /* DateUtils.swift */; };
 		3F2852311CE28A9500C77435 /* ICloudFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28522F1CE28A9500C77435 /* ICloudFileDetailViewController.swift */; };
 		3F2852321CE28A9500C77435 /* ICloudFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2852301CE28A9500C77435 /* ICloudFileDetailViewController.xib */; };
+		3F28523A1CE299F100C77435 /* EditICloudFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2852381CE299F100C77435 /* EditICloudFileViewController.swift */; };
+		3F28523B1CE299F100C77435 /* EditICloudFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2852391CE299F100C77435 /* EditICloudFileViewController.xib */; };
 		3F37CF4A1C85AC1800B138C9 /* DropboxFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F37CF481C85AC1800B138C9 /* DropboxFileDetailViewController.swift */; };
 		3F37CF4B1C85AC1800B138C9 /* DropboxFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F37CF491C85AC1800B138C9 /* DropboxFileDetailViewController.xib */; };
 		3F3A15A91CBD2977008DED48 /* UITextViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3A15A81CBD2977008DED48 /* UITextViewExtention.swift */; };
@@ -294,6 +296,8 @@
 		3F23F9641C7BD19D004852B3 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtils.swift; path = Classes/Utils/DateUtils.swift; sourceTree = "<group>"; };
 		3F28522F1CE28A9500C77435 /* ICloudFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICloudFileDetailViewController.swift; path = Classes/ViewControllers/Cloud/ICloud/ICloudFileDetailViewController.swift; sourceTree = "<group>"; };
 		3F2852301CE28A9500C77435 /* ICloudFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ICloudFileDetailViewController.xib; path = Classes/ViewControllers/Cloud/ICloud/ICloudFileDetailViewController.xib; sourceTree = "<group>"; };
+		3F2852381CE299F100C77435 /* EditICloudFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditICloudFileViewController.swift; path = Classes/ViewControllers/Cloud/ICloud/EditICloudFileViewController.swift; sourceTree = "<group>"; };
+		3F2852391CE299F100C77435 /* EditICloudFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditICloudFileViewController.xib; path = Classes/ViewControllers/Cloud/ICloud/EditICloudFileViewController.xib; sourceTree = "<group>"; };
 		3F37CF481C85AC1800B138C9 /* DropboxFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DropboxFileDetailViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileDetailViewController.swift; sourceTree = "<group>"; };
 		3F37CF491C85AC1800B138C9 /* DropboxFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DropboxFileDetailViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileDetailViewController.xib; sourceTree = "<group>"; };
 		3F3A15A81CBD2977008DED48 /* UITextViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextViewExtention.swift; path = Classes/Extentions/UITextViewExtention.swift; sourceTree = "<group>"; };
@@ -478,6 +482,8 @@
 				3F2852301CE28A9500C77435 /* ICloudFileDetailViewController.xib */,
 				3FA61ADE1CE15694009926EE /* CreateICloudFileViewController.swift */,
 				3FA61ADF1CE15694009926EE /* CreateICloudFileViewController.xib */,
+				3F2852381CE299F100C77435 /* EditICloudFileViewController.swift */,
+				3F2852391CE299F100C77435 /* EditICloudFileViewController.xib */,
 				3F55D4751CDFEE3300818A4E /* ICloud.swift */,
 				3F157BFC1C84F4F3007C555E /* ICloudDocument.swift */,
 			);
@@ -946,6 +952,7 @@
 				3F0F82A21C90DAD20090632E /* HighlightViewController.xib in Resources */,
 				3F49306E1C7BAF590088A454 /* LocalFileDetailViewController.xib in Resources */,
 				3F5AE46B1CC9833C00E262AC /* CPP.txt in Resources */,
+				3F28523B1CE299F100C77435 /* EditICloudFileViewController.xib in Resources */,
 				3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */,
 				3F165E601C7A776F001CBC38 /* highlight.pack.js in Resources */,
 				3F12E8571CC580260008DDEE /* MenuViewController.xib in Resources */,
@@ -1063,6 +1070,7 @@
 				3F157C001C84F4F3007C555E /* ICloudFileListViewController.swift in Sources */,
 				3F157C051C84F50E007C555E /* DropboxFileInfo.swift in Sources */,
 				3F165E4B1C7A72A1001CBC38 /* BaseWebViewController.swift in Sources */,
+				3F28523A1CE299F100C77435 /* EditICloudFileViewController.swift in Sources */,
 				3F55D4761CDFEE3300818A4E /* ICloud.swift in Sources */,
 				3F157C061C84F50E007C555E /* DropboxFileListViewController.swift in Sources */,
 				3F23F9601C7BBAA2004852B3 /* GrepResultInfo.swift in Sources */,
