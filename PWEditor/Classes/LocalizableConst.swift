@@ -126,6 +126,16 @@ struct LocalizableConst {
     // iCloudファイル一覧画面
     static let kICloudFileListScreenTitle = "ICloudFileListScreenTitle"
 
+    // iCloudファイル詳細画面
+    static let kICloudFileDatailScreenTitle = "ICloudFileDatailScreenTitle"
+    static let kICloudFileDetailCellTitleName = "ICloudFileDetailCellTitleName"
+    static let kICloudFileDetailCellTitleDisplayName = "ICloudFileDetailCellTitleDisplayName"
+    static let kICloudFileDetailCellTitleUrl = "ICloudFileDetailCellTitleUrl"
+    static let kICloudFileDetailCellTitlePath = "ICloudFileDetailCellTitlePath"
+    static let kICloudFileDetailCellTitleSize = "ICloudFileDetailCellTitleSize"
+    static let kICloudFileDetailCellTitleCreationDate = "ICloudFileDetailCellTitleCreationDate"
+    static let kICloudFileDetailCellTitleContentChangeDate = "ICloudFileDetailCellTitleContentChangeDate"
+
     // Dropboxファイル一覧画面
     static let kDropboxFileListScreenTitle = "DropboxFileListScreenTitle"
     static let kDropboxFileListGetFileInfoListError = "DropboxFileListGetFileInfoListError"

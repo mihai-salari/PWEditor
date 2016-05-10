@@ -120,6 +120,16 @@ SelectDirScreenTitle = "Select directory";
 // iCloudファイル一覧画面
 ICloudFileListScreenTitle = "iCloud file list";
 
+// iCloudファイル詳細画面
+ICloudFileDatailScreenTitle = "iCloud file detail";
+ICloudFileDetailCellTitleName = "File name";
+ICloudFileDetailCellTitleDisplayName = "Display name";
+ICloudFileDetailCellTitleUrl = "URL";
+ICloudFileDetailCellTitlePath = "Path";
+ICloudFileDetailCellTitleSize = "Size";
+ICloudFileDetailCellTitleCreationDate = "Create date";
+ICloudFileDetailCellTitleContentChangeDate = "Update date";
+
 // Dropboxファイル一覧画面
 DropboxFileListScreenTitle = "Dropbox file list";
 DropboxFileListGetFileInfoListError = "Get file info list failed.";

@@ -8,14 +8,6 @@ pod 'ECSlidingViewController', '~> 2.0.3'
 pod 'SwiftyDropbox'
 pod 'ICTextView', :git => "https://github.com/paveway/ICTextView.git", :branch => "master"
 pod 'OneDriveSDK'
-
-def testing_pods
-    pod 'Quick'
-    pod 'Nimble'
-end
-
-target 'PWEditorTests' do
-    testing_pods
-end
+pod 'iCloudDocumentSync'
 
 xcodeproj './PWEditor.xcodeproj'

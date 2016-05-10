@@ -16,7 +16,7 @@ import OneDriveSDK
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
+class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, iCloudDelegate {
 
     // MARK: - Constants
 
@@ -38,7 +38,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
 
     /// クラウドセクションタイトルリスト
     private let kCloudTitleList = [
-//        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleICloud),
+        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleICloud),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleDropbox),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleGoogleDrive),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOneDrive)
@@ -54,31 +54,31 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
 
     /// セクションインデックス
     private enum SectionIndex: Int {
-        case Local = 0
-        case Cloud = 1
-        case Help = 2
+        case Local
+        case Cloud
+        case Help
     }
 
     /// ローカルセクションインデックス
     private enum LocalIndex: Int {
-        case LocalFileList = 0
-        case RecentFileList = 1
+        case LocalFileList
+        case RecentFileList
     }
 
     /// クラウドセクションインデックス
     private enum CloudIndex: Int {
-//        case ICloud = 0
-        case Dropbox = 0
-        case GoogleDrive = 1
-        case OneDrive = 2
+        case ICloud
+        case Dropbox
+        case GoogleDrive
+        case OneDrive
     }
 
     /// ヘルプセクションインデックス
     private enum HelpIndex: Int {
-        case Settings = 0
-        case About = 1
-        case History = 2
-        case OpenSourceLicense = 3
+        case Settings
+        case About
+        case History
+        case OpenSourceLicense
     }
 
     /// ルートパス名
@@ -100,10 +100,24 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
 
         // テーブルビューを設定する。
         setupTableView(tableView)
+
+        // iCloudの初期化を行う。
+        let cloud = iCloud.sharedCloud()
+        cloud.delegate = self
+        cloud.setupiCloudDocumentSyncWithUbiquityContainer(nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // iCloudのデリゲート設定を更新する。
+        let cloud = iCloud.sharedCloud()
+        cloud.delegate = self
+        cloud.checkCloudAvailability()
     }
 
     // MARK: - UITableViewDataSource
@@ -154,6 +168,19 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
             // クラウドセクションの場合
             title = kCloudTitleList[row]
             switch row {
+            case CloudIndex.ICloud.rawValue:
+                // iCloudセルの場合
+                let cloud = iCloud.sharedCloud()
+                if cloud.checkCloudUbiquityContainer() {
+                    // iCloudが有効な場合
+                    cell.textLabel?.enabled = true
+
+                } else {
+                    // iCloudが無効な場合
+                    cell.textLabel?.enabled = false
+                }
+                break
+
             case CloudIndex.Dropbox.rawValue:
                 // Dropboxセルの場合
                 if Dropbox.authorizedClient != nil {
@@ -221,28 +248,44 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
 
         switch section {
         case SectionIndex.Local.rawValue:
+            // ローカルセクションの場合
+            // セルによって処理を振り分ける。
             switch row {
             case LocalIndex.LocalFileList.rawValue:
+                // ローカルファイル一覧セルの場合
+                // ローカルファイル一覧画面に遷移する。
                 let vc = LocalFileListViewController(pathName: kRootPathName)
                 resetTopView(vc)
                 break
 
             case LocalIndex.RecentFileList.rawValue:
+                // 最近使用したファイル一覧セルの場合
+                // TODO: 未実装
                 break
 
             default:
+                // 上記以外、何もしない。
                 break
             }
             break
 
         case SectionIndex.Cloud.rawValue:
+            // クラウドセクションの場合
+            // セルによって処理を振り分ける。
             switch row {
-//            case CloudIndex.ICloud.rawValue:
-//                let vc = ICloudFileListViewController(pathName: kRootPathName)
-//                resetTopView(vc)
-//                break
+            case CloudIndex.ICloud.rawValue:
+                // iCloudセルの場合
+                let cloud = iCloud.sharedCloud()
+                if cloud.checkCloudUbiquityContainer() {
+                    // iCloudが有効な場合
+                    // iCloudファイル一覧画面に遷移する。
+                    let vc = ICloudFileListViewController(pathName: kRootPathName)
+                    resetTopView(vc)
+                }
+                break
 
             case CloudIndex.Dropbox.rawValue:
+                // Dropboxセルの場合
                 if Dropbox.authorizedClient != nil {
                     // サインイン済みの場合
                     // Dropboxファイル一覧画面に遷移する。
@@ -339,6 +382,22 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate {
      - Parameter state: サインイン状態
      */
     func receiveSignInState(cloudNo: Int, state: Bool) {
+        // テーブルビューを更新する。
+        tableView.reloadData()
+    }
+
+    // MARK: - iCloudDelegate
+
+    /**
+     iCloudの有効/無効が変更された時に呼び出される。
+
+     - Parameter cloudIsAvailable: 有効/無効 true:有効 / false:無効
+     - Parameter withUbiquityToken: ユビキタストークン
+     - Parameter withUbiquityContainer: ユビキタスコンテナ
+     */
+    func iCloudAvailabilityDidChangeToState(cloudIsAvailable: Bool, withUbiquityToken ubiquityToken: AnyObject!, withUbiquityContainer ubiquityContainer: NSURL!) {
+        NSLog("iCloudAvailabilityDidChangeToState")
+
         // テーブルビューを更新する。
         tableView.reloadData()
     }

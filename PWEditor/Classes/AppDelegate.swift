@@ -52,7 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // iCloudの初期化を行う。
-        initializeiCloudAccess()
+        // TODO: ライブラリを使用するためとりあえず不要
+        //initializeiCloudAccess()
 
         // Dropboxの初期化を行う。
         let appKey = ConfigUtils.getConfigValue(CommonConst.ConfigKey.kDropBoxAppKey)

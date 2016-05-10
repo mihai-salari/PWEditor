@@ -91,6 +91,8 @@
 		3F23F9601C7BBAA2004852B3 /* GrepResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */; };
 		3F23F9611C7BBAA2004852B3 /* SearchResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */; };
 		3F23F9651C7BD19D004852B3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F9641C7BD19D004852B3 /* DateUtils.swift */; };
+		3F2852311CE28A9500C77435 /* ICloudFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28522F1CE28A9500C77435 /* ICloudFileDetailViewController.swift */; };
+		3F2852321CE28A9500C77435 /* ICloudFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2852301CE28A9500C77435 /* ICloudFileDetailViewController.xib */; };
 		3F37CF4A1C85AC1800B138C9 /* DropboxFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F37CF481C85AC1800B138C9 /* DropboxFileDetailViewController.swift */; };
 		3F37CF4B1C85AC1800B138C9 /* DropboxFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F37CF491C85AC1800B138C9 /* DropboxFileDetailViewController.xib */; };
 		3F3A15A91CBD2977008DED48 /* UITextViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3A15A81CBD2977008DED48 /* UITextViewExtention.swift */; };
@@ -106,6 +108,8 @@
 		3F49306D1C7BAF590088A454 /* LocalFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49306B1C7BAF590088A454 /* LocalFileDetailViewController.swift */; };
 		3F49306E1C7BAF590088A454 /* LocalFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F49306C1C7BAF590088A454 /* LocalFileDetailViewController.xib */; };
 		3F55D4661CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F55D4651CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt */; };
+		3F55D46E1CDFE15300818A4E /* BoxiOSSDKLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F55D46D1CDFE15300818A4E /* BoxiOSSDKLicense.txt */; };
+		3F55D4761CDFEE3300818A4E /* ICloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F55D4751CDFEE3300818A4E /* ICloud.swift */; };
 		3F57FECD1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57FECB1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift */; };
 		3F57FECE1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F57FECC1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib */; };
 		3F57FED11CD17B76002ADAC8 /* EditOneDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F57FECF1CD17B76002ADAC8 /* EditOneDriveFileViewController.swift */; };
@@ -131,6 +135,8 @@
 		3FA0176F1CDADE2B00B632F4 /* PdfViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */; };
 		3FA017701CDADE2B00B632F4 /* PdfViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA0176E1CDADE2B00B632F4 /* PdfViewerViewController.xib */; };
 		3FA017771CDADF4C00B632F4 /* PdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA017761CDADF4C00B632F4 /* PdfView.swift */; };
+		3FA61AE01CE15694009926EE /* CreateICloudFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA61ADE1CE15694009926EE /* CreateICloudFileViewController.swift */; };
+		3FA61AE11CE15694009926EE /* CreateICloudFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA61ADF1CE15694009926EE /* CreateICloudFileViewController.xib */; };
 		3FF93E371C86595500621455 /* EditDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */; };
 		3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */; };
 		3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */; };
@@ -286,6 +292,8 @@
 		3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GrepResultInfo.swift; path = Classes/ViewControllers/Local/GrepResultInfo.swift; sourceTree = "<group>"; };
 		3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultInfo.swift; path = Classes/ViewControllers/Local/SearchResultInfo.swift; sourceTree = "<group>"; };
 		3F23F9641C7BD19D004852B3 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtils.swift; path = Classes/Utils/DateUtils.swift; sourceTree = "<group>"; };
+		3F28522F1CE28A9500C77435 /* ICloudFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICloudFileDetailViewController.swift; path = Classes/ViewControllers/Cloud/ICloud/ICloudFileDetailViewController.swift; sourceTree = "<group>"; };
+		3F2852301CE28A9500C77435 /* ICloudFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ICloudFileDetailViewController.xib; path = Classes/ViewControllers/Cloud/ICloud/ICloudFileDetailViewController.xib; sourceTree = "<group>"; };
 		3F37CF481C85AC1800B138C9 /* DropboxFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DropboxFileDetailViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileDetailViewController.swift; sourceTree = "<group>"; };
 		3F37CF491C85AC1800B138C9 /* DropboxFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DropboxFileDetailViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileDetailViewController.xib; sourceTree = "<group>"; };
 		3F3A15A81CBD2977008DED48 /* UITextViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextViewExtention.swift; path = Classes/Extentions/UITextViewExtention.swift; sourceTree = "<group>"; };
@@ -302,6 +310,8 @@
 		3F49306B1C7BAF590088A454 /* LocalFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalFileDetailViewController.swift; path = Classes/ViewControllers/Local/LocalFileDetailViewController.swift; sourceTree = "<group>"; };
 		3F49306C1C7BAF590088A454 /* LocalFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalFileDetailViewController.xib; path = Classes/ViewControllers/Local/LocalFileDetailViewController.xib; sourceTree = "<group>"; };
 		3F55D4651CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = OneDriveSDKiOSLicense.txt; path = Resources/Licenses/OneDriveSDKiOSLicense.txt; sourceTree = "<group>"; };
+		3F55D46D1CDFE15300818A4E /* BoxiOSSDKLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BoxiOSSDKLicense.txt; path = Resources/Licenses/BoxiOSSDKLicense.txt; sourceTree = "<group>"; };
+		3F55D4751CDFEE3300818A4E /* ICloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICloud.swift; path = Classes/ViewControllers/Cloud/ICloud/ICloud.swift; sourceTree = "<group>"; };
 		3F57FECB1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OneDriveFileDetailViewController.swift; path = Classes/ViewControllers/Cloud/OneDrive/OneDriveFileDetailViewController.swift; sourceTree = "<group>"; };
 		3F57FECC1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OneDriveFileDetailViewController.xib; path = Classes/ViewControllers/Cloud/OneDrive/OneDriveFileDetailViewController.xib; sourceTree = "<group>"; };
 		3F57FECF1CD17B76002ADAC8 /* EditOneDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditOneDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/OneDrive/EditOneDriveFileViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +340,8 @@
 		3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfViewerViewController.swift; path = Classes/ViewControllers/Common/PdfViewerViewController.swift; sourceTree = "<group>"; };
 		3FA0176E1CDADE2B00B632F4 /* PdfViewerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PdfViewerViewController.xib; path = Classes/ViewControllers/Common/PdfViewerViewController.xib; sourceTree = "<group>"; };
 		3FA017761CDADF4C00B632F4 /* PdfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfView.swift; path = Classes/ViewControllers/Common/PdfView.swift; sourceTree = "<group>"; };
+		3FA61ADE1CE15694009926EE /* CreateICloudFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateICloudFileViewController.swift; path = Classes/ViewControllers/Cloud/ICloud/CreateICloudFileViewController.swift; sourceTree = "<group>"; };
+		3FA61ADF1CE15694009926EE /* CreateICloudFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateICloudFileViewController.xib; path = Classes/ViewControllers/Cloud/ICloud/CreateICloudFileViewController.xib; sourceTree = "<group>"; };
 		3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDropboxFileViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.swift; sourceTree = "<group>"; };
 		3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.xib; sourceTree = "<group>"; };
 		3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SwiftyDropboxLicense.txt; path = Resources/Licenses/SwiftyDropboxLicense.txt; sourceTree = "<group>"; };
@@ -462,6 +474,11 @@
 			children = (
 				3F157BFD1C84F4F3007C555E /* ICloudFileListViewController.swift */,
 				3F157BFE1C84F4F3007C555E /* ICloudFileListViewController.xib */,
+				3F28522F1CE28A9500C77435 /* ICloudFileDetailViewController.swift */,
+				3F2852301CE28A9500C77435 /* ICloudFileDetailViewController.xib */,
+				3FA61ADE1CE15694009926EE /* CreateICloudFileViewController.swift */,
+				3FA61ADF1CE15694009926EE /* CreateICloudFileViewController.xib */,
+				3F55D4751CDFEE3300818A4E /* ICloud.swift */,
 				3F157BFC1C84F4F3007C555E /* ICloudDocument.swift */,
 			);
 			name = ICloud;
@@ -530,6 +547,7 @@
 				3F5AE4521CC8420D00E262AC /* GoogleApiObjectiveCClientLicense.txt */,
 				3F55D4651CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt */,
 				3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */,
+				3F55D46D1CDFE15300818A4E /* BoxiOSSDKLicense.txt */,
 			);
 			name = Licenses;
 			sourceTree = "<group>";
@@ -890,6 +908,7 @@
 				3F165E741C7A7E7C001CBC38 /* SelectFontViewController.xib in Resources */,
 				3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */,
 				3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */,
+				3F2852321CE28A9500C77435 /* ICloudFileDetailViewController.xib in Resources */,
 				3F57FED61CD17BA3002ADAC8 /* CreateOneDriveFileViewController.xib in Resources */,
 				3F165E511C7A75F9001CBC38 /* content.html in Resources */,
 				3F17F03F1CCF712700A1F280 /* marked.html in Resources */,
@@ -914,6 +933,7 @@
 				3F165E611C7A776F001CBC38 /* highlightjs-line-numbers.min.js in Resources */,
 				3F55D4661CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt in Resources */,
 				3F165E421C7A690C001CBC38 /* SourceHanCodeJPLicense.txt in Resources */,
+				3FA61AE11CE15694009926EE /* CreateICloudFileViewController.xib in Resources */,
 				3F19D2671C9225D6009ACAB2 /* SelectDirViewController.xib in Resources */,
 				3F5AE44A1CC788C600E262AC /* CreateGoogleDriveFileViewController.xib in Resources */,
 				3F157BFB1C84F4A6007C555E /* CreateDropboxFileViewController.xib in Resources */,
@@ -940,6 +960,7 @@
 				3F165E381C7A687C001CBC38 /* LocalFileListViewController.xib in Resources */,
 				3F17F0541CD01C6A00A1F280 /* SearchWordViewController.xib in Resources */,
 				3F165E681C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.xib in Resources */,
+				3F55D46E1CDFE15300818A4E /* BoxiOSSDKLicense.txt in Resources */,
 				3F165E431C7A690C001CBC38 /* TextKitLineNumbers.txt in Resources */,
 				3F4873701C75DB9C006594A6 /* Config.txt in Resources */,
 				3F165E621C7A776F001CBC38 /* xcode.css in Resources */,
@@ -1005,6 +1026,7 @@
 				3F003D321C767C2600ECC371 /* StringUtils.swift in Sources */,
 				3FF93E371C86595500621455 /* EditDropboxFileViewController.swift in Sources */,
 				3F165E371C7A687C001CBC38 /* LocalFileListViewController.swift in Sources */,
+				3F2852311CE28A9500C77435 /* ICloudFileDetailViewController.swift in Sources */,
 				3F12E8561CC580260008DDEE /* MenuViewController.swift in Sources */,
 				3F165E7C1C7A8039001CBC38 /* SettingUtils.swift in Sources */,
 				3F003D1D1C7678B000ECC371 /* LocalizableConst.swift in Sources */,
@@ -1041,10 +1063,12 @@
 				3F157C001C84F4F3007C555E /* ICloudFileListViewController.swift in Sources */,
 				3F157C051C84F50E007C555E /* DropboxFileInfo.swift in Sources */,
 				3F165E4B1C7A72A1001CBC38 /* BaseWebViewController.swift in Sources */,
+				3F55D4761CDFEE3300818A4E /* ICloud.swift in Sources */,
 				3F157C061C84F50E007C555E /* DropboxFileListViewController.swift in Sources */,
 				3F23F9601C7BBAA2004852B3 /* GrepResultInfo.swift in Sources */,
 				3F1915521C8CCF360042D306 /* LineNumberLayoutManager.m in Sources */,
 				3F1915471C8CCE8D0042D306 /* CharCode.swift in Sources */,
+				3FA61AE01CE15694009926EE /* CreateICloudFileViewController.swift in Sources */,
 				3F1915491C8CCEB40042D306 /* FileType.swift in Sources */,
 				3F23F9651C7BD19D004852B3 /* DateUtils.swift in Sources */,
 				3F003D1B1C7676C500ECC371 /* CommonConst.swift in Sources */,
@@ -1199,8 +1223,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PWEditor/PWEditor.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Masatsugu Futamata (9PR8LH7797)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Masatsugu Futamata (9PR8LH7797)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1216,7 +1240,8 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK/GoogleMobileAds\"",
 					"\"${PODS_ROOT}/ECSlidingViewController/ECSlidingViewController\"",
-					"\"${PODS_ROOT}/ICTextView/ICTextView",
+					"\"${PODS_ROOT}/ICTextView/ICTextView\"",
+					"\"${PODS_ROOT}/iCloudDocumentSync/iCloud\"",
 				);
 				INFOPLIST_FILE = PWEditor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1224,7 +1249,7 @@
 				OTHER_SWIFT_FLAGS = "-D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a0b3cf2c-d9ad-4a3d-9e4a-695a58a8c234";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PWEditor/PWEditor-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1238,8 +1263,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PWEditor/PWEditor.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Masatsugu Futamata (5Q7YHJUK8E)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Masatsugu Futamata (5Q7YHJUK8E)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1255,7 +1280,8 @@
 					"\"${PODS_ROOT}/Headers/Public\"",
 					"\"${PODS_ROOT}/Headers/Public/Google-Mobile-Ads-SDK/GoogleMobileAds\"",
 					"\"${PODS_ROOT}/ECSlidingViewController/ECSlidingViewController\"",
-					"\"${PODS_ROOT}/ICTextView/ICTextView",
+					"\"${PODS_ROOT}/ICTextView/ICTextView\"",
+					"\"${PODS_ROOT}/iCloudDocumentSync/iCloud\"",
 				);
 				INFOPLIST_FILE = PWEditor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1263,7 +1289,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "baf807b5-8d24-420a-839f-410e9e0acda8";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "PWEditor/PWEditor-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

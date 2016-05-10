@@ -15,7 +15,7 @@ import GoogleMobileAds
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class ICloudFileListViewController: BaseTableViewController {
+class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizerDelegate, iCloudDelegate {
 
     // MARK: - Constants
 
@@ -36,7 +36,11 @@ class ICloudFileListViewController: BaseTableViewController {
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
-    var query: NSMetadataQuery?
+    /// ファイル情報リスト
+    var fileInfoList = NSMutableArray()
+
+    /// ファイル名リスト
+    var fileNameList = NSMutableArray()
 
     /// パス名
     var pathName: String!
@@ -86,56 +90,237 @@ class ICloudFileListViewController: BaseTableViewController {
 
         // バナービューを設定する。
         setupBannerView(bannerView)
-
-        // TODO: iCloud対応
-        if query == nil {
-            query = textDocumentQuery()
-
-            let notificationCenter = NSNotificationCenter.defaultCenter()
-            notificationCenter.addObserver(self, selector: #selector(ICloudFileListViewController.processFiles(_:)), name: NSMetadataQueryDidFinishGatheringNotification, object: nil)
-            notificationCenter.addObserver(self, selector: #selector(ICloudFileListViewController.processFiles(_:)), name: NSMetadataQueryDidUpdateNotification, object: nil)
-            query?.startQuery()
-        }
-/*
-        iCoudTokenGets()
-
-        // 初期化コードなど(Objective-C)
-        // http://iphone-app-developer.seesaa.net/article/355206368.html
-        // プロビジョニング、アプリの設定など
-        // http://glassonion.hatenablog.com/entry/20120728/1343471940
-        // iCloud上のファイル操作(少し)
-        // http://miyano-harikyu.jp/sola/devlog/2013/11/22/post-113/
-        // 書籍のプレビュー(一部)
-        // https://books.google.co.jp/books?id=DUaLAgAAQBAJ&pg=PA232&lpg=PA232&dq=URLForUbiquityContainerIdentifier&source=bl&ots=2in1JS2xw7&sig=e53LM5zEBCbUAIifzFy2T1VPNQc&hl=ja&sa=X&ved=0ahUKEwjUh6mpgJTLAhVBjpQKHUriA_A4ChDoAQg0MAM#v=onepage&q=URLForUbiquityContainerIdentifier&f=false
-        let fileManager = NSFileManager.defaultManager()
-
-        let iCloudToken = fileManager.ubiquityIdentityToken
-        if iCloudToken != nil {
-            let defaultCenter = NSNotificationCenter.defaultCenter()
-            let selector = Selector("iCloudAccountAvailabilityChanged:")
-            defaultCenter.addObserver(self, selector: selector, name: NSUbiquityIdentityDidChangeNotification, object: nil)
-
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                let iCloudUrl = fileManager.URLForUbiquityContainerIdentifier(nil)
-                LogUtils.d(iCloudUrl)
-            });
-        }
-*/
     }
 
-    func processFiles(notification: NSNotification) {
-        LogUtils.d("processFiles IN")
-        query?.disableUpdates()
+    /**
+     メモリ不足の時に呼び出される。
+     */
+    override func didReceiveMemoryWarning() {
+        LogUtils.w("memory error.")
 
-        let results = query?.results
-        let count = results?.count
-        LogUtils.d("count=\(count)")
-        for result in results! {
-            LogUtils.d(result)
+        // スーパークラスのメソッドを呼び出す。
+        super.didReceiveMemoryWarning()
+    }
+
+    /**
+     画面が表示される前に呼び出される。
+ 
+     - Parameter animated: アニメーション指定
+     */
+    override func viewWillAppear(animated: Bool) {
+        // スーパークラスのメソッドを呼び出す。
+        super.viewWillAppear(animated)
+
+        // iCloudのデリゲート設定を更新する。
+        let cloud = iCloud.sharedCloud()
+        cloud.delegate = self
+
+        // iCloudのファイル一覧を更新する。
+        cloud.updateFiles()
+    }
+
+//    override func viewDidDisappear(animated: Bool) {
+//        let defaultCenter = NSNotificationCenter.defaultCenter()
+//        defaultCenter.removeObserver(self)
+//
+//        super.viewDidDisappear(animated)
+//    }
+
+    // MARK: - UITableViewDataSource
+
+    /**
+     セクション内のセル数を返却する。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter section: セクション番号
+     - Returns: セクション内のセル数
+     */
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // ファイル情報リストの件数を返却する。
+        let count = fileInfoList.count
+        return count
+    }
+
+    /**
+     セルを返却する。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter indexPath: インデックスパス
+     - Returns: セル
+     */
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // セルを取得する。
+        let cell = getTableViewCell(tableView)
+
+        // ファイル情報リストが未取得の場合、処理を終了する。
+        let row = indexPath.row
+        let count = fileInfoList.count
+        if row + 1 > count {
+            return cell
         }
 
-        query?.enableUpdates()
+        // セル内容をクリアする。
+        cell.textLabel?.text = ""
+        cell.accessoryType = .None
+
+        let fileName = fileNameList[row] as! String
+        cell.textLabel?.text = fileName
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .ByWordWrapping
+
+        let fileInfo = fileInfoList[row]
+//        let isDir = fileInfo.isDir
+//        if isDir {
+//            cell.accessoryType = .DisclosureIndicator
+//
+//        } else {
+            cell.accessoryType = .DetailButton
+//        }
+
+        return cell
     }
+
+    // MARK: - UITableViewDelegate
+
+    /**
+     セルが選択された時に呼び出される。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter indexPath: インデックスパス
+     */
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // セルの選択状態を解除する。
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+        // ファイル情報リストが未取得の場合、処理を終了する。
+        let row = indexPath.row
+        let count = fileInfoList.count
+        if row + 1 > count {
+            return
+        }
+
+        // TODO: 本来はディレクトリとファイル判定が必要
+        let fileInfo = fileInfoList[row] as! NSMetadataItem
+        let vc = ICloudFileDetailViewController(fileInfo: fileInfo)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    /**
+     アクセサリボタンが押下された時に呼び出される。
+
+     - Parameter tableView: テーブルビュー
+     - Parameter indexPath: インデックスパス
+     */
+    func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+
+        // ファイル情報リストが未取得の場合、処理を終了する。
+        let row = indexPath.row
+        let count = fileInfoList.count
+        if row + 1 > count {
+            return
+        }
+
+        // iCloudファイル詳細画面に遷移する。
+        let fileInfo = fileInfoList[row] as! NSMetadataItem
+        let vc = ICloudFileDetailViewController(fileInfo: fileInfo)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    // MARK: - Button handler
+
+    /**
+     作成ツールボタンが押下された時に呼び出される。
+
+     - Parameter sender: 作成ツールバーボタン
+     */
+    @IBAction func createToolbarButtonPressed(sender: AnyObject) {
+        // iCloudファイル作成画面に遷移する。
+        let vc = CreateICloudFileViewController(pathName: "")
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    // MARK: - iCloudDelegate
+
+    func iCloudFilesDidChange(files: NSMutableArray!, withNewFileNames fileNames: NSMutableArray!) {
+        // ファイル情報リスト、ファイル名リストを保存する。
+        fileInfoList = files
+        fileNameList = fileNames
+
+        // テーブルビューを更新する。
+        tableView.reloadData()
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    func icloud() {
+        //        // TODO: iCloud対応
+        //        let cloud = ICloud.sharedManager
+        //        cloud.delegate = self
+        //        cloud.setupiCloudDocumentSyncWithUbiquityContainer(nil)
+        //        let cloudAvailable = cloud.checkCloudAvailability()
+        //        if !cloudAvailable {
+        //            NSLog("iCloud not avaiable.")
+        //        }
+
+        //        if query == nil {
+        //            query = textDocumentQuery()
+        //
+        //            let notificationCenter = NSNotificationCenter.defaultCenter()
+        //            notificationCenter.addObserver(self, selector: #selector(ICloudFileListViewController.processFiles(_:)), name: NSMetadataQueryDidFinishGatheringNotification, object: nil)
+        //            notificationCenter.addObserver(self, selector: #selector(ICloudFileListViewController.processFiles(_:)), name: NSMetadataQueryDidUpdateNotification, object: nil)
+        //            query?.startQuery()
+        //        }
+        ///*
+        //        iCoudTokenGets()
+        //
+        //        // 初期化コードなど(Objective-C)
+        //        // http://iphone-app-developer.seesaa.net/article/355206368.html
+        //        // プロビジョニング、アプリの設定など
+        //        // http://glassonion.hatenablog.com/entry/20120728/1343471940
+        //        // iCloud上のファイル操作(少し)
+        //        // http://miyano-harikyu.jp/sola/devlog/2013/11/22/post-113/
+        //        // 書籍のプレビュー(一部)
+        //        // https://books.google.co.jp/books?id=DUaLAgAAQBAJ&pg=PA232&lpg=PA232&dq=URLForUbiquityContainerIdentifier&source=bl&ots=2in1JS2xw7&sig=e53LM5zEBCbUAIifzFy2T1VPNQc&hl=ja&sa=X&ved=0ahUKEwjUh6mpgJTLAhVBjpQKHUriA_A4ChDoAQg0MAM#v=onepage&q=URLForUbiquityContainerIdentifier&f=false
+        //        let fileManager = NSFileManager.defaultManager()
+        //
+        //        let iCloudToken = fileManager.ubiquityIdentityToken
+        //        if iCloudToken != nil {
+        //            let defaultCenter = NSNotificationCenter.defaultCenter()
+        //            let selector = Selector("iCloudAccountAvailabilityChanged:")
+        //            defaultCenter.addObserver(self, selector: selector, name: NSUbiquityIdentityDidChangeNotification, object: nil)
+        //
+        //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        //                let iCloudUrl = fileManager.URLForUbiquityContainerIdentifier(nil)
+        //                LogUtils.d(iCloudUrl)
+        //            });
+        //        }
+        //*/
+    }
+
+//    func processFiles(notification: NSNotification) {
+//        LogUtils.d("processFiles IN")
+//        query?.disableUpdates()
+//
+//        let results = query?.results
+//        let count = results?.count
+//        LogUtils.d("count=\(count)")
+//        for result in results! {
+//            LogUtils.d(result)
+//        }
+//
+//        query?.enableUpdates()
+//    }
 
     func textDocumentQuery() -> NSMetadataQuery {
         LogUtils.d("textDocumentQuery IN")
@@ -222,30 +407,5 @@ class ICloudFileListViewController: BaseTableViewController {
     }
     */
 
-    /**
-     メモリ不足の時に呼び出される。
-     */
-    override func didReceiveMemoryWarning() {
-        LogUtils.w("memory error.")
 
-        // スーパークラスのメソッドを呼び出す。
-        super.didReceiveMemoryWarning()
-    }
-
-    override func viewDidDisappear(animated: Bool) {
-        let defaultCenter = NSNotificationCenter.defaultCenter()
-        defaultCenter.removeObserver(self)
-
-        super.viewDidDisappear(animated)
-    }
-
-    // MARK: - Button handler
-
-    /**
-     作成ツールボタンが押下された時に呼び出される。
-
-     - Parameter sender: 作成ツールバーボタン
-     */
-    @IBAction func createToolbarButtonPressed(sender: AnyObject) {
-    }
 }
