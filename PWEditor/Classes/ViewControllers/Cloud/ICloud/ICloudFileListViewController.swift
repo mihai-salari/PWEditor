@@ -203,8 +203,8 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
         }
 
         // TODO: 本来はディレクトリとファイル判定が必要
-        let fileInfo = fileInfoList[row] as! NSMetadataItem
-        let vc = ICloudFileDetailViewController(fileInfo: fileInfo)
+        let fileName = fileNameList[row] as! String
+        let vc = EditICloudFileViewController(fileName: fileName)
         navigationController?.pushViewController(vc, animated: true)
     }
 
