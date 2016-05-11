@@ -83,7 +83,7 @@ class EditICloudFileViewController: BaseViewController, UITextViewDelegate {
         // テキストビューを設定する。
         listNumber = 0
         setupTextView()
-        let selector = #selector(EditDropboxFileViewController.textChanged(_:))
+        let selector = #selector(EditICloudFileViewController.textChanged(_:))
         NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: UITextViewTextDidChangeNotification, object: nil)
         myView.textView.delegate = self
 
@@ -93,11 +93,11 @@ class EditICloudFileViewController: BaseViewController, UITextViewDelegate {
         // テキストビューがキーボードに隠れないための処理
         // 参考 : https://teratail.com/questions/2915
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        let keyboardWillShow = #selector(EditDropboxFileViewController.keyboardWillShow(_:))
+        let keyboardWillShow = #selector(EditICloudFileViewController.keyboardWillShow(_:))
         notificationCenter.addObserver(self, selector: keyboardWillShow, name: UIKeyboardWillShowNotification, object: nil)
-        let keyboardWillHide = #selector(EditDropboxFileViewController.keyboardWillHide(_:))
+        let keyboardWillHide = #selector(EditICloudFileViewController.keyboardWillHide(_:))
         notificationCenter.addObserver(self, selector: keyboardWillHide, name: UIKeyboardWillHideNotification, object: nil)
-        let keyboardDidHide = #selector(EditDropboxFileViewController.keyboardDidHide(_:))
+        let keyboardDidHide = #selector(EditICloudFileViewController.keyboardDidHide(_:))
         notificationCenter.addObserver(self, selector: keyboardDidHide, name: UIKeyboardDidHideNotification, object: nil)
     }
 
@@ -125,6 +125,16 @@ class EditICloudFileViewController: BaseViewController, UITextViewDelegate {
 
         // OneDriveファイルをダウンロードする。
         downloadFile()
+    }
+
+    // MARK: - UITextViewDelegate
+
+    /**
+     テキストが変更された時に呼び出される。
+
+     - Parameter notification: 通知
+     */
+    func textChanged(notification: NSNotification?) -> (Void) {
     }
 
     /**
@@ -214,12 +224,16 @@ class EditICloudFileViewController: BaseViewController, UITextViewDelegate {
         let convertedFileData = FileUtils.convertRetCode(fileData, encoding: encoding, retCodeType: retCodeType)
 
         // 変換されたファイルデータをアップロードする。
-        uploadFile(convertedFileData)
+        uploadFile(fileName, fileDataString: convertedFileData)
     }
 
     // MARK: - iCloud
 
+    /**
+     iCloudファイルをダウンロードする。
+     */
     func downloadFile() {
+        // iCloudファイルをダウンロードする。
         let cloud = iCloud.sharedCloud()
         cloud.retrieveCloudDocumentWithName(fileName, completion: { (cloudDocument: UIDocument!, documentData: NSData!, error: NSError!) -> Void in
             if error != nil {
@@ -263,8 +277,25 @@ class EditICloudFileViewController: BaseViewController, UITextViewDelegate {
         })
     }
 
-    func uploadFile(fileDataString: String) {
+    /**
+     iCLoudファイルをアップロードする。
+
+     - Parameter fileDataString: ファイルデータ文字列
+     */
+    func uploadFile(fileName: String, fileDataString: String) {
+        let fileData = fileDataString.dataUsingEncoding(encoding)
+        if fileData == nil {
+            return
+        }
+
         let cloud = iCloud.sharedCloud()
+        cloud.saveAndCloseDocumentWithName(fileName, withContent: fileData!, completion: { (cloudDocument: UIDocument!, documentData: NSData!, error: NSError!) -> Void in
+            if error != nil {
+                return
+            }
+
+            self.popViewController()
+        })
     }
 
     // MARK: - Private method

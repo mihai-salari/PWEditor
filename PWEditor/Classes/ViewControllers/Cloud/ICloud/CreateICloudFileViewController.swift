@@ -22,7 +22,7 @@ class CreateICloudFileViewController: BaseTableViewController, UIGestureRecogniz
 
     let kFileTypeCellTitleList = [
         "ファイル",
-//        "ディレクトリ"
+        "ディレクトリ"
     ]
 
     enum SectionIndex: Int {

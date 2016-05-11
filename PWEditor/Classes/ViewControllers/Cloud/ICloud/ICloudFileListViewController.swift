@@ -122,6 +122,7 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
         cloud.updateFiles()
     }
 
+    // TODO: iCLoudのライブラリ使用時は不要
 //    override func viewDidDisappear(animated: Bool) {
 //        let defaultCenter = NSNotificationCenter.defaultCenter()
 //        defaultCenter.removeObserver(self)
@@ -172,13 +173,18 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
         cell.textLabel?.lineBreakMode = .ByWordWrapping
 
         let fileInfo = fileInfoList[row]
-//        let isDir = fileInfo.isDir
-//        if isDir {
-//            cell.accessoryType = .DisclosureIndicator
-//
-//        } else {
+        let path = fileInfo.valueForAttribute(NSMetadataItemPathKey) as! String
+        let fileManager = NSFileManager.defaultManager()
+        var isDirectory: ObjCBool = false
+        fileManager.fileExistsAtPath(path, isDirectory: &isDirectory)
+        if isDirectory {
+            // ディレクトリの場合
+            cell.accessoryType = .DisclosureIndicator
+
+        } else {
+            // ファイルの場合
             cell.accessoryType = .DetailButton
-//        }
+        }
 
         return cell
     }
@@ -202,10 +208,21 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
             return
         }
 
-        // TODO: 本来はディレクトリとファイル判定が必要
-        let fileName = fileNameList[row] as! String
-        let vc = EditICloudFileViewController(fileName: fileName)
-        navigationController?.pushViewController(vc, animated: true)
+        let fileInfo = fileInfoList[row]
+        let path = fileInfo.valueForAttribute(NSMetadataItemPathKey) as! String
+        let fileManager = NSFileManager.defaultManager()
+        var isDirectory: ObjCBool = false
+        fileManager.fileExistsAtPath(path, isDirectory: &isDirectory)
+        if isDirectory {
+            // ディレクトリの場合
+
+        } else {
+            // ファイルの場合
+            // iCloudファイル編集画面に遷移する。
+            let fileName = fileNameList[row] as! String
+            let vc = EditICloudFileViewController(fileName: fileName)
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     /**
