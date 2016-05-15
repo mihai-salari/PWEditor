@@ -222,25 +222,36 @@ struct LocalizableConst {
     // FTPホスト一覧画面
     static let kFtpHostListScreenTitle = "FtpHostListScreenTitle"
 
+    // FTPホスト作成画面
+    static let kCreateFtpHostScreenTitle = "CreateFtpHostScreenTitle"
+    static let kCreateFtpHostSectionTitleDisplayName = "CreateFtpHostSectionTitleDisplayName"
+    static let kCreateFtpHostSectionTitleHostName = "CreateFtpHostSectionTitleHostName"
+    static let kCreateFtpHostSectionTitleUserName = "CreateFtpHostSectionTitleUserName"
+    static let kCreateFtpHostSectionTitlePassword = "CreateFtpHostSectionTitlePassword"
+    static let kCreateFtpHostEnterDisplayNameError = "CreateFtpHostEnterDisplayNameError"
+    static let kCreateFtpHostEnterHostNameError = "CreateFtpHostEnterHostNameError"
+
     // FTPファイル一覧画面
     static let kFtpFileListScreenTitle = "FtpFileListScreenTitle"
 
-    // FTPホスト作成画面
-    static let kCreateFtpHostScreenTitle = "CreateFtpHostScreenTitle";
-    static let kCreateFtpHostSectionTitleDisplayName = "CreateFtpHostSectionTitleDisplayName";
-    static let kCreateFtpHostSectionTitleHostName = "CreateFtpHostSectionTitleHostName";
-    static let kCreateFtpHostSectionTitleUserName = "CreateFtpHostSectionTitleUserName";
-    static let kCreateFtpHostSectionTitlePassword = "CreateFtpHostSectionTitlePassword";
-    static let kCreateFtpHostEnterDisplayNameError = "CreateFtpHostEnterDisplayNameError";
-    static let kCreateFtpHostEnterHostNameError = "CreateFtpHostEnterHostNameError";
+    // FTPファイル詳細画面
+    static let kFtpFileDetailScreenTitle = "FtpFileDetailScreenTitle"
+    static let kFtpFileDetailCellTitleName = "FtpFileDetailCellTitleName"
+    static let kFtpFileDetailCellTitleLink = "FtpFileDetailCellTitleLink"
+    static let kFtpFileDetailCellTitleSize = "FtpFileDetailCellTitleSize"
+    static let kFtpFileDetailCellTitleType = "FtpFileDetailCellTitleType"
+    static let kFtpFileDetailCellTitleMode = "FtpFileDetailCellTitleMode"
+    static let kFtpFileDetailCellTitleOwner = "FtpFileDetailCellTitleOwner"
+    static let kFtpFileDetailCellTitleGroup = "FtpFileDetailCellTitleGroup"
+    static let kFtpFileDetailCellTitleModDate = "FtpFileDetailCellTitleModDate"
 
     // FTPファイル作成画面
-    static let kCreateFtpFileScreenTitleCreate = "CreateFtpFileScreenTitleCreate";
-    static let kCreateFtpFileScreenTitleEdit = "CreateFtpFileScreenTitleEdit";
-    static let kCreateFtpFileSectionTitleFileName = "CreateFtpFileSectionTitleFileName";
-    static let kCreateFtpFileSectionTitleFileType = "CreateFtpFileSectionTitleFileType";
-    static let kCreateFtpFileCellTitleFile = "CreateFtpFileCellTitleFile";
-    static let kCreateFtpFileCellTitleDir = "CreateFtpFileCellTitleDir";
+    static let kCreateFtpFileScreenTitleCreate = "CreateFtpFileScreenTitleCreate"
+    static let kCreateFtpFileScreenTitleEdit = "CreateFtpFileScreenTitleEdit"
+    static let kCreateFtpFileSectionTitleFileName = "CreateFtpFileSectionTitleFileName"
+    static let kCreateFtpFileSectionTitleFileType = "CreateFtpFileSectionTitleFileType"
+    static let kCreateFtpFileCellTitleFile = "CreateFtpFileCellTitleFile"
+    static let kCreateFtpFileCellTitleDir = "CreateFtpFileCellTitleDir"
 
     // 設定画面
     static let kSettingsScreenTitle = "SettingsScreenTitle"

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FtpFileDetailViewController" customModule="PWEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="bannerView" destination="ndO-8W-30h" id="O23-Un-oP8"/>
+                <outlet property="deleteToolbarButton" destination="avU-f9-kWO" id="gFq-wh-rJp"/>
+                <outlet property="downloadToolbarButton" destination="tH7-0t-TwU" id="K3g-a0-GPb"/>
+                <outlet property="tableView" destination="cT9-xh-N1x" id="XMJ-rn-Bsp"/>
+                <outlet property="toolbar" destination="ckp-TN-Oyw" id="kB5-Mb-zws"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cT9-xh-N1x">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="474"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckp-TN-Oyw">
+                    <rect key="frame" x="0.0" y="474" width="320" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="yRq-Jh-aq2"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem title="Download" id="tH7-0t-TwU"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="FDE-p5-EFK"/>
+                        <barButtonItem systemItem="trash" id="avU-f9-kWO"/>
+                    </items>
+                </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndO-8W-30h" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="70a-gq-Mk2"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ndO-8W-30h" secondAttribute="bottom" id="4wT-r4-3EV"/>
+                <constraint firstItem="ckp-TN-Oyw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HIQ-4J-4k2"/>
+                <constraint firstItem="ndO-8W-30h" firstAttribute="top" secondItem="ckp-TN-Oyw" secondAttribute="bottom" id="MRn-QS-aVh"/>
+                <constraint firstItem="ckp-TN-Oyw" firstAttribute="top" secondItem="cT9-xh-N1x" secondAttribute="bottom" id="OZ2-ZQ-it4"/>
+                <constraint firstItem="ndO-8W-30h" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uek-4C-iTl"/>
+                <constraint firstAttribute="trailing" secondItem="ndO-8W-30h" secondAttribute="trailing" id="Wxc-1o-Vw4"/>
+                <constraint firstItem="ckp-TN-Oyw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cWg-zO-YLh"/>
+                <constraint firstAttribute="trailing" secondItem="cT9-xh-N1x" secondAttribute="trailing" id="ek0-OV-7kK"/>
+                <constraint firstItem="ndO-8W-30h" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="l6s-Wl-vYg"/>
+                <constraint firstAttribute="trailing" secondItem="ckp-TN-Oyw" secondAttribute="trailing" id="m1u-fq-Opo"/>
+                <constraint firstItem="cT9-xh-N1x" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="tms-qs-URl"/>
+                <constraint firstItem="cT9-xh-N1x" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uyh-ng-G3N"/>
+                <constraint firstItem="cT9-xh-N1x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xZj-Z9-Dpx"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

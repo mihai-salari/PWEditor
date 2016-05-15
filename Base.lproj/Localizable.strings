@@ -216,9 +216,6 @@ EditOneDriveFileDownloadDataError = "Download %@ failed.";
 // FTPホスト一覧画面
 FtpHostListScreenTitle = "FTP host list";
 
-// FTPファイル一覧画面
-FtpFileListScreenTitle = "FTP file list";
-
 // FTPホスト作成画面
 CreateFtpHostScreenTitle = "Create ftp host";
 CreateFtpHostSectionTitleDisplayName = "Display name";
@@ -227,6 +224,20 @@ CreateFtpHostSectionTitleUserName = "User name";
 CreateFtpHostSectionTitlePassword = "Password";
 CreateFtpHostEnterDisplayNameError = "Please enter a display name.";
 CreateFtpHostEnterHostNameError = "Please enter a host name.";
+
+// FTPファイル一覧画面
+FtpFileListScreenTitle = "FTP file list";
+
+// FTPファイル詳細画面
+FtpFileDetailScreenTitle = "FTP file detail";
+FtpFileDetailCellTitleName = "File name";
+FtpFileDetailCellTitleLink = "Link";
+FtpFileDetailCellTitleSize = "Size";
+FtpFileDetailCellTitleType = "Type";
+FtpFileDetailCellTitleMode = "Mode";
+FtpFileDetailCellTitleOwner = "Owner";
+FtpFileDetailCellTitleGroup = "Group";
+FtpFileDetailCellTistleModDate = "Modified date";
 
 // FTPファイル作成画面
 CreateFtpFileScreenTitleCreate = "Create ftp file";
