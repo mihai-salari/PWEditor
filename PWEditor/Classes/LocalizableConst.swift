@@ -17,6 +17,7 @@ struct LocalizableConst {
     static let kButtonTitleDelete = "ButtonTitleDelete"
     static let kButtonTitleMenu = "ButtonTitleMenu"
     static let kButtonTitleOpenChar = "ButtonTitleOpenChar"
+    static let kButtonTitleEdit = "ButtonTitleEdit"
 
     // アラートタイトル
     static let kAlertTitleError = "AlertTitleError"
@@ -53,6 +54,7 @@ struct LocalizableConst {
     static let kActionSheetTitleDropboxFile = "ActionSheetTitleDropboxFile"
     static let kActionSheetTitleGoogleDriveFile = "ActionSheetTitleGoogleDriveFile"
     static let kActionSheetTitleOneDriveFile = "ActionSheetTitleOneDriveFile"
+    static let kActionSheetTitleFtpHostInfo = "ActionSheetTitleFtpHostInfo"
 
     // その他
     static let kFontSize = "FontSize"
@@ -73,6 +75,7 @@ struct LocalizableConst {
     // セクションタイトル
     static let kMenuSectionTitleLocal = "MenuSectionTitleLocal"
     static let kMenuSectionTitleCloud = "MenuSectionTitleCloud"
+    static let kMenuSectionTitleApp = "MenuSectionTitleApp"
     static let kMenuSectionTitleHelp = "MenuSectionTitleHelp"
     // セルタイトル
     static let kMenuCellTitleLocalFileList = "MenuCellTitleLocalFileList"
@@ -82,6 +85,7 @@ struct LocalizableConst {
     static let kMenuCellTitleGoogleDrive = "MenuCellTitleGoogleDrive"
     static let kMenuCellTitleOneDrive = "MenuCellTitleOneDrive"
     static let kMenuCellTitleBox = "MenuCellTitleBox"
+    static let kMenuCellTitleFtp = "MenuCellTitleFtp"
     static let kMenuCellTitleSettings = "MenuCellTitleSettings"
     static let kMenuCellTitleAbout = "MenuCellTitleAbout"
     static let kMenuCellTitleHistory = "MenuCellTitleHistory"
@@ -214,6 +218,29 @@ struct LocalizableConst {
     static let kEditOneDriveFileDownloadError = "EditOneDriveFileDownloadError";
     static let kEditOneDriveFileFilePathInvalid = "EditOneDriveFileFilePathInvalid";
     static let kEditOneDriveFileDownloadDataError = "EditOneDriveFileDownloadDataError";
+
+    // FTPホスト一覧画面
+    static let kFtpHostListScreenTitle = "FtpHostListScreenTitle"
+
+    // FTPファイル一覧画面
+    static let kFtpFileListScreenTitle = "FtpFileListScreenTitle"
+
+    // FTPホスト作成画面
+    static let kCreateFtpHostScreenTitle = "CreateFtpHostScreenTitle";
+    static let kCreateFtpHostSectionTitleDisplayName = "CreateFtpHostSectionTitleDisplayName";
+    static let kCreateFtpHostSectionTitleHostName = "CreateFtpHostSectionTitleHostName";
+    static let kCreateFtpHostSectionTitleUserName = "CreateFtpHostSectionTitleUserName";
+    static let kCreateFtpHostSectionTitlePassword = "CreateFtpHostSectionTitlePassword";
+    static let kCreateFtpHostEnterDisplayNameError = "CreateFtpHostEnterDisplayNameError";
+    static let kCreateFtpHostEnterHostNameError = "CreateFtpHostEnterHostNameError";
+
+    // FTPファイル作成画面
+    static let kCreateFtpFileScreenTitleCreate = "CreateFtpFileScreenTitleCreate";
+    static let kCreateFtpFileScreenTitleEdit = "CreateFtpFileScreenTitleEdit";
+    static let kCreateFtpFileSectionTitleFileName = "CreateFtpFileSectionTitleFileName";
+    static let kCreateFtpFileSectionTitleFileType = "CreateFtpFileSectionTitleFileType";
+    static let kCreateFtpFileCellTitleFile = "CreateFtpFileCellTitleFile";
+    static let kCreateFtpFileCellTitleDir = "CreateFtpFileCellTitleDir";
 
     // 設定画面
     static let kSettingsScreenTitle = "SettingsScreenTitle"

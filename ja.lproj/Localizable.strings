@@ -14,6 +14,7 @@ ButtonTitleClear = "クリア";
 ButtonTitleDelete = "削除";
 ButtonTitleMenu = "メニュー";
 ButtonTitleOpenChar = "文字エンコーディングを指定して開く";
+ButtonTitleEdit = "編集";
 
 // アラートタイトル
 AlertTitleError = "エラー";
@@ -49,6 +50,7 @@ ActionSheetTitleICloudFile = "iCloudファイル操作";
 ActionSheetTitleDropboxFile = "Dropboxファイル操作";
 ActionSheetTitleGoogleDriveFile = "Google driveファイル操作";
 ActionSheetTitleOneDriveFile = "One driveファイル操作";
+ActionSheetTitleFtpHostInfo = "FTPホスト操作";
 
 // その他
 FontSize = "フォントサイズ";
@@ -68,6 +70,7 @@ SelectEncodingSectionTitleReturnCode = "改行コード";
 MenuScreenTitle = "メニュー";
 MenuSectionTitleLocal = "ローカル";
 MenuSectionTitleCloud = "クラウド";
+MenuSectionTitleApp = "アプリケーション";
 MenuSectionTitleHelp = "ヘルプ";
 MenuCellTitleLocalFileList = "ローカルファイル一覧";
 MenuCellTitleRecentFileList = "最近使用したファイル一覧";
@@ -76,6 +79,7 @@ MenuCellTitleDropbox = "Dropboxファイル一覧";
 MenuCellTitleGoogleDrive = "Google driveファイル一覧";
 MenuCellTitleOneDrive = "One driveファイル一覧";
 MenuCellTitleBox = "Boxファイル一覧";
+MenuCellTitleFtp = "FTP";
 MenuCellTitleSettings = "設定";
 MenuCellTitleAbout = "このアプリについて";
 MenuCellTitleHistory = "更新履歴";
@@ -208,6 +212,29 @@ CreateOneDriveFileEnterNameError = "%@を作成できませんでした。";
 EditOneDriveFileDownloadError = "%@のダウンロードでエラーが発生しました。";
 EditOneDriveFileFilePathInvalid = "%@のファイルパスが無効です。";
 EditOneDriveFileDownloadDataError = "%@をダウンロードできませんでした。";
+
+// FTPホスト一覧画面
+FtpHostListScreenTitle = "FTPホスト一覧";
+
+// FTPファイル一覧画面
+FtpFileListScreenTitle = "FTPファイル一覧";
+
+// FTPホスト作成画面
+CreateFtpHostScreenTitle = "FTPホスト作成";
+CreateFtpHostSectionTitleDisplayName = "表示名";
+CreateFtpHostSectionTitleHostName = "ホスト名";
+CreateFtpHostSectionTitleUserName = "ユーザ名";
+CreateFtpHostSectionTitlePassword = "パスワード";
+CreateFtpHostEnterDisplayNameError = "表示名を入力してください。";
+CreateFtpHostEnterHostNameError = "ホスト名を入力してください。";
+
+// FTPファイル作成画面
+CreateFtpFileScreenTitleCreate = "FTPファイル作成";
+CreateFtpFileScreenTitleEdit = "FTPファイル編集";
+CreateFtpFileSectionTitleFileName = "名前";
+CreateFtpFileSectionTitleFileType = "タイプ";
+CreateFtpFileCellTitleFile = "ファイル";
+CreateFtpFileCellTitleDir = "ディレクトリ";
 
 // 設定画面
 SettingsScreenTitle = "設定";

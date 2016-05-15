@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FtpFileListViewController" customModule="PWEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="bannerView" destination="AJK-ss-icj" id="yCz-9N-yIs"/>
+                <outlet property="createToolbarButton" destination="c0t-Tb-niK" id="9a4-ZT-lcJ"/>
+                <outlet property="tableView" destination="pLw-eW-gTc" id="ESM-Sb-iOb"/>
+                <outlet property="toolbar" destination="PGh-dx-hmX" id="4wC-0l-nQY"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pLw-eW-gTc">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="474"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGh-dx-hmX">
+                    <rect key="frame" x="0.0" y="474" width="320" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="XjS-Ds-LXw"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem systemItem="add" id="c0t-Tb-niK">
+                            <connections>
+                                <action selector="createToobarButtonPressed:" destination="-1" id="e3B-ND-Lq7"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AJK-ss-icj" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="bb9-ea-gdh"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="pLw-eW-gTc" secondAttribute="trailing" id="0RS-4A-vf3"/>
+                <constraint firstItem="AJK-ss-icj" firstAttribute="top" secondItem="PGh-dx-hmX" secondAttribute="bottom" id="DdE-i2-661"/>
+                <constraint firstAttribute="trailing" secondItem="AJK-ss-icj" secondAttribute="trailing" id="FR2-LY-Krk"/>
+                <constraint firstItem="pLw-eW-gTc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="FZh-4g-64v"/>
+                <constraint firstAttribute="bottom" secondItem="AJK-ss-icj" secondAttribute="bottom" id="QCR-kd-CCs"/>
+                <constraint firstItem="pLw-eW-gTc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="T5Y-d3-mrk"/>
+                <constraint firstItem="AJK-ss-icj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UOC-48-soZ"/>
+                <constraint firstItem="PGh-dx-hmX" firstAttribute="top" secondItem="pLw-eW-gTc" secondAttribute="bottom" id="X3z-et-7RJ"/>
+                <constraint firstAttribute="trailing" secondItem="PGh-dx-hmX" secondAttribute="trailing" id="iZy-tu-izo"/>
+                <constraint firstItem="AJK-ss-icj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="usG-Rc-4tq"/>
+                <constraint firstItem="PGh-dx-hmX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xey-gs-BuO"/>
+                <constraint firstItem="PGh-dx-hmX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yPE-LG-Qua"/>
+                <constraint firstItem="pLw-eW-gTc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yTk-sz-Svw"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

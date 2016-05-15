@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateFtpHostViewController" customModule="PWEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="bannerView" destination="1eK-P7-4bI" id="Ux4-0q-7Io"/>
+                <outlet property="tableView" destination="FHD-QY-VNz" id="l7r-7F-zxm"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FHD-QY-VNz">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1eK-P7-4bI" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="HgW-vO-lf0"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="1eK-P7-4bI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ABb-sK-ogL"/>
+                <constraint firstAttribute="bottom" secondItem="1eK-P7-4bI" secondAttribute="bottom" id="AnH-Tt-7Wy"/>
+                <constraint firstItem="FHD-QY-VNz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Aps-VD-QN5"/>
+                <constraint firstItem="1eK-P7-4bI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HIb-35-6Fd"/>
+                <constraint firstAttribute="trailing" secondItem="FHD-QY-VNz" secondAttribute="trailing" id="TVg-GY-iRs"/>
+                <constraint firstItem="FHD-QY-VNz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Uws-1y-CHW"/>
+                <constraint firstItem="1eK-P7-4bI" firstAttribute="top" secondItem="FHD-QY-VNz" secondAttribute="bottom" id="ajx-io-PsH"/>
+                <constraint firstAttribute="trailing" secondItem="1eK-P7-4bI" secondAttribute="trailing" id="qDk-pb-Ljs"/>
+                <constraint firstItem="FHD-QY-VNz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xio-1v-NnH"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

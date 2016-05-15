@@ -27,13 +27,14 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
     private let kSectionTitleList = [
         LocalizableUtils.getString(LocalizableConst.kMenuSectionTitleLocal),
         LocalizableUtils.getString(LocalizableConst.kMenuSectionTitleCloud),
+        LocalizableUtils.getString(LocalizableConst.kMenuSectionTitleApp),
         LocalizableUtils.getString(LocalizableConst.kMenuSectionTitleHelp),
     ]
 
     /// ローカルセクションタイトルリスト
     private let kLocalTitleList = [
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleLocalFileList),
-//        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleRecentFileList)
+//        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleRecentFileList),
     ]
 
     /// クラウドセクションタイトルリスト
@@ -44,18 +45,24 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOneDrive)
     ]
 
+    /// アプリケーションセクションタイトルリスト
+    private let kAppTitleList = [
+        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleFtp),
+    ]
+
     /// ヘルプセクションタイトルリスト
     private let kHelpTitleList = [
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleSettings),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleAbout),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleHistory),
-        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOpenSourceLicense)
+        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOpenSourceLicense),
     ]
 
     /// セクションインデックス
     private enum SectionIndex: Int {
         case Local
         case Cloud
+        case App
         case Help
     }
 
@@ -71,6 +78,11 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
         case Dropbox
         case GoogleDrive
         case OneDrive
+    }
+
+    /// アプリケーションセクションインデックス
+    private enum AppIndex: Int {
+        case Ftp
     }
 
     /// ヘルプセクションインデックス
@@ -137,6 +149,9 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
 
         case SectionIndex.Cloud.rawValue:
             return kCloudTitleList.count
+
+        case SectionIndex.App.rawValue:
+            return kAppTitleList.count
 
         case SectionIndex.Help.rawValue:
             return kHelpTitleList.count
@@ -224,6 +239,11 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
                 // 上記以外、何もしない。
                 break
             }
+            break
+
+        case SectionIndex.App.rawValue:
+            // アプリケーションセクションの場合
+            title = kAppTitleList[row]
             break
 
         case SectionIndex.Help.rawValue:
@@ -317,6 +337,22 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
                     let vc = OneDriveFileListViewController(itemId: itemId)
                     resetTopView(vc)
                 }
+                break
+
+            default:
+                // 上記以外、何もしない。
+                break
+            }
+            break
+
+        case SectionIndex.App.rawValue:
+            // アプリケーションセクションの場合
+            switch row {
+            case AppIndex.Ftp.rawValue:
+                // FTPセルの場合
+                // FTPホスト一覧画面に遷移する。
+                let vc = FtpHostListViewController()
+                resetTopView(vc)
                 break
 
             default:

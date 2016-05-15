@@ -68,6 +68,9 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         super.init(nibName: nil, bundle: nil)
     }
 
+    /**
+     画面が生成された時に呼び出される。
+     */
     override func viewDidLoad() {
         // スーパークラスのメソッドを呼び出す。
         super.viewDidLoad()

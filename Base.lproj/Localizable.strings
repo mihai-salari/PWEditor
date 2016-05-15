@@ -14,6 +14,7 @@ ButtonTitleClear = "Clear";
 ButtonTitleDelete = "Delete";
 ButtonTitleMenu = "Menu";
 ButtonTitleOpenChar = "Open by specify char code";
+ButtonTitleEdit = "Edit";
 
 // アラートタイトル
 AlertTitleError = "Error";
@@ -49,6 +50,7 @@ ActionSheetTitleICloudFile = "iCloud file operation";
 ActionSheetTitleDropboxFile = "Dropbox file operation";
 ActionSheetTitleGoogleDriveFile = "Google drive file operation";
 ActionSheetTitleOneDriveFile = "One drive file operation";
+ActionSheetTitleFtpHostInfo = "FTP host info operation";
 
 // その他
 FontSize = "Font size";
@@ -68,6 +70,7 @@ SelectEncodingSectionTitleReturnCode = "Return code";
 MenuScreenTitle = "Menu";
 MenuSectionTitleLocal = "Local";
 MenuSectionTitleCloud = "Cloud";
+MenuSectionTitleApp = "Application";
 MenuSectionTitleHelp = "Help";
 MenuCellTitleLocalFileList = "Local file list";
 MenuCellTitleRecentFileList = "Recent file list";
@@ -76,6 +79,7 @@ MenuCellTitleDropbox = "Dropbox file list";
 MenuCellTitleGoogleDrive = "Google drive file list";
 MenuCellTitleOneDrive = "One drive file list";
 MenuCellTitleBox = "Box file list";
+MenuCellTitleFtp = "FTP";
 MenuCellTitleSettings = "Settings";
 MenuCellTitleAbout = "About";
 MenuCellTitleHistory = "History";
@@ -208,6 +212,29 @@ CreateOneDriveFileEnterNameError = "Create %@ failed.";
 EditOneDriveFileDownloadError = "Download %@ error.";
 EditOneDriveFileFilePathInvalid = "%@ file path invalid.";
 EditOneDriveFileDownloadDataError = "Download %@ failed.";
+
+// FTPホスト一覧画面
+FtpHostListScreenTitle = "FTP host list";
+
+// FTPファイル一覧画面
+FtpFileListScreenTitle = "FTP file list";
+
+// FTPホスト作成画面
+CreateFtpHostScreenTitle = "Create ftp host";
+CreateFtpHostSectionTitleDisplayName = "Display name";
+CreateFtpHostSectionTitleHostName = "Host name";
+CreateFtpHostSectionTitleUserName = "User name";
+CreateFtpHostSectionTitlePassword = "Password";
+CreateFtpHostEnterDisplayNameError = "Please enter a display name.";
+CreateFtpHostEnterHostNameError = "Please enter a host name.";
+
+// FTPファイル作成画面
+CreateFtpFileScreenTitleCreate = "Create ftp file";
+CreateFtpFileScreenTitleEdit = "Edit ftp file";
+CreateFtpFileSectionTitleFileName = "Name";
+CreateFtpFileSectionTitleFileType = "Type";
+CreateFtpFileCellTitleFile = "File";
+CreateFtpFileCellTitleDir = "Directory";
 
 // 設定画面
 SettingsScreenTitle = "Setting";
