@@ -118,9 +118,9 @@
 		3F28527E1CE54DD900C77435 /* CreateFtpFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28527C1CE54DD900C77435 /* CreateFtpFileViewController.swift */; };
 		3F28527F1CE54DD900C77435 /* CreateFtpFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F28527D1CE54DD900C77435 /* CreateFtpFileViewController.xib */; };
 		3F2852821CE54E0B00C77435 /* ShowFtpFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2852801CE54E0B00C77435 /* ShowFtpFileViewController.swift */; };
-		3F2852831CE54E0B00C77435 /* ShowFtpFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2852811CE54E0B00C77435 /* ShowFtpFileViewController.xib */; };
 		3F2852851CE5962400C77435 /* FtpHostUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2852841CE5962400C77435 /* FtpHostUtils.swift */; };
 		3F2852871CE9308900C77435 /* FtpFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2852891CE9308900C77435 /* FtpFileDetailViewController.xib */; };
+		3F2852911CE93F9B00C77435 /* ShowFtpFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2852931CE93F9B00C77435 /* ShowFtpFileViewController.xib */; };
 		3F37CF4A1C85AC1800B138C9 /* DropboxFileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F37CF481C85AC1800B138C9 /* DropboxFileDetailViewController.swift */; };
 		3F37CF4B1C85AC1800B138C9 /* DropboxFileDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F37CF491C85AC1800B138C9 /* DropboxFileDetailViewController.xib */; };
 		3F3A15A91CBD2977008DED48 /* UITextViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3A15A81CBD2977008DED48 /* UITextViewExtention.swift */; };
@@ -358,10 +358,11 @@
 		3F28527C1CE54DD900C77435 /* CreateFtpFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateFtpFileViewController.swift; path = Classes/ViewControllers/App/Ftp/CreateFtpFileViewController.swift; sourceTree = "<group>"; };
 		3F28527D1CE54DD900C77435 /* CreateFtpFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateFtpFileViewController.xib; path = Classes/ViewControllers/App/Ftp/CreateFtpFileViewController.xib; sourceTree = "<group>"; };
 		3F2852801CE54E0B00C77435 /* ShowFtpFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowFtpFileViewController.swift; path = Classes/ViewControllers/App/Ftp/ShowFtpFileViewController.swift; sourceTree = "<group>"; };
-		3F2852811CE54E0B00C77435 /* ShowFtpFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShowFtpFileViewController.xib; path = Classes/ViewControllers/App/Ftp/ShowFtpFileViewController.xib; sourceTree = "<group>"; };
 		3F2852841CE5962400C77435 /* FtpHostUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FtpHostUtils.swift; path = Classes/ViewControllers/App/Ftp/FtpHostUtils.swift; sourceTree = "<group>"; };
 		3F2852881CE9308900C77435 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FtpFileDetailViewController.xib; sourceTree = "<group>"; };
 		3F2852901CE9308C00C77435 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FtpFileDetailViewController.strings; sourceTree = "<group>"; };
+		3F2852921CE93F9B00C77435 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ShowFtpFileViewController.xib; sourceTree = "<group>"; };
+		3F2852951CE93F9D00C77435 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ShowFtpFileViewController.strings; sourceTree = "<group>"; };
 		3F37CF481C85AC1800B138C9 /* DropboxFileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DropboxFileDetailViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileDetailViewController.swift; sourceTree = "<group>"; };
 		3F37CF491C85AC1800B138C9 /* DropboxFileDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DropboxFileDetailViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/DropboxFileDetailViewController.xib; sourceTree = "<group>"; };
 		3F3A15A81CBD2977008DED48 /* UITextViewExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextViewExtention.swift; path = Classes/Extentions/UITextViewExtention.swift; sourceTree = "<group>"; };
@@ -696,7 +697,7 @@
 				3F2852781CE54DA500C77435 /* FtpFileDetailViewController.swift */,
 				3F2852891CE9308900C77435 /* FtpFileDetailViewController.xib */,
 				3F2852801CE54E0B00C77435 /* ShowFtpFileViewController.swift */,
-				3F2852811CE54E0B00C77435 /* ShowFtpFileViewController.xib */,
+				3F2852931CE93F9B00C77435 /* ShowFtpFileViewController.xib */,
 				3F2852501CE3DF2000C77435 /* FtpHostInfo.swift */,
 				3F2852761CE53B0A00C77435 /* FtpFileInfoUtils.swift */,
 				3F2852841CE5962400C77435 /* FtpHostUtils.swift */,
@@ -1085,7 +1086,7 @@
 				3F12E8571CC580260008DDEE /* MenuViewController.xib in Resources */,
 				3F003D271C767B1800ECC371 /* Localizable.strings in Resources */,
 				3F2852871CE9308900C77435 /* FtpFileDetailViewController.xib in Resources */,
-				3F2852831CE54E0B00C77435 /* ShowFtpFileViewController.xib in Resources */,
+				3F2852911CE93F9B00C77435 /* ShowFtpFileViewController.xib in Resources */,
 				3FA017701CDADE2B00B632F4 /* PdfViewerViewController.xib in Resources */,
 				3F157C011C84F4F3007C555E /* ICloudFileListViewController.xib in Resources */,
 				3F28524F1CE3DC1E00C77435 /* FtpFileListViewController.xib in Resources */,
@@ -1289,6 +1290,16 @@
 				3F2852901CE9308C00C77435 /* ja */,
 			);
 			name = FtpFileDetailViewController.xib;
+			path = Classes/ViewControllers/App/Ftp;
+			sourceTree = "<group>";
+		};
+		3F2852931CE93F9B00C77435 /* ShowFtpFileViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F2852921CE93F9B00C77435 /* Base */,
+				3F2852951CE93F9D00C77435 /* ja */,
+			);
+			name = ShowFtpFileViewController.xib;
 			path = Classes/ViewControllers/App/Ftp;
 			sourceTree = "<group>";
 		};

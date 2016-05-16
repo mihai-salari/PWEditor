@@ -210,8 +210,8 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
         if type == FtpConst.FtpFileType.File {
             // ファイルの場合
             // FTPファイル表示画面に遷移する。
-//            let vc = ShowFtpFileViewController(ftpFileInfo: ftpFileInfo)
-//            navigationController?.pushViewController(vc, animated: true)
+            let vc = ShowFtpFileViewController(ftpHostInfo: ftpHostInfo, pathName: pathName, ftpFileInfo: ftpFileInfo)
+            navigationController?.pushViewController(vc, animated: true)
 
         } else if type == FtpConst.FtpFileType.Diretory {
             // ディレクトリの場合

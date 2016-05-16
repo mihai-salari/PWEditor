@@ -13,4 +13,8 @@
 #import "ICTextView.h"
 #import <OneDriveSDK/OneDriveSDK.h>
 #import "iCloud.h"
+#import "BRRequestCreateDirectory.h"
+#import "BRRequestDelete.h"
+#import "BRRequestDownload.h"
 #import "BRRequestListDirectory.h"
+#import "BRRequestUpload.h"
