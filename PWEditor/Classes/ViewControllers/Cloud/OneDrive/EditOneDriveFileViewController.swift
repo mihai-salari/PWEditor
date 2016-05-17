@@ -88,7 +88,6 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
         navigationItem.title = fileName
 
         // 右上ボタンを設定する。
-        // TODO: 暫定で表示しない。
         createRightBarButton()
 
         // テキストビューを設定する。

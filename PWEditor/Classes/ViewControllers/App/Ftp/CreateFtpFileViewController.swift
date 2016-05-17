@@ -20,10 +20,8 @@ class CreateFtpFileViewController: BaseTableViewController, UITextFieldDelegate,
     // MARK: - Constants
 
     /// 画面タイトル
-    private let kScreenTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kCreateFtpFileScreenTitleCreate),
-        LocalizableUtils.getString(LocalizableConst.kCreateFtpFileScreenTitleEdit),
-        ]
+    private let kScreenTitle =
+        LocalizableUtils.getString(LocalizableConst.kCreateFtpFileScreenTitle)
 
     /// セクションタイトルリスト
     private let kSectionTitleList = [
@@ -49,12 +47,6 @@ class CreateFtpFileViewController: BaseTableViewController, UITextFieldDelegate,
         case Dir
     }
 
-    /// 編集タイプ
-    private enum EditType: Int {
-        case Create
-        case Edit
-    }
-
     // MARK: - Variables
 
     /// テーブルビュー
@@ -63,14 +55,20 @@ class CreateFtpFileViewController: BaseTableViewController, UITextFieldDelegate,
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
-    /// パス名
-    private var pathName: String!
-
     /// FTPホスト情報
     private var ftpHostInfo: FtpHostInfo!
 
-    /// 編集タイプ
-    private var editType = EditType.Create
+    /// パス名
+    private var pathName: String!
+
+    /// FTPディレクトリ作成処理
+    private var ftpCreateDirectory: BRRequestCreateDirectory?
+
+    /// FTPアップロード処理
+    private var ftpUpload: BRRequestUpload?
+
+    /// FTPアップロードデータ(空データ)
+    private var ftpUploadData: NSData?
 
     // MARK: - Initializer
 
@@ -87,20 +85,13 @@ class CreateFtpFileViewController: BaseTableViewController, UITextFieldDelegate,
     /**
      イニシャライザ
 
-     - Parameter pathName: パス名
      - Parameter ftpHostInfo: FTPホスト情報
+     - Parameter pathName: パス名
      */
-    init(pathName: String, ftpHostInfo: FtpHostInfo? = nil) {
+    init(ftpHostInfo: FtpHostInfo, pathName: String) {
         // 引数のデータを保存する。
+        self.ftpHostInfo = ftpHostInfo
         self.pathName = pathName
-        if ftpHostInfo == nil {
-            self.ftpHostInfo = ftpHostInfo
-            editType = EditType.Create
-
-        } else {
-            self.ftpHostInfo = FtpHostInfo()
-            editType = EditType.Edit
-        }
 
         // スーパークラスのメソッドを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -116,8 +107,7 @@ class CreateFtpFileViewController: BaseTableViewController, UITextFieldDelegate,
         super.viewDidLoad()
 
         // 画面タイトルを設定する。
-        let screenTitle = kScreenTitleList[editType.rawValue]
-        navigationItem.title = screenTitle
+        navigationItem.title = kScreenTitle
 
         // 右バーボタンを作成する。
         createRightBarButton()
@@ -365,26 +355,152 @@ class CreateFtpFileViewController: BaseTableViewController, UITextFieldDelegate,
     }
     
     // MARK: - FTP
-    
+
+    /**
+     ファイルを作成する。
+ 
+     - Parameter fileName: ファイル名
+     */
     private func createFile(fileName: String) {
-        
+        ftpUpload = BRRequestUpload(delegate: self)
+        if ftpUpload == nil {
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        // 処理中アラートを表示する。
+        showProcessingAlert() {
+            // FTPファイル作成を開始する。
+            // FTPアップロードデータを空で作成する。
+            self.ftpUploadData = NSData()
+
+            let path = FtpUtils.getPath(self.pathName, name: fileName)
+            self.ftpUpload!.path = path
+            self.ftpUpload!.hostname = self.ftpHostInfo.hostName
+            self.ftpUpload!.username = self.ftpHostInfo.userName
+            self.ftpUpload!.password = self.ftpHostInfo.password
+
+            self.ftpUpload!.start()
+        }
     }
-    
+
+    /**
+     ディレクトリを作成する。
+ 
+     - Parameter dirName: ディレクトリ名
+     */
     private func createDir(dirName: String) {
-        
+        ftpCreateDirectory = BRRequestCreateDirectory(delegate: self)
+        if ftpCreateDirectory == nil {
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        // 処理中アラートを表示する。
+        showProcessingAlert() {
+            // FTPディレクトリ作成を開始する。
+            let path = FtpUtils.getPath(self.pathName, name: dirName)
+            self.ftpCreateDirectory!.path = path
+            self.ftpCreateDirectory!.hostname = self.ftpHostInfo.hostName
+            self.ftpCreateDirectory!.username = self.ftpHostInfo.userName
+            self.ftpCreateDirectory!.password = self.ftpHostInfo.password
+
+            self.ftpCreateDirectory!.start()
+        }
     }
     
-    // MARK: - BRRequestDelegate
-    
+    // MARK: - MBRequestDelegate
+
+    /**
+     リクエストが完了した時に呼び出される。
+
+     - Parameter request: リクエスト
+     */
     func requestCompleted(request: BRRequest) {
-        
+        // 処理中アラートを閉じる。
+        dismissProcessingAlert() {
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if request == self.ftpCreateDirectory {
+                // FTPディレクトリ作成の場合
+                // FTPディレクトリ作成処理をクリアする。
+                self.ftpCreateDirectory = nil
+
+            } else if request == self.ftpUpload {
+                // FTPアップロードの場合
+                // FTPアップロード処理をクリアする。
+                self.ftpUpload = nil
+            }
+
+            // 遷移元画面に戻る。
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
-    
+
+    /**
+     リクエストが失敗した時に呼び出される。
+
+     - Parameter request: リクエスト
+     */
     func requestFailed(request: BRRequest) {
-        
+        // 処理中アラートを閉じる。
+        dismissProcessingAlert() {
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if request == self.ftpCreateDirectory {
+                // FTPディレクトリ作成の場合
+                // FTPディレクトリ作成処理をクリアする。
+                self.ftpCreateDirectory = nil
+
+            } else if request == self.ftpUpload {
+                // FTPアップロードの場合
+                // FTPアップロード処理をクリアする。
+                self.ftpUpload = nil
+
+                // エラーコードを取得する。
+                let errorCode = request.error.errorCode
+                if errorCode == kBRFTPServerAbortedTransfer {
+                    // サーバ切断の場合は正常終了とみなす。
+                    // 遷移元画面に戻る。
+                    self.navigationController?.popViewControllerAnimated(true)
+                    return
+                }
+            }
+
+            // エラーアラートを表示する。
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let errorCode = String(request.error.errorCode.rawValue)
+            let errorMessage = request.error.message
+            let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageFtpCreateError, errorCode, errorMessage)
+            self.showAlert(title, message: message)
+        }
     }
-    
+
+    /**
+     上書きリクエスト時に呼び出される。
+
+     - Parameter request: リクエスト
+     */
     func shouldOverwriteFileWithRequest(request: BRRequest) -> Bool {
+        //  何もしない。
         return true
+    }
+
+    /**
+     アップロードデータを送信する。
+ 
+     - Parameter request: リクエスト
+     - Returns: アップロードデータ
+     */
+    func requestDataToSend(request: BRRequestUpload) -> NSData {
+        let temp = ftpUploadData!
+        ftpUploadData = nil
+        return temp
     }
 }

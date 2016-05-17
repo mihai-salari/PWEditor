@@ -25,8 +25,11 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
     /// ツールバー
     @IBOutlet weak var toolbar: UIToolbar!
 
-    /// 保存ツールバーボタン
-    @IBOutlet weak var saveToolbarButton: UIBarButtonItem!
+    /// 編集ツールバーボタン
+    @IBOutlet weak var editToolbarButton: UIBarButtonItem!
+
+    /// ダウンロードツールバーボタン
+    @IBOutlet weak var downloadToolbarButton: UIBarButtonItem!
 
     /// 削除ツールバーボタン
     @IBOutlet weak var deleteToolbarButton: UIBarButtonItem!
@@ -115,7 +118,7 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
         super.viewWillAppear(animated)
 
         // ツールバーを無効にする。
-        saveToolbarButton.enabled = false
+        editToolbarButton.enabled = false
         deleteToolbarButton.enabled = false
 
         // FTPファイルをダウンロードする。
@@ -124,9 +127,29 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
 
     // MARK: - Toolbar button
 
-    @IBAction func saveToolbarButtonPressed(sender: AnyObject) {
+    /**
+     編集ツールバーボタンが謳歌された時に呼び出される。
+ 
+ 　  - Parameter sender: 編集ツールバーボタン
+ 　  */
+    @IBAction func editToolbarButtonPressed(sender: AnyObject) {
+        let vc = EditFtpFileViewController(ftpHostInfo: ftpHostInfo, pathName: pathName, ftpFileInfo: ftpFileInfo, fileData: downloadData)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
+    /**
+     ダウンロードツールバーボタンが謳歌された時に呼び出される。
+
+     - Parameter sender: ダウンロードツールバーボタン
+     */
+    @IBAction func downloadToolbarButtonPressed(sender: AnyObject) {
+    }
+
+    /**
+     削除ツールバーボタンが謳歌された時に呼び出される。
+
+     - Parameter sender: 削除ツールバーボタン
+     */
     @IBAction func deleteToolbarButtonPressed(sender: AnyObject) {
     }
 
@@ -150,12 +173,7 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
             self.ftpDownload!.username = self.ftpHostInfo.userName
             self.ftpDownload!.password = self.ftpHostInfo.password
             let fileName = FtpFileInfoUtils.getName(self.ftpFileInfo)
-            let path: String
-            if self.pathName == "/" {
-                path = "/\(fileName)"
-            } else {
-                path = "\(self.pathName)/\(fileName)"
-            }
+            let path = FtpUtils.getPath(self.pathName, name: fileName)
             self.ftpDownload!.path = path
             self.ftpDownload!.start()
         }
@@ -207,7 +225,7 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
             self.loadData(text!, webView: self.webView)
 
             // ツールバーボタンを有効にする。
-            self.saveToolbarButton.enabled = true
+            self.editToolbarButton.enabled = true
             self.deleteToolbarButton.enabled = true
         }
     }
@@ -228,7 +246,7 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
 
             // エラーアラートを表示する。
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let errorCode = String(request.error.errorCode)
+            let errorCode = String(request.error.errorCode.rawValue)
             let errorMessage = request.error.message
             let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageGetFileListError, errorCode, errorMessage)
             self.showAlert(title, message: message) {
@@ -239,20 +257,12 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
     }
 
     /**
-     上書き要求時に呼び出される。
+     上書きリクエスト時に呼び出される。
  
      - Parameter request: リクエスト
      */
-    func shouldOverwriteFileWithRequest(reuqest: BRRequest) -> Bool {
-        // 処理中アラートを閉じる。
-        dismissProcessingAlert() {
-            // ネットワークアクセス通知を消す。
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-
-            // FTPダウンロード処理をクリアする。
-            self.ftpDownload = nil
-        }
-        
+    func shouldOverwriteFileWithRequest(request: BRRequest) -> Bool {
+        // 何もしない。
         return true
     }
 

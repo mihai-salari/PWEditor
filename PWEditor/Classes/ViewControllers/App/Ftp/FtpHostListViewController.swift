@@ -96,6 +96,7 @@ class FtpHostListViewController: BaseTableViewController, UIGestureRecognizerDel
             ftpHostInfoList.append(ftpHostInfo)
         }
 
+        // TODO: 現状FTPホストは1件のみ登録可能とする。
         let count = ftpHostInfoList.count
         if count == 0 {
             createToolbarButton.enabled = true

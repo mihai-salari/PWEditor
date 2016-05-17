@@ -18,6 +18,7 @@ struct LocalizableConst {
     static let kButtonTitleMenu = "ButtonTitleMenu"
     static let kButtonTitleOpenChar = "ButtonTitleOpenChar"
     static let kButtonTitleEdit = "ButtonTitleEdit"
+    static let kButtonTitleDownload = "ButtonTitleDownload"
 
     // アラートタイトル
     static let kAlertTitleError = "AlertTitleError"
@@ -48,6 +49,10 @@ struct LocalizableConst {
     static let kAlertMessageHttpRequestError = "AlertMessageHttpRequestError";
     static let kAlertMessageHttpStatusError = "AlertMessageHttpStatusError";
 
+    // アラートメッセージ：FTP関連
+    static let kAlertMessageFtpDeleteError = "AlertMessageFtpDeleteError"
+    static let kAlertMessageFtpCreateError = "AlertMessageFtpCreateError"
+
     // アクションシートタイトル
     static let kActionSheetTitleLocalFile = "ActionSheetTitleLocalFile"
     static let kActionSheetTitleICloudFile = "ActionSheetTitleICloudFile"
@@ -55,6 +60,7 @@ struct LocalizableConst {
     static let kActionSheetTitleGoogleDriveFile = "ActionSheetTitleGoogleDriveFile"
     static let kActionSheetTitleOneDriveFile = "ActionSheetTitleOneDriveFile"
     static let kActionSheetTitleFtpHostInfo = "ActionSheetTitleFtpHostInfo"
+    static let kActionSheetTitleFtpFile = "ActionSheetTitleFtpFile"
 
     // その他
     static let kFontSize = "FontSize"
@@ -246,8 +252,7 @@ struct LocalizableConst {
     static let kFtpFileDetailCellTitleModDate = "FtpFileDetailCellTitleModDate"
 
     // FTPファイル作成画面
-    static let kCreateFtpFileScreenTitleCreate = "CreateFtpFileScreenTitleCreate"
-    static let kCreateFtpFileScreenTitleEdit = "CreateFtpFileScreenTitleEdit"
+    static let kCreateFtpFileScreenTitle = "CreateFtpFileScreenTitle"
     static let kCreateFtpFileSectionTitleFileName = "CreateFtpFileSectionTitleFileName"
     static let kCreateFtpFileSectionTitleFileType = "CreateFtpFileSectionTitleFileType"
     static let kCreateFtpFileCellTitleFile = "CreateFtpFileCellTitleFile"

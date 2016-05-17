@@ -9,7 +9,8 @@
             <connections>
                 <outlet property="bannerView" destination="pDD-PE-au4" id="ByQ-I1-gKg"/>
                 <outlet property="deleteToolbarButton" destination="hjy-ww-qSq" id="5Yn-Ph-59x"/>
-                <outlet property="saveToolbarButton" destination="kUI-Rx-5h1" id="JQ9-M5-7D7"/>
+                <outlet property="downloadToolbarButton" destination="Na8-7Y-lGn" id="LeU-a3-Pog"/>
+                <outlet property="editToolbarButton" destination="kUI-Rx-5h1" id="Law-Fz-lfG"/>
                 <outlet property="toolbar" destination="52g-tC-sbx" id="Vun-sf-5XX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="webView" destination="7h5-zP-1Ig" id="jiz-XM-Fot"/>
@@ -30,9 +31,15 @@
                         <constraint firstAttribute="height" constant="44" id="cWU-dj-4Z6"/>
                     </constraints>
                     <items>
-                        <barButtonItem systemItem="save" id="kUI-Rx-5h1">
+                        <barButtonItem systemItem="edit" id="kUI-Rx-5h1">
                             <connections>
-                                <action selector="saveToolbarButtonPressed:" destination="-1" id="DFn-0G-jLm"/>
+                                <action selector="editToolbarButtonPressed:" destination="-1" id="l7o-df-jCg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="1q4-NW-qFq"/>
+                        <barButtonItem title="Download" id="Na8-7Y-lGn">
+                            <connections>
+                                <action selector="downloadToolbarButtonPressed:" destination="-1" id="4Lo-TT-Xao"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="izl-7u-zE4"/>

@@ -48,6 +48,9 @@ class FtpFileDetailViewController: BaseTableViewController {
     /// ツールバー
     @IBOutlet weak var toolbar: UIToolbar!
 
+    /// 編集ツールバーボタン
+    @IBOutlet weak var editToolbarButton: UIBarButtonItem!
+
     /// ダウンロードツールバーボタン
     @IBOutlet weak var downloadToolbarButton: UIBarButtonItem!
 
@@ -57,8 +60,14 @@ class FtpFileDetailViewController: BaseTableViewController {
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
+    /// FTPホスト情報
+    private var ftpHostInfo: FtpHostInfo!
+
+    /// パス名
+    private var pathName: String!
+
     /// FTPファイル情報
-    var ftpFileInfo: NSDictionary!
+    private var ftpFileInfo: NSDictionary!
 
     // MARK: - Initializer
 
@@ -75,10 +84,14 @@ class FtpFileDetailViewController: BaseTableViewController {
     /**
      イニシャライザ
 
+     - Parameter ftpHostInfo: FTPホスト情報
+     - Parameter pathName: パス名
      - Parameter ftpFileInfo: FTPファイル情報
      */
-    init(ftpFileInfo: NSDictionary) {
+    init(ftpHostInfo: FtpHostInfo, pathName: String, ftpFileInfo: NSDictionary) {
         // 引数を保存する。
+        self.ftpHostInfo = ftpHostInfo
+        self.pathName = pathName
         self.ftpFileInfo = ftpFileInfo
 
         // スーパークラスのイニシャライザを呼び出す。
@@ -193,6 +206,17 @@ class FtpFileDetailViewController: BaseTableViewController {
     }
 
     // MARK: - Toolbar button
+
+    /**
+     編集ツールバーボタン押下時に呼び出される。
+
+     - Parameter sender: 編集ツールバーボタン
+     */
+    @IBAction func editToolbarButtonPressed(sender: AnyObject) {
+        // FTPファイル編集画面に遷移する。
+        let vc = EditFtpFileViewController(ftpHostInfo: ftpHostInfo, pathName: pathName, ftpFileInfo: ftpFileInfo)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 
     /**
      ダウンロードツールバーボタン押下時に呼び出される。

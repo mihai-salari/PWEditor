@@ -43,8 +43,11 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
     /// パス名
     private var pathName: String!
 
-    /// FTPディレクトリリスト操作
-    private var listDir: BRRequestListDirectory!
+    /// FTPディレクトリリスト処理
+    private var ftpListDirectory: BRRequestListDirectory!
+
+    /// FTP削除処理
+    private var ftpDelete: BRRequestDelete?
 
     /// FTPファイル情報リスト
     private var ftpFileInfoList: [NSDictionary]?
@@ -169,7 +172,7 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
         let type = FtpFileInfoUtils.getType(ftpFileInfo)
         if type == FtpConst.FtpFileType.File {
             // ファイルの場合
-            cell.accessoryType = .DetailDisclosureButton
+            cell.accessoryType = .DetailButton
 
         } else if type == FtpConst.FtpFileType.Link {
             // リンクの場合
@@ -196,15 +199,16 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
         // FTPファイル情報リストが未取得の場合、処理を終了する。
-        let row = indexPath.row
         if ftpFileInfoList == nil {
             return
         }
+        let row = indexPath.row
         let count = ftpFileInfoList!.count
         if row + 1 > count {
             return
         }
 
+        // ファイルタイプにより処理を判別する。
         let ftpFileInfo = ftpFileInfoList![row]
         let type = FtpFileInfoUtils.getType(ftpFileInfo)
         if type == FtpConst.FtpFileType.File {
@@ -217,12 +221,7 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
             // ディレクトリの場合
             // FTPファイル一覧画面に遷移する。
             let name = FtpFileInfoUtils.getName(ftpFileInfo)
-            let path: String
-            if pathName == "/" {
-                path = "\(pathName)\(name)"
-            } else {
-                path = "\(pathName)/\(name)"
-            }
+            let path = FtpUtils.getPath(pathName, name: name)
             let vc = FtpFileListViewController(ftpHostInfo: ftpHostInfo, pathName: path)
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -235,20 +234,136 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
      - Parameter indexPath: インデックスパス
      */
     func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-
         // FTPファイル情報リストが未取得の場合、処理を終了する。
-        let row = indexPath.row
         if ftpFileInfoList == nil {
             return
         }
+        let row = indexPath.row
         let count = ftpFileInfoList!.count
         if row + 1 > count {
             return
         }
-        // OneDriveファイル詳細画面に遷移する。
+
+        // FTPファイル詳細画面に遷移する。
         let ftpFileInfo = ftpFileInfoList![row]
-        let vc = FtpFileDetailViewController(ftpFileInfo: ftpFileInfo)
+        let vc = FtpFileDetailViewController(ftpHostInfo: ftpHostInfo, pathName: pathName, ftpFileInfo: ftpFileInfo)
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    /**
+     セルロングタップ時に呼び出される。
+
+     - Parameter recognizer: ジェスチャー
+     */
+    override func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
+        let point = recognizer.locationInView(tableView)
+        let indexPath = tableView!.indexPathForRowAtPoint(point)
+        if indexPath == nil {
+            return
+        }
+
+        if recognizer.state == UIGestureRecognizerState.Began {
+            // FTPファイル操作アクションシートを表示する。
+            let row = indexPath!.row
+            let ftpFileInfo = ftpFileInfoList![row]
+            let cell = tableView.cellForRowAtIndexPath(indexPath!)
+            showOperateFtpFileInfoActionSheet(ftpFileInfo, index: row, cell: cell!)
+        }
+    }
+
+    // MARK: - ActionSheet
+
+    /**
+     FTPファイル情報操作アクションシートを表示する。
+
+     - Parameter ftpFileInfo: FTPファイル情報
+     - Parameter index: FTPホスト情報リストの位置
+     - Parameter cell: テーブルビューセル
+     */
+    private func showOperateFtpFileInfoActionSheet(ftpFileInfo: NSDictionary, index: Int, cell: UITableViewCell) {
+        // FTPファイル情報操作アクションシートを生成する。
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kActionSheetTitleFtpFile)
+        let alert = UIAlertController(title: alertTitle, message: "", preferredStyle: .ActionSheet)
+        // iPadでクラッシュする対応
+        alert.popoverPresentationController?.sourceView = view
+        alert.popoverPresentationController?.sourceRect = cell.frame
+
+        // キャンセルボタンを生成する。
+        let cancelButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+        let type = FtpFileInfoUtils.getType(ftpFileInfo)
+        if type == FtpConst.FtpFileType.File {
+            // ファイルの場合
+            // 編集ボタンを生成する。
+            let editButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleEdit)
+            let editAction = UIAlertAction(title: editButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+                // FTPファイル編集画面に遷移する。
+                let vc = EditFtpFileViewController(ftpHostInfo: self.ftpHostInfo, pathName: self.pathName, ftpFileInfo: ftpFileInfo)
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            alert.addAction(editAction)
+
+            // ダウンロードボタンを生成する。
+            let downloadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDownload)
+            let downloadAction = UIAlertAction(title: downloadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+//              // FTPファイルダウンロード先選択画面に遷移する。
+//              let vc = SelectFtpFileDownloadTarteViewController(ftpHostInfo: ftpHostInfo)
+//              self.navigationController?.pushViewController(vc, animated: true)
+            })
+            alert.addAction(downloadAction)
+        }
+
+        // 削除ボタンを生成する。
+        let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+        let deleteAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // FTPファイル情報削除確認アラートを表示する。
+            self.showDeleteFtpFileInfoConfirmAlert(ftpFileInfo, index: index)
+        })
+        alert.addAction(deleteAction)
+
+        // アラートを表示する。
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
+    /**
+     FTPファイル情報削除確認アラートを表示する。
+
+     - Parameter ftpFileInfo: FTPファイル情報
+     - Parameter index: FTPファイル情報リストの位置
+     */
+    private func showDeleteFtpFileInfoConfirmAlert(ftpFileInfo: NSDictionary, index: Int) {
+        // FTPファイル情報削除確認アラートを生成する。
+        let alertTitle = LocalizableUtils.getString(LocalizableConst.kAlertTitleConfirm)
+        let name = FtpFileInfoUtils.getName(ftpFileInfo)
+        let alertMessage = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageDeleteConfirm, name)
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .Alert)
+
+        // キャンセルボタンを生成する。
+        let cancelButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCancel)
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+        // 削除ボタンを生成する。
+        let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+        let okAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+            // 削除する。
+            let name = FtpFileInfoUtils.getName(ftpFileInfo)
+            let type = FtpFileInfoUtils.getType(ftpFileInfo)
+            if type == FtpConst.FtpFileType.Diretory {
+                // ディレクトリの場合
+                self.deleteFtpDir(name)
+
+            } else {
+                // ディレクトリ以外の場合
+                self.deleteFtpFile(name)
+            }
+        })
+        alert.addAction(okAction)
+
+        // アラートを表示する。
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     // MARK: - Refresh control
@@ -269,24 +384,76 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
      - Parameter sender: 作成ツールバーボタン
      */
     @IBAction func createToobarButtonPressed(sender: AnyObject) {
+        // FTPファイル作成画面に遷移する。
+        let vc = CreateFtpFileViewController(ftpHostInfo: ftpHostInfo, pathName: pathName)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: - FTP
 
+    /**
+     FTPファイル情報リストの取得を開始する。
+     */
     func startGetFtpFileInfoList() {
-        if listDir != nil {
+        if ftpListDirectory != nil {
             return
         }
 
+        // 処理中アラートは表示しない。
         // ネットワークアクセス通知を表示する。
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
-        listDir = BRRequestListDirectory(delegate: self)
-        listDir.hostname = ftpHostInfo.hostName
-        listDir.username = ftpHostInfo.userName
-        listDir.password = ftpHostInfo.password
-        listDir.path = pathName
-        listDir.start()
+        ftpListDirectory = BRRequestListDirectory(delegate: self)
+        ftpListDirectory.hostname = ftpHostInfo.hostName
+        ftpListDirectory.username = ftpHostInfo.userName
+        ftpListDirectory.password = ftpHostInfo.password
+        ftpListDirectory.path = pathName
+        ftpListDirectory.start()
+    }
+
+    /**
+     FTPファイルを削除する。
+ 
+     - Parameter fileName: ファイル名
+     */
+    func deleteFtpFile(fileName: String) {
+        ftpDelete = BRRequestDelete(delegate: self)
+        if ftpDelete == nil {
+            return
+        }
+
+        // 処理中アラートを表示する。
+        showProcessingAlert() {
+            // FTPファイルの削除を開始する。
+            let path = FtpUtils.getPath(self.pathName, name: fileName)
+
+            self.ftpDelete!.hostname = self.ftpHostInfo.hostName
+            self.ftpDelete!.username = self.ftpHostInfo.userName
+            self.ftpDelete!.password = self.ftpHostInfo.password
+            self.ftpDelete!.path = path
+
+            self.ftpDelete!.start()
+        }
+    }
+
+    func deleteFtpDir(dirName: String) {
+        ftpDelete = BRRequestDelete(delegate: self)
+        if ftpDelete == nil {
+            return
+        }
+
+        // 処理中アラートを表示する。
+        showProcessingAlert() {
+            // FTPディレクトリ削除を開始する。
+            let path = FtpUtils.getDirPath(self.pathName, name: dirName)
+
+            self.ftpDelete!.hostname = self.ftpHostInfo.hostName
+            self.ftpDelete!.username = self.ftpHostInfo.userName
+            self.ftpDelete!.password = self.ftpHostInfo.password
+            self.ftpDelete!.path = path
+
+            self.ftpDelete!.start()
+        }
     }
 
     // MARK: - BRRequestDelegate
@@ -300,14 +467,31 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
         // ネットワークアクセス通知を消す。
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
-        ftpFileInfoList = listDir.filesInfo as? [NSDictionary]
-        listDir = nil
+        if ftpListDirectory != nil && request == ftpListDirectory {
+            // FTPディレクトリリスト処理の場合
+            // FTPファイル情報リストを取得する。
+            ftpFileInfoList = ftpListDirectory.filesInfo as? [NSDictionary]
 
-        // リフレッシュコントロールを停止する。
-        refreshControl?.endRefreshing()
+            // FTPディレクトリリスト処理をクリアする。
+            ftpListDirectory = nil
 
-        // テーブルビューを更新する。
-        tableView.reloadData()
+            // リフレッシュコントロールを停止する。
+            refreshControl?.endRefreshing()
+            
+            // テーブルビューを更新する。
+            tableView.reloadData()
+
+        } else if request == ftpDelete {
+            // FTP削除処理の場合
+            // 処理中アラートを閉じる。
+            dismissProcessingAlert() {
+                // FTP削除処理をクリアする。
+                self.ftpDelete = nil
+
+                // FTPファイル情報を再取得する。
+                self.startGetFtpFileInfoList()
+            }
+        }
     }
 
     /**
@@ -319,28 +503,45 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
         // ネットワークアクセス通知を消す。
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
-        listDir = nil
+        if ftpListDirectory != nil && request == ftpListDirectory! {
+            // FTPディレクトリリスト処理をクリアする。
+            ftpListDirectory = nil
 
-        // リフレッシュコントロールを停止する。
-        refreshControl?.endRefreshing()
+            // リフレッシュコントロールを停止する。
+            refreshControl?.endRefreshing()
 
-        // エラーの場合
-        let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-        let errorCode = String(request.error.errorCode)
-        let errorMessage = request.error.message
-        let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageGetFileListError, errorCode, errorMessage)
-        self.showAlert(title, message: message)
+            // エラーの場合
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let errorCode = String(request.error.errorCode.rawValue)
+            let errorMessage = request.error.message
+            let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageGetFileListError, errorCode, errorMessage)
+            self.showAlert(title, message: message)
+
+        } else if request == ftpDelete {
+            // FTP削除処理の場合
+            // 処理中アラートを閉じる。
+            dismissProcessingAlert() {
+                // FTP削除処理をクリアする。
+                self.ftpDelete = nil
+
+                // エラーアラートを表示する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let errorCode = String(request.error.errorCode.rawValue)
+                let errorMessage = request.error.message
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageFtpDeleteError, errorCode, errorMessage)
+                self.showAlert(title, message: message)
+            }
+        }
     }
 
-    func shouldOverwriteFileWithRequest(reuqest: BRRequest) -> Bool {
-        // ネットワークアクセス通知を消す。
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-
-        listDir = nil
-
-        // リフレッシュコントロールを停止する。
-        refreshControl?.endRefreshing()
-
+    /**
+     上書きリクエストの時呼び出される。
+ 
+     - Parameter request: リクエスト
+     - Returns: 処理結果
+     */
+    func shouldOverwriteFileWithRequest(request: BRRequest) -> Bool {
+        // 何もしない。
         return true
     }
 }

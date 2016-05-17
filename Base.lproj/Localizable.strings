@@ -15,6 +15,7 @@ ButtonTitleDelete = "Delete";
 ButtonTitleMenu = "Menu";
 ButtonTitleOpenChar = "Open by specify char code";
 ButtonTitleEdit = "Edit";
+ButtonTitleDownload = "Download";
 
 // アラートタイトル
 AlertTitleError = "Error";
@@ -44,6 +45,11 @@ AlertMessageHttpRequestError = "HTTP communication failed.";
 AlertMessageHttpStatusError = "HTTP communication result failed.\nerror code=%d\nerror message=%@";
 AlertMessageProcessing = "Please wait a moment.";
 
+// アラートメッセージ：FTP関連
+AlertMessageFtpDeleteError = "Delete directory or file faied.\nerror code=%d\nerror message=%@";
+AlertMessageFtpCreateError = "Create directory or file faied.\nerror code=%d\nerror message=%@";
+
+
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "Local file operation";
 ActionSheetTitleICloudFile = "iCloud file operation";
@@ -51,6 +57,7 @@ ActionSheetTitleDropboxFile = "Dropbox file operation";
 ActionSheetTitleGoogleDriveFile = "Google drive file operation";
 ActionSheetTitleOneDriveFile = "One drive file operation";
 ActionSheetTitleFtpHostInfo = "FTP host info operation";
+ActionSheetTitleFtpFile = "FTP file operation";
 
 // その他
 FontSize = "Font size";
@@ -240,8 +247,7 @@ FtpFileDetailCellTitleGroup = "Group";
 FtpFileDetailCellTistleModDate = "Modified date";
 
 // FTPファイル作成画面
-CreateFtpFileScreenTitleCreate = "Create ftp file";
-CreateFtpFileScreenTitleEdit = "Edit ftp file";
+CreateFtpFileScreenTitle = "Create ftp file";
 CreateFtpFileSectionTitleFileName = "Name";
 CreateFtpFileSectionTitleFileType = "Type";
 CreateFtpFileCellTitleFile = "File";
