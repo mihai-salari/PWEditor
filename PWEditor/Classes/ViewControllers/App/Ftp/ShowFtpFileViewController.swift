@@ -119,6 +119,7 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
 
         // ツールバーを無効にする。
         editToolbarButton.enabled = false
+        downloadToolbarButton.enabled = false
         deleteToolbarButton.enabled = false
 
         // FTPファイルをダウンロードする。
@@ -226,6 +227,7 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
 
             // ツールバーボタンを有効にする。
             self.editToolbarButton.enabled = true
+            self.downloadToolbarButton.enabled = true
             self.deleteToolbarButton.enabled = true
         }
     }
