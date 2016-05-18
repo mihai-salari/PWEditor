@@ -46,9 +46,14 @@ AlertMessageHttpStatusError = "HTTP communication result failed.\nerror code=%d\
 AlertMessageProcessing = "Please wait a moment.";
 
 // アラートメッセージ：FTP関連
+AlertMessageStartFtpError = "Start ftp failed.";
 AlertMessageFtpDeleteError = "Delete directory or file faied.\nerror code=%d\nerror message=%@";
 AlertMessageFtpCreateError = "Create directory or file faied.\nerror code=%d\nerror message=%@";
 
+AlertMessageNoDirectoryErorr = "Directory does not exist.";
+AlertMessageCreateFileError = "Create %@ failed.";
+AlertMessageFileDownloadError = "Download %@ failed.";
+AlertMessageSameFileName = "Same name file exist.\nOverride?";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "Local file operation";
@@ -252,6 +257,18 @@ CreateFtpFileSectionTitleFileName = "Name";
 CreateFtpFileSectionTitleFileType = "Type";
 CreateFtpFileCellTitleFile = "File";
 CreateFtpFileCellTitleDir = "Directory";
+
+// FTPダウンロード先選択画面
+SelectFtpDownloadTargetScreenTitle = "Select FTP download target";
+SelectFtpDownloadTargetCellTitleLocal = "Local";
+SelectFtpDownloadTargetCellTitleICloud = "iCloud";
+SelectFtpDownloadTargetCellTitleDropbox = "Dropbox";
+SelectFtpDownloadTargetCellTitleGoogleDrive = "Google drive";
+SelectFtpDownloadTargetCellTitleOneDrive = "One drive";
+SelectFtpDownloadTargetCellTitleBox = "Box";
+
+// ローカルディレクトリ選択画面
+SelectLocalDirectoryNotSelectError = "Directory not selected.";
 
 // 設定画面
 SettingsScreenTitle = "Setting";

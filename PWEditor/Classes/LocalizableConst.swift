@@ -50,8 +50,14 @@ struct LocalizableConst {
     static let kAlertMessageHttpStatusError = "AlertMessageHttpStatusError";
 
     // アラートメッセージ：FTP関連
+    static let kAlertMessageStartFtpError = "AlertMessageStartFtpError"
     static let kAlertMessageFtpDeleteError = "AlertMessageFtpDeleteError"
     static let kAlertMessageFtpCreateError = "AlertMessageFtpCreateError"
+
+    static let kAlertMessageNoDirectoryError = "AlertMessageNoDirectoryErorr"
+    static let kAlertMessageCreateFileError = "AlertMessageCreateFileError"
+    static let kAlertMessageFileDownloadError = "AlertMessageFileDownloadError"
+        static let kAlertMessageSameFileName = "AlertMessageSameFileName"
 
     // アクションシートタイトル
     static let kActionSheetTitleLocalFile = "ActionSheetTitleLocalFile"
@@ -257,6 +263,18 @@ struct LocalizableConst {
     static let kCreateFtpFileSectionTitleFileType = "CreateFtpFileSectionTitleFileType"
     static let kCreateFtpFileCellTitleFile = "CreateFtpFileCellTitleFile"
     static let kCreateFtpFileCellTitleDir = "CreateFtpFileCellTitleDir"
+
+    // FTPダウンロード先選択画面
+    static let kSelectFtpDownloadTargetScreenTitle = "SelectFtpDownloadTargetScreenTitle"
+    static let kSelectFtpDownloadTargetCellTitleLocal = "SelectFtpDownloadTargetCellTitleLocal"
+    static let kSelectFtpDownloadTargetCellTitleICloud = "SelectFtpDownloadTargetCellTitleICloud"
+    static let kSelectFtpDownloadTargetCellTitleDropbox = "SelectFtpDownloadTargetCellTitleDropbox"
+    static let kSelectFtpDownloadTargetCellTitleGoogleDrive = "SelectFtpDownloadTargetCellTitleGoogleDrive"
+    static let kSelectFtpDownloadTargetCellTitleOneDrive = "SelectFtpDownloadTargetCellTitleOneDrive"
+    static let kSelectFtpDownloadTargetCellTitleBox = "SelectFtpDownloadTargetCellTitleBox"
+
+    // ローカルディレクトリ選択画面
+    static let kSelectLocalDirectoryNotSelectError = "SelectLocalDirectoryNotSelectError";
 
     // 設定画面
     static let kSettingsScreenTitle = "SettingsScreenTitle"

@@ -168,6 +168,10 @@
 		3FA017771CDADF4C00B632F4 /* PdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA017761CDADF4C00B632F4 /* PdfView.swift */; };
 		3FA61AE01CE15694009926EE /* CreateICloudFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA61ADE1CE15694009926EE /* CreateICloudFileViewController.swift */; };
 		3FA61AE11CE15694009926EE /* CreateICloudFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA61ADF1CE15694009926EE /* CreateICloudFileViewController.xib */; };
+		3FDB24BF1CED05110073BC04 /* SelectFtpDownloadTargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB24BD1CED05110073BC04 /* SelectFtpDownloadTargetViewController.swift */; };
+		3FDB24C01CED05110073BC04 /* SelectFtpDownloadTargetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24BE1CED05110073BC04 /* SelectFtpDownloadTargetViewController.xib */; };
+		3FDB24C31CED096E0073BC04 /* SelectLocalDirectoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB24C11CED096E0073BC04 /* SelectLocalDirectoryListViewController.swift */; };
+		3FDB24C41CED096E0073BC04 /* SelectLocalDirectoryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24C21CED096E0073BC04 /* SelectLocalDirectoryListViewController.xib */; };
 		3FF93E371C86595500621455 /* EditDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */; };
 		3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */; };
 		3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */; };
@@ -417,6 +421,10 @@
 		3FA017761CDADF4C00B632F4 /* PdfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfView.swift; path = Classes/ViewControllers/Common/PdfView.swift; sourceTree = "<group>"; };
 		3FA61ADE1CE15694009926EE /* CreateICloudFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateICloudFileViewController.swift; path = Classes/ViewControllers/Cloud/ICloud/CreateICloudFileViewController.swift; sourceTree = "<group>"; };
 		3FA61ADF1CE15694009926EE /* CreateICloudFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CreateICloudFileViewController.xib; path = Classes/ViewControllers/Cloud/ICloud/CreateICloudFileViewController.xib; sourceTree = "<group>"; };
+		3FDB24BD1CED05110073BC04 /* SelectFtpDownloadTargetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectFtpDownloadTargetViewController.swift; path = Classes/ViewControllers/App/Ftp/SelectFtpDownloadTargetViewController.swift; sourceTree = "<group>"; };
+		3FDB24BE1CED05110073BC04 /* SelectFtpDownloadTargetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectFtpDownloadTargetViewController.xib; path = Classes/ViewControllers/App/Ftp/SelectFtpDownloadTargetViewController.xib; sourceTree = "<group>"; };
+		3FDB24C11CED096E0073BC04 /* SelectLocalDirectoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectLocalDirectoryListViewController.swift; path = Classes/ViewControllers/App/Ftp/SelectLocalDirectoryListViewController.swift; sourceTree = "<group>"; };
+		3FDB24C21CED096E0073BC04 /* SelectLocalDirectoryListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectLocalDirectoryListViewController.xib; path = Classes/ViewControllers/App/Ftp/SelectLocalDirectoryListViewController.xib; sourceTree = "<group>"; };
 		3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDropboxFileViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.swift; sourceTree = "<group>"; };
 		3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.xib; sourceTree = "<group>"; };
 		3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SwiftyDropboxLicense.txt; path = Resources/Licenses/SwiftyDropboxLicense.txt; sourceTree = "<group>"; };
@@ -706,6 +714,10 @@
 				3F2852931CE93F9B00C77435 /* ShowFtpFileViewController.xib */,
 				3F2852981CEBC80A00C77435 /* EditFtpFileViewController.swift */,
 				3F2852991CEBC80A00C77435 /* EditFtpFileViewController.xib */,
+				3FDB24BD1CED05110073BC04 /* SelectFtpDownloadTargetViewController.swift */,
+				3FDB24BE1CED05110073BC04 /* SelectFtpDownloadTargetViewController.xib */,
+				3FDB24C11CED096E0073BC04 /* SelectLocalDirectoryListViewController.swift */,
+				3FDB24C21CED096E0073BC04 /* SelectLocalDirectoryListViewController.xib */,
 				3F2852501CE3DF2000C77435 /* FtpHostInfo.swift */,
 				3F2852761CE53B0A00C77435 /* FtpFileInfoUtils.swift */,
 				3F2852841CE5962400C77435 /* FtpHostUtils.swift */,
@@ -1043,6 +1055,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FDB24C41CED096E0073BC04 /* SelectLocalDirectoryListViewController.xib in Resources */,
 				3F12E84D1CC57D460008DDEE /* GTMOAuth2ViewTouch.xib in Resources */,
 				3F165E491C7A6CE0001CBC38 /* HistoryViewController.xib in Resources */,
 				3F157C071C84F50E007C555E /* DropboxFileListViewController.xib in Resources */,
@@ -1051,6 +1064,7 @@
 				3F28529B1CEBC80B00C77435 /* EditFtpFileViewController.xib in Resources */,
 				3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */,
 				3F2852321CE28A9500C77435 /* ICloudFileDetailViewController.xib in Resources */,
+				3FDB24C01CED05110073BC04 /* SelectFtpDownloadTargetViewController.xib in Resources */,
 				3F57FED61CD17BA3002ADAC8 /* CreateOneDriveFileViewController.xib in Resources */,
 				3F165E511C7A75F9001CBC38 /* content.html in Resources */,
 				3F17F03F1CCF712700A1F280 /* marked.html in Resources */,
@@ -1193,6 +1207,7 @@
 				3F165E351C7A687C001CBC38 /* GrepLocalFileListViewController.swift in Sources */,
 				3F28526D1CE3EF1100C77435 /* BRRequestError.m in Sources */,
 				3F57FECD1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift in Sources */,
+				3FDB24C31CED096E0073BC04 /* SelectLocalDirectoryListViewController.swift in Sources */,
 				3F28526A1CE3EF1100C77435 /* BRRequestCreateDirectory.m in Sources */,
 				3F165E671C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift in Sources */,
 				3F28526B1CE3EF1100C77435 /* BRRequestDelete.m in Sources */,
@@ -1213,6 +1228,7 @@
 				3F157BFF1C84F4F3007C555E /* ICloudDocument.swift in Sources */,
 				3F28526F1CE3EF1100C77435 /* BRRequestQueue.m in Sources */,
 				3F4873721C75DBE6006594A6 /* FileUtils.swift in Sources */,
+				3FDB24BF1CED05110073BC04 /* SelectFtpDownloadTargetViewController.swift in Sources */,
 				3F2852691CE3EF1100C77435 /* BRRequest+_UserData.m in Sources */,
 				3F3E85BC1C776174002EFB6D /* EnterLineDataTableViewCell.swift in Sources */,
 				3F0F82A11C90DAD20090632E /* HighlightViewController.swift in Sources */,

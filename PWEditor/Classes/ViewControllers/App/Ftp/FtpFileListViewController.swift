@@ -315,11 +315,11 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
             // ダウンロードボタンを生成する。
             let downloadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDownload)
             let downloadAction = UIAlertAction(title: downloadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
-//              // FTPファイルダウンロード先選択画面に遷移する。
-//              let vc = SelectFtpFileDownloadTarteViewController(ftpHostInfo: ftpHostInfo)
-//              self.navigationController?.pushViewController(vc, animated: true)
+              // FTPファイルダウンロード先選択画面に遷移する。
+              let vc = SelectFtpDownloadTargetViewController(ftpHostInfo: self.ftpHostInfo, pathName: self.pathName, ftpFileInfo: ftpFileInfo)
+              self.navigationController?.pushViewController(vc, animated: true)
             })
-//            alert.addAction(downloadAction)
+            alert.addAction(downloadAction)
         }
 
         // 削除ボタンを生成する。

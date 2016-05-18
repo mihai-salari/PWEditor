@@ -46,8 +46,14 @@ AlertMessageHttpStatusError = "HTTP通信結果がエラーです。\nエラー�
 AlertMessageProcessing = "しばらくお待ちください。";
 
 // アラートメッセージ：FTP関連
+AlertMessageStartFtpError = "FTP処理を開始できません。";
 AlertMessageFtpDeleteError = "ディレクトリまたはファイルが削除できません。\nエラーコード=%d\nエラーメッセージ=%@";
 AlertMessageFtpCreateError = "ディレクトリまたはファイルが作成できません。\nエラーコード=%d\nエラーメッセージ=%@";
+
+AlertMessageNoDirectoryErorr = "ディレクトリが存在しません。";
+AlertMessageCreateFileError = "%@が作成できませんでした。";
+AlertMessageFileDownloadError = "%@がダウンロードできませんでした。";
+AlertMessageSameFileName = "同名のファイルが存在します。\n上書きしますか。";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "ローカルファイル操作";
@@ -251,6 +257,18 @@ CreateFtpFileSectionTitleFileName = "名前";
 CreateFtpFileSectionTitleFileType = "タイプ";
 CreateFtpFileCellTitleFile = "ファイル";
 CreateFtpFileCellTitleDir = "ディレクトリ";
+
+// FTPダウンロード先選択画面
+SelectFtpDownloadTargetScreenTitle = "FTPダウンロード先選択";
+SelectFtpDownloadTargetCellTitleLocal = "ローカル";
+SelectFtpDownloadTargetCellTitleICloud = "iCloud";
+SelectFtpDownloadTargetCellTitleDropbox = "Dropbox";
+SelectFtpDownloadTargetCellTitleGoogleDrive = "Google drive";
+SelectFtpDownloadTargetCellTitleOneDrive = "One drive";
+SelectFtpDownloadTargetCellTitleBox = "Box";
+
+// ローカルディレクトリ選択画面
+SelectLocalDirectoryNotSelectError = "ディレクトリが選択されていません。";
 
 // 設定画面
 SettingsScreenTitle = "設定";

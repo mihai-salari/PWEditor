@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectLocalDirectoryListViewController" customModule="PWEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="bannerView" destination="S5j-z1-ado" id="jUh-oI-B46"/>
+                <outlet property="tableView" destination="Vkc-Tr-GDo" id="073-lk-6hm"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vkc-Tr-GDo">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S5j-z1-ado" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="TPX-MK-PI8"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Vkc-Tr-GDo" secondAttribute="trailing" id="BVM-p4-vZw"/>
+                <constraint firstAttribute="bottom" secondItem="S5j-z1-ado" secondAttribute="bottom" id="D7P-No-NM3"/>
+                <constraint firstItem="Vkc-Tr-GDo" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DcL-aS-jy2"/>
+                <constraint firstItem="S5j-z1-ado" firstAttribute="top" secondItem="Vkc-Tr-GDo" secondAttribute="bottom" id="Kb1-2Z-BdR"/>
+                <constraint firstAttribute="trailing" secondItem="S5j-z1-ado" secondAttribute="trailing" id="Xf6-su-WZU"/>
+                <constraint firstItem="Vkc-Tr-GDo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dcf-kc-FNp"/>
+                <constraint firstItem="S5j-z1-ado" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mMh-zq-mMY"/>
+                <constraint firstItem="S5j-z1-ado" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="uB4-au-0Gv"/>
+                <constraint firstItem="Vkc-Tr-GDo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zHb-4a-tYx"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>
