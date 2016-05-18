@@ -8,8 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FtpFileDetailViewController" customModule="PWEditor" customModuleProvider="target">
             <connections>
                 <outlet property="bannerView" destination="ndO-8W-30h" id="O23-Un-oP8"/>
-                <outlet property="deleteToolbarButton" destination="avU-f9-kWO" id="gFq-wh-rJp"/>
-                <outlet property="downloadToolbarButton" destination="tH7-0t-TwU" id="K3g-a0-GPb"/>
                 <outlet property="editToolbarButton" destination="6vR-Dh-omj" id="Rbd-qQ-RR8"/>
                 <outlet property="tableView" destination="cT9-xh-N1x" id="XMJ-rn-Bsp"/>
                 <outlet property="toolbar" destination="ckp-TN-Oyw" id="kB5-Mb-zws"/>
@@ -37,9 +35,6 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="e4E-iR-zNd"/>
-                        <barButtonItem title="Download" id="tH7-0t-TwU"/>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="FDE-p5-EFK"/>
-                        <barButtonItem systemItem="trash" id="avU-f9-kWO"/>
                     </items>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndO-8W-30h" customClass="GADBannerView">

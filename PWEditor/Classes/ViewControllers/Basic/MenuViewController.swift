@@ -39,7 +39,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
 
     /// クラウドセクションタイトルリスト
     private let kCloudTitleList = [
-        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleICloud),
+//        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleICloud),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleDropbox),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleGoogleDrive),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOneDrive)
@@ -74,7 +74,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
 
     /// クラウドセクションインデックス
     private enum CloudIndex: Int {
-        case ICloud
+//        case ICloud
         case Dropbox
         case GoogleDrive
         case OneDrive
@@ -183,18 +183,18 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
             // クラウドセクションの場合
             title = kCloudTitleList[row]
             switch row {
-            case CloudIndex.ICloud.rawValue:
-                // iCloudセルの場合
-                let cloud = iCloud.sharedCloud()
-                if cloud.checkCloudUbiquityContainer() {
-                    // iCloudが有効な場合
-                    cell.textLabel?.enabled = true
-
-                } else {
-                    // iCloudが無効な場合
-                    cell.textLabel?.enabled = false
-                }
-                break
+//            case CloudIndex.ICloud.rawValue:
+//                // iCloudセルの場合
+//                let cloud = iCloud.sharedCloud()
+//                if cloud.checkCloudUbiquityContainer() {
+//                    // iCloudが有効な場合
+//                    cell.textLabel?.enabled = true
+//
+//                } else {
+//                    // iCloudが無効な場合
+//                    cell.textLabel?.enabled = false
+//                }
+//                break
 
             case CloudIndex.Dropbox.rawValue:
                 // Dropboxセルの場合
@@ -293,16 +293,16 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
             // クラウドセクションの場合
             // セルによって処理を振り分ける。
             switch row {
-            case CloudIndex.ICloud.rawValue:
-                // iCloudセルの場合
-                let cloud = iCloud.sharedCloud()
-                if cloud.checkCloudUbiquityContainer() {
-                    // iCloudが有効な場合
-                    // iCloudファイル一覧画面に遷移する。
-                    let vc = ICloudFileListViewController(pathName: kRootPathName)
-                    resetTopView(vc)
-                }
-                break
+//            case CloudIndex.ICloud.rawValue:
+//                // iCloudセルの場合
+//                let cloud = iCloud.sharedCloud()
+//                if cloud.checkCloudUbiquityContainer() {
+//                    // iCloudが有効な場合
+//                    // iCloudファイル一覧画面に遷移する。
+//                    let vc = ICloudFileListViewController(pathName: kRootPathName)
+//                    resetTopView(vc)
+//                }
+//                break
 
             case CloudIndex.Dropbox.rawValue:
                 // Dropboxセルの場合

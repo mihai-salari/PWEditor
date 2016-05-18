@@ -8,8 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShowFtpFileViewController" customModule="PWEditor" customModuleProvider="target">
             <connections>
                 <outlet property="bannerView" destination="pDD-PE-au4" id="ByQ-I1-gKg"/>
-                <outlet property="deleteToolbarButton" destination="hjy-ww-qSq" id="5Yn-Ph-59x"/>
-                <outlet property="downloadToolbarButton" destination="Na8-7Y-lGn" id="LeU-a3-Pog"/>
                 <outlet property="editToolbarButton" destination="kUI-Rx-5h1" id="Law-Fz-lfG"/>
                 <outlet property="toolbar" destination="52g-tC-sbx" id="Vun-sf-5XX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -37,17 +35,6 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="1q4-NW-qFq"/>
-                        <barButtonItem title="Download" id="Na8-7Y-lGn">
-                            <connections>
-                                <action selector="downloadToolbarButtonPressed:" destination="-1" id="4Lo-TT-Xao"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="izl-7u-zE4"/>
-                        <barButtonItem systemItem="trash" id="hjy-ww-qSq">
-                            <connections>
-                                <action selector="deleteToolbarButtonPressed:" destination="-1" id="xgk-Yc-TrY"/>
-                            </connections>
-                        </barButtonItem>
                     </items>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDD-PE-au4" customClass="GADBannerView">
