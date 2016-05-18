@@ -266,6 +266,13 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
             // FTPファイル操作アクションシートを表示する。
             let row = indexPath!.row
             let ftpFileInfo = ftpFileInfoList![row]
+            let type = FtpFileInfoUtils.getType(ftpFileInfo)
+            if type == FtpConst.FtpFileType.Diretory {
+                let name = FtpFileInfoUtils.getName(ftpFileInfo)
+                if name == "." || name == ".." {
+                    return
+                }
+            }
             let cell = tableView.cellForRowAtIndexPath(indexPath!)
             showOperateFtpFileInfoActionSheet(ftpFileInfo, index: row, cell: cell!)
         }
@@ -312,7 +319,7 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
 //              let vc = SelectFtpFileDownloadTarteViewController(ftpHostInfo: ftpHostInfo)
 //              self.navigationController?.pushViewController(vc, animated: true)
             })
-            alert.addAction(downloadAction)
+//            alert.addAction(downloadAction)
         }
 
         // 削除ボタンを生成する。

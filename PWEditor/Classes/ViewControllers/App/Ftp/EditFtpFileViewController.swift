@@ -173,6 +173,16 @@ class EditFtpFileViewController: BaseViewController, UITextViewDelegate, BRReque
         super.didReceiveMemoryWarning()
     }
 
+    // MARK: - UITextViewDelegate
+
+    /**
+     テキストが変更された時に呼び出される。
+
+     - Parameter notification: 通知
+     */
+    func textChanged(notification: NSNotification?) -> (Void) {
+    }
+
     /**
      テキストフィールドを設定する。
      */

@@ -119,8 +119,8 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
 
         // ツールバーを無効にする。
         editToolbarButton.enabled = false
-        downloadToolbarButton.enabled = false
-        deleteToolbarButton.enabled = false
+//        downloadToolbarButton.enabled = false
+//        deleteToolbarButton.enabled = false
 
         // FTPファイルをダウンロードする。
         downloadFtpFile()
@@ -344,13 +344,27 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
                 return
             }
 
-            // データを表示する。
-            self.loadData(text!, webView: self.webView)
+            // ファイルタイプによりデータを表示する。
+            let fileName = FtpFileInfoUtils.getName(self.ftpFileInfo)
+            let fileType = FileUtils.getPreviewFileType(fileName)
+            switch fileType {
+            case CommonConst.PreviewFileType.HTML.rawValue:
+                self.loadHtmlData(text!, webView: self.webView)
+                break
+
+            case CommonConst.PreviewFileType.Markdown.rawValue:
+                self.loadMarkdownData(text!, webView: self.webView)
+                break
+
+            default:
+                self.loadData(text!, webView: self.webView)
+                break
+            }
 
             // ツールバーボタンを有効にする。
             self.editToolbarButton.enabled = true
-            self.downloadToolbarButton.enabled = true
-            self.deleteToolbarButton.enabled = true
+//            self.downloadToolbarButton.enabled = true
+//            self.deleteToolbarButton.enabled = true
         }
     }
 

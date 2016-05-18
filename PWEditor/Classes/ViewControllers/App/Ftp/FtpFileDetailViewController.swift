@@ -113,12 +113,12 @@ class FtpFileDetailViewController: BaseTableViewController {
         // テーブルビューを設定する。
         setupTableView(tableView)
 
-        let type = FtpFileInfoUtils.getType(ftpFileInfo)
-        if type == FtpConst.FtpFileType.File {
-            downloadToolbarButton.enabled = true
-        } else {
-            downloadToolbarButton.enabled = false
-        }
+//        let type = FtpFileInfoUtils.getType(ftpFileInfo)
+//        if type == FtpConst.FtpFileType.File {
+//            downloadToolbarButton.enabled = true
+//        } else {
+//            downloadToolbarButton.enabled = false
+//        }
 
         // バナービューを設定する。
         setupBannerView(bannerView)
