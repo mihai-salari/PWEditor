@@ -16,6 +16,7 @@ ButtonTitleMenu = "メニュー";
 ButtonTitleOpenChar = "文字エンコーディングを指定して開く";
 ButtonTitleEdit = "編集";
 ButtonTitleDownload = "ダウンロード";
+ButtonTitleFtpUpload = "FTPアップロード";
 
 // アラートタイトル
 AlertTitleError = "エラー";
@@ -269,6 +270,12 @@ SelectFtpDownloadTargetCellTitleBox = "Box";
 
 // ローカルディレクトリ選択画面
 SelectLocalDirectoryNotSelectError = "ディレクトリが選択されていません。";
+
+// FTPアップロード先ホスト一覧選択画面
+SelectFtpUploadHostListScreenTitle = "FTPアップロード先ホスト選択";
+
+// FTPアップロードディレクトリ一覧選択画面
+SelectFtpUploadDirectoryListScreenTitle = "FTPアップロードディレクトリ選択";
 
 // 設定画面
 SettingsScreenTitle = "設定";

@@ -36,7 +36,6 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
-
     /// FTPホスト情報
     private var ftpHostInfo: FtpHostInfo!
 
@@ -78,6 +77,8 @@ class FtpFileListViewController: BaseTableViewController, UIGestureRecognizerDel
         // スーパークラスのメソッドを呼び出す。
         super.init(nibName: nil, bundle: nil)
     }
+
+    // MARK: - UIViewController
 
     /**
      画面が生成された時に呼び出される。

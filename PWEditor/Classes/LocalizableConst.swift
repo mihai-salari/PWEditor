@@ -19,6 +19,7 @@ struct LocalizableConst {
     static let kButtonTitleOpenChar = "ButtonTitleOpenChar"
     static let kButtonTitleEdit = "ButtonTitleEdit"
     static let kButtonTitleDownload = "ButtonTitleDownload"
+    static let kButtonTitleFtpUpload = "ButtonTitleFtpUpload";
 
     // アラートタイトル
     static let kAlertTitleError = "AlertTitleError"
@@ -275,6 +276,12 @@ struct LocalizableConst {
 
     // ローカルディレクトリ選択画面
     static let kSelectLocalDirectoryNotSelectError = "SelectLocalDirectoryNotSelectError";
+
+    // FTPアップロード先ホスト一覧選択画面
+    static let kSelectFtpUploadHostListScreenTitle = "SelectFtpUploadHostListScreenTitle";
+
+    // FTPアップロードディレクトリ一覧選択画面
+    static let kSelectFtpUploadDirectoryListScreenTitle = "SelectFtpUploadDirectoryListScreenTitle";
 
     // 設定画面
     static let kSettingsScreenTitle = "SettingsScreenTitle"

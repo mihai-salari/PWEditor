@@ -635,6 +635,18 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             alert.addAction(openCharAction)
+
+            // FTPアップロードボタンを生成する。
+            let ftpUploadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleFtpUpload)
+            let ftpUploadAction = UIAlertAction(title: ftpUploadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+                // FTPアップロードホスト選択一覧画面に遷移する。
+                let sourceClassName = self.dynamicType.description()
+                let path = FileUtils.getLocalPath(name)
+                let fileData = NSData(contentsOfFile: path)
+                let vc = SelectFtpUploadHostListViewController(sourceClassName: sourceClassName, fileName: name, fileData: fileData!)
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            alert.addAction(ftpUploadAction)
         }
 
         // 削除ボタンを生成する。
