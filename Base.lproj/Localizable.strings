@@ -48,8 +48,8 @@ AlertMessageProcessing = "Please wait a moment.";
 
 // アラートメッセージ：FTP関連
 AlertMessageStartFtpError = "Start ftp failed.";
-AlertMessageFtpDeleteError = "Delete directory or file faied.\nerror code=%d\nerror message=%@";
-AlertMessageFtpCreateError = "Create directory or file faied.\nerror code=%d\nerror message=%@";
+AlertMessageFtpDeleteError = "Delete directory or file faied.\nerror code=%@\nerror message=%@";
+AlertMessageFtpCreateError = "Create directory or file faied.\nerror code=%@\nerror message=%@";
 
 AlertMessageNoDirectoryErorr = "Directory does not exist.";
 AlertMessageCreateFileError = "Create %@ failed.";

@@ -25,7 +25,8 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "Google APIs Client Library for Objective-C",
         "One Drive SDK iOS",
         "Box iOS SDK",
-        "ICTextView"
+        "BlackRaccoon",
+        "ICTextView",
     ]
     
     /** ライセンスファイル名リスト */
@@ -39,6 +40,7 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "GoogleApiObjectiveCClientLicense",
         "OneDriveSDKiOSLicense",
         "BoxiOSSDKLicense",
+        "BlackRaccoonLicense",
         "ICTextViewLicense"
     ]
     

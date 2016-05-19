@@ -30,21 +30,23 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "Google APIs Client Library for Objective-C",
         "One Drive SDK iOS",
         "Box iOS SDK",
+        "BlackRaccoon",
 //        "ICTextView"
     ]
     
     /** セルインデックス */
     enum CellIndex: Int {
-        case ECSlidingViewController = 0
-        case TextKitLineNumbers = 1
-        case Highlightjs = 2
-        case HighlightjsLineNumbersjs = 3
-        case SourceHanCodeJP = 4
-        case SwiftyDropbox = 5
-        case GoogleApiObjectiveCClient = 6
-        case OneDriveSDKiOS = 7
-        case BoxiOSSDK = 8
-//        case ICTextView = 9
+        case ECSlidingViewController
+        case TextKitLineNumbers
+        case Highlightjs
+        case HighlightjsLineNumbersjs
+        case SourceHanCodeJP
+        case SwiftyDropbox
+        case GoogleApiObjectiveCClient
+        case OneDriveSDKiOS
+        case BoxiOSSDK
+        case BlackRaccoon
+//        case ICTextView
     }
     
     /** URLリスト */
@@ -58,6 +60,7 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "https://github.com/google/google-api-objectivec-client",
         "https://github.com/OneDrive/onedrive-sdk-ios",
         "https://github.com/box/box-ios-sdk",
+        "https://github.com/lloydsargent/BlackRaccoon",
 //        "https://github.com/Exile90/ICTextView"
     ]
 

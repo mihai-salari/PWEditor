@@ -460,8 +460,12 @@ class SelectFtpUploadDirectoryListViewController: BaseTableViewController, UIGes
      - Returns: 処理結果
      */
     func shouldOverwriteFileWithRequest(request: BRRequest) -> Bool {
-        // 何もしない。
-        return true
+        if request == ftpUpload {
+            return true
+
+        } else {
+            return false
+        }
     }
 
     /**

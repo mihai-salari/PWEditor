@@ -48,8 +48,8 @@ AlertMessageProcessing = "しばらくお待ちください。";
 
 // アラートメッセージ：FTP関連
 AlertMessageStartFtpError = "FTP処理を開始できません。";
-AlertMessageFtpDeleteError = "ディレクトリまたはファイルが削除できません。\nエラーコード=%d\nエラーメッセージ=%@";
-AlertMessageFtpCreateError = "ディレクトリまたはファイルが作成できません。\nエラーコード=%d\nエラーメッセージ=%@";
+AlertMessageFtpDeleteError = "ディレクトリまたはファイルが削除できません。\nエラーコード=%@\nエラーメッセージ=%@";
+AlertMessageFtpCreateError = "ディレクトリまたはファイルが作成できません。\nエラーコード=%@\nエラーメッセージ=%@";
 
 AlertMessageNoDirectoryErorr = "ディレクトリが存在しません。";
 AlertMessageCreateFileError = "%@が作成できませんでした。";

@@ -401,7 +401,7 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
      */
     func shouldOverwriteFileWithRequest(request: BRRequest) -> Bool {
         // 何もしない。
-        return true
+        return false
     }
 
     /**
