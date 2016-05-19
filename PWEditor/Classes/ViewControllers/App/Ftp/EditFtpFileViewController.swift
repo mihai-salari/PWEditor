@@ -22,6 +22,12 @@ class EditFtpFileViewController: BaseViewController, UITextViewDelegate, BRReque
     /// Myビュー
     @IBOutlet weak var myView: MyView!
 
+    /// ツールバー
+    @IBOutlet weak var toolbar: UIToolbar!
+
+    /// ツールバーボタン
+    @IBOutlet weak var previewToolbarButton: UIBarButtonItem!
+
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
@@ -159,6 +165,18 @@ class EditFtpFileViewController: BaseViewController, UITextViewDelegate, BRReque
         let keyboardDidHide = #selector(EditDropboxFileViewController.keyboardDidHide(_:))
         notificationCenter.addObserver(self, selector: keyboardDidHide, name: UIKeyboardDidHideNotification, object: nil)
 
+        // プレビューツールバーボタンを設定する。
+        let previewFileType = FileUtils.getPreviewFileType(fileName)
+        if previewFileType == CommonConst.PreviewFileType.HTML.rawValue ||
+            previewFileType == CommonConst.PreviewFileType.Markdown.rawValue {
+            // プレビュー対象ファイルの場合
+            previewToolbarButton.enabled = true
+
+        } else {
+            // プレビュー対象ファイルでは無い場合
+            previewToolbarButton.enabled = false
+        }
+
         // バナービューを設定する。
         setupBannerView(bannerView)
     }
@@ -265,6 +283,16 @@ class EditFtpFileViewController: BaseViewController, UITextViewDelegate, BRReque
 
         // FTPファイルをアップロードする。
         uploadFtpFile()
+    }
+
+    // MARK: - Toolbar Button
+
+    @IBAction func previewToolbarButtonPressed(sender: AnyObject) {
+        // プレビュー画面に遷移する。
+        let fileName = FtpFileInfoUtils.getName(ftpFileInfo)
+        let fileData = myView.textView.text
+        let vc = PreviewWebViewController(fileName: fileName, fileData: fileData)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: - FTP
