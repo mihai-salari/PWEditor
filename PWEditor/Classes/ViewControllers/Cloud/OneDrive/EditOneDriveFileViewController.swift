@@ -16,32 +16,30 @@ import OneDriveSDK
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
+class EditOneDriveFileViewController: BaseEditViewController {
 
     // MARK: - Variables
 
-    /// Myビュー
-    @IBOutlet weak var myView: MyView!
+    /// 編集ビュー
+    @IBOutlet weak var editView: UIView!
 
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
     /// アイテム
-    var item: ODItem!
+    private var item: ODItem!
 
     /// 文字エンコーディングタイプ
-    var encodingType: Int!
+    private var encodingType: Int!
 
     /// 文字エンコーディング
-    var encoding: UInt!
+    private var encoding: UInt!
 
     /// 改行コードタイプ
-    var retCodeType: Int!
+    private var retCodeType: Int!
 
-    var popType: Bool!
-
-    /// プレオフセット
-    var preOffset: CGPoint?
+    /// 画面遷移タイプ
+    private var popType: Bool!
 
     // MARK: - Initializer
 
@@ -91,24 +89,11 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
         createRightBarButton()
 
         // テキストビューを設定する。
-        listNumber = 0
-        setupTextView()
-        let selector = #selector(EditDropboxFileViewController.textChanged(_:))
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: UITextViewTextDidChangeNotification, object: nil)
-        myView.textView.delegate = self
+        let heightOffset = bannerView.frame.height
+        createTextView(editView, fileName: fileName, heightOffset: heightOffset)
 
         // バナービューを設定する。
         setupBannerView(bannerView)
-
-        // テキストビューがキーボードに隠れないための処理
-        // 参考 : https://teratail.com/questions/2915
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        let keyboardWillShow = #selector(EditDropboxFileViewController.keyboardWillShow(_:))
-        notificationCenter.addObserver(self, selector: keyboardWillShow, name: UIKeyboardWillShowNotification, object: nil)
-        let keyboardWillHide = #selector(EditDropboxFileViewController.keyboardWillHide(_:))
-        notificationCenter.addObserver(self, selector: keyboardWillHide, name: UIKeyboardWillHideNotification, object: nil)
-        let keyboardDidHide = #selector(EditDropboxFileViewController.keyboardDidHide(_:))
-        notificationCenter.addObserver(self, selector: keyboardDidHide, name: UIKeyboardDidHideNotification, object: nil)
     }
 
     /**
@@ -137,85 +122,6 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
         downloadFile()
     }
 
-    // MARK: - UITextViewDelegate
-
-    /**
-     テキストが変更された時に呼び出される。
-
-     - Parameter notification: 通知
-     */
-    func textChanged(notification: NSNotification?) -> (Void) {
-    }
-
-    /**
-     テキストフィールドを設定する。
-     */
-    private func setupTextView() {
-        // 対象のビューを設定する。
-        targetView = myView.textView
-
-        // データを設定する。
-        //myView.textView.text = data
-
-        // キーボードタイプを設定する。
-        //myView.textView.keyboardType = keyboardType
-
-        // フォントを設定する。
-        let fontName = EnvUtils.getEnterDataFontName()
-        let fontSize = EnvUtils.getEnterDataFontSize()
-        myView.textView.font = UIFont(name: fontName, size: fontSize)
-
-        // 拡張キーボードを生成する。
-        let extendKeyboardItems = createExtendKeyboardItems(listNumber)
-        let extendKeyboard = createExtendKeyboard()
-        extendKeyboard.setItems(extendKeyboardItems, animated: false)
-        // TODO: 暫定で拡張キーボードを表示しない。
-        myView.textView.inputAccessoryView = extendKeyboard
-    }
-
-    // MARK: - Notification handler
-
-    /**
-     キーボードが表示される時に呼び出される。
-
-     - Parameter notification: 通知
-     */
-    func keyboardWillShow(notification: NSNotification) {
-        let userInfo = notification.userInfo!
-        let size = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().size
-
-        var contentInsets = UIEdgeInsetsMake(0.0, 0.0, size.height, 0.0)
-        contentInsets = myView.textView.contentInset
-        contentInsets.bottom = size.height
-
-        myView.textView.contentInset = contentInsets
-        myView.textView.scrollIndicatorInsets = contentInsets
-    }
-
-    /**
-     キーボードが閉じる時に呼び出される。
-
-     - Parameter notification: 通知
-     */
-    func keyboardWillHide(notification: NSNotification) {
-        var contentsInsets = myView.textView.contentInset
-        contentsInsets.bottom = 0
-        myView.textView.contentInset = contentsInsets
-        myView.textView.contentInset.bottom = 0
-        preOffset = myView.textView.contentOffset
-    }
-
-    /**
-     キーボードが閉じた後に呼び出される。
-
-     - Parameter notification: 通知
-     */
-    func keyboardDidHide(notification: NSNotification) {
-        if preOffset != nil {
-            myView.textView.setContentOffset(preOffset!, animated: true)
-        }
-    }
-
     // MARK: - Bar Button
 
     /**
@@ -225,10 +131,10 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
      */
     override func rightBarButtonPressed(sender: UIButton) {
         // キーボードを閉じる。
-        myView.textView.resignFirstResponder()
+        textView.resignFirstResponder()
 
         // ファイルデータを取得する。
-        let fileData = myView.textView.text
+        let fileData = textView.text
 
         // 改行コードを変換する。
         let convertedFileData = FileUtils.convertRetCode(fileData, encoding: encoding, retCodeType: retCodeType)
@@ -329,7 +235,7 @@ class EditOneDriveFileViewController: BaseViewController, UITextViewDelegate {
                 self.navigationItem.rightBarButtonItem?.enabled = true
 
                 // ファイルデータ文字列をテキストビューに設定する。
-                self.myView.textView.text = text
+                self.textView.text = text
             }
         })
     }

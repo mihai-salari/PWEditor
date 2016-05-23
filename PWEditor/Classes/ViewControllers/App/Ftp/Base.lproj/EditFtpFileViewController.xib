@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditFtpFileViewController" customModule="PWEditor" customModuleProvider="target">
             <connections>
                 <outlet property="bannerView" destination="nQg-xt-Qjb" id="KVD-dq-HbP"/>
-                <outlet property="myView" destination="rQE-mN-d2X" id="pE4-xf-PLZ"/>
+                <outlet property="editView" destination="JUO-FL-mHK" id="pVG-Oa-TWf"/>
                 <outlet property="previewToolbarButton" destination="Avj-CA-7mS" id="NhJ-7a-ULh"/>
                 <outlet property="toolbar" destination="FWw-Ab-H4Q" id="tOs-Sf-vGB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rQE-mN-d2X" customClass="MyView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JUO-FL-mHK">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="474"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -47,15 +47,15 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="JUO-FL-mHK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6jo-qQ-oW7"/>
                 <constraint firstItem="FWw-Ab-H4Q" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CdT-UI-mOl"/>
-                <constraint firstItem="FWw-Ab-H4Q" firstAttribute="top" secondItem="rQE-mN-d2X" secondAttribute="bottom" id="LMZ-b0-sHC"/>
-                <constraint firstItem="rQE-mN-d2X" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MOs-Ei-Prd"/>
-                <constraint firstItem="rQE-mN-d2X" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NoJ-hT-TyK"/>
-                <constraint firstItem="rQE-mN-d2X" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Nsu-sS-d1D"/>
+                <constraint firstItem="JUO-FL-mHK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Nzf-rj-DhM"/>
+                <constraint firstItem="JUO-FL-mHK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SZU-SK-QgX"/>
                 <constraint firstAttribute="trailing" secondItem="FWw-Ab-H4Q" secondAttribute="trailing" id="TS6-Vx-2qZ"/>
+                <constraint firstItem="FWw-Ab-H4Q" firstAttribute="top" secondItem="JUO-FL-mHK" secondAttribute="bottom" id="cm7-VF-ybC"/>
                 <constraint firstAttribute="bottom" secondItem="nQg-xt-Qjb" secondAttribute="bottom" id="eQ0-sx-OSY"/>
                 <constraint firstItem="FWw-Ab-H4Q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lTy-Tj-Imj"/>
-                <constraint firstAttribute="trailing" secondItem="rQE-mN-d2X" secondAttribute="trailing" id="nOB-to-sbP"/>
+                <constraint firstAttribute="trailing" secondItem="JUO-FL-mHK" secondAttribute="trailing" id="luH-Pc-ZGF"/>
                 <constraint firstItem="nQg-xt-Qjb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rpc-bf-igT"/>
                 <constraint firstItem="nQg-xt-Qjb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="s43-gV-t20"/>
                 <constraint firstAttribute="trailing" secondItem="nQg-xt-Qjb" secondAttribute="trailing" id="xhp-tX-gYA"/>

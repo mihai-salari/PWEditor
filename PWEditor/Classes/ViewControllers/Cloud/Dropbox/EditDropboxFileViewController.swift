@@ -10,42 +10,42 @@ import UIKit
 import GoogleMobileAds
 import SwiftyDropbox
 
-class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
+/**
+ Dropboxファイル編集画面
+
+ - Version: 1.0 新規作成
+ - Author: paveway.info@gmail.com
+ */
+class EditDropboxFileViewController: BaseEditViewController {
 
     // MARK: - Variables
 
-    /// Myビュー
-    @IBOutlet weak var myView: MyView!
+    /// 編集ビュー
+    @IBOutlet weak var editView: UIView!
 
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
     /// パス名
-    var pathName: String!
+    private var pathName: String!
 
     /// ファイル名
-    var fileName: String!
+    private var fileName: String!
 
     /// 文字エンコーディングタイプ
-    var encodingType: Int!
+    private var encodingType: Int!
 
     /// 文字エンコーディング
-    var encoding: UInt!
+    private var encoding: UInt!
 
     /// 改行コードタイプ
-    var retCodeType: Int!
+    private var retCodeType: Int!
 
     /// ダウンロード用Dropboxファイル情報
-    var downloadFileInfo: DropboxFileInfo?
+    private var downloadFileInfo: DropboxFileInfo?
 
     /// ダウンロード先ローカルファイルパス名
-    var loacalFilePathName: String?
-
-    /// プレオフセット
-    var preOffset: CGPoint?
-
-    /// テキスト変更フラグ
-    var textChanged = false
+    private var loacalFilePathName: String?
 
     // MARK: - Initializer
 
@@ -95,24 +95,11 @@ class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
         createRightBarButton()
 
         // テキストビューを設定する。
-        listNumber = 0
-        setupTextView()
-        let selector = #selector(EditDropboxFileViewController.textChanged(_:))
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: UITextViewTextDidChangeNotification, object: nil)
-        myView.textView.delegate = self
+        let heightOffset = bannerView.frame.height
+        createTextView(editView, fileName: fileName, heightOffset: heightOffset)
 
         // バナービューを設定する。
         setupBannerView(bannerView)
-
-        // テキストビューがキーボードに隠れないための処理
-        // 参考 : https://teratail.com/questions/2915
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        let keyboardWillShow = #selector(EditDropboxFileViewController.keyboardWillShow(_:))
-        notificationCenter.addObserver(self, selector: keyboardWillShow, name: UIKeyboardWillShowNotification, object: nil)
-        let keyboardWillHide = #selector(EditDropboxFileViewController.keyboardWillHide(_:))
-        notificationCenter.addObserver(self, selector: keyboardWillHide, name: UIKeyboardWillHideNotification, object: nil)
-        let keyboardDidHide = #selector(EditDropboxFileViewController.keyboardDidHide(_:))
-        notificationCenter.addObserver(self, selector: keyboardDidHide, name: UIKeyboardDidHideNotification, object: nil)
     }
 
     /**
@@ -148,41 +135,10 @@ class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
      - Parameter animated: アニメーション指定
      */
     override func viewWillDisappear(animated: Bool) {
-        // 通知設定を解除する。
-        // 画面遷移開始後は処理できないため、このタイミングで行う。
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-
         if loacalFilePathName != nil && !loacalFilePathName!.isEmpty {
             // ダウンロード用ローカルファイルが存在する場合、削除する。
             FileUtils.remove(loacalFilePathName!)
             loacalFilePathName = nil
-        }
-
-        // 戻るボタンが押下されたかチェックする。
-        if let viewControllers = self.navigationController?.viewControllers {
-            var existsSelfInViewControllers = true
-            for viewController in viewControllers {
-                // viewWillDisappearが呼ばれる時に、
-                // 戻る処理を行っていれば、NavigationControllerのviewControllersの中にselfは存在していない
-                if viewController == self {
-                    existsSelfInViewControllers = false
-                    // selfが存在した時点で処理を終える
-                    break
-                }
-            }
-
-            if existsSelfInViewControllers {
-                // 戻るボタンが押下された場合
-                if textChanged {
-                    // テキストが変更されている場合
-                    // 確認アラートを表示する。
-                    // TODO: 確認アラートが表示される前に画面遷移してしまう。
-                    showAlert("確認", message: "データが変更されています。保存しますか。", okButtonTitle: "保存", handler: { () -> Void in
-                    })
-                }
-            }
         }
 
         // スーパークラスのメソッドを呼び出す。
@@ -198,97 +154,16 @@ class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
     */
     override func rightBarButtonPressed(sender: UIButton) {
         // キーボードを閉じる。
-        myView.textView.resignFirstResponder()
+        editView.resignFirstResponder()
 
         // ファイルデータを取得する。
-        let fileData = myView.textView.text
+        let fileData = textView.text
 
         // 改行コードを変換する。
         let convertedFileData = FileUtils.convertRetCode(fileData, encoding: encoding, retCodeType: retCodeType)
 
         // 変換されたファイルデータをアップロードする。
         uploadFile(convertedFileData)
-    }
-
-    // MARK: - UITextViewDelegate
-
-    /**
-    テキストが変更された時に呼び出される。
-
-    - Parameter notification: 通知
-    */
-    func textChanged(notification: NSNotification?) -> (Void) {
-        textChanged = true
-    }
-
-    // MARK: - Private Method
-
-    /**
-    テキストフィールドを設定する。
-    */
-    private func setupTextView() {
-        // 対象のビューを設定する。
-        targetView = myView.textView
-
-        // データを設定する。
-        //myView.textView.text = data
-
-        // キーボードタイプを設定する。
-        //myView.textView.keyboardType = keyboardType
-
-        // フォントを設定する。
-        let fontName = EnvUtils.getEnterDataFontName()
-        let fontSize = EnvUtils.getEnterDataFontSize()
-        myView.textView.font = UIFont(name: fontName, size: fontSize)
-
-        // 拡張キーボードを生成する。
-        let extendKeyboardItems = createExtendKeyboardItems(listNumber)
-        let extendKeyboard = createExtendKeyboard()
-        extendKeyboard.setItems(extendKeyboardItems, animated: false)
-        myView.textView.inputAccessoryView = extendKeyboard
-    }
-
-    // MARK: - Notification handler
-
-    /**
-    キーボードが表示される時に呼び出される。
-
-    - Parameter notification: 通知
-    */
-    func keyboardWillShow(notification: NSNotification) {
-        let userInfo = notification.userInfo!
-        let size = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().size
-
-        var contentInsets = UIEdgeInsetsMake(0.0, 0.0, size.height, 0.0)
-        contentInsets = myView.textView.contentInset
-        contentInsets.bottom = size.height
-
-        myView.textView.contentInset = contentInsets
-        myView.textView.scrollIndicatorInsets = contentInsets
-    }
-
-    /**
-     キーボードが閉じる時に呼び出される。
-
-     - Parameter notification: 通知
-     */
-    func keyboardWillHide(notification: NSNotification) {
-        var contentsInsets = myView.textView.contentInset
-        contentsInsets.bottom = 0
-        myView.textView.contentInset = contentsInsets
-        myView.textView.contentInset.bottom = 0
-        preOffset = myView.textView.contentOffset
-    }
-
-    /**
-     キーボードが閉じた後に呼び出される。
-
-     - Parameter notification: 通知
-     */
-    func keyboardDidHide(notification: NSNotification) {
-        if preOffset != nil {
-            myView.textView.setContentOffset(preOffset!, animated: true)
-        }
     }
 
     // MARK: - Dropbox
@@ -392,7 +267,7 @@ class EditDropboxFileViewController: BaseViewController, UITextViewDelegate {
                             // ファイルデータをテキストビューに設定する。
                             let winRetCode: [CChar] = [13, 10]
                             let winRetCodeString = String(winRetCode)
-                            self.myView.textView.text = text!
+                            self.textView.text = text!
                         }
 
                     } else {

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditOneDriveFileViewController" customModule="PWEditor" customModuleProvider="target">
             <connections>
                 <outlet property="bannerView" destination="Wav-zu-H8J" id="dKE-fw-FxN"/>
-                <outlet property="myView" destination="UUd-rC-dOg" id="Ukd-l9-jIU"/>
+                <outlet property="editView" destination="3pC-dN-95V" id="bqS-PF-Lu0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUd-rC-dOg" customClass="MyView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3pC-dN-95V">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -31,15 +31,15 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="3pC-dN-95V" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AOh-XJ-7Me"/>
                 <constraint firstAttribute="bottom" secondItem="Wav-zu-H8J" secondAttribute="bottom" id="AfM-BF-4Vk"/>
                 <constraint firstItem="Wav-zu-H8J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FOG-7x-uvn"/>
-                <constraint firstItem="Wav-zu-H8J" firstAttribute="top" secondItem="UUd-rC-dOg" secondAttribute="bottom" id="Gmd-xU-CFQ"/>
-                <constraint firstAttribute="trailing" secondItem="UUd-rC-dOg" secondAttribute="trailing" id="R3k-t3-axC"/>
+                <constraint firstItem="3pC-dN-95V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HaL-Hp-0KF"/>
+                <constraint firstAttribute="trailing" secondItem="3pC-dN-95V" secondAttribute="trailing" id="JWf-pf-a3c"/>
                 <constraint firstItem="Wav-zu-H8J" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bX1-cu-5UR"/>
-                <constraint firstItem="UUd-rC-dOg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pbc-oB-FQm"/>
+                <constraint firstItem="3pC-dN-95V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="beD-Dd-tWW"/>
+                <constraint firstItem="Wav-zu-H8J" firstAttribute="top" secondItem="3pC-dN-95V" secondAttribute="bottom" id="jgk-Am-nfr"/>
                 <constraint firstAttribute="trailing" secondItem="Wav-zu-H8J" secondAttribute="trailing" id="qDx-ce-AhW"/>
-                <constraint firstItem="UUd-rC-dOg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wHJ-LS-ebf"/>
-                <constraint firstItem="UUd-rC-dOg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wfP-Ml-K4s"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

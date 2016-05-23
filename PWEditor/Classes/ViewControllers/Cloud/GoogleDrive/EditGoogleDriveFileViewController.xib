@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditGoogleDriveFileViewController" customModule="PWEditor" customModuleProvider="target">
             <connections>
                 <outlet property="bannerView" destination="hS2-lH-hvJ" id="RGm-Vm-UhR"/>
-                <outlet property="myView" destination="7E9-ye-cy9" id="lBg-ct-naJ"/>
+                <outlet property="editView" destination="jbY-X5-jWY" id="iYU-a7-WJq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7E9-ye-cy9" customClass="MyView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbY-X5-jWY">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -32,14 +32,14 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="hS2-lH-hvJ" secondAttribute="bottom" id="4Yh-FG-E6x"/>
-                <constraint firstItem="7E9-ye-cy9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7rc-is-aRY"/>
+                <constraint firstAttribute="trailing" secondItem="jbY-X5-jWY" secondAttribute="trailing" id="CEH-BC-zeH"/>
                 <constraint firstItem="hS2-lH-hvJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gwo-fs-vXS"/>
-                <constraint firstItem="hS2-lH-hvJ" firstAttribute="top" secondItem="7E9-ye-cy9" secondAttribute="bottom" id="Nqd-zb-87U"/>
-                <constraint firstItem="7E9-ye-cy9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SNj-qc-jp7"/>
-                <constraint firstAttribute="trailing" secondItem="7E9-ye-cy9" secondAttribute="trailing" id="SiA-Y6-NCL"/>
+                <constraint firstItem="jbY-X5-jWY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="U6r-GU-nIQ"/>
+                <constraint firstItem="jbY-X5-jWY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="nJO-Z0-fuk"/>
                 <constraint firstAttribute="trailing" secondItem="hS2-lH-hvJ" secondAttribute="trailing" id="neZ-Jj-Z1v"/>
+                <constraint firstItem="hS2-lH-hvJ" firstAttribute="top" secondItem="jbY-X5-jWY" secondAttribute="bottom" id="pPg-O3-htQ"/>
                 <constraint firstItem="hS2-lH-hvJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="q1t-kG-syT"/>
-                <constraint firstItem="7E9-ye-cy9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wrx-Bo-D0j"/>
+                <constraint firstItem="jbY-X5-jWY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yqT-HL-Xth"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

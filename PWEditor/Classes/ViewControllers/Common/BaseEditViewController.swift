@@ -43,6 +43,18 @@ class BaseEditViewController: BaseViewController, UITextViewDelegate {
 
     // MARK: - UIViewController
 
+
+    /**
+     インスタンスが生成された時に呼び出される。
+     */
+    override func viewDidLoad() {
+        // スーパークラスのメソッドを呼び出す。
+        super.viewDidLoad()
+
+        // 通知設定する。
+        setNotification()
+    }
+
     /**
      画面が表示される前に呼び出される。
 

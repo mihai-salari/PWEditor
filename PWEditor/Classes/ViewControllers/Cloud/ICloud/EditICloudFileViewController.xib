@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditICloudFileViewController" customModule="PWEditor" customModuleProvider="target">
             <connections>
                 <outlet property="bannerView" destination="L6N-Dg-6vY" id="nw4-ux-aLV"/>
-                <outlet property="myView" destination="C36-6c-kfr" id="Qwe-U4-Pgq"/>
+                <outlet property="editView" destination="vd8-Jb-qYd" id="9Th-uW-eiZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C36-6c-kfr" customClass="MyView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vd8-Jb-qYd">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -31,14 +31,14 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="vd8-Jb-qYd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="1Wv-78-dKk"/>
+                <constraint firstItem="vd8-Jb-qYd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="28Q-Xh-h4q"/>
+                <constraint firstItem="L6N-Dg-6vY" firstAttribute="top" secondItem="vd8-Jb-qYd" secondAttribute="bottom" id="Neo-kK-Z6U"/>
                 <constraint firstItem="L6N-Dg-6vY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="O4O-qc-cmd"/>
-                <constraint firstItem="C36-6c-kfr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="S0X-wy-yoC"/>
                 <constraint firstAttribute="trailing" secondItem="L6N-Dg-6vY" secondAttribute="trailing" id="Tfh-AI-Lvx"/>
-                <constraint firstItem="L6N-Dg-6vY" firstAttribute="top" secondItem="C36-6c-kfr" secondAttribute="bottom" id="UhN-ic-faN"/>
-                <constraint firstAttribute="trailing" secondItem="C36-6c-kfr" secondAttribute="trailing" id="Z0n-oL-Pgs"/>
-                <constraint firstItem="C36-6c-kfr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZZ3-qT-Vem"/>
                 <constraint firstItem="L6N-Dg-6vY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dL8-6g-hhW"/>
-                <constraint firstItem="C36-6c-kfr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="g4F-JX-63d"/>
+                <constraint firstAttribute="trailing" secondItem="vd8-Jb-qYd" secondAttribute="trailing" id="vGc-Tb-5bc"/>
+                <constraint firstItem="vd8-Jb-qYd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="z5T-eS-uJs"/>
                 <constraint firstAttribute="bottom" secondItem="L6N-Dg-6vY" secondAttribute="bottom" id="zL9-3Y-c2D"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

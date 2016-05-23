@@ -10,7 +10,7 @@ import UIKit
 import GoogleMobileAds
 
 /**
- ローカルファイル編集画面クラス
+ ローカルファイル編集画面
 
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
@@ -123,9 +123,6 @@ class EditLocalFileViewController: BaseEditViewController {
         let localFilePath = FileUtils.getLocalPath(pathName, name: fileName)
         let result = FileUtils.getFileData(localFilePath, encoding: encoding)
         textView.text = result.1
-
-        // 通知設定する。
-        setNotification()
     }
 
     /**

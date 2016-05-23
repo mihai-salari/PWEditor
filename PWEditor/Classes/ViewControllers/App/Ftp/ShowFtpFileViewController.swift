@@ -123,6 +123,7 @@ class ShowFtpFileViewController: BaseWebViewController, BRRequestDelegate {
 //        deleteToolbarButton.enabled = false
 
         // FTPファイルをダウンロードする。
+        downloadData.length = 0
         downloadFtpFile()
     }
 
