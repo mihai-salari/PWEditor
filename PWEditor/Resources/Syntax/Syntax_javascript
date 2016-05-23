@@ -1,0 +1,4 @@
+name=reserved_javascript
+foregroundColor=104,0,111
+font=bold
+expression=(\bbreak\b|\bcase\b|\bcatch\b|\bcontinue\b|\bdebugger\b|\bdefault\b|\bdelete\b|\bdo\b|\belse\b|\bfinally\b|\bfor\b|\bfunction\b|\bif\b|\bin\b|\binstanceof\b|\bnew\b|\breturn\b|\bswitch\b)

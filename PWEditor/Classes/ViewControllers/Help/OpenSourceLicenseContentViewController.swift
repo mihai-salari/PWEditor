@@ -26,7 +26,7 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "One Drive SDK iOS",
         "Box iOS SDK",
         "BlackRaccoon",
-        "ICTextView",
+        "CYRTextView",
     ]
     
     /** ライセンスファイル名リスト */
@@ -41,7 +41,7 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "OneDriveSDKiOSLicense",
         "BoxiOSSDKLicense",
         "BlackRaccoonLicense",
-        "ICTextViewLicense"
+        "CYRTextViewLicense",
     ]
     
     /** ライセンスファイル拡張子 */

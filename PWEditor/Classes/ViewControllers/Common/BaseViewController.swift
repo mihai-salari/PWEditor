@@ -432,12 +432,30 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
             // その他の場合
             // 入力された文字をビューに反映する。
             if let targetView = targetView as? UITextView {
-                targetView.text = targetView.text + title!
+                //targetView.text = targetView.text + title!
+                let range = rangeToTextRange(targetView)
+                targetView.replaceRange(range!, withText: title!)
 
             } else if let targetView = targetView as? UITextView {
-                targetView.text = targetView.text + title!
+                //targetView.text = targetView.text + title!
+                let range = rangeToTextRange(targetView)
+                targetView.replaceRange(range!, withText: title!)
             }
         }
+    }
+
+    /**
+     NSRangeをUITextRangeに変換する。
+ 
+     - Parameter textView: テキストビュー
+     - Returns: UITextRange
+     */
+    func rangeToTextRange(textView: UITextView) -> UITextRange? {
+        if let rangeStart = textView.positionFromPosition(textView.beginningOfDocument, offset: textView.selectedRange.location),
+            rangeEnd = textView.positionFromPosition(rangeStart, offset: textView.selectedRange.length) {
+            return textView.textRangeFromPosition(rangeStart, toPosition: rangeEnd)
+        }
+        return nil
     }
 
     // MARK: - Extend Keyboard

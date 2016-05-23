@@ -1,0 +1,4 @@
+name=reserved_java
+foregroundColor=104,0,111
+font=bold
+expression=(\bbyte\b|\bchar\b|\bshort\b|\bint\b|\blong\b|\bfloat\b|\bdouble\b|\bboolean\b|\bvoid\b|\btrue\b|\bfalse\b|\bnull\b|\bif|else\b|\bswitch\b|\bcase\b|\bdefault\b|\bfor\b|\bwhile\b|\bdo\b|\bcontinue\b|\bbreak\b|\breturn\b|\bpackage\b|\bimport\b|\bclass\b|\binterface\b|\bextends\b|\bimplements\b|\bthis\b|\bsuper\b|\bnew\b|\binstanceof\b|\bpublic\b|\bprotected\b|\bprivate\b|\bfinal\b|\bstatic\b|\babstract\b|\bnative\b|\bsynchronized\b|\bvolitile\b|\btransient\b|\btry\b|\bcatch\b|\bfinally\b|\bthrow\b|\bthrows\b|\bassert\b|\benum\b|\bconst\b|\bgoto\b)

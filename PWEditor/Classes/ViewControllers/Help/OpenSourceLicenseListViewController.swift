@@ -31,7 +31,7 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "One Drive SDK iOS",
         "Box iOS SDK",
         "BlackRaccoon",
-//        "ICTextView"
+        "CYRTextView",
     ]
     
     /** セルインデックス */
@@ -46,7 +46,7 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         case OneDriveSDKiOS
         case BoxiOSSDK
         case BlackRaccoon
-//        case ICTextView
+        case CYRTextView
     }
     
     /** URLリスト */
@@ -61,7 +61,7 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "https://github.com/OneDrive/onedrive-sdk-ios",
         "https://github.com/box/box-ios-sdk",
         "https://github.com/lloydsargent/BlackRaccoon",
-//        "https://github.com/Exile90/ICTextView"
+        "https://github.com/illyabusigin/CYRTextView",
     ]
 
     /// テーブルビュー

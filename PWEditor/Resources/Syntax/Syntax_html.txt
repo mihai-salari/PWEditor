@@ -1,0 +1,4 @@
+name=reserved_html
+foregroundColor=104,0,111
+font=bold
+expression=(\bhtml\b|\bhead\b|\bbody\b|\btitle\b|\bisindex\b|\bbase\b|\bmeta\b|\blink\b|\bscript\b|\bhn\b|\bhr\b|\bbr\b|\bp\b|\bcenter\b|\bdiv\b|\bpre\b|\bblockquote\b|\baddress\b|\bnoscript\b|\bfont\b|\bbasefont\b|\bi\b|\btt\b|\bb\b|\bu\b|\bstrike\b|\bbig\b|\bsmall\b|\bsub\b|\bsup\b|\bem\b|\bstrong\b|\bcode\b|\bsamp\b|\bkbd\b|\bvar\b|\bcite\b|\bul\b|\bol\b|\bli\b|\bdl\b|\bdt\b|\bdd\b|\btable\b|\btr\b|\bth\b|\btd\b|\bcaption\b|\ba\b|\bimg\b|\bmap\b|\barea\b|\bform\b|\binput\b|\bselect\b|\boption\b|\btextarea\b|\bapplet\b|\bparam\b|\bframeset\b|\bframe\b|\bnoframes\b)

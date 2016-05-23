@@ -18,3 +18,4 @@
 #import "BRRequestDownload.h"
 #import "BRRequestListDirectory.h"
 #import "BRRequestUpload.h"
+#import "CYRTextViewKit.h"

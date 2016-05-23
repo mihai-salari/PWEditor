@@ -40,6 +40,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>SourceHanCodeJP-Normal.otf</string>
+		<string>SourceHanCodeJP-NormalIt.otf</string>
+		<string>SourceHanCodeJP-Bold.otf</string>
+		<string>SourceHanCodeJP-BoldIt.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

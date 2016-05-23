@@ -1,0 +1,4 @@
+name=reserved_c
+foregroundColor=104,0,111
+font=bold
+expression=(\bvoid\b|\bchar\b|\bshort\b|\bint\b|\blong\b|\bfloat\b|\bdouble\b|\bauto\b|\bstatic\b|\bconst\b|\bsigned\b|\bunsigned\b|\bextern\b|\bvolititle\b|\bregister\b|\breturn\b|\bgoto\b|\bif\b|\belse\b|\bswitch\b|\bcase\b|\bdefault\b|\bbreak\b|\bfor\b|\bwhile\b|\bdo\b|\bcontinue\b|\btypedef\b|\bstruct\b|\benum\b|\bunion\b|\bsizeof\b|\binline\b|\brestrict\b|\b_Bool\b|\b_Complex\b|\b_Imaginary\b)

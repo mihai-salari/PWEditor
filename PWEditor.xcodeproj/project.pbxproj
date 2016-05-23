@@ -176,6 +176,23 @@
 		3FDB24CB1CEDE6850073BC04 /* SelectFtpUploadDirectoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB24C91CEDE6850073BC04 /* SelectFtpUploadDirectoryListViewController.swift */; };
 		3FDB24CC1CEDE6850073BC04 /* SelectFtpUploadDirectoryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24CA1CEDE6850073BC04 /* SelectFtpUploadDirectoryListViewController.xib */; };
 		3FDB24CD1CEE7C590073BC04 /* EditFtpFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24CF1CEE7C590073BC04 /* EditFtpFileViewController.xib */; };
+		3FDB24DE1CEF2EDF0073BC04 /* CYRLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB24D61CEF2EDF0073BC04 /* CYRLayoutManager.m */; };
+		3FDB24DF1CEF2EDF0073BC04 /* CYRTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB24D81CEF2EDF0073BC04 /* CYRTextStorage.m */; };
+		3FDB24E01CEF2EDF0073BC04 /* CYRTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB24DA1CEF2EDF0073BC04 /* CYRTextView.m */; };
+		3FDB24E11CEF2EDF0073BC04 /* CYRToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB24DD1CEF2EDF0073BC04 /* CYRToken.m */; };
+		3FDB24E41CF0FE310073BC04 /* Syntax_common.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24E31CF0FE310073BC04 /* Syntax_common.txt */; };
+		3FDB24E61CF0FF2F0073BC04 /* Syntax_c.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24E51CF0FF2F0073BC04 /* Syntax_c.txt */; };
+		3FDB24E81CF154B50073BC04 /* Syntax_html.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24E71CF154B50073BC04 /* Syntax_html.txt */; };
+		3FDB24EA1CF24CE30073BC04 /* CYRTextViewLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24E91CF24CE30073BC04 /* CYRTextViewLicense.txt */; };
+		3FDB24EC1CF252760073BC04 /* Syntax_cpp.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24EB1CF252760073BC04 /* Syntax_cpp.txt */; };
+		3FDB24F01CF260740073BC04 /* SourceHanCodeJP-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24ED1CF260740073BC04 /* SourceHanCodeJP-Bold.otf */; };
+		3FDB24F11CF260740073BC04 /* SourceHanCodeJP-BoldIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24EE1CF260740073BC04 /* SourceHanCodeJP-BoldIt.otf */; };
+		3FDB24F21CF260740073BC04 /* SourceHanCodeJP-NormalIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24EF1CF260740073BC04 /* SourceHanCodeJP-NormalIt.otf */; };
+		3FDB24F41CF268BB0073BC04 /* BaseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB24F31CF268BB0073BC04 /* BaseEditViewController.swift */; };
+		3FDB24F61CF277860073BC04 /* Syntax_java.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24F51CF277860073BC04 /* Syntax_java.txt */; };
+		3FDB24F81CF279FE0073BC04 /* Syntax_swift.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24F71CF279FE0073BC04 /* Syntax_swift.txt */; };
+		3FDB24FA1CF31D030073BC04 /* Syntax_css.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24F91CF31D030073BC04 /* Syntax_css.txt */; };
+		3FDB24FC1CF31E8B0073BC04 /* Syntax_javascript in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24FB1CF31E8B0073BC04 /* Syntax_javascript */; };
 		3FF93E371C86595500621455 /* EditDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */; };
 		3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */; };
 		3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */; };
@@ -434,6 +451,28 @@
 		3FDB24CA1CEDE6850073BC04 /* SelectFtpUploadDirectoryListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectFtpUploadDirectoryListViewController.xib; path = Classes/ViewControllers/App/Ftp/SelectFtpUploadDirectoryListViewController.xib; sourceTree = "<group>"; };
 		3FDB24CE1CEE7C590073BC04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EditFtpFileViewController.xib; sourceTree = "<group>"; };
 		3FDB24D11CEE7C600073BC04 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EditFtpFileViewController.strings; sourceTree = "<group>"; };
+		3FDB24D51CEF2EDF0073BC04 /* CYRLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYRLayoutManager.h; path = Classes/External/CYRTextViewKit/CYRLayoutManager.h; sourceTree = "<group>"; };
+		3FDB24D61CEF2EDF0073BC04 /* CYRLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYRLayoutManager.m; path = Classes/External/CYRTextViewKit/CYRLayoutManager.m; sourceTree = "<group>"; };
+		3FDB24D71CEF2EDF0073BC04 /* CYRTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYRTextStorage.h; path = Classes/External/CYRTextViewKit/CYRTextStorage.h; sourceTree = "<group>"; };
+		3FDB24D81CEF2EDF0073BC04 /* CYRTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYRTextStorage.m; path = Classes/External/CYRTextViewKit/CYRTextStorage.m; sourceTree = "<group>"; };
+		3FDB24D91CEF2EDF0073BC04 /* CYRTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYRTextView.h; path = Classes/External/CYRTextViewKit/CYRTextView.h; sourceTree = "<group>"; };
+		3FDB24DA1CEF2EDF0073BC04 /* CYRTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYRTextView.m; path = Classes/External/CYRTextViewKit/CYRTextView.m; sourceTree = "<group>"; };
+		3FDB24DB1CEF2EDF0073BC04 /* CYRTextViewKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYRTextViewKit.h; path = Classes/External/CYRTextViewKit/CYRTextViewKit.h; sourceTree = "<group>"; };
+		3FDB24DC1CEF2EDF0073BC04 /* CYRToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CYRToken.h; path = Classes/External/CYRTextViewKit/CYRToken.h; sourceTree = "<group>"; };
+		3FDB24DD1CEF2EDF0073BC04 /* CYRToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CYRToken.m; path = Classes/External/CYRTextViewKit/CYRToken.m; sourceTree = "<group>"; };
+		3FDB24E31CF0FE310073BC04 /* Syntax_common.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Syntax_common.txt; path = Resources/Syntax/Syntax_common.txt; sourceTree = "<group>"; };
+		3FDB24E51CF0FF2F0073BC04 /* Syntax_c.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Syntax_c.txt; path = Resources/Syntax/Syntax_c.txt; sourceTree = "<group>"; };
+		3FDB24E71CF154B50073BC04 /* Syntax_html.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Syntax_html.txt; path = Resources/Syntax/Syntax_html.txt; sourceTree = "<group>"; };
+		3FDB24E91CF24CE30073BC04 /* CYRTextViewLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CYRTextViewLicense.txt; path = Resources/Licenses/CYRTextViewLicense.txt; sourceTree = "<group>"; };
+		3FDB24EB1CF252760073BC04 /* Syntax_cpp.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Syntax_cpp.txt; path = Resources/Syntax/Syntax_cpp.txt; sourceTree = "<group>"; };
+		3FDB24ED1CF260740073BC04 /* SourceHanCodeJP-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceHanCodeJP-Bold.otf"; path = "Resources/Fonts/SourceHanCodeJP-Bold.otf"; sourceTree = "<group>"; };
+		3FDB24EE1CF260740073BC04 /* SourceHanCodeJP-BoldIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceHanCodeJP-BoldIt.otf"; path = "Resources/Fonts/SourceHanCodeJP-BoldIt.otf"; sourceTree = "<group>"; };
+		3FDB24EF1CF260740073BC04 /* SourceHanCodeJP-NormalIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceHanCodeJP-NormalIt.otf"; path = "Resources/Fonts/SourceHanCodeJP-NormalIt.otf"; sourceTree = "<group>"; };
+		3FDB24F31CF268BB0073BC04 /* BaseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseEditViewController.swift; path = Classes/ViewControllers/Common/BaseEditViewController.swift; sourceTree = "<group>"; };
+		3FDB24F51CF277860073BC04 /* Syntax_java.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Syntax_java.txt; path = Resources/Syntax/Syntax_java.txt; sourceTree = "<group>"; };
+		3FDB24F71CF279FE0073BC04 /* Syntax_swift.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Syntax_swift.txt; path = Resources/Syntax/Syntax_swift.txt; sourceTree = "<group>"; };
+		3FDB24F91CF31D030073BC04 /* Syntax_css.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Syntax_css.txt; path = Resources/Syntax/Syntax_css.txt; sourceTree = "<group>"; };
+		3FDB24FB1CF31E8B0073BC04 /* Syntax_javascript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Syntax_javascript; path = Resources/Syntax/Syntax_javascript; sourceTree = "<group>"; };
 		3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDropboxFileViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.swift; sourceTree = "<group>"; };
 		3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.xib; sourceTree = "<group>"; };
 		3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SwiftyDropboxLicense.txt; path = Resources/Licenses/SwiftyDropboxLicense.txt; sourceTree = "<group>"; };
@@ -475,6 +514,7 @@
 				3F003D3B1C767DFB00ECC371 /* BaseViewController.swift */,
 				3F003D3A1C767DFB00ECC371 /* BaseTableViewController.swift */,
 				3F165E4A1C7A72A1001CBC38 /* BaseWebViewController.swift */,
+				3FDB24F31CF268BB0073BC04 /* BaseEditViewController.swift */,
 				3F3E85BA1C776174002EFB6D /* EnterLineDataTableViewCell.swift */,
 				3F3E85BB1C776174002EFB6D /* EnterLineDataTableViewCell.xib */,
 				3F165E771C7A7FF5001CBC38 /* SelectNumberViewController.swift */,
@@ -643,6 +683,7 @@
 				3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */,
 				3F55D46D1CDFE15300818A4E /* BoxiOSSDKLicense.txt */,
 				3F2852721CE3F11B00C77435 /* BlackRaccoonLicense.txt */,
+				3FDB24E91CF24CE30073BC04 /* CYRTextViewLicense.txt */,
 			);
 			name = Licenses;
 			sourceTree = "<group>";
@@ -651,6 +692,9 @@
 			isa = PBXGroup;
 			children = (
 				3F165E441C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf */,
+				3FDB24EF1CF260740073BC04 /* SourceHanCodeJP-NormalIt.otf */,
+				3FDB24ED1CF260740073BC04 /* SourceHanCodeJP-Bold.otf */,
+				3FDB24EE1CF260740073BC04 /* SourceHanCodeJP-BoldIt.otf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -680,6 +724,7 @@
 		3F1915441C8CCB4D0042D306 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				3FDB24D41CEF2ECB0073BC04 /* CYRTextViewKit */,
 				3F12E8511CC57D8D0008DDEE /* GoogleDrive */,
 				3F1915451C8CCB770042D306 /* ReadJEnc */,
 				3FF4B83A1C792B6E001F113C /* TextKitLineNumbers */,
@@ -778,6 +823,7 @@
 		3F4873611C75D7D7006594A6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3FDB24E21CF0FCD70073BC04 /* Syntax */,
 				3F5AE4631CC97FC900E262AC /* ReserveWordList */,
 				3F12E8431CC57C050008DDEE /* GoogleDrive */,
 				3F4873651C75D807006594A6 /* Config */,
@@ -932,6 +978,37 @@
 			path = PWEditor;
 			sourceTree = "<group>";
 		};
+		3FDB24D41CEF2ECB0073BC04 /* CYRTextViewKit */ = {
+			isa = PBXGroup;
+			children = (
+				3FDB24D51CEF2EDF0073BC04 /* CYRLayoutManager.h */,
+				3FDB24D61CEF2EDF0073BC04 /* CYRLayoutManager.m */,
+				3FDB24D71CEF2EDF0073BC04 /* CYRTextStorage.h */,
+				3FDB24D81CEF2EDF0073BC04 /* CYRTextStorage.m */,
+				3FDB24D91CEF2EDF0073BC04 /* CYRTextView.h */,
+				3FDB24DA1CEF2EDF0073BC04 /* CYRTextView.m */,
+				3FDB24DB1CEF2EDF0073BC04 /* CYRTextViewKit.h */,
+				3FDB24DC1CEF2EDF0073BC04 /* CYRToken.h */,
+				3FDB24DD1CEF2EDF0073BC04 /* CYRToken.m */,
+			);
+			name = CYRTextViewKit;
+			sourceTree = "<group>";
+		};
+		3FDB24E21CF0FCD70073BC04 /* Syntax */ = {
+			isa = PBXGroup;
+			children = (
+				3FDB24E31CF0FE310073BC04 /* Syntax_common.txt */,
+				3FDB24E71CF154B50073BC04 /* Syntax_html.txt */,
+				3FDB24F91CF31D030073BC04 /* Syntax_css.txt */,
+				3FDB24FB1CF31E8B0073BC04 /* Syntax_javascript */,
+				3FDB24E51CF0FF2F0073BC04 /* Syntax_c.txt */,
+				3FDB24EB1CF252760073BC04 /* Syntax_cpp.txt */,
+				3FDB24F51CF277860073BC04 /* Syntax_java.txt */,
+				3FDB24F71CF279FE0073BC04 /* Syntax_swift.txt */,
+			);
+			name = Syntax;
+			sourceTree = "<group>";
+		};
 		3FF4B83A1C792B6E001F113C /* TextKitLineNumbers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1077,14 +1154,19 @@
 				3FDB24CD1CEE7C590073BC04 /* EditFtpFileViewController.xib in Resources */,
 				3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */,
 				3FDB24C81CEDE1AF0073BC04 /* SelectFtpUploadHostListViewController.xib in Resources */,
+				3FDB24F81CF279FE0073BC04 /* Syntax_swift.txt in Resources */,
 				3F2852321CE28A9500C77435 /* ICloudFileDetailViewController.xib in Resources */,
 				3FDB24C01CED05110073BC04 /* SelectFtpDownloadTargetViewController.xib in Resources */,
+				3FDB24E41CF0FE310073BC04 /* Syntax_common.txt in Resources */,
 				3F57FED61CD17BA3002ADAC8 /* CreateOneDriveFileViewController.xib in Resources */,
 				3F165E511C7A75F9001CBC38 /* content.html in Resources */,
 				3F17F03F1CCF712700A1F280 /* marked.html in Resources */,
+				3FDB24E61CF0FF2F0073BC04 /* Syntax_c.txt in Resources */,
+				3FDB24E81CF154B50073BC04 /* Syntax_html.txt in Resources */,
 				3F5AE4691CC9828200E262AC /* C.txt in Resources */,
 				3F165E6E1C7A7D0B001CBC38 /* HighlightLicense.txt in Resources */,
 				3F2852421CE3DBBF00C77435 /* FtpHostListViewController.xib in Resources */,
+				3FDB24F61CF277860073BC04 /* Syntax_java.txt in Resources */,
 				3F5AE4671CC9819200E262AC /* Java.txt in Resources */,
 				3FDB24CC1CEDE6850073BC04 /* SelectFtpUploadDirectoryListViewController.xib in Resources */,
 				3F003D201C767A2100ECC371 /* InfoPlist.strings in Resources */,
@@ -1102,7 +1184,9 @@
 				3F165E6D1C7A7D0B001CBC38 /* Highlightjs-line-numbersLicense.txt in Resources */,
 				3F17F0491CCF716800A1F280 /* PreviewWebViewController.xib in Resources */,
 				3F0F829E1C90D1510090632E /* ICTextViewLicense.txt in Resources */,
+				3FDB24EA1CF24CE30073BC04 /* CYRTextViewLicense.txt in Resources */,
 				3F165E611C7A776F001CBC38 /* highlightjs-line-numbers.min.js in Resources */,
+				3FDB24F11CF260740073BC04 /* SourceHanCodeJP-BoldIt.otf in Resources */,
 				3F55D4661CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt in Resources */,
 				3F165E421C7A690C001CBC38 /* SourceHanCodeJPLicense.txt in Resources */,
 				3FA61AE11CE15694009926EE /* CreateICloudFileViewController.xib in Resources */,
@@ -1114,9 +1198,11 @@
 				3F17F04C1CD01B0400A1F280 /* EditLocalFileViewController.xib in Resources */,
 				3F5AE4651CC9801F00E262AC /* Swift.txt in Resources */,
 				3F5AE4581CC8470B00E262AC /* OneDriveFileListViewController.xib in Resources */,
+				3FDB24F01CF260740073BC04 /* SourceHanCodeJP-Bold.otf in Resources */,
 				3F57FECE1CD17A54002ADAC8 /* OneDriveFileDetailViewController.xib in Resources */,
 				3F0F82A21C90DAD20090632E /* HighlightViewController.xib in Resources */,
 				3F28524B1CE3DBE900C77435 /* CreateFtpHostViewController.xib in Resources */,
+				3FDB24F21CF260740073BC04 /* SourceHanCodeJP-NormalIt.otf in Resources */,
 				3F49306E1C7BAF590088A454 /* LocalFileDetailViewController.xib in Resources */,
 				3F5AE46B1CC9833C00E262AC /* CPP.txt in Resources */,
 				3F28523B1CE299F100C77435 /* EditICloudFileViewController.xib in Resources */,
@@ -1130,15 +1216,18 @@
 				3F157C011C84F4F3007C555E /* ICloudFileListViewController.xib in Resources */,
 				3F28524F1CE3DC1E00C77435 /* FtpFileListViewController.xib in Resources */,
 				3F28527F1CE54DD900C77435 /* CreateFtpFileViewController.xib in Resources */,
+				3FDB24EC1CF252760073BC04 /* Syntax_cpp.txt in Resources */,
 				3F2852731CE3F11B00C77435 /* BlackRaccoonLicense.txt in Resources */,
 				3F165E6A1C7A7B13001CBC38 /* OpenSourceLicenseListViewController.xib in Resources */,
 				3F165E361C7A687C001CBC38 /* GrepLocalFileListViewController.xib in Resources */,
 				3F165E761C7A7E7C001CBC38 /* SettingsViewController.xib in Resources */,
 				3F447C881C8904FD001A3518 /* SelectEncodingViewController.xib in Resources */,
 				3F3E85BD1C776174002EFB6D /* EnterLineDataTableViewCell.xib in Resources */,
+				3FDB24FC1CF31E8B0073BC04 /* Syntax_javascript in Resources */,
 				3F165E381C7A687C001CBC38 /* LocalFileListViewController.xib in Resources */,
 				3F17F0541CD01C6A00A1F280 /* SearchWordViewController.xib in Resources */,
 				3F165E681C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.xib in Resources */,
+				3FDB24FA1CF31D030073BC04 /* Syntax_css.txt in Resources */,
 				3F55D46E1CDFE15300818A4E /* BoxiOSSDKLicense.txt in Resources */,
 				3F165E431C7A690C001CBC38 /* TextKitLineNumbers.txt in Resources */,
 				3F4873701C75DB9C006594A6 /* Config.txt in Resources */,
@@ -1215,6 +1304,7 @@
 				3F28524E1CE3DC1E00C77435 /* FtpFileListViewController.swift in Sources */,
 				3F2852411CE3DBBF00C77435 /* FtpHostListViewController.swift in Sources */,
 				3F003D3C1C767DFB00ECC371 /* BaseTableViewController.swift in Sources */,
+				3FDB24DF1CEF2EDF0073BC04 /* CYRTextStorage.m in Sources */,
 				3F447C871C8904FD001A3518 /* SelectEncodingViewController.swift in Sources */,
 				3F2852711CE3EF1100C77435 /* BRStreamInfo.m in Sources */,
 				3F003D2C1C767C1B00ECC371 /* EnvUtils.swift in Sources */,
@@ -1222,7 +1312,9 @@
 				3F165E351C7A687C001CBC38 /* GrepLocalFileListViewController.swift in Sources */,
 				3F28526D1CE3EF1100C77435 /* BRRequestError.m in Sources */,
 				3F57FECD1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift in Sources */,
+				3FDB24E01CEF2EDF0073BC04 /* CYRTextView.m in Sources */,
 				3FDB24C31CED096E0073BC04 /* SelectLocalDirectoryListViewController.swift in Sources */,
+				3FDB24DE1CEF2EDF0073BC04 /* CYRLayoutManager.m in Sources */,
 				3F28526A1CE3EF1100C77435 /* BRRequestCreateDirectory.m in Sources */,
 				3F165E671C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift in Sources */,
 				3F28526B1CE3EF1100C77435 /* BRRequestDelete.m in Sources */,
@@ -1255,6 +1347,7 @@
 				3F19D2661C9225D6009ACAB2 /* SelectDirViewController.swift in Sources */,
 				3F2852511CE3DF2000C77435 /* FtpHostInfo.swift in Sources */,
 				3FDB24C71CEDE1AF0073BC04 /* SelectFtpUploadHostListViewController.swift in Sources */,
+				3FDB24F41CF268BB0073BC04 /* BaseEditViewController.swift in Sources */,
 				3F28526C1CE3EF1100C77435 /* BRRequestDownload.m in Sources */,
 				3F157C001C84F4F3007C555E /* ICloudFileListViewController.swift in Sources */,
 				3F157C051C84F50E007C555E /* DropboxFileInfo.swift in Sources */,
@@ -1283,6 +1376,7 @@
 				3F2852681CE3EF1100C77435 /* BRRequest.m in Sources */,
 				3F12E8501CC57D7A0008DDEE /* GTLDrive_Sources.m in Sources */,
 				3F1620E71CC6D4B600ABECFE /* EditGoogleDriveFileViewController.swift in Sources */,
+				3FDB24E11CEF2EDF0073BC04 /* CYRToken.m in Sources */,
 				3F165E691C7A7B13001CBC38 /* OpenSourceLicenseListViewController.swift in Sources */,
 				3F4873741C75DD6D006594A6 /* FileInfo.swift in Sources */,
 				3F165E311C7A687C001CBC38 /* CreateLocalFileViewController.swift in Sources */,
@@ -1477,6 +1571,7 @@
 					"\"${PODS_ROOT}/ECSlidingViewController/ECSlidingViewController\"",
 					"\"${PODS_ROOT}/ICTextView/ICTextView\"",
 					"\"${PODS_ROOT}/iCloudDocumentSync/iCloud\"",
+					"\"${SRCROOT}/Classes/External/CYRTextViewKit\"",
 				);
 				INFOPLIST_FILE = PWEditor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1517,6 +1612,7 @@
 					"\"${PODS_ROOT}/ECSlidingViewController/ECSlidingViewController\"",
 					"\"${PODS_ROOT}/ICTextView/ICTextView\"",
 					"\"${PODS_ROOT}/iCloudDocumentSync/iCloud\"",
+					"\"${SRCROOT}/Classes/External/CYRTextViewKit\"",
 				);
 				INFOPLIST_FILE = PWEditor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

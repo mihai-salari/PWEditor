@@ -49,14 +49,41 @@ struct CommonConst {
      フォント名情報
      */
     struct FontName {
-        /// CourierNew
+        /// CourierNew(Normal)
         static let kCourierNew = "CourierNewPSMT"
 
-        /// Arial
+        /// CourierNew(Italic)
+        static let kCourierNewItalic = "CourierNewPS-ItalicMT"
+
+        /// CourierNew(Bold)
+        static let kCourierNewBold = "CourierNewPS-BoldMT"
+
+        /// CourierNew(Bold Italic)
+        static let kCourierNewBoldItalic = "CourierNewPS-BoldItalicMT"
+
+        /// Arial(Normal)
         static let kArial = "ArialMT"
+
+        /// Arial(Italic)
+        static let kArialItalic = "Arial-ItalicMT"
+
+        /// Arial(Bold)
+        static let kArialBold = "Arial-BoldMT"
+
+        /// Arial(Bold Italic)
+        static let kArialBoldItalic = "Arial-BoldItalicMT"
 
         /// Source Han Code JP(Normal)
         static let kSourceHanCodeJpNormal = "SourceHanCodeJP-Normal"
+
+        /// Source Han Code JP(Normal Italic)
+        static let kSourceHanCodeJpNormalItalic = "SourceHanCodeJP-NormalIt"
+
+        /// Source Han Code JP(Bold)
+        static let kSourceHanCodeJpBold = "SourceHanCodeJP-Bold"
+
+        /// Source Han Code JP(Bold Italic)
+        static let kSourceHanCodeJpBoldItalic = "SourceHanCodeJP-BoldIt"
     }
     struct FontNameIndex {
         static let kCourierNew = 0

@@ -15,12 +15,12 @@ import GoogleMobileAds
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
+class EditLocalFileViewController: BaseEditViewController {
 
     // MARK: - Variables
 
-    /// マイビュー
-    @IBOutlet weak var myView: MyView!
+    /// 編集ビュー
+    @IBOutlet weak var editView: UIView!
 
     /// ツールバー
     @IBOutlet weak var toolbar: UIToolbar!
@@ -35,31 +35,22 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
     @IBOutlet weak var bannerView: GADBannerView!
 
     /// パス名
-    var pathName: String!
+    private var pathName: String!
 
     /// ファイル名
-    var fileName: String!
+    private var fileName: String!
 
     /// 文字エンコーディングタイプ
-    var encodingType: Int!
+    private var encodingType: Int!
 
     /// 文字エンコーディング
-    var encoding: UInt!
+    private var encoding: UInt!
 
     /// 改行コードタイプ
-    var retCodeType: Int!
+    private var retCodeType: Int!
 
     /// grep単語
-    var grepWord = ""
-
-    /// プレオフセット
-    var preOffset: CGPoint?
-
-    /// テキスト変更フラグ
-    var textChanged = false
-
-    /// シンタックスハイライトパターン
-    var pattern: String!
+    private var grepWord = ""
 
     // MARK: - Initializer
 
@@ -89,9 +80,6 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         self.retCodeType = retCodeType
         self.encoding = CommonConst.EncodingList[self.encodingType]
 
-        let fileExtention = FileUtils.getFileExtention(fileName)
-        pattern = ReserveWordUtils.getPattern(fileExtention)
-
         // スーパークラスのイニシャライザを呼び出す。
         super.init(nibName: nil, bundle: nil)
     }
@@ -112,14 +100,10 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         createRightBarButton()
 
         // テキストビューを設定する。
-        listNumber = 0
-        setupTextView()
-        let selector = #selector(EditLocalFileViewController.textChanged(_:))
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: UITextViewTextDidChangeNotification, object: nil)
-        myView.textView.delegate = self
-        myView.textView.circularSearch = true
-        myView.textView.scrollPosition = ICTextViewScrollPositionMiddle
-        myView.textView.searchOptions = .CaseInsensitive
+        let toolbarHeight = toolbar.frame.height
+        let bannerViewHeight = bannerView.frame.height
+        let heightOffset = toolbarHeight + bannerViewHeight
+        createTextView(editView, fileName: fileName, heightOffset: heightOffset)
 
         let previewFileType = FileUtils.getPreviewFileType(fileName)
         if previewFileType == CommonConst.PreviewFileType.HTML.rawValue ||
@@ -138,17 +122,10 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         // ファイルデータを取得する。
         let localFilePath = FileUtils.getLocalPath(pathName, name: fileName)
         let result = FileUtils.getFileData(localFilePath, encoding: encoding)
-        myView.textView.text = result.1
+        textView.text = result.1
 
-        // テキストビューがキーボードに隠れないための処理
-        // 参考 : https://teratail.com/questions/2915
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        let keyboardWillShow = #selector(EditLocalFileViewController.keyboardWillShow(_:))
-        notificationCenter.addObserver(self, selector: keyboardWillShow, name: UIKeyboardWillShowNotification, object: nil)
-        let keyboardWillHide = #selector(EditLocalFileViewController.keyboardWillHide(_:))
-        notificationCenter.addObserver(self, selector: keyboardWillHide, name: UIKeyboardWillHideNotification, object: nil)
-        let keyboardDidHide = #selector(EditLocalFileViewController.keyboardDidHide(_:))
-        notificationCenter.addObserver(self, selector: keyboardDidHide, name: UIKeyboardDidHideNotification, object: nil)
+        // 通知設定する。
+        setNotification()
     }
 
     /**
@@ -161,61 +138,6 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         super.didReceiveMemoryWarning()
     }
 
-    /**
-     画面が表示される前に呼び出される。
- 
-     - Parameter animated: アニメーション指定
-     */
-    override func viewWillAppear(animated: Bool) {
-        // スーパークラスのメソッドを呼び出す。
-        super.viewWillAppear(animated)
-
-        // TODO: ハイライト表示テスト用
-//        myView.textView.scrollRectToVisible(CGRectZero, animated: true, consideringInsets: true)
-//        myView.textView.scrollToMatch(pattern)
-
-        preOffset = myView.textView.contentOffset
-    }
-
-    /**
-     画面が閉じる前に呼び出される。
-     */
-    override func viewWillDisappear(animated: Bool) {
-        if let viewControllers = self.navigationController?.viewControllers {
-            var existsSelfInViewControllers = true
-            for viewController in viewControllers {
-                // viewWillDisappearが呼ばれる時に、
-                // 戻る処理を行っていれば、NavigationControllerのviewControllersの中にselfは存在していない
-                if viewController == self {
-                    existsSelfInViewControllers = false
-                    // selfが存在した時点で処理を終える
-                    break
-                }
-            }
-
-            if existsSelfInViewControllers {
-                if textChanged {
-                    showAlert("確認", message: "データが変更されています。保存しますか。", okButtonTitle: "保存", handler: { () -> Void in
-                    })
-                }
-            }
-        }
-
-        super.viewWillDisappear(animated)
-    }
-
-    /**
-     画面が閉じた後に呼び出される。
-     */
-    override func viewDidDisappear(animated: Bool) {
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        notificationCenter.removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-
-        // スーパークラスのメソッドを呼び出す。
-        super.viewDidDisappear(animated)
-    }
-
     // MARK: - Button Handler
 
     /**
@@ -225,10 +147,10 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
     */
     override func rightBarButtonPressed(sender: UIButton) {
         // キーボードを閉じる。
-        myView.textView.resignFirstResponder()
+        editView.resignFirstResponder()
 
         let localFilePath = FileUtils.getLocalPath(pathName, name: fileName)
-        let fileData = myView.textView.text
+        let fileData = textView.text
         let covertedFileData = FileUtils.convertRetCode(fileData, encoding: encoding, retCodeType: retCodeType)
         if !FileUtils.writeFileData(localFilePath, fileData: covertedFileData) {
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
@@ -244,110 +166,6 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
         self.popViewController()
     }
 
-    // MARK: - UITextViewDelegate
-
-    /**
-     テキストが変更された時に呼び出される。
-     
-     - Parameter notification: 通知
-     */
-    func textChanged(notification: NSNotification?) -> (Void) {
-        textChanged = true
-        myView.textView.scrollToMatch(pattern)
-    }
-
-    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-        LogUtils.d("textViewShouldBeginEditing")
-        myView.textView.scrollToMatch(pattern)
-        return true
-    }
-    func textViewDidBeginEditing(textView: UITextView){
-        LogUtils.d("textViewDidBeginEditing")
-    }
-    func textViewShouldEndEditing(textView: UITextView) -> Bool {
-        LogUtils.d("textViewShouldEndEditing")
-        return true
-    }
-    func textViewDidEndEditing(textView: UITextView) {
-        LogUtils.d("textViewDidEndEditing")
-    }
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        LogUtils.d("shouldChangeTextInRange")
-        myView.textView.scrollToMatch(pattern)
-        return true
-    }
-    func textViewDidChange(textView: UITextView) {
-        LogUtils.d("textViewDidChange")
-    }
-
-    // MARK: - Private Method
-
-    /**
-    テキストフィールドを設定する。
-    */
-    private func setupTextView() {
-        // 対象のビューを設定する。
-        targetView = myView.textView
-
-        // データを設定する。
-        //myView.textView.text = data
-
-        // キーボードタイプを設定する。
-        //myView.textView.keyboardType = keyboardType
-
-        // フォントを設定する。
-        let fontName = EnvUtils.getEnterDataFontName()
-        let fontSize = EnvUtils.getEnterDataFontSize()
-        myView.textView.font = UIFont(name: fontName, size: fontSize)
-
-        // 拡張キーボードを生成する。
-        let extendKeyboardItems = createExtendKeyboardItems(listNumber)
-        let extendKeyboard = createExtendKeyboard()
-        extendKeyboard.setItems(extendKeyboardItems, animated: false)
-        myView.textView.inputAccessoryView = extendKeyboard
-    }
-
-    // MARK: - Notification handler
-
-    /**
-     キーボードが表示される時に呼び出される。
-
-     - Parameter notification: 通知
-     */
-    func keyboardWillShow(notification: NSNotification) {
-        let userInfo = notification.userInfo!
-        let size = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().size
-
-        var contentInsets = UIEdgeInsetsMake(0.0, 0.0, size.height, 0.0)
-        contentInsets = myView.textView.contentInset
-        contentInsets.bottom = size.height
-
-        myView.textView.contentInset = contentInsets
-        myView.textView.scrollIndicatorInsets = contentInsets
-    }
-
-    /**
-     キーボードが閉じる時に呼び出される。
-
-     - Parameter notification: 通知
-     */
-    func keyboardWillHide(notification: NSNotification) {
-        var contentsInsets = myView.textView.contentInset
-        contentsInsets.bottom = 0
-        myView.textView.contentInset = contentsInsets
-        myView.textView.contentInset.bottom = 0
-        preOffset = myView.textView.contentOffset
-    }
-
-    /**
-     キーボードが閉じた後に呼び出される。
-
-     - Parameter notification: 通知
-     */
-    func keyboardDidHide(notification: NSNotification) {
-        myView.textView.setContentOffset(preOffset!, animated: true)
-    }
-
     // MARK: - Toolbar Button
 
     /**
@@ -357,7 +175,7 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
      */
     @IBAction func previewToolbarButtonPressed(sender: AnyObject) {
         // プレビュー画面に遷移する。
-        let fileData = myView.textView.text
+        let fileData = textView.text
         let vc = PreviewWebViewController(fileName: fileName, fileData: fileData)
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -369,7 +187,7 @@ class EditLocalFileViewController: BaseViewController, UITextViewDelegate {
      */
     @IBAction func searchToolbarButtonPressed(sender: AnyObject) {
         let searchWord = ""
-        let fileData = myView.textView.text
+        let fileData = textView.text
         let vc = SearchWordViewController(searchWord: searchWord, fileData: fileData)
         navigationController?.pushViewController(vc, animated: true)
     }
