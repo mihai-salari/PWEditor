@@ -665,6 +665,7 @@
 				3F157BF61C84F454007C555E /* Dropbox */,
 				3F12E8521CC57DDF0008DDEE /* GoogleDrive */,
 				3F5AE4541CC846D700E262AC /* OneDrive */,
+				3FDB25061CF640620073BC04 /* Box */,
 			);
 			name = Cloud;
 			sourceTree = "<group>";
@@ -1007,6 +1008,13 @@
 				3FDB24F71CF279FE0073BC04 /* Syntax_swift.txt */,
 			);
 			name = Syntax;
+			sourceTree = "<group>";
+		};
+		3FDB25061CF640620073BC04 /* Box */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Box;
 			sourceTree = "<group>";
 		};
 		3FF4B83A1C792B6E001F113C /* TextKitLineNumbers */ = {
