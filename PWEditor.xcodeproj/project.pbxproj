@@ -160,6 +160,11 @@
 		3F5AE46B1CC9833C00E262AC /* CPP.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F5AE46A1CC9833C00E262AC /* CPP.txt */; };
 		3F5AE46D1CC9884F00E262AC /* ReserveWordUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5AE46C1CC9884F00E262AC /* ReserveWordUtils.swift */; };
 		3F68715C1CBD937E009E45B2 /* MethodUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68715B1CBD937E009E45B2 /* MethodUtils.swift */; };
+		3F6C6C411CFCF8DB002F0E62 /* CharCode.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C6C3D1CFCF8DB002F0E62 /* CharCode.txt */; };
+		3F6C6C421CFCF8DB002F0E62 /* FileReader.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C6C3E1CFCF8DB002F0E62 /* FileReader.txt */; };
+		3F6C6C431CFCF8DB002F0E62 /* FileType.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C6C3F1CFCF8DB002F0E62 /* FileType.txt */; };
+		3F6C6C441CFCF8DB002F0E62 /* ReadJEnc.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C6C401CFCF8DB002F0E62 /* ReadJEnc.txt */; };
+		3F6C6C471CFCFC46002F0E62 /* DMJudgeTextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C6C461CFCFC46002F0E62 /* DMJudgeTextEncoding.swift */; };
 		3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F74947F1C753B0B002A0544 /* Assets.xcassets */; };
 		3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */; };
 		3FA0176F1CDADE2B00B632F4 /* PdfViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */; };
@@ -432,6 +437,11 @@
 		3F5AE4781CCC1FC700E262AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F5AE48B1CCC230D00E262AC /* StringUtilsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringUtilsSpec.swift; path = Classes/Utils/StringUtilsSpec.swift; sourceTree = "<group>"; };
 		3F68715B1CBD937E009E45B2 /* MethodUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MethodUtils.swift; path = Classes/Utils/MethodUtils.swift; sourceTree = "<group>"; };
+		3F6C6C3D1CFCF8DB002F0E62 /* CharCode.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CharCode.txt; path = Classes/External/ReadJEnc/CharCode.txt; sourceTree = "<group>"; };
+		3F6C6C3E1CFCF8DB002F0E62 /* FileReader.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FileReader.txt; path = Classes/External/ReadJEnc/FileReader.txt; sourceTree = "<group>"; };
+		3F6C6C3F1CFCF8DB002F0E62 /* FileType.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FileType.txt; path = Classes/External/ReadJEnc/FileType.txt; sourceTree = "<group>"; };
+		3F6C6C401CFCF8DB002F0E62 /* ReadJEnc.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ReadJEnc.txt; path = Classes/External/ReadJEnc/ReadJEnc.txt; sourceTree = "<group>"; };
+		3F6C6C461CFCFC46002F0E62 /* DMJudgeTextEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DMJudgeTextEncoding.swift; path = Classes/External/DMJudgeTextEncoding/DMJudgeTextEncoding.swift; sourceTree = "<group>"; };
 		3F7494751C753B0A002A0544 /* PWEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PWEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F74947F1C753B0B002A0544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F7494821C753B0B002A0544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -725,6 +735,7 @@
 		3F1915441C8CCB4D0042D306 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				3F6C6C451CFCFC1A002F0E62 /* DMJudgeTextEncoding */,
 				3FDB24D41CEF2ECB0073BC04 /* CYRTextViewKit */,
 				3F12E8511CC57D8D0008DDEE /* GoogleDrive */,
 				3F1915451C8CCB770042D306 /* ReadJEnc */,
@@ -737,6 +748,10 @@
 		3F1915451C8CCB770042D306 /* ReadJEnc */ = {
 			isa = PBXGroup;
 			children = (
+				3F6C6C3D1CFCF8DB002F0E62 /* CharCode.txt */,
+				3F6C6C3E1CFCF8DB002F0E62 /* FileReader.txt */,
+				3F6C6C3F1CFCF8DB002F0E62 /* FileType.txt */,
+				3F6C6C401CFCF8DB002F0E62 /* ReadJEnc.txt */,
 				3F1915461C8CCE8D0042D306 /* CharCode.swift */,
 				3F1915481C8CCEB40042D306 /* FileType.swift */,
 				3F19154A1C8CCEFE0042D306 /* ReadJEnc.swift */,
@@ -939,6 +954,14 @@
 				3F5AE48B1CCC230D00E262AC /* StringUtilsSpec.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		3F6C6C451CFCFC1A002F0E62 /* DMJudgeTextEncoding */ = {
+			isa = PBXGroup;
+			children = (
+				3F6C6C461CFCFC46002F0E62 /* DMJudgeTextEncoding.swift */,
+			);
+			name = DMJudgeTextEncoding;
 			sourceTree = "<group>";
 		};
 		3F74946C1C753B0A002A0544 = {
@@ -1162,13 +1185,16 @@
 				3FDB24CD1CEE7C590073BC04 /* EditFtpFileViewController.xib in Resources */,
 				3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */,
 				3FDB24C81CEDE1AF0073BC04 /* SelectFtpUploadHostListViewController.xib in Resources */,
+				3F6C6C421CFCF8DB002F0E62 /* FileReader.txt in Resources */,
 				3FDB24F81CF279FE0073BC04 /* Syntax_swift.txt in Resources */,
 				3F2852321CE28A9500C77435 /* ICloudFileDetailViewController.xib in Resources */,
 				3FDB24C01CED05110073BC04 /* SelectFtpDownloadTargetViewController.xib in Resources */,
 				3FDB24E41CF0FE310073BC04 /* Syntax_common.txt in Resources */,
+				3F6C6C441CFCF8DB002F0E62 /* ReadJEnc.txt in Resources */,
 				3F57FED61CD17BA3002ADAC8 /* CreateOneDriveFileViewController.xib in Resources */,
 				3F165E511C7A75F9001CBC38 /* content.html in Resources */,
 				3F17F03F1CCF712700A1F280 /* marked.html in Resources */,
+				3F6C6C431CFCF8DB002F0E62 /* FileType.txt in Resources */,
 				3FDB24E61CF0FF2F0073BC04 /* Syntax_c.txt in Resources */,
 				3FDB24E81CF154B50073BC04 /* Syntax_html.txt in Resources */,
 				3F5AE4691CC9828200E262AC /* C.txt in Resources */,
@@ -1227,6 +1253,7 @@
 				3FDB24EC1CF252760073BC04 /* Syntax_cpp.txt in Resources */,
 				3F2852731CE3F11B00C77435 /* BlackRaccoonLicense.txt in Resources */,
 				3F165E6A1C7A7B13001CBC38 /* OpenSourceLicenseListViewController.xib in Resources */,
+				3F6C6C411CFCF8DB002F0E62 /* CharCode.txt in Resources */,
 				3F165E361C7A687C001CBC38 /* GrepLocalFileListViewController.xib in Resources */,
 				3F165E761C7A7E7C001CBC38 /* SettingsViewController.xib in Resources */,
 				3F447C881C8904FD001A3518 /* SelectEncodingViewController.xib in Resources */,
@@ -1389,6 +1416,7 @@
 				3F4873741C75DD6D006594A6 /* FileInfo.swift in Sources */,
 				3F165E311C7A687C001CBC38 /* CreateLocalFileViewController.swift in Sources */,
 				3F157BFA1C84F4A6007C555E /* CreateDropboxFileViewController.swift in Sources */,
+				3F6C6C471CFCFC46002F0E62 /* DMJudgeTextEncoding.swift in Sources */,
 				3F1915541C8CCF360042D306 /* MyView.m in Sources */,
 				3F1915531C8CCF360042D306 /* LineNumberTextView.m in Sources */,
 				3F2852971CEBBAC300C77435 /* FtpUtils.swift in Sources */,
@@ -1560,8 +1588,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PWEditor/PWEditor.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Masatsugu Futamata (9PR8LH7797)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Masatsugu Futamata (9PR8LH7797)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1587,7 +1615,7 @@
 				OTHER_SWIFT_FLAGS = "-D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "068cc6b8-ecce-43a4-893b-c2689207193f";
 				SWIFT_OBJC_BRIDGING_HEADER = "PWEditor/PWEditor-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1601,8 +1629,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PWEditor/PWEditor.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Masatsugu Futamata (5Q7YHJUK8E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Masatsugu Futamata (5Q7YHJUK8E)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1628,7 +1656,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = info.paveway.PWEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "44c6709a-d39b-490b-9bbf-002ad18ab168";
 				SWIFT_OBJC_BRIDGING_HEADER = "PWEditor/PWEditor-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

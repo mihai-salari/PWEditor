@@ -286,6 +286,7 @@ SettingsCellTitleEnterDataFontSize = "入力用フォントサイズ";
 SettingsCellTitleDropbox = "Dropbox";
 SettingsCellTitleGoogleDrive = "GoogleDrive";
 SettingsCellTitleOneDrive = "OneDrive";
+SettingsCellTitleBox = "Box";
 SettingsSignInOneDriveError = "One driveのサインインでエラーが発生しました。";
 SettingsSignOutOneDriveError = "One driveのサインアウトでエラーが発生しました。";
 

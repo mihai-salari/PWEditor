@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyDropbox
 import OneDriveSDK
+import BoxContentSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -74,6 +75,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let oneDriveClientId = ConfigUtils.getConfigValue(CommonConst.ConfigKey.kOneDriveClientId)
         let scopes = CommonConst.OneDrive.kScopes
         ODClient.setMicrosoftAccountAppId(oneDriveClientId, scopes: scopes)
+
+//        let boxClientId = ConfigUtils.getConfigValue(CommonConst.ConfigKey.kBoxClientId)
+//        let boxSecret = ConfigUtils.getConfigValue(CommonConst.ConfigKey.kBoxSecret)
+//        BOXContentClient.setClientID(boxClientId, clientSecret: boxSecret)
 
         // トップ画面を作成する。
         let topVc = LocalFileListViewController(pathName: "")

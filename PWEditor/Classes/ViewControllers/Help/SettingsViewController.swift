@@ -53,7 +53,8 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
     let kCloudCellTitleList = [
         LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleDropbox),
         LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleGoogleDrive),
-        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleOneDrive)
+        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleOneDrive),
+//        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleBox),
     ]
 
     /// セクションインデックス
@@ -73,9 +74,10 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
 
     /// クラウドセルインデックス
     enum CloudCellIndex: Int {
-        case Dropbox = 0
-        case GoogleDrive = 1
-        case OneDrive = 2
+        case Dropbox
+        case GoogleDrive
+        case OneDrive
+        case Box
     }
 
     // Variables
@@ -273,6 +275,10 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
                     // 未ログインの場合
                     cell.detailTextLabel?.text = LocalizableUtils.getString(LocalizableConst.kSignIn)
                 }
+                break
+
+            case CloudCellIndex.Box.rawValue:
+                // Boxセルの場合
                 break
 
             default:

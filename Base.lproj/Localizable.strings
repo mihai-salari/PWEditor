@@ -286,6 +286,7 @@ SettingsCellTitleEnterDataFontSize = "Font size for enter data";
 SettingsCellTitleDropbox = "Dropbox";
 SettingsCellTitleGoogleDrive = "GoogleDrive";
 SettingsCellTitleOneDrive = "OneDrive";
+SettingsCellTitleBox = "Box";
 SettingsSignInOneDriveError = "Sign in one drive failed.";
 SettingsSignOutOneDriveError = "Sign out one drive failed.";
 

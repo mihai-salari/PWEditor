@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyDropbox
 import OneDriveSDK
+import BoxContentSDK
 
 /**
  メニュー画面クラス
@@ -39,10 +40,11 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
 
     /// クラウドセクションタイトルリスト
     private let kCloudTitleList = [
-//        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleICloud),
+        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleICloud),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleDropbox),
         LocalizableUtils.getString(LocalizableConst.kMenuCellTitleGoogleDrive),
-        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOneDrive)
+        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleOneDrive),
+//        LocalizableUtils.getString(LocalizableConst.kMenuCellTitleBox),
     ]
 
     /// アプリケーションセクションタイトルリスト
@@ -74,10 +76,11 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
 
     /// クラウドセクションインデックス
     private enum CloudIndex: Int {
-//        case ICloud
+        case ICloud
         case Dropbox
         case GoogleDrive
         case OneDrive
+        case Box
     }
 
     /// アプリケーションセクションインデックス
@@ -183,18 +186,18 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
             // クラウドセクションの場合
             title = kCloudTitleList[row]
             switch row {
-//            case CloudIndex.ICloud.rawValue:
-//                // iCloudセルの場合
-//                let cloud = iCloud.sharedCloud()
-//                if cloud.checkCloudUbiquityContainer() {
-//                    // iCloudが有効な場合
-//                    cell.textLabel?.enabled = true
-//
-//                } else {
-//                    // iCloudが無効な場合
-//                    cell.textLabel?.enabled = false
-//                }
-//                break
+            case CloudIndex.ICloud.rawValue:
+                // iCloudセルの場合
+                let cloud = iCloud.sharedCloud()
+                if cloud.checkCloudUbiquityContainer() {
+                    // iCloudが有効な場合
+                    cell.textLabel?.enabled = true
+
+                } else {
+                    // iCloudが無効な場合
+                    cell.textLabel?.enabled = false
+                }
+                break
 
             case CloudIndex.Dropbox.rawValue:
                 // Dropboxセルの場合
@@ -233,6 +236,12 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
                     // 未サインインの場合
                     cell.textLabel?.enabled = false
                 }
+                break
+
+            case CloudIndex.Box.rawValue:
+                // Boxセルの場合
+                let client = BOXContentClient.defaultClient()
+                client
                 break
 
             default:
@@ -293,16 +302,16 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
             // クラウドセクションの場合
             // セルによって処理を振り分ける。
             switch row {
-//            case CloudIndex.ICloud.rawValue:
-//                // iCloudセルの場合
-//                let cloud = iCloud.sharedCloud()
-//                if cloud.checkCloudUbiquityContainer() {
-//                    // iCloudが有効な場合
-//                    // iCloudファイル一覧画面に遷移する。
-//                    let vc = ICloudFileListViewController(pathName: kRootPathName)
-//                    resetTopView(vc)
-//                }
-//                break
+            case CloudIndex.ICloud.rawValue:
+                // iCloudセルの場合
+                let cloud = iCloud.sharedCloud()
+                if cloud.checkCloudUbiquityContainer() {
+                    // iCloudが有効な場合
+                    // iCloudファイル一覧画面に遷移する。
+                    let vc = ICloudFileListViewController(pathName: kRootPathName)
+                    resetTopView(vc)
+                }
+                break
 
             case CloudIndex.Dropbox.rawValue:
                 // Dropboxセルの場合
@@ -315,7 +324,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
                 break
 
             case CloudIndex.GoogleDrive.rawValue:
-                // GoogleDriveの場合
+                // GoogleDriveセルの場合
                 let appDelegate = EnvUtils.getAppDelegate()
                 let serviceDrive = appDelegate.googleDriveServiceDrive
                 if let authorizer = serviceDrive.authorizer, canAuth = authorizer.canAuthorize where canAuth {
@@ -328,7 +337,7 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
                 break
 
             case CloudIndex.OneDrive.rawValue:
-                // OneDriveの場合
+                // OneDriveセルの場合
                 let client = ODClient.loadCurrentClient()
                 if client != nil {
                     // サインイン済みの場合
@@ -337,6 +346,13 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
                     let vc = OneDriveFileListViewController(itemId: itemId)
                     resetTopView(vc)
                 }
+                break
+
+            case CloudIndex.Box.rawValue:
+                // Boxセルの場合
+                let client = BOXContentClient.defaultClient()
+                client.authenticateWithCompletionBlock( { (user: BOXUser!, error: NSError!) -> Void in
+                })
                 break
 
             default:

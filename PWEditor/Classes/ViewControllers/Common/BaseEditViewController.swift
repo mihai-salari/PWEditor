@@ -43,7 +43,6 @@ class BaseEditViewController: BaseViewController, UITextViewDelegate {
 
     // MARK: - UIViewController
 
-
     /**
      インスタンスが生成された時に呼び出される。
      */

@@ -9,5 +9,6 @@ pod 'SwiftyDropbox'
 pod 'ICTextView', :git => "https://github.com/paveway/ICTextView.git", :branch => "master"
 pod 'OneDriveSDK'
 pod 'iCloudDocumentSync'
+pod 'box-ios-sdk'
 
 xcodeproj './PWEditor.xcodeproj'

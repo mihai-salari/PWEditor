@@ -67,13 +67,17 @@ class EditDropboxFileViewController: BaseEditViewController {
      - Parameter encodingType: 文字エンコーディングタイプ(デフォルト"UTF-8")
      - Parameter retCodeType: 改行コードタイプ(デフォルト"Unix(LF)")
      */
-    init(pathName: String, fileName: String, encodingType: Int = CommonConst.EncodingType.Utf8.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue) {
+    init(pathName: String, fileName: String, encodingType: Int = CommonConst.EncodingType.Undefine.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue) {
         // 引数を保存する。
         self.pathName = pathName
         self.fileName = fileName
         self.encodingType = encodingType
         self.retCodeType = retCodeType
-        self.encoding = CommonConst.EncodingList[self.encodingType]
+        if encodingType == CommonConst.EncodingType.Undefine.rawValue {
+            encoding = CommonConst.EncodingList[CommonConst.EncodingType.Utf8.rawValue]
+        } else {
+            encoding = CommonConst.EncodingList[encodingType]
+        }
 
         // スーパークラスのイニシャライザを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -251,7 +255,11 @@ class EditDropboxFileViewController: BaseEditViewController {
                     if FileUtils.isTextData(fileData!) {
                         // テキストデータの場合
                         // 文字列に変換する。
+                        if self.encodingType == CommonConst.EncodingType.Undefine.rawValue {
+                            self.encoding = DMJudgeTextEncodingOfData(fileData!)
+                        }
                         text = String(data: fileData!, encoding: self.encoding)
+
                         if text == nil {
                             // 文字列に変換できない場合
                             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)

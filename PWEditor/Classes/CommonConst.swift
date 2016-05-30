@@ -18,6 +18,8 @@ struct CommonConst {
         static let kDropBoxAppSecret = "dropboxAppSecret"
         static let kGoogleDriveClientId = "googleDriveClientId"
         static let kOneDriveClientId = "oneDriveClientId"
+        static let kBoxClientId = "boxClientId"
+        static let kBoxSecret = "boxSecret"
     }
 
     struct SlidingViewSetting {
@@ -104,6 +106,7 @@ struct CommonConst {
     }
 
     enum EncodingType: Int {
+        case Undefine = -1
         case Utf8 = 0
         case ShiftJis = 1
         case Euc = 2

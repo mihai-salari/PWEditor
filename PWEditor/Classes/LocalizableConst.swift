@@ -292,6 +292,7 @@ struct LocalizableConst {
     static let kSettingsCellTitleDropbox = "SettingsCellTitleDropbox"
     static let kSettingsCellTitleGoogleDrive = "SettingsCellTitleGoogleDrive"
     static let kSettingsCellTitleOneDrive = "SettingsCellTitleOneDrive"
+    static let kSettingsCellTitleBox = "SettingsCellTitleBox"
     static let kSettingsSignInOneDriveError = "SettingsSignInOneDriveError"
     static let kSettingsSignOutOneDriveError = "SettingsSignOutOneDriveError"
 
