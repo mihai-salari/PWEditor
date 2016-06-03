@@ -9,6 +9,14 @@ pod 'SwiftyDropbox'
 pod 'ICTextView', :git => "https://github.com/paveway/ICTextView.git", :branch => "master"
 pod 'OneDriveSDK'
 pod 'iCloudDocumentSync'
-pod 'box-ios-sdk'
+#pod 'box-ios-sdk'
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
+    end
+  end
+end
 
 xcodeproj './PWEditor.xcodeproj'

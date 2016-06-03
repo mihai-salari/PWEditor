@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyDropbox
 import OneDriveSDK
-import BoxContentSDK
+//import BoxContentSDK
 
 /**
  メニュー画面クラス
@@ -240,8 +240,8 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
 
             case CloudIndex.Box.rawValue:
                 // Boxセルの場合
-                let client = BOXContentClient.defaultClient()
-                client
+//                let client = BOXContentClient.defaultClient()
+//                client
                 break
 
             default:
@@ -350,9 +350,9 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
 
             case CloudIndex.Box.rawValue:
                 // Boxセルの場合
-                let client = BOXContentClient.defaultClient()
-                client.authenticateWithCompletionBlock( { (user: BOXUser!, error: NSError!) -> Void in
-                })
+//                let client = BOXContentClient.defaultClient()
+//                client.authenticateWithCompletionBlock( { (user: BOXUser!, error: NSError!) -> Void in
+//                })
                 break
 
             default:

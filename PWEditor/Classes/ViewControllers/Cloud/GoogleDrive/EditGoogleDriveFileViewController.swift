@@ -233,7 +233,9 @@ class EditGoogleDriveFileViewController: BaseEditViewController {
         let uploadParameters = GTLUploadParameters(data: data!, MIMEType: mimeType)
 
         let fileId = driveFile.identifier
-        let query = GTLQueryDrive.queryForFilesUpdateWithObject(driveFile, fileId: fileId, uploadParameters: uploadParameters)
+
+        let updateDriveFile = GTLDriveFile()
+        let query = GTLQueryDrive.queryForFilesUpdateWithObject(updateDriveFile, fileId: fileId, uploadParameters: uploadParameters)
 
         let appDelegate = EnvUtils.getAppDelegate()
         let serviceDrive = appDelegate.googleDriveServiceDrive
