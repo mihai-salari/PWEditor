@@ -24,9 +24,10 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "SwiftyDropbox",
         "Google APIs Client Library for Objective-C",
         "One Drive SDK iOS",
-        "Box iOS SDK",
         "BlackRaccoon",
         "CYRTextView",
+        "iCloudDocumentSync",
+//        "Box iOS SDK",
     ]
     
     /** ライセンスファイル名リスト */
@@ -39,9 +40,10 @@ class OpenSourceLicenseContentViewController: BaseWebViewController {
         "SwiftyDropboxLicense",
         "GoogleApiObjectiveCClientLicense",
         "OneDriveSDKiOSLicense",
-        "BoxiOSSDKLicense",
         "BlackRaccoonLicense",
         "CYRTextViewLicense",
+        "ICloudDocumentSyncLicense",
+//        "BoxiOSSDKLicense",
     ]
     
     /** ライセンスファイル拡張子 */

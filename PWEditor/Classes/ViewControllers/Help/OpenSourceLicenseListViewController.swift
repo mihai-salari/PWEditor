@@ -29,9 +29,10 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "SwiftyDropbox",
         "Google APIs Client Library for Objective-C",
         "One Drive SDK iOS",
-        "Box iOS SDK",
         "BlackRaccoon",
         "CYRTextView",
+        "iCloudDocumentSync",
+        //"Box iOS SDK",
     ]
     
     /** セルインデックス */
@@ -44,9 +45,10 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         case SwiftyDropbox
         case GoogleApiObjectiveCClient
         case OneDriveSDKiOS
-        case BoxiOSSDK
         case BlackRaccoon
         case CYRTextView
+        case ICloudDocumentSync
+//        case BoxiOSSDK
     }
     
     /** URLリスト */
@@ -59,9 +61,10 @@ class OpenSourceLicenseListViewController: BaseTableViewController {
         "https://github.com/dropbox/SwiftyDropbox",
         "https://github.com/google/google-api-objectivec-client",
         "https://github.com/OneDrive/onedrive-sdk-ios",
-        "https://github.com/box/box-ios-sdk",
         "https://github.com/lloydsargent/BlackRaccoon",
         "https://github.com/illyabusigin/CYRTextView",
+        "https://github.com/iRareMedia/iCloudDocumentSync",
+//        "https://github.com/box/box-ios-sdk",
     ]
 
     /// テーブルビュー
