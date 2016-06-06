@@ -25,6 +25,9 @@ class EditICloudFileViewController: BaseEditViewController {
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
+    /// パス名
+    private var pathName: String!
+
     /// ファイル名
     private var fileName: String!
 
@@ -52,12 +55,14 @@ class EditICloudFileViewController: BaseEditViewController {
     /**
      イニシャライザ
 
+     - Parameter pathName: パス名
      - Parameter fileName: ファイル名
      - Parameter encodingType: 文字エンコーディングタイプ(デフォルト"UTF-8")
      - Parameter retCodeType: 改行コードタイプ(デフォルト"Unix(LF)")
      */
-    init(fileName: String, encodingType: Int = CommonConst.EncodingType.Utf8.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue) {
+    init(pathName: String, fileName: String, encodingType: Int = CommonConst.EncodingType.Utf8.rawValue, retCodeType: Int = CommonConst.RetCodeType.LF.rawValue) {
         // 引数を保存する。
+        self.pathName = pathName
         self.fileName = fileName
         self.encodingType = encodingType
         self.retCodeType = retCodeType
@@ -135,7 +140,7 @@ class EditICloudFileViewController: BaseEditViewController {
         let convertedFileData = FileUtils.convertRetCode(fileData, encoding: encoding, retCodeType: retCodeType)
 
         // 変換されたファイルデータをアップロードする。
-        uploadFile(fileName, fileDataString: convertedFileData)
+        uploadFile(convertedFileData)
     }
 
     // MARK: - iCloud
@@ -145,8 +150,14 @@ class EditICloudFileViewController: BaseEditViewController {
      */
     func downloadFile() {
         // iCloudファイルをダウンロードする。
+        let path: String
+        if pathName == "/" {
+            path = "/\(fileName)"
+        } else {
+            path = "\(pathName)/\(fileName)"
+        }
         let cloud = iCloud.sharedCloud()
-        cloud.retrieveCloudDocumentWithName(fileName, completion: { (cloudDocument: UIDocument!, documentData: NSData!, error: NSError!) -> Void in
+        cloud.retrieveCloudDocumentWithName(path, completion: { (cloudDocument: UIDocument!, documentData: NSData!, error: NSError!) -> Void in
             if error != nil {
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
@@ -193,14 +204,20 @@ class EditICloudFileViewController: BaseEditViewController {
 
      - Parameter fileDataString: ファイルデータ文字列
      */
-    func uploadFile(fileName: String, fileDataString: String) {
+    func uploadFile(fileDataString: String) {
         let fileData = fileDataString.dataUsingEncoding(encoding)
         if fileData == nil {
             return
         }
 
+        let path: String
+        if pathName == "/" {
+            path = "/\(fileName)"
+        } else {
+            path = "\(pathName)/\(fileName)"
+        }
         let cloud = iCloud.sharedCloud()
-        cloud.saveAndCloseDocumentWithName(fileName, withContent: fileData!, completion: { (cloudDocument: UIDocument!, documentData: NSData!, error: NSError!) -> Void in
+        cloud.saveAndCloseDocumentWithName(path, withContent: fileData!, completion: { (cloudDocument: UIDocument!, documentData: NSData!, error: NSError!) -> Void in
             if error != nil {
                 return
             }

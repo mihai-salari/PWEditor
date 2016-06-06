@@ -241,7 +241,6 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
             case CloudIndex.Box.rawValue:
                 // Boxセルの場合
 //                let client = BOXContentClient.defaultClient()
-//                client
                 break
 
             default:
@@ -308,7 +307,8 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
                 if cloud.checkCloudUbiquityContainer() {
                     // iCloudが有効な場合
                     // iCloudファイル一覧画面に遷移する。
-                    let vc = ICloudFileListViewController(pathName: kRootPathName)
+                    let pathName = "/"
+                    let vc = ICloudFileListViewController(pathName: pathName)
                     resetTopView(vc)
                 }
                 break
@@ -348,12 +348,16 @@ class MenuViewController: BaseTableViewController, ReceiveSignInStateDelegate, i
                 }
                 break
 
-            case CloudIndex.Box.rawValue:
-                // Boxセルの場合
+//            case CloudIndex.Box.rawValue:
+//                // Boxセルの場合
 //                let client = BOXContentClient.defaultClient()
-//                client.authenticateWithCompletionBlock( { (user: BOXUser!, error: NSError!) -> Void in
-//                })
-                break
+////                client.authenticateWithCompletionBlock( { (user: BOXUser!, error: NSError!) -> Void in
+////                })
+//                let vc = BOXAuthorizationViewController(SDKClient: client, completionBlock: { (authorizationViewController: BOXAuthorizationViewController!, user: BOXUser!, error: NSError!) -> Void in
+//                    }, cancelBlock: { (authorizationViewController: BOXAuthorizationViewController!) -> Void in
+//                    })
+//                presentViewController(vc, animated: true, completion: nil)
+//                break
 
             default:
                 // 上記以外、何もしない。

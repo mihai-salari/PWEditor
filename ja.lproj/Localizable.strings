@@ -148,6 +148,11 @@ ICloudFileDetailCellTitleSize = "サイズ";
 ICloudFileDetailCellTitleCreationDate = "作成日時";
 ICloudFileDetailCellTitleContentChangeDate = "更新日時";
 
+// iCloudファイル作成
+CreateICloudFileScreenTitle = "iCloudファイル作成";
+CreateICloudFileSectionTitleDirName = "ディレクトリ名";
+CreateICloudFileSectionTitleFileName = "ファイル名";
+
 // Dropboxファイル一覧画面
 DropboxFileListScreenTitle = "Dropboxファイル一覧";
 DropboxFileListGetFileInfoListError = "ファイル情報一覧を取得できませんでした。";

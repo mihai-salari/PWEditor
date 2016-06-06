@@ -76,6 +76,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let scopes = CommonConst.OneDrive.kScopes
         ODClient.setMicrosoftAccountAppId(oneDriveClientId, scopes: scopes)
 
+        // Boxの初期化
+        // TODO: 保留
 //        let boxClientId = ConfigUtils.getConfigValue(CommonConst.ConfigKey.kBoxClientId)
 //        let boxSecret = ConfigUtils.getConfigValue(CommonConst.ConfigKey.kBoxSecret)
 //        BOXContentClient.setClientID(boxClientId, clientSecret: boxSecret)

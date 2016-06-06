@@ -167,6 +167,7 @@
 		3F6C6C471CFCFC46002F0E62 /* DMJudgeTextEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C6C461CFCFC46002F0E62 /* DMJudgeTextEncoding.swift */; };
 		3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F74947F1C753B0B002A0544 /* Assets.xcassets */; };
 		3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */; };
+		3F889C3D1D0247A10036A6DE /* ICloudFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F889C3C1D0247A10036A6DE /* ICloudFileInfo.swift */; };
 		3FA0176F1CDADE2B00B632F4 /* PdfViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */; };
 		3FA017701CDADE2B00B632F4 /* PdfViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA0176E1CDADE2B00B632F4 /* PdfViewerViewController.xib */; };
 		3FA017771CDADF4C00B632F4 /* PdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA017761CDADF4C00B632F4 /* PdfView.swift */; };
@@ -446,6 +447,7 @@
 		3F74947F1C753B0B002A0544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F7494821C753B0B002A0544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F7494841C753B0B002A0544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F889C3C1D0247A10036A6DE /* ICloudFileInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICloudFileInfo.swift; path = Classes/ViewControllers/Cloud/ICloud/ICloudFileInfo.swift; sourceTree = "<group>"; };
 		3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfViewerViewController.swift; path = Classes/ViewControllers/Common/PdfViewerViewController.swift; sourceTree = "<group>"; };
 		3FA0176E1CDADE2B00B632F4 /* PdfViewerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PdfViewerViewController.xib; path = Classes/ViewControllers/Common/PdfViewerViewController.xib; sourceTree = "<group>"; };
 		3FA017761CDADF4C00B632F4 /* PdfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfView.swift; path = Classes/ViewControllers/Common/PdfView.swift; sourceTree = "<group>"; };
@@ -624,6 +626,7 @@
 				3F2852391CE299F100C77435 /* EditICloudFileViewController.xib */,
 				3F55D4751CDFEE3300818A4E /* ICloud.swift */,
 				3F157BFC1C84F4F3007C555E /* ICloudDocument.swift */,
+				3F889C3C1D0247A10036A6DE /* ICloudFileInfo.swift */,
 			);
 			name = ICloud;
 			sourceTree = "<group>";
@@ -1337,6 +1340,7 @@
 				3F49306D1C7BAF590088A454 /* LocalFileDetailViewController.swift in Sources */,
 				3F165E731C7A7E7C001CBC38 /* SelectFontViewController.swift in Sources */,
 				3F28524E1CE3DC1E00C77435 /* FtpFileListViewController.swift in Sources */,
+				3F889C3D1D0247A10036A6DE /* ICloudFileInfo.swift in Sources */,
 				3F2852411CE3DBBF00C77435 /* FtpHostListViewController.swift in Sources */,
 				3F003D3C1C767DFB00ECC371 /* BaseTableViewController.swift in Sources */,
 				3FDB24DF1CEF2EDF0073BC04 /* CYRTextStorage.m in Sources */,

@@ -54,7 +54,7 @@ class SettingsViewController: BaseTableViewController, ReceiveNumberDelegate {
         LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleDropbox),
         LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleGoogleDrive),
         LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleOneDrive),
-//        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleBox),
+        LocalizableUtils.getString(LocalizableConst.kSettingsCellTitleBox),
     ]
 
     /// セクションインデックス

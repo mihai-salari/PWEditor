@@ -138,6 +138,11 @@ SelectDirScreenTitle = "Select directory";
 // iCloudファイル一覧画面
 ICloudFileListScreenTitle = "iCloud file list";
 
+// iCloudファイル作成
+CreateICloudFileScreenTitle = "Create iCloud file";
+CreateICloudFileSectionTitleDirName = "Directory name";
+CreateICloudFileSectionTitleFileName = "File name";
+
 // iCloudファイル詳細画面
 ICloudFileDatailScreenTitle = "iCloud file detail";
 ICloudFileDetailCellTitleName = "File name";

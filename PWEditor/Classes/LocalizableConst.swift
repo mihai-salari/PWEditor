@@ -144,6 +144,11 @@ struct LocalizableConst {
     // iCloudファイル一覧画面
     static let kICloudFileListScreenTitle = "ICloudFileListScreenTitle"
 
+    // iCloudファイル作成
+    static let kCreateICloudFileScreenTitle = "CreateICloudFileScreenTitle"
+    static let kCreateICloudFileSectionTitleDirName = "CreateICloudFileSectionTitleDirName"
+    static let kCreateICloudFileSectionTitleFileName = "CreateICloudFileSectionTitleFileName"
+
     // iCloudファイル詳細画面
     static let kICloudFileDatailScreenTitle = "ICloudFileDatailScreenTitle"
     static let kICloudFileDetailCellTitleName = "ICloudFileDetailCellTitleName"
