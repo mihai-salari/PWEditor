@@ -65,19 +65,19 @@ class SelectEncodingViewController: BaseTableViewController {
     @IBOutlet weak var bannerView: GADBannerView!
 
     /// 遷移元クラス名
-    var sourceClassName: String!
+    private var sourceClassName: String!
 
     /// パス名
-    var pathName = ""
+    private var pathName = ""
 
     /// ファイル名
-    var fileName = ""
+    private var fileName = ""
 
     /// GoogleDriveファイル
-    var driveFile: GTLDriveFile?
+    private var driveFile: GTLDriveFile?
 
     /// OneDriveファイル
-    var item: ODItem?
+    private var item: ODItem?
 
     // MARK: - Initializer
 
@@ -351,6 +351,13 @@ class SelectEncodingViewController: BaseTableViewController {
         case LocalFileListViewController.self.description():
             // ローカルファイル一覧画面の場合
             let vc = EditLocalFileViewController(pathName: pathName, fileName: fileName, encodingType: encodingType, retCodeType: retCodeType)
+            navigationController?.pushViewController(vc, animated: true)
+            break
+
+        case ICloudFileListViewController.self.description():
+            // iCloudファイル一覧画面の場合
+            // iCloudファイル編集画面に遷移する。
+            let vc = EditICloudFileViewController(pathName: pathName, fileName: fileName, encodingType: encodingType, retCodeType: retCodeType)
             navigationController?.pushViewController(vc, animated: true)
             break
 

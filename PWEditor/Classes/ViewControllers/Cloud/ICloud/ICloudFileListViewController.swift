@@ -22,6 +22,9 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
     /// 画面タイトル
     let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kICloudFileListScreenTitle)
 
+    /// 更新停止タイムアウト値
+    let kStopRefreshTimeout = 10
+
     // MARK: - Variables
 
     /// テーブルビュー
@@ -41,6 +44,12 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
 
     /// パス名
     private var pathName: String!
+
+    /// 更新停止タイマー
+    private weak var stopRefreshTimer: NSTimer?
+
+    /// 更新停止カウンター
+    private var stopRefreshCounter = 0
 
     // MARK: - Initializer
 
@@ -80,6 +89,7 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
         navigationItem.title = kScreenTitle
 
         if pathName == "/" {
+            // ルートディレクトリの場合
             // 左バーボタンを作成する。
             createLeftBarButton()
         }
@@ -123,21 +133,33 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
         // iCloudのファイル一覧を更新する。
         // 引数のpathNameの更新のため、viewWillDisappearでクエリを停止するため、
         // 再起動する。
-        // query.staredで停止中を確認すべきだが、常にtrueが返却されるため無条件で開始する。
+        // query.staredで停止中を確認すべきだが、query.staredで常にtrueが返却されるため
+        // 無条件で開始する。
         let cloud = iCloud.sharedCloud()
         cloud.query.startQuery()
         cloud.updateFiles()
     }
 
+    /**
+     画面が消される前に呼び出される。
+ 
+     - Parameter animated: アニメーション指定
+     */
     override func viewWillDisappear(animated: Bool) {
+        // 通知設定を解除する。
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.removeObserver(self)
 
+        // クエリを停止する。
         // サブディレクトリに移動した場合、クエリを停止しないと引数pathNameが更新されない。
         // viewDidDisappearで行うと遷移先画面のviewWillAppearが先に動くため、viewWillDisappearで行う。
         let cloud = iCloud.sharedCloud()
         cloud.query!.stopQuery()
 
+        stopRefreshTimer?.invalidate()
+        stopRefreshTimer = nil
+
+        // スーパークラスのメソッドを呼び出す。
         super.viewDidDisappear(animated)
     }
 
@@ -180,8 +202,6 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
 
         let iCloudFileInfo = iCloudFileInfoList[row]
         cell.textLabel?.text = iCloudFileInfo.name
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .ByWordWrapping
 
         if iCloudFileInfo.type == ICloudFileInfo.FileType.Dir.rawValue {
             // ディレクトリの場合
@@ -252,8 +272,8 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
         }
 
         // iCloudファイル詳細画面に遷移する。
-        let iCloudFileInfo = iCloudFileInfoList[row].file
-        let vc = ICloudFileDetailViewController(fileInfo: iCloudFileInfo)
+        let file = iCloudFileInfoList[row].file
+        let vc = ICloudFileDetailViewController(fileInfo: file)
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -263,8 +283,23 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
      引っ張って更新の処理を行う。
      */
     override func pullRefresh() {
+        stopRefreshCounter = 0
+        let selector = #selector(update(_:))
+        stopRefreshTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: selector, userInfo: nil, repeats: true)
+
         let cloud = iCloud.sharedCloud()
         cloud.updateFiles()
+    }
+
+    @objc private func update(timer: NSTimer) {
+        stopRefreshCounter += 1
+        if stopRefreshCounter > kStopRefreshTimeout {
+            // リフレッシュコントロールを停止する。
+            refreshControl?.endRefreshing()
+
+            stopRefreshTimer?.invalidate()
+            stopRefreshTimer = nil
+        }
     }
 
     // MARK: - Cell long press
@@ -329,19 +364,20 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
         let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: nil)
         alert.addAction(cancelAction)
 
-//        let dir = GoogleDriveUtils.isDir(driveFile)
-//        if !dir {
-//            // ファイルの場合
-//            // 文字エンコーディングを指定して開くボタンを生成する。
-//            let openCharButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleOpenChar)
-//            let openCharAction = UIAlertAction(title: openCharButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
-//                // 文字エンコーディング選択画面に遷移する。
-//                let sourceClassName = self.dynamicType.description()
-//                let vc = SelectEncodingViewController(sourceClassName: sourceClassName, driveFile: driveFile)
-//                self.navigationController?.pushViewController(vc, animated: true)
-//            })
-//            alert.addAction(openCharAction)
-//        }
+        let type = iCloudFileInfo.type
+        if type == ICloudFileInfo.FileType.File.rawValue {
+            // ファイルの場合
+            // 文字エンコーディングを指定して開くボタンを生成する。
+            let openCharButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleOpenChar)
+            let openCharAction = UIAlertAction(title: openCharButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+                // 文字エンコーディング選択画面に遷移する。
+                let sourceClassName = self.dynamicType.description()
+                let fileName = iCloudFileInfo.name
+                let vc = SelectEncodingViewController(sourceClassName: sourceClassName, pathName: self.pathName, fileName: fileName)
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            alert.addAction(openCharAction)
+        }
 
         // 削除ボタンを生成する。
         let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
@@ -437,6 +473,8 @@ class ICloudFileListViewController: BaseTableViewController, UIGestureRecognizer
     func iCloudFilesDidChange(files: NSMutableArray!, withNewFileNames fileNames: NSMutableArray!) {
         // リフレッシュコントロールを停止する。
         refreshControl?.endRefreshing()
+        stopRefreshTimer?.invalidate()
+        stopRefreshTimer = nil
 
         let cloud = iCloud.sharedCloud()
         let documentsUrl = cloud.ubiquitousDocumentsDirectoryURL()

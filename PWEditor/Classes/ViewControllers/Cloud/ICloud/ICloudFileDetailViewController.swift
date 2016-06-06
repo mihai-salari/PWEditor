@@ -9,6 +9,12 @@
 import UIKit
 import GoogleMobileAds
 
+/**
+ iCloudファイル詳細画面クラス
+
+ - Version: 1.0 新規作成
+ - Author: paveway.info@gmail.com
+ */
 class ICloudFileDetailViewController: BaseTableViewController {
 
     // MARK: - Constants

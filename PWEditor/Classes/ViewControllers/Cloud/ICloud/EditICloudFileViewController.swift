@@ -85,7 +85,6 @@ class EditICloudFileViewController: BaseEditViewController {
         navigationItem.title = fileName
 
         // 右上ボタンを設定する。
-        // TODO: 暫定で表示しない。
         createRightBarButton()
 
         // テキストビューを設定する。
@@ -118,7 +117,7 @@ class EditICloudFileViewController: BaseEditViewController {
         // 右バーボタンはデフォルト無効にする。
         self.navigationItem.rightBarButtonItem?.enabled = false
 
-        // OneDriveファイルをダウンロードする。
+        // iCloudファイルをダウンロードする。
         downloadFile()
     }
 
@@ -219,6 +218,9 @@ class EditICloudFileViewController: BaseEditViewController {
         let cloud = iCloud.sharedCloud()
         cloud.saveAndCloseDocumentWithName(path, withContent: fileData!, completion: { (cloudDocument: UIDocument!, documentData: NSData!, error: NSError!) -> Void in
             if error != nil {
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageFileUploadError, self.fileName)
+                self.showAlert(title, message: message)
                 return
             }
 

@@ -9,6 +9,12 @@
 import UIKit
 import GoogleMobileAds
 
+/**
+ iCloudファイル作成画面クラス
+
+ - Version: 1.0 新規作成
+ - Author: paveway.info@gmail.com
+ */
 class CreateICloudFileViewController: BaseTableViewController, UIGestureRecognizerDelegate, UITextFieldDelegate {
 
     // MARK: - Constants
@@ -303,7 +309,9 @@ class CreateICloudFileViewController: BaseTableViewController, UIGestureRecogniz
                 do {
                     try fileManager.createDirectoryAtURL(targetUrl, withIntermediateDirectories: true, attributes: nil)
                 } catch {
-                    print("createDirectoryAtURL() faield.")
+                    let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                    let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageCreateFileError, dirName)
+                    showAlert(title, message: message)
                     return false
                 }
             }
@@ -343,11 +351,8 @@ class CreateICloudFileViewController: BaseTableViewController, UIGestureRecogniz
             if error != nil {
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = "ファイルが作成できませんでした。"
-                self.showAlert(title, message: message, handler: { () -> Void in
-                    // 遷移元画面に戻る。
-                    self.navigationController?.popViewControllerAnimated(true)
-                })
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageCreateFileError, dirName)
+                self.showAlert(title, message: message)
             }
 
             // 遷移元画面に戻る。

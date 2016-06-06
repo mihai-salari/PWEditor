@@ -8,15 +8,21 @@
 
 import Foundation
 
+/**
+ iCloudファイル情報クラス
+
+ - Version: 1.0 新規作成
+ - Author: paveway.info@gmail.com
+ */
 class ICloudFileInfo: NSObject {
 
+    /// ファイルタイプ
     enum FileType: Int {
         case Unknown = -1
         case File
         case Dir
     }
 
-    var parent = ""
     var name = ""
     var type = FileType.Unknown.rawValue
     var file: NSMetadataItem!

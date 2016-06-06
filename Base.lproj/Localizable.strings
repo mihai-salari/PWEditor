@@ -55,6 +55,7 @@ AlertMessageNoDirectoryErorr = "Directory does not exist.";
 AlertMessageCreateFileError = "Create %@ failed.";
 AlertMessageFileDownloadError = "Download %@ failed.";
 AlertMessageSameFileName = "Same name file exist.\nOverride?";
+AlertMessageFileUploadError = "Upload %@ failed.";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "Local file operation";

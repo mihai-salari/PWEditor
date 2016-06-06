@@ -55,6 +55,7 @@ AlertMessageNoDirectoryErorr = "ディレクトリが存在しません。";
 AlertMessageCreateFileError = "%@が作成できませんでした。";
 AlertMessageFileDownloadError = "%@がダウンロードできませんでした。";
 AlertMessageSameFileName = "同名のファイルが存在します。\n上書きしますか。";
+AlertMessageFileUploadError = "%@をアップロードできませんした。";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "ローカルファイル操作";

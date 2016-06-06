@@ -45,10 +45,11 @@ struct LocalizableConst {
     static let kAlertMessageGetFileListFailed = "AlertMessageGetFileListFailed"
     static let kAlertMessageProcessing = "AlertMessageProcessing"
 
-    static let kAlertMessageUrlError = "AlertMessageUrlError";
-    static let kAlertMessageUrlParamsError = "AlertMessageUrlParamsError";
-    static let kAlertMessageHttpRequestError = "AlertMessageHttpRequestError";
-    static let kAlertMessageHttpStatusError = "AlertMessageHttpStatusError";
+    static let kAlertMessageUrlError = "AlertMessageUrlError"
+    static let kAlertMessageUrlParamsError = "AlertMessageUrlParamsError"
+    static let kAlertMessageHttpRequestError = "AlertMessageHttpRequestError"
+    static let kAlertMessageHttpStatusError = "AlertMessageHttpStatusError"
+    static let kAlertMessageFileUploadError = "AlertMessageFileUploadError"
 
     // アラートメッセージ：FTP関連
     static let kAlertMessageStartFtpError = "AlertMessageStartFtpError"
