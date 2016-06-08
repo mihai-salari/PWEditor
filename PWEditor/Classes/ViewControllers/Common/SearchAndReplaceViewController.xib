@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchAndReplaceViewController" customModule="PWEditor" customModuleProvider="target">
+            <connections>
+                <outlet property="bannerView" destination="tjd-JX-raC" id="hlL-88-eTd"/>
+                <outlet property="tableView" destination="cUy-E6-m7m" id="5DC-dI-GUU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="voe-Y9-p2L"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cUy-E6-m7m">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjd-JX-raC" customClass="GADBannerView">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="UYJ-h7-L7M"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="cUy-E6-m7m" secondAttribute="trailing" id="Bp5-Xb-ed9"/>
+                <constraint firstItem="tjd-JX-raC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="FSJ-tA-7Cn"/>
+                <constraint firstItem="cUy-E6-m7m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="H3d-mZ-yjg"/>
+                <constraint firstAttribute="trailing" secondItem="tjd-JX-raC" secondAttribute="trailing" id="Vf3-NG-KQs"/>
+                <constraint firstItem="tjd-JX-raC" firstAttribute="top" secondItem="cUy-E6-m7m" secondAttribute="bottom" id="h2p-EV-3OZ"/>
+                <constraint firstAttribute="bottom" secondItem="tjd-JX-raC" secondAttribute="bottom" id="hJ1-vk-9O1"/>
+                <constraint firstItem="cUy-E6-m7m" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="j90-dz-XU7"/>
+                <constraint firstItem="tjd-JX-raC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kLZ-4t-7YA"/>
+                <constraint firstItem="cUy-E6-m7m" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nbW-o5-356"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>

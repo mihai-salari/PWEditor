@@ -84,6 +84,15 @@ class BaseTableViewController: BaseViewController, UITableViewDataSource, UITabl
         return cell!
     }
 
+    func getTableViewLineDataCell(tableView: UITableView) -> EnterLineDataTableViewCell {
+        var lineDataCell = tableView.dequeueReusableCellWithIdentifier(kLineDataCellName) as? EnterLineDataTableViewCell
+        if (lineDataCell == nil) {
+            // セルを生成する。
+            lineDataCell = EnterLineDataTableViewCell()
+        }
+        return lineDataCell!
+    }
+
     // MARK: - Common method
 
     /**

@@ -15,7 +15,7 @@ import GoogleMobileAds
  - Version: 1.0 新規作成
  - Author: paveway.info@gmail.com
  */
-class EditLocalFileViewController: BaseEditViewController {
+class EditLocalFileViewController: BaseEditViewController, SearchAndReplaceDelegate {
 
     // MARK: - Variables
 
@@ -49,8 +49,11 @@ class EditLocalFileViewController: BaseEditViewController {
     /// 改行コードタイプ
     private var retCodeType: Int!
 
-    /// grep単語
-    private var grepWord = ""
+    /// 検索単語
+    private var searchWord = ""
+
+    /// 置換単語
+    private var replaceWord = ""
 
     // MARK: - Initializer
 
@@ -183,10 +186,25 @@ class EditLocalFileViewController: BaseEditViewController {
      - Parameter sender: 検索ツールバーボタン
      */
     @IBAction func searchToolbarButtonPressed(sender: AnyObject) {
-        let searchWord = ""
         let fileData = textView.text
-        let vc = SearchWordViewController(searchWord: searchWord, fileData: fileData)
+        let vc = SearchAndReplaceViewController(fileName: fileName, fileData: fileData, searchWord: searchWord, replaceWord: replaceWord)
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func receiveData(searchWord: String) {
+        self.searchWord = searchWord
+    }
+
+    func receiveData(searchWord: String, replaceWord: String) {
+        self.searchWord = searchWord
+        self.replaceWord = replaceWord
+    }
+
+    func receiveData(searchWord: String, replaceWord: String, fileData: String) {
+        self.searchWord = searchWord
+        self.replaceWord = replaceWord
+        textView.text = fileData
     }
 
     // MARK: - Private method

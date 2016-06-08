@@ -169,6 +169,8 @@
 		3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */; };
 		3F889C3D1D0247A10036A6DE /* ICloudFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F889C3C1D0247A10036A6DE /* ICloudFileInfo.swift */; };
 		3F889C461D062C4F0036A6DE /* ICloudDocumentSyncLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F889C451D062C4F0036A6DE /* ICloudDocumentSyncLicense.txt */; };
+		3F889C491D0631300036A6DE /* SearchAndReplaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F889C471D0631300036A6DE /* SearchAndReplaceViewController.swift */; };
+		3F889C4A1D0631300036A6DE /* SearchAndReplaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F889C481D0631300036A6DE /* SearchAndReplaceViewController.xib */; };
 		3FA0176F1CDADE2B00B632F4 /* PdfViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */; };
 		3FA017701CDADE2B00B632F4 /* PdfViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FA0176E1CDADE2B00B632F4 /* PdfViewerViewController.xib */; };
 		3FA017771CDADF4C00B632F4 /* PdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA017761CDADF4C00B632F4 /* PdfView.swift */; };
@@ -450,6 +452,8 @@
 		3F7494841C753B0B002A0544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F889C3C1D0247A10036A6DE /* ICloudFileInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICloudFileInfo.swift; path = Classes/ViewControllers/Cloud/ICloud/ICloudFileInfo.swift; sourceTree = "<group>"; };
 		3F889C451D062C4F0036A6DE /* ICloudDocumentSyncLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ICloudDocumentSyncLicense.txt; path = Resources/Licenses/ICloudDocumentSyncLicense.txt; sourceTree = "<group>"; };
+		3F889C471D0631300036A6DE /* SearchAndReplaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchAndReplaceViewController.swift; path = Classes/ViewControllers/Common/SearchAndReplaceViewController.swift; sourceTree = "<group>"; };
+		3F889C481D0631300036A6DE /* SearchAndReplaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchAndReplaceViewController.xib; path = Classes/ViewControllers/Common/SearchAndReplaceViewController.xib; sourceTree = "<group>"; };
 		3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfViewerViewController.swift; path = Classes/ViewControllers/Common/PdfViewerViewController.swift; sourceTree = "<group>"; };
 		3FA0176E1CDADE2B00B632F4 /* PdfViewerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PdfViewerViewController.xib; path = Classes/ViewControllers/Common/PdfViewerViewController.xib; sourceTree = "<group>"; };
 		3FA017761CDADF4C00B632F4 /* PdfView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PdfView.swift; path = Classes/ViewControllers/Common/PdfView.swift; sourceTree = "<group>"; };
@@ -542,6 +546,8 @@
 				3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */,
 				3FA0176E1CDADE2B00B632F4 /* PdfViewerViewController.xib */,
 				3FA017761CDADF4C00B632F4 /* PdfView.swift */,
+				3F889C471D0631300036A6DE /* SearchAndReplaceViewController.swift */,
+				3F889C481D0631300036A6DE /* SearchAndReplaceViewController.xib */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1266,6 +1272,7 @@
 				3F447C881C8904FD001A3518 /* SelectEncodingViewController.xib in Resources */,
 				3F3E85BD1C776174002EFB6D /* EnterLineDataTableViewCell.xib in Resources */,
 				3FDB24FC1CF31E8B0073BC04 /* Syntax_javascript in Resources */,
+				3F889C4A1D0631300036A6DE /* SearchAndReplaceViewController.xib in Resources */,
 				3F165E381C7A687C001CBC38 /* LocalFileListViewController.xib in Resources */,
 				3F17F0541CD01C6A00A1F280 /* SearchWordViewController.xib in Resources */,
 				3F165E681C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.xib in Resources */,
@@ -1357,6 +1364,7 @@
 				3F57FECD1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift in Sources */,
 				3FDB24E01CEF2EDF0073BC04 /* CYRTextView.m in Sources */,
 				3FDB24C31CED096E0073BC04 /* SelectLocalDirectoryListViewController.swift in Sources */,
+				3F889C491D0631300036A6DE /* SearchAndReplaceViewController.swift in Sources */,
 				3FDB24DE1CEF2EDF0073BC04 /* CYRLayoutManager.m in Sources */,
 				3F28526A1CE3EF1100C77435 /* BRRequestCreateDirectory.m in Sources */,
 				3F165E671C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift in Sources */,

@@ -19,7 +19,9 @@ struct LocalizableConst {
     static let kButtonTitleOpenChar = "ButtonTitleOpenChar"
     static let kButtonTitleEdit = "ButtonTitleEdit"
     static let kButtonTitleDownload = "ButtonTitleDownload"
-    static let kButtonTitleFtpUpload = "ButtonTitleFtpUpload";
+    static let kButtonTitleFtpUpload = "ButtonTitleFtpUpload"
+    static let kButtonTitleSearch = "ButtonTitleSearch"
+    static let kButtonTitleReplace = "ButtonTitleReplace"
 
     // アラートタイトル
     static let kAlertTitleError = "AlertTitleError"
@@ -107,6 +109,14 @@ struct LocalizableConst {
 
     // 単語検索画面
     static let kSearchWordScreenTitle = "SearchWordScreenTitle"
+
+    // 検索・置換画面
+    static let kSearchAndReplaceSegmentedTitleSearch = "SearchAndReplaceSegmentedTitleSearch"
+    static let kSearchAndReplaceSegmentedTitleReplace = "SearchAndReplaceSegmentedTitleReplace"
+    static let kSearchAndReplaceSectionTitleInput = "SearchAndReplaceSectionTitleInput"
+    static let kSearchAndReplaceSectionTitleResult = "SearchAndReplaceSectionTitleResult"
+    static let kSearchAndReplaceCellTitleSearch = "SearchAndReplaceCellTitleSearch"
+    static let kSearchAndReplaceCellTitleReplace = "SearchAndReplaceCellTitleReplace"
 
     // ローカルファイル一覧画面
     static let kLocalFileListScreenTitle = "LocalFileListScreenTitle"
@@ -213,7 +223,7 @@ struct LocalizableConst {
 
     // GoogleDriveファイル編集画面
     static let kEditGoogleDriveFileDownloadError = "EditGoogleDriveFileDownloadError";
-    static let kEditGoogleDriveFileDownloadDataError = "EditGoogleDriveFileDownloadDataError";
+    static let kEditGoogleDriveFileDownloadDataError = "EditGoogleDriveFileDownloadDataError"
 
     // OneDriveファイル一覧画面
     static let kOneDriveFileListScreenTitle = "OneDriveFileListScreenTitle"

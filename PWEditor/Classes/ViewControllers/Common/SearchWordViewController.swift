@@ -254,7 +254,7 @@ class SearchWordViewController: BaseTableViewController, UISearchBarDelegate, UI
             let line = lines[i]
             let range = line.rangeOfString(searchWord)
             if range != nil {
-                // 行にgrep単語が含まれる場合
+                // 行に検索単語が含まれる場合
                 let searchResultInfo = SearchResultInfo()
                 searchResultInfo.line = String(i + 1)
 

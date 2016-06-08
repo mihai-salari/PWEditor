@@ -17,6 +17,8 @@ ButtonTitleOpenChar = "文字エンコーディングを指定して開く";
 ButtonTitleEdit = "編集";
 ButtonTitleDownload = "ダウンロード";
 ButtonTitleFtpUpload = "FTPアップロード";
+ButtonTitleSearch = "検索";
+ButtonTitleReplace = "置換";
 
 // アラートタイトル
 AlertTitleError = "エラー";
@@ -101,6 +103,14 @@ MenuCellTitleOpenSourceLicense = "オープンソースライセンス";
 
 // 単語検索画面
 SearchWordScreenTitle = "単語検索";
+
+// 検索・置換画面
+SearchAndReplaceSegmentedTitleSearch = "検索";
+SearchAndReplaceSegmentedTitleReplace = "置換";
+SearchAndReplaceSectionTitleInput = "";
+SearchAndReplaceSectionTitleResult = "結果";
+SearchAndReplaceCellTitleSearch = "検索単語";
+SearchAndReplaceCellTitleReplace = "置換単語";
 
 // ローカルファイル一覧画面
 LocalFileListScreenTitle = "ローカルファイル一覧";
