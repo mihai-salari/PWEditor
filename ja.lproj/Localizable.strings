@@ -19,6 +19,9 @@ ButtonTitleDownload = "ダウンロード";
 ButtonTitleFtpUpload = "FTPアップロード";
 ButtonTitleSearch = "検索";
 ButtonTitleReplace = "置換";
+ButtonTitleRename = "名前変更";
+ButtonTitleCopy = "コピー";
+ButtonTitleMove = "移動";
 
 // アラートタイトル
 AlertTitleError = "エラー";
@@ -58,6 +61,10 @@ AlertMessageCreateFileError = "%@が作成できませんでした。";
 AlertMessageFileDownloadError = "%@がダウンロードできませんでした。";
 AlertMessageSameFileName = "同名のファイルが存在します。\n上書きしますか。";
 AlertMessageFileUploadError = "%@をアップロードできませんした。";
+
+AlertMessageEnterNameError = "名前を入力してください。";
+AlertMessageSameNameError = "同名のファイルまたはディレクトリが存在します。";
+AlertMessageRenameError = "名前変更できませんでした。";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "ローカルファイル操作";
@@ -142,6 +149,9 @@ LocalFileDetailCellTitleUpdateDate = "更新日";
 
 // ローカルファイルgrep一覧画面
 GrepLocalFileListScreenTitle = "ローカルファイルgrep一覧";
+
+// ローカルファイル名前変更画面
+RenameLocalFileScreenTitle = "ローカルファイル名前変更";
 
 // ディレクトリ選択画面
 SelectDirScreenTitle = "ディレクトリ選択";

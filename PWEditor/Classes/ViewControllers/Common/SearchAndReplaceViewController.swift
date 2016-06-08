@@ -112,8 +112,8 @@ class SearchAndReplaceViewController: BaseTableViewController, UITextFieldDelega
     /**
      イニシャライザ
 
-     - Parameter fileName: パス名
-     - Parameter fileData: ファイル名
+     - Parameter fileName: ファイル名
+     - Parameter fileData: ファイルデータ
      - Parameter searchWord: 検索単語
      - Parameter replaceWord: 置換単語
      */
@@ -138,7 +138,6 @@ class SearchAndReplaceViewController: BaseTableViewController, UITextFieldDelega
         super.viewDidLoad()
 
         // 画面タイトルを設定する。
-        // TODO: ファイル名を設定する。
         navigationItem.title = fileName
 
         // 右バーボタンを作成する。
@@ -174,9 +173,16 @@ class SearchAndReplaceViewController: BaseTableViewController, UITextFieldDelega
         super.didReceiveMemoryWarning()
     }
 
+    /**
+     画面が表示される前に呼び出される。
+ 
+     - Parameter animated: アニメーション指定
+     */
     override func viewWillAppear(animated: Bool) {
+        // スーパークラスのメソッドを呼び出す。
         super.viewWillAppear(animated)
 
+        // 単語検索を行う。
         search()
     }
 

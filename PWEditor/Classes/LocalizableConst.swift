@@ -22,6 +22,9 @@ struct LocalizableConst {
     static let kButtonTitleFtpUpload = "ButtonTitleFtpUpload"
     static let kButtonTitleSearch = "ButtonTitleSearch"
     static let kButtonTitleReplace = "ButtonTitleReplace"
+    static let kButtonTitleRename = "ButtonTitleRename"
+    static let kButtonTitleCopy = "ButtonTitleCopy"
+    static let kButtonTitleMove = "ButtonTitleMove"
 
     // アラートタイトル
     static let kAlertTitleError = "AlertTitleError"
@@ -62,6 +65,10 @@ struct LocalizableConst {
     static let kAlertMessageCreateFileError = "AlertMessageCreateFileError"
     static let kAlertMessageFileDownloadError = "AlertMessageFileDownloadError"
         static let kAlertMessageSameFileName = "AlertMessageSameFileName"
+
+    static let kAlertMessageEnterNameError = "AlertMessageEnterNameError";
+    static let kAlertMessageSameNameError = "AlertMessageSameNameError";
+    static let kAlertMessageRenameError = "AlertMessageRenameError";
 
     // アクションシートタイトル
     static let kActionSheetTitleLocalFile = "ActionSheetTitleLocalFile"
@@ -148,6 +155,9 @@ struct LocalizableConst {
 
     // ローカルファイルgrep一覧画面
     static let kGrepLocalFileListScreenTitle = "GrepLocalFileListScreenTitle"
+
+    // ローカルファイル名前変更画面
+    static let kRenameLocalFileScreenTitle = "RenameLocalFileScreenTitle"
 
     // ディレクトリ選択画面
     static let kSelectDirScreenTitle = "SelectDirScreenTitle"

@@ -128,15 +128,15 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         // バナービューを設定する。
         setupBannerView(bannerView)
 
-        // ファイル情報リストを取得する。
-        let localPathName = FileUtils.getLocalPath(pathName)
-        fileInfoList = FileUtils.getFileInfoListInDir(localPathName)
-
-        if fileInfoList.count > 0 {
-            // ファイル情報が存在する場合、
-            // 右上編集ボタンを表示する。
-//            navigationItem.rightBarButtonItem = editButtonItem()
-        }
+//        // ファイル情報リストを取得する。
+//        let localPathName = FileUtils.getLocalPath(pathName)
+//        fileInfoList = FileUtils.getFileInfoListInDir(localPathName)
+//
+//        if fileInfoList.count > 0 {
+//            // ファイル情報が存在する場合、
+//            // 右上編集ボタンを表示する。
+////            navigationItem.rightBarButtonItem = editButtonItem()
+//        }
     }
 
     /**
@@ -147,6 +147,16 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
 
         // スーパークラスのメソッドを呼び出す。
         super.didReceiveMemoryWarning()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // ファイル情報リストを取得する。
+        let localPathName = FileUtils.getLocalPath(pathName)
+        fileInfoList = FileUtils.getFileInfoListInDir(localPathName)
+
+        tableView.reloadData()
     }
 
     /*
@@ -627,6 +637,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
         let name = fileInfo.name
         let isDir = fileInfo.isDir
         if !isDir {
+            // ファイルの場合
             // 文字エンコーディングを指定して開くボタンを生成する。
             let openCharButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleOpenChar)
             let openCharAction = UIAlertAction(title: openCharButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
@@ -648,6 +659,16 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             })
             alert.addAction(ftpUploadAction)
         }
+
+        // 名前変更ボタンを生成する。
+        let renameButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleRename)
+        let renameAction = UIAlertAction(title: renameButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+            // ローカルファイル名前変更画面に遷移する。
+            let name = fileInfo.name
+            let vc = RenameLocalFileViewController(pathName: self.pathName, srcName: name)
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(renameAction)
 
         // 削除ボタンを生成する。
         let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)

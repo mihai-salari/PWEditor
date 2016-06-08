@@ -71,6 +71,19 @@ class FileUtils: NSObject {
         return localPath
     }
 
+    class func rename(pathName: String, srcName: String, toName: String) -> Bool {
+        let srcPath = getLocalPath(pathName, name: srcName)
+        let toPath = getLocalPath(pathName, name: toName)
+
+        let fileManager = NSFileManager.defaultManager()
+        do {
+            try fileManager.moveItemAtPath(srcPath, toPath: toPath)
+        } catch {
+            return false
+        }
+        return true
+    }
+
     /**
      拡張子をチェックする。
 
@@ -97,6 +110,23 @@ class FileUtils: NSObject {
         }
     }
 
+    /**
+     ディレクトリ/ファイルが存在するかチェックする。
+
+     - Parameter pathName: パス名
+     - Parameter name: ディレクトリ名、またはファイル名
+     - Returns: チェック結果 true:存在する。 / false:存在しない。
+     */
+    class func isExist(pathName: String, name: String) -> Bool {
+        let localPath = getLocalPath(pathName, name: name)
+        let fileManager = NSFileManager.defaultManager()
+        var isDir: ObjCBool = false
+        let isFile = fileManager.fileExistsAtPath(localPath, isDirectory: &isDir)
+        if isDir {
+            return true
+        }
+        return isFile
+    }
 
     /**
      ディレクトリ/ファイルが存在するかチェックする。
