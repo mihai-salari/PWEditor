@@ -169,6 +169,8 @@
 		3F7494831C753B0B002A0544 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7494811C753B0B002A0544 /* LaunchScreen.storyboard */; };
 		3F76F1B41D08CF3600B288D6 /* RenameLocalFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76F1B21D08CF3600B288D6 /* RenameLocalFileViewController.swift */; };
 		3F76F1B51D08CF3600B288D6 /* RenameLocalFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F76F1B31D08CF3600B288D6 /* RenameLocalFileViewController.xib */; };
+		3F76F1B81D08E37500B288D6 /* SelectStorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76F1B61D08E37500B288D6 /* SelectStorageViewController.swift */; };
+		3F76F1B91D08E37500B288D6 /* SelectStorageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F76F1B71D08E37500B288D6 /* SelectStorageViewController.xib */; };
 		3F889C3D1D0247A10036A6DE /* ICloudFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F889C3C1D0247A10036A6DE /* ICloudFileInfo.swift */; };
 		3F889C461D062C4F0036A6DE /* ICloudDocumentSyncLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F889C451D062C4F0036A6DE /* ICloudDocumentSyncLicense.txt */; };
 		3F889C491D0631300036A6DE /* SearchAndReplaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F889C471D0631300036A6DE /* SearchAndReplaceViewController.swift */; };
@@ -454,6 +456,8 @@
 		3F7494841C753B0B002A0544 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F76F1B21D08CF3600B288D6 /* RenameLocalFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RenameLocalFileViewController.swift; path = Classes/ViewControllers/Local/RenameLocalFileViewController.swift; sourceTree = "<group>"; };
 		3F76F1B31D08CF3600B288D6 /* RenameLocalFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RenameLocalFileViewController.xib; path = Classes/ViewControllers/Local/RenameLocalFileViewController.xib; sourceTree = "<group>"; };
+		3F76F1B61D08E37500B288D6 /* SelectStorageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectStorageViewController.swift; path = Classes/ViewControllers/Common/SelectStorageViewController.swift; sourceTree = "<group>"; };
+		3F76F1B71D08E37500B288D6 /* SelectStorageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectStorageViewController.xib; path = Classes/ViewControllers/Common/SelectStorageViewController.xib; sourceTree = "<group>"; };
 		3F889C3C1D0247A10036A6DE /* ICloudFileInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICloudFileInfo.swift; path = Classes/ViewControllers/Cloud/ICloud/ICloudFileInfo.swift; sourceTree = "<group>"; };
 		3F889C451D062C4F0036A6DE /* ICloudDocumentSyncLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ICloudDocumentSyncLicense.txt; path = Resources/Licenses/ICloudDocumentSyncLicense.txt; sourceTree = "<group>"; };
 		3F889C471D0631300036A6DE /* SearchAndReplaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchAndReplaceViewController.swift; path = Classes/ViewControllers/Common/SearchAndReplaceViewController.swift; sourceTree = "<group>"; };
@@ -550,6 +554,8 @@
 				3F889C471D0631300036A6DE /* SearchAndReplaceViewController.swift */,
 				3F889C481D0631300036A6DE /* SearchAndReplaceViewController.xib */,
 				3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */,
+				3F76F1B61D08E37500B288D6 /* SelectStorageViewController.swift */,
+				3F76F1B71D08E37500B288D6 /* SelectStorageViewController.xib */,
 				3FA0176D1CDADE2B00B632F4 /* PdfViewerViewController.swift */,
 				3FA0176E1CDADE2B00B632F4 /* PdfViewerViewController.xib */,
 				3FA017761CDADF4C00B632F4 /* PdfView.swift */,
@@ -1262,6 +1268,7 @@
 				3F7494801C753B0B002A0544 /* Assets.xcassets in Resources */,
 				3F165E601C7A776F001CBC38 /* highlight.pack.js in Resources */,
 				3F12E8571CC580260008DDEE /* MenuViewController.xib in Resources */,
+				3F76F1B91D08E37500B288D6 /* SelectStorageViewController.xib in Resources */,
 				3F003D271C767B1800ECC371 /* Localizable.strings in Resources */,
 				3F2852871CE9308900C77435 /* FtpFileDetailViewController.xib in Resources */,
 				3F2852911CE93F9B00C77435 /* ShowFtpFileViewController.xib in Resources */,
@@ -1415,6 +1422,7 @@
 				3F55D4761CDFEE3300818A4E /* ICloud.swift in Sources */,
 				3F157C061C84F50E007C555E /* DropboxFileListViewController.swift in Sources */,
 				3F23F9601C7BBAA2004852B3 /* GrepResultInfo.swift in Sources */,
+				3F76F1B81D08E37500B288D6 /* SelectStorageViewController.swift in Sources */,
 				3F1915521C8CCF360042D306 /* LineNumberLayoutManager.m in Sources */,
 				3F1915471C8CCE8D0042D306 /* CharCode.swift in Sources */,
 				3F2852821CE54E0B00C77435 /* ShowFtpFileViewController.swift in Sources */,

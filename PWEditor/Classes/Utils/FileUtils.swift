@@ -65,15 +65,66 @@ class FileUtils: NSObject {
         let localPath: String
         if pathName.isEmpty {
             localPath = "\(documentsPath)/\(name)"
+
         } else {
             localPath = "\(documentsPath)/\(pathName)/\(name)"
         }
         return localPath
     }
 
+    /**
+     名前変更を行う。
+
+     - Parameter pathName: パス名
+     - Parameter name: 名前
+     - Parameter toPathName: コピー先パス名
+     - Returns: 処理結果
+     */
     class func rename(pathName: String, srcName: String, toName: String) -> Bool {
         let srcPath = getLocalPath(pathName, name: srcName)
         let toPath = getLocalPath(pathName, name: toName)
+
+        let fileManager = NSFileManager.defaultManager()
+        do {
+            try fileManager.moveItemAtPath(srcPath, toPath: toPath)
+        } catch {
+            return false
+        }
+        return true
+    }
+
+    /**
+     コピーを行う。
+ 
+     - Parameter pathName: パス名
+     - Parameter name: 名前
+     - Parameter toPathName: コピー先パス名
+     - Returns: 処理結果
+     */
+    class func copy(pathName: String, name: String, toPathName: String) -> Bool {
+        let srcPath = getLocalPath(pathName, name: name)
+        let toPath = getLocalPath(toPathName, name: name)
+
+        let fileManager = NSFileManager.defaultManager()
+        do {
+            try fileManager.copyItemAtPath(srcPath, toPath: toPath)
+        } catch {
+            return false
+        }
+        return true
+    }
+
+    /**
+     移動を行う。
+ 
+     - Parameter pathName: パス名
+     - Parameter name: 名前
+     - Parameter toPathName: 移動先パス名
+     - Returns: 処理結果
+     */
+    class func move(pathName: String, name: String, toPathName: String) -> Bool {
+        let srcPath = getLocalPath(pathName, name: name)
+        let toPath = getLocalPath(toPathName, name: name)
 
         let fileManager = NSFileManager.defaultManager()
         do {

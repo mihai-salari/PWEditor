@@ -65,6 +65,9 @@ AlertMessageFileUploadError = "Upload %@ failed.";
 AlertMessageEnterNameError = "Please nter a name.";
 AlertMessageSameNameError = "Exist same name file or directory.";
 AlertMessageRenameError = "Rename failed.";
+AlertMessageDirNotSelectError = "Directory not selected.";
+AlertMessageCopyError = "Copy failed.";
+AlertMessageMoveError = "Move failed.";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "Local file operation";

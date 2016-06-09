@@ -119,6 +119,9 @@ class SelectFtpUploadDirectoryListViewController: BaseTableViewController, UIGes
      メモリ不足の時に呼び出される。
      */
     override func didReceiveMemoryWarning() {
+        LogUtils.w("memory error.")
+
+        // スーパークラスのメソッドを呼び出す。
         super.didReceiveMemoryWarning()
     }
 

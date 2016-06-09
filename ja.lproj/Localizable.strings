@@ -65,6 +65,9 @@ AlertMessageFileUploadError = "%@をアップロードできませんした。";
 AlertMessageEnterNameError = "名前を入力してください。";
 AlertMessageSameNameError = "同名のファイルまたはディレクトリが存在します。";
 AlertMessageRenameError = "名前変更できませんでした。";
+AlertMessageDirNotSelectError = "ディレクトリが選択されていません。";
+AlertMessageCopyError = "コピーできませんでした。";
+AlertMessageMoveError = "移動できませんでした。";
 
 // アクションシートタイトル
 ActionSheetTitleLocalFile = "ローカルファイル操作";

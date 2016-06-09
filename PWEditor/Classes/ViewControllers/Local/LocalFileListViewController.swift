@@ -534,12 +534,13 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
      - Parameter sender: コピーツールバーボタン
      */
     func copyToolbarButtonPressed(sender: UIBarButtonItem) {
-        // ディレクトリ選択画面に遷移する。
-        let fileInfoList = getCheckedFileInfoList()
-        let indexPaths = tableView.indexPathsForSelectedRows
-
-        let vc = SelectDirViewController(pathName: "/", fileInfoList: fileInfoList)
-        navigationController?.pushViewController(vc, animated: true)
+//        // ディレクトリ選択画面に遷移する。
+//        let fileInfoList = getCheckedFileInfoList()
+//        let indexPaths = tableView.indexPathsForSelectedRows
+//
+//        let sourceClassName = self.dynamicType.description()
+//        let vc = SelectDirViewController(sourceClassName: sourceClassName, pathName: "/")
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
     /**
@@ -548,11 +549,12 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
      - Parameter sender: 移動ツールバーボタン
      */
     func moveToolbarButtonPressed(sender: UIBarButtonItem) {
-        // ディレクトリ選択画面に遷移する。
-        let fileInfoList = getCheckedFileInfoList()
-
-        let vc = SelectDirViewController(pathName: "/", fileInfoList: fileInfoList)
-        navigationController?.pushViewController(vc, animated: true)
+//        // ディレクトリ選択画面に遷移する。
+//        let fileInfoList = getCheckedFileInfoList()
+//
+//        let sourceClassName = self.dynamicType.description()
+//        let vc = SelectDirViewController(sourceClassName: sourceClassName, pathName: "/")
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
     /**
@@ -647,17 +649,20 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             })
             alert.addAction(openCharAction)
 
-            // FTPアップロードボタンを生成する。
-            let ftpUploadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleFtpUpload)
-            let ftpUploadAction = UIAlertAction(title: ftpUploadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
-                // FTPアップロードホスト選択一覧画面に遷移する。
-                let sourceClassName = self.dynamicType.description()
-                let path = FileUtils.getLocalPath(name)
-                let fileData = NSData(contentsOfFile: path)
-                let vc = SelectFtpUploadHostListViewController(sourceClassName: sourceClassName, fileName: name, fileData: fileData!)
-                self.navigationController?.pushViewController(vc, animated: true)
-            })
-            alert.addAction(ftpUploadAction)
+            let hostName = FtpHostUtils.getHostName()
+            if !hostName.isEmpty {
+                // FTPアップロードボタンを生成する。
+                let ftpUploadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleFtpUpload)
+                let ftpUploadAction = UIAlertAction(title: ftpUploadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+                    // FTPアップロードホスト選択一覧画面に遷移する。
+                    let sourceClassName = self.dynamicType.description()
+                    let path = FileUtils.getLocalPath(name)
+                    let fileData = NSData(contentsOfFile: path)
+                    let vc = SelectFtpUploadHostListViewController(sourceClassName: sourceClassName, fileName: name, fileData: fileData!)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                })
+                alert.addAction(ftpUploadAction)
+            }
         }
 
         // 名前変更ボタンを生成する。
@@ -669,6 +674,30 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             self.navigationController?.pushViewController(vc, animated: true)
         })
         alert.addAction(renameAction)
+
+        // コピーボタンを生成する。
+        let copyButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCopy)
+        let copyAction = UIAlertAction(title: copyButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+            // ディレクトリ選択画面に遷移する。
+            let pathName = "/"
+            let name = fileInfo.name
+            let operateType = SelectDirViewController.OperateType.Copy.rawValue
+            let vc = SelectDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(copyAction)
+
+        // 移動ボタンを生成する。
+        let moveButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleMove)
+        let moveAction = UIAlertAction(title: moveButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+            // ディレクトリ選択画面に遷移する。
+            let pathName = "/"
+            let name = fileInfo.name
+            let operateType = SelectDirViewController.OperateType.Move.rawValue
+            let vc = SelectDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(moveAction)
 
         // 削除ボタンを生成する。
         let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)

@@ -69,6 +69,9 @@ struct LocalizableConst {
     static let kAlertMessageEnterNameError = "AlertMessageEnterNameError";
     static let kAlertMessageSameNameError = "AlertMessageSameNameError";
     static let kAlertMessageRenameError = "AlertMessageRenameError";
+    static let kAlertMessageDirNotSelectError = "AlertMessageDirNotSelectError";
+    static let kAlertMessageCopyError = "AlertMessageCopyError";
+    static let kAlertMessageMoveError = "AlertMessageMoveError";
 
     // アクションシートタイトル
     static let kActionSheetTitleLocalFile = "ActionSheetTitleLocalFile"

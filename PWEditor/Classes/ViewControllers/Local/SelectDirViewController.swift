@@ -22,6 +22,12 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
     /// 画面タイトル
     let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kSelectDirScreenTitle)
 
+    /// 操作タイプ
+    enum OperateType: Int {
+        case Copy
+        case Move
+    }
+
     // MARK: - Variables
 
     // テーブルビュー
@@ -31,13 +37,22 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
     @IBOutlet weak var bannerView: GADBannerView!
 
     /// パス名
-    var pathName: String!
+    private var pathName: String!
 
-    /// ファイル情報リスト
-    var fileInfoList: [FileInfo]!
+    /// 名前
+    private var name: String!
+
+    /// 元のパス名
+    private var srcPathName: String!
+
+    /// 元の名前
+    private var srcName: String!
+
+    /// 操作タイプ
+    private var operateType: Int!
 
     /// ディレクトリ情報リスト
-    var dirInfoList: [FileInfo]?
+    private var dirInfoList = [FileInfo]()
 
     // MARK: - Initializer
 
@@ -55,12 +70,18 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
      イニシャライザ
 
      - Parameter pathName: パス名
-     - Parameter fileInfoList: ファイル情報リスト
+     - Parameter name: 名前
+     - Parameter srcPathName: 元のパス名
+     - Parameter srcName: 元の名前
+     - Parameter operateType: 操作タイプ
      */
-    init(pathName: String, fileInfoList: [FileInfo]) {
+    init(pathName: String, name: String, srcPathName: String, srcName: String, operateType: Int) {
         // 引数のデータを保存する。
         self.pathName = pathName
-        self.fileInfoList = fileInfoList
+        self.name = name
+        self.srcPathName = srcPathName
+        self.srcName = srcName
+        self.operateType = operateType
 
         // スーパークラスのメソッドを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -78,6 +99,9 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
         // 画面タイトルを設定する。
         navigationItem.title = kScreenTitle
 
+        // 右バーボタンを作成する。
+        createRightBarButton()
+
         // テーブルビューを設定する。
         setupTableView(tableView)
 
@@ -87,7 +111,14 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
         // バナービューを設定する。
         setupBannerView(bannerView)
 
-        if pathName != "/" {
+        if pathName == "/" {
+            // ルートディレクトリの場合
+            let fileInfo = FileInfo()
+            fileInfo.name = pathName
+            fileInfo.isDir = true
+            dirInfoList.append(fileInfo)
+
+        } else {
             // ルートディレクトリ以外の場合
             // ディレクトリ情報リストを取得する。
             let localPathName = FileUtils.getLocalPath(pathName)
@@ -116,14 +147,7 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
     */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // ディレクトリ情報リストの件数を返却する。
-        let count: Int
-        if pathName == "/" {
-            // ルートディレクトリの場合
-            count = 1
-        } else {
-            // ルートディレクトリ以外の場合
-            count = dirInfoList!.count
-        }
+        let count = dirInfoList.count
         return count
     }
 
@@ -138,16 +162,10 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
         // セルを取得する。
         let cell = getTableViewCell(tableView)
 
-        if pathName == "/" {
-            // ルートディレクトリの場合
-            cell.textLabel!.text = pathName
-
-        } else {
-            // ルートディレクトリ以外の場合
-            let row = indexPath.row
-            let dirInfo = dirInfoList![row]
-            cell.textLabel!.text = dirInfo.name
-        }
+        let row = indexPath.row
+        let dirInfo = dirInfoList[row]
+        let name = dirInfo.name
+        cell.textLabel!.text = name
         cell.accessoryType = .DisclosureIndicator
 
         return cell
@@ -165,24 +183,41 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
         // セルの選択状態を解除する。
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        // ディレクトリ選択画面に遷移する。
-        let localPathName: String
+        // 次のサブディレクトリパス名を取得する。
+        let row = indexPath.row
+        let dirInfo = dirInfoList[row]
+        let name = dirInfo.name
+        let path: String
         if pathName == "/" {
-            // ルートディレクトの場合
-            localPathName = ""
+            // ルートディレクトリの場合
+            path = ""
+
         } else {
-            // ルートディレクトリ以外の場合
-            let row = indexPath.row
-            let dirInfo = dirInfoList![row]
-            if pathName.isEmpty {
+            if pathName == "" {
                 // 1階層目の場合
-                localPathName = dirInfo.name
+                path = "\(name)"
+
             } else {
                 // 2階層目以降の場合
-                localPathName = "\(pathName)/\(dirInfo.name)"
+                path = "\(pathName)/\(name)"
             }
         }
-        let vc = SelectDirViewController(pathName: localPathName, fileInfoList: fileInfoList)
+
+        // サブディレクトリ内にディレクトリが存在するか確認する。
+        let localPath = FileUtils.getLocalPath(path)
+        let tmpdirInfoList = FileUtils.getDirInfoListInDir(localPath)
+        let dirNum = tmpdirInfoList.count
+        if dirNum == 0 {
+            // ディレクトリが存在しない場合
+            // アラートを表示して処理終了
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageNoDirectoryError)
+            showAlert(title, message: message)
+            return
+        }
+
+        // ディレクトリ選択画面に遷移する。
+        let vc = SelectDirViewController(pathName: path, name: name, srcPathName: srcPathName, srcName: srcName, operateType: operateType)
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -205,25 +240,162 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
 
         if recognizer.state == UIGestureRecognizerState.Began {
             // ジェスチャーが開始状態の場合
-            // ディレクトリパス名を取得する。
-            let driPathName: String
-            if pathName == "/" {
-                // ルートディレクトの場合
-                driPathName = ""
+            // チェックマークを設定する。
+            let cell = tableView.cellForRowAtIndexPath(indexPath!)
+            if cell == nil {
+                return
+            }
+
+            if cell!.accessoryType == .Checkmark {
+                // チェックマークが設定されている場合
+                cell!.accessoryType = .DisclosureIndicator
+
             } else {
-                // ルートディレクトリ以外の場合
-                let row = indexPath!.row
-                let dirInfo = dirInfoList![row]
-                if pathName.isEmpty {
-                    // 1階層目の場合
-                    driPathName = dirInfo.name
-                } else {
-                    // 2階層目以降の場合
-                    driPathName = "\(pathName)/\(dirInfo.name)"
+                // チェックマークが設定されていない場合
+                cell!.accessoryType = .Checkmark
+            }
+
+            // 選択されていないセルのチェックマークを外す。
+            let count = dirInfoList.count
+            let row = indexPath!.row
+            for i in 0 ..< count {
+                if i != row {
+                    let unselectedIndexPath = NSIndexPath(forRow: i, inSection: 0)
+                    let unselectedCell = tableView.cellForRowAtIndexPath(unselectedIndexPath)
+                    unselectedCell?.accessoryType = .DisclosureIndicator
                 }
             }
-            let localPathName = FileUtils.getLocalPath(driPathName)
+        }
+    }
 
+    // MARK: - Bar button
+
+    /**
+     右バーボタン押下時に呼び出される。
+
+     - Parameter sender: 右バーボタン
+     */
+    override func rightBarButtonPressed(sender: UIButton) {
+        // 選択されたディレクトリ情報を取得する。
+        var fileInfo: FileInfo? = nil
+        let rowNum = tableView?.numberOfRowsInSection(0)
+        for var i = 0; i < rowNum; i += 1 {
+            let indexPath = NSIndexPath(forItem: i, inSection: 0)
+            let cell = tableView?.cellForRowAtIndexPath(indexPath)
+            let check = cell?.accessoryType
+
+            if check == UITableViewCellAccessoryType.Checkmark {
+                let row = indexPath.row
+                fileInfo = dirInfoList[row]
+                break
+            }
+        }
+
+        if fileInfo == nil {
+            // 選択されたディレクトリ情報が取得できない場合
+            // エラーアラートを表示して終了する。
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDirNotSelectError)
+            showAlert(title, message: message)
+            return
+        }
+
+        // コピー・移動先パス名を取得する。
+        let dirName = fileInfo!.name
+        let toPathName: String
+        if pathName == "/" {
+            // ルートディレクトリの場合
+            toPathName = ""
+
+        } else {
+            // ルートディレクトリ以外の場合
+            if pathName.isEmpty {
+                // 1階層目の場合
+                toPathName = "\(dirName)"
+
+            } else {
+                // 2階層目以降の場合
+                toPathName = "\(pathName)/\(dirName)"
+            }
+        }
+
+        // 存在確認用の名前を取得する。
+        let toName: String
+        if toPathName.isEmpty {
+            // コピー・移動先パス名が空の場合
+            toName = srcName
+
+        } else {
+            // 上記以外
+            toName = "\(toPathName)/\(srcName)"
+        }
+
+        // コピー・移動先に同名のファイル・ディレクトリが存在するか確認する。
+        let toPath = FileUtils.getLocalPath(toName)
+        var result = FileUtils.isExist(toPath)
+        if result {
+            // コピー先に同名のファイルまたはディレクトリが存在する場合
+            // エラーアラートを表示して終了する。
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageSameFileName)
+            showAlert(title, message: message)
+            return
+        }
+
+        // 操作タイプにより処理を振り分ける。
+        switch operateType {
+        case OperateType.Copy.rawValue:
+            // コピーを行う。
+            result = FileUtils.copy(srcPathName, name: srcName, toPathName: toPathName)
+            if !result {
+                // コピーできない場合
+                // エラーアラートを表示して終了する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCopyError)
+                showAlert(title, message: message)
+                return
+            }
+            break
+
+        case OperateType.Move.rawValue:
+            // 移動を行う。
+            result = FileUtils.move(srcPathName, name: srcName, toPathName: toPathName)
+            if !result {
+                // 移動できない場合
+                // エラーアラートを表示して終了する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageMoveError)
+                showAlert(title, message: message)
+                return
+            }
+            break
+
+        default:
+            // 上記以外、何もしない。
+            break
+        }
+
+        // 遷移元画面に戻る。
+        popViewController()
+    }
+
+    // MARK: - Private method
+
+    /**
+     遷移元画面に戻る。
+     */
+    func popViewController() {
+        // 画面遷移数を取得する。
+        let count = navigationController?.viewControllers.count
+        // 最後に表示した画面から画面遷移数確認する。
+        for var i = count! - 1; i >= 0; i-- {
+            let vc = navigationController?.viewControllers[i]
+            if vc!.dynamicType == LocalFileListViewController.self {
+                // 表示した画面がローカルファイル一覧画面の場合
+                // 画面を戻す。
+                navigationController?.popToViewController(vc!, animated: true)
+                break
+            }
         }
     }
 }
