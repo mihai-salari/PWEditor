@@ -138,9 +138,6 @@ class FtpHostListViewController: BaseTableViewController, UIGestureRecognizerDel
             let ftpHostInfo = result as! FtpHostInfo
             self.ftpHostInfoList.append(ftpHostInfo)
         }
-
-        // テーブルビューを更新する。
-        self.tableView.reloadData()
     }
 
     // MARK: - UITableViewDataSource

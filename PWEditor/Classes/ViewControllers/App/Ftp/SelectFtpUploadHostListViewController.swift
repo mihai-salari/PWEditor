@@ -100,23 +100,13 @@ class SelectFtpUploadHostListViewController: BaseTableViewController {
         // スーパークラスのメソッドを呼び出す。
         super.viewWillAppear(animated)
 
-        ftpHostInfoList.removeAll(keepCapacity: false)
-        let ftpHostInfo = FtpHostInfo()
-        ftpHostInfo.displayName = FtpHostUtils.getDisplayName()
-        ftpHostInfo.hostName = FtpHostUtils.getHostName()
-        let userName = FtpHostUtils.getUserName()
-        if userName.isEmpty {
-            ftpHostInfo.userName = nil
-        } else {
-            ftpHostInfo.userName = userName
+        let results = FtpHostInfo.allObjects()
+        let count = results.count
+        for i in 0 ..< count {
+            let result = results.objectAtIndex(i)
+            let ftpHostInfo = result as! FtpHostInfo
+            self.ftpHostInfoList.append(ftpHostInfo)
         }
-        let password = FtpHostUtils.getPassword()
-        if password.isEmpty {
-            ftpHostInfo.password = nil
-        } else {
-            ftpHostInfo.password = password
-        }
-        ftpHostInfoList.append(ftpHostInfo)
     }
 
     // MARK: - UITableViewDataSource

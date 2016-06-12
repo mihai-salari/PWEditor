@@ -649,8 +649,9 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             })
             alert.addAction(openCharAction)
 
-            let hostName = FtpHostUtils.getHostName()
-            if !hostName.isEmpty {
+            let results = FtpHostInfo.allObjects()
+            let count = results.count
+            if count > 0 {
                 // FTPアップロードボタンを生成する。
                 let ftpUploadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleFtpUpload)
                 let ftpUploadAction = UIAlertAction(title: ftpUploadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
