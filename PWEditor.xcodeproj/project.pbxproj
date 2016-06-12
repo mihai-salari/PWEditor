@@ -171,6 +171,7 @@
 		3F76F1B51D08CF3600B288D6 /* RenameLocalFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F76F1B31D08CF3600B288D6 /* RenameLocalFileViewController.xib */; };
 		3F76F1B81D08E37500B288D6 /* SelectStorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F76F1B61D08E37500B288D6 /* SelectStorageViewController.swift */; };
 		3F76F1B91D08E37500B288D6 /* SelectStorageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F76F1B71D08E37500B288D6 /* SelectStorageViewController.xib */; };
+		3F76F1C31D0A34DC00B288D6 /* RLMSwiftSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F76F1C21D0A34DC00B288D6 /* RLMSwiftSupport.m */; };
 		3F889C3D1D0247A10036A6DE /* ICloudFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F889C3C1D0247A10036A6DE /* ICloudFileInfo.swift */; };
 		3F889C461D062C4F0036A6DE /* ICloudDocumentSyncLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F889C451D062C4F0036A6DE /* ICloudDocumentSyncLicense.txt */; };
 		3F889C491D0631300036A6DE /* SearchAndReplaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F889C471D0631300036A6DE /* SearchAndReplaceViewController.swift */; };
@@ -458,6 +459,7 @@
 		3F76F1B31D08CF3600B288D6 /* RenameLocalFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RenameLocalFileViewController.xib; path = Classes/ViewControllers/Local/RenameLocalFileViewController.xib; sourceTree = "<group>"; };
 		3F76F1B61D08E37500B288D6 /* SelectStorageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectStorageViewController.swift; path = Classes/ViewControllers/Common/SelectStorageViewController.swift; sourceTree = "<group>"; };
 		3F76F1B71D08E37500B288D6 /* SelectStorageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectStorageViewController.xib; path = Classes/ViewControllers/Common/SelectStorageViewController.xib; sourceTree = "<group>"; };
+		3F76F1C21D0A34DC00B288D6 /* RLMSwiftSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RLMSwiftSupport.m; path = Pods/Realm/Realm/RLMSwiftSupport.m; sourceTree = SOURCE_ROOT; };
 		3F889C3C1D0247A10036A6DE /* ICloudFileInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICloudFileInfo.swift; path = Classes/ViewControllers/Cloud/ICloud/ICloudFileInfo.swift; sourceTree = "<group>"; };
 		3F889C451D062C4F0036A6DE /* ICloudDocumentSyncLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ICloudDocumentSyncLicense.txt; path = Resources/Licenses/ICloudDocumentSyncLicense.txt; sourceTree = "<group>"; };
 		3F889C471D0631300036A6DE /* SearchAndReplaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchAndReplaceViewController.swift; path = Classes/ViewControllers/Common/SearchAndReplaceViewController.swift; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 		3F1915441C8CCB4D0042D306 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				3F76F1BC1D0A34CA00B288D6 /* Realm */,
 				3F6C6C451CFCFC1A002F0E62 /* DMJudgeTextEncoding */,
 				3FDB24D41CEF2ECB0073BC04 /* CYRTextViewKit */,
 				3F12E8511CC57D8D0008DDEE /* GoogleDrive */,
@@ -1024,6 +1027,14 @@
 				3F7494841C753B0B002A0544 /* Info.plist */,
 			);
 			path = PWEditor;
+			sourceTree = "<group>";
+		};
+		3F76F1BC1D0A34CA00B288D6 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				3F76F1C21D0A34DC00B288D6 /* RLMSwiftSupport.m */,
+			);
+			name = Realm;
 			sourceTree = "<group>";
 		};
 		3FDB24D41CEF2ECB0073BC04 /* CYRTextViewKit */ = {
@@ -1410,6 +1421,7 @@
 				3F1620DE1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.swift in Sources */,
 				3F2852771CE53B0A00C77435 /* FtpFileInfoUtils.swift in Sources */,
 				3F23F9611C7BBAA2004852B3 /* SearchResultInfo.swift in Sources */,
+				3F76F1C31D0A34DC00B288D6 /* RLMSwiftSupport.m in Sources */,
 				3F19D2661C9225D6009ACAB2 /* SelectDirViewController.swift in Sources */,
 				3F2852511CE3DF2000C77435 /* FtpHostInfo.swift in Sources */,
 				3FDB24C71CEDE1AF0073BC04 /* SelectFtpUploadHostListViewController.swift in Sources */,
@@ -1640,6 +1652,8 @@
 					"\"${PODS_ROOT}/ICTextView/ICTextView\"",
 					"\"${PODS_ROOT}/iCloudDocumentSync/iCloud\"",
 					"\"${SRCROOT}/Classes/External/CYRTextViewKit\"",
+					"\"${PODS_ROOT}/Realm/include/Realm\"",
+					"\"${PODS_ROOT}/Headers/Private/Realm/Realm\"",
 				);
 				INFOPLIST_FILE = PWEditor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1681,6 +1695,8 @@
 					"\"${PODS_ROOT}/ICTextView/ICTextView\"",
 					"\"${PODS_ROOT}/iCloudDocumentSync/iCloud\"",
 					"\"${SRCROOT}/Classes/External/CYRTextViewKit\"",
+					"\"${PODS_ROOT}/Realm/include/Realm\"",
+					"\"${PODS_ROOT}/Headers/Private/Realm/Realm\"",
 				);
 				INFOPLIST_FILE = PWEditor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

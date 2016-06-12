@@ -423,10 +423,32 @@ class CreateFtpHostViewController: BaseTableViewController, UITextFieldDelegate 
         // 入力されたパスワードを取得する。
         let password = getText(SectionIndex.Password.rawValue)
 
-        FtpHostUtils.setDisplayName(displayName)
-        FtpHostUtils.setHostName(hostName)
-        FtpHostUtils.setUserName(userName)
-        FtpHostUtils.setPassword(password)
+        let ftpHostInfo = FtpHostInfo()
+        ftpHostInfo.displayName = displayName
+        ftpHostInfo.hostName = hostName
+        if !userName.isEmpty {
+            ftpHostInfo.userName = userName
+        } else {
+            ftpHostInfo.userName = nil
+        }
+        if !password.isEmpty {
+            ftpHostInfo.password = password
+        } else {
+            ftpHostInfo.password = nil
+        }
+
+        // 新規登録または更新を行う。
+        let realm = RLMRealm.defaultRealm()
+        do {
+            try realm.transactionWithBlock() {
+                realm.addOrUpdateObject(ftpHostInfo)
+            }
+        } catch {
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kCreateFtpHostSaveOrUpdateError)
+            self.showAlert(title, message: message)
+            return
+        }
 
         // 元画面に戻る。
         navigationController?.popViewControllerAnimated(true)

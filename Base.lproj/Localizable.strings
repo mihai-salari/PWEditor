@@ -269,6 +269,8 @@ CreateFtpHostEnterHostNameError = "Please enter a host name.";
 
 // FTPファイル一覧画面
 FtpFileListScreenTitle = "FTP file list";
+FtpHostListSaveError = "Save ftp host info failed.";
+FtpHostListDeleteError = "Delete ftp host info failed.";
 
 // FTPファイル詳細画面
 FtpFileDetailScreenTitle = "FTP file detail";
@@ -287,6 +289,7 @@ CreateFtpFileSectionTitleFileName = "Name";
 CreateFtpFileSectionTitleFileType = "Type";
 CreateFtpFileCellTitleFile = "File";
 CreateFtpFileCellTitleDir = "Directory";
+CreateFtpHostSaveOrUpdateError = "Save or update ftp host info faield.";
 
 // FTPダウンロード先選択画面
 SelectFtpDownloadTargetScreenTitle = "Select FTP download target";

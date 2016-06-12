@@ -20,3 +20,4 @@
 #import "BRRequestUpload.h"
 #import "CYRTextViewKit.h"
 #import <BoxContentSDK/BOXContentSDK.h>
+#import <Realm/Realm.h>

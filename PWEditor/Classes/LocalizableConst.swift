@@ -275,6 +275,8 @@ struct LocalizableConst {
 
     // FTPファイル一覧画面
     static let kFtpFileListScreenTitle = "FtpFileListScreenTitle"
+    static let kFtpHostListSaveError = "FtpHostListSaveError"
+    static let kFtpHostListDeleteError = "FtpHostListDeleteError"
 
     // FTPファイル詳細画面
     static let kFtpFileDetailScreenTitle = "FtpFileDetailScreenTitle"
@@ -293,6 +295,7 @@ struct LocalizableConst {
     static let kCreateFtpFileSectionTitleFileType = "CreateFtpFileSectionTitleFileType"
     static let kCreateFtpFileCellTitleFile = "CreateFtpFileCellTitleFile"
     static let kCreateFtpFileCellTitleDir = "CreateFtpFileCellTitleDir"
+    static let kCreateFtpHostSaveOrUpdateError = "kCreateFtpHostSaveOrUpdateError"
 
     // FTPダウンロード先選択画面
     static let kSelectFtpDownloadTargetScreenTitle = "SelectFtpDownloadTargetScreenTitle"

@@ -8,15 +8,19 @@
 
 import Foundation
 
-class FtpHostInfo: NSObject {
+class FtpHostInfo: RLMObject {
 
-    var displayName = ""
+    dynamic var displayName = ""
 
-    var hostName = ""
+    dynamic var hostName = ""
 
-    var portNo = 0
+    dynamic var portNo = 0
 
-    var userName: String?
+    dynamic var userName: String? = nil
 
-    var password: String?
+    dynamic var password: String? = nil
+
+    override class func primaryKey() -> String {
+        return "displayName"
+    }
 }

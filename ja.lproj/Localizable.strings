@@ -257,6 +257,8 @@ EditOneDriveFileDownloadDataError = "%@をダウンロードできませんで�
 
 // FTPホスト一覧画面
 FtpHostListScreenTitle = "FTPホスト一覧";
+FtpHostListSaveError = "FTPホスト情報が保存できませんでした。";
+FtpHostListDeleteError = "FTPホスト情報が削除できませんでした。";
 
 // FTPホスト作成画面
 CreateFtpHostScreenTitle = "FTPホスト作成";
@@ -266,6 +268,7 @@ CreateFtpHostSectionTitleUserName = "ユーザ名";
 CreateFtpHostSectionTitlePassword = "パスワード";
 CreateFtpHostEnterDisplayNameError = "表示名を入力してください。";
 CreateFtpHostEnterHostNameError = "ホスト名を入力してください。";
+CreateFtpHostSaveOrUpdateError = "FTPホスト情報の保存または更新ができませんでした。";
 
 // FTPファイル一覧画面
 FtpFileListScreenTitle = "FTPファイル一覧";

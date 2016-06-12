@@ -75,12 +75,31 @@ class FtpHostListViewController: BaseTableViewController, UIGestureRecognizerDel
         super.viewWillAppear(animated)
 
         ftpHostInfoList.removeAll(keepCapacity: false)
+
+//        let realm = RLMRealm.defaultRealm()
+//        let realmURL = realm.configuration.fileURL!
+//        let realmURLs = [
+//            realmURL,
+//            realmURL.URLByAppendingPathExtension("lock"),
+//            realmURL.URLByAppendingPathExtension("log_a"),
+//            realmURL.URLByAppendingPathExtension("log_b"),
+//            realmURL.URLByAppendingPathExtension("note")
+//        ]
+//        let manager = NSFileManager.defaultManager()
+//        for URL in realmURLs {
+//            do {
+//                try manager.removeItemAtURL(URL)
+//            } catch {
+//                // handle error
+//            }
+//        }
+
+        // NSUserDefaultに保存された旧データをRealmに保存し直す。
         let displayName = FtpHostUtils.getDisplayName()
         if !displayName.isEmpty {
             let ftpHostInfo = FtpHostInfo()
             ftpHostInfo.displayName = displayName
             ftpHostInfo.hostName = FtpHostUtils.getHostName()
-            //ftpHostInfo.hostName = "133.83.35.37"
             let userName = FtpHostUtils.getUserName()
             if userName.isEmpty {
                 ftpHostInfo.userName = nil
@@ -93,16 +112,35 @@ class FtpHostListViewController: BaseTableViewController, UIGestureRecognizerDel
             } else {
                 ftpHostInfo.password = password
             }
-            ftpHostInfoList.append(ftpHostInfo)
+
+            // FTPホスト情報をRealmに保存する。
+            let realm = RLMRealm.defaultRealm()
+            do {
+                try realm.transactionWithBlock() {
+                    realm.addObject(ftpHostInfo)
+                }
+            } catch {
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kFtpHostListSaveError)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            // NSUserDefaultからFTPホスト情報を削除する。
+            FtpHostUtils.delete()
         }
 
-        // TODO: 現状FTPホストは1件のみ登録可能とする。
-        let count = ftpHostInfoList.count
-        if count == 0 {
-            createToolbarButton.enabled = true
-        } else {
-            createToolbarButton.enabled = false
+        // FTPホスト情報を取得する。
+        let results = FtpHostInfo.allObjects()
+        let count = results.count
+        for i in 0 ..< count {
+            let result = results.objectAtIndex(i)
+            let ftpHostInfo = result as! FtpHostInfo
+            self.ftpHostInfoList.append(ftpHostInfo)
         }
+
+        // テーブルビューを更新する。
+        self.tableView.reloadData()
     }
 
     // MARK: - UITableViewDataSource
@@ -248,10 +286,23 @@ class FtpHostListViewController: BaseTableViewController, UIGestureRecognizerDel
 
         // 削除ボタンを生成する。
         let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
+
+        // OKボタンを生成する。
         let okAction = UIAlertAction(title: deleteButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
-            // 削除する。
-            FtpHostUtils.clear()
-            self.ftpHostInfoList.removeAll(keepCapacity: false)
+            let realm = RLMRealm.defaultRealm()
+            do {
+                try realm.transactionWithBlock() {
+                    realm.deleteObject(ftpHostInfo)
+                }
+            } catch {
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kFtpHostListDeleteError)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            // FTPホスト情報リストから削除する。
+            self.ftpHostInfoList.removeAtIndex(index)
 
             // テーブルビューを更新する。
             self.tableView.reloadData()

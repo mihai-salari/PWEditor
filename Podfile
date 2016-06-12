@@ -10,6 +10,7 @@ pod 'ICTextView', :git => "https://github.com/paveway/ICTextView.git", :branch =
 pod 'OneDriveSDK'
 pod 'iCloudDocumentSync'
 pod 'box-ios-sdk'
+pod 'Realm'
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|

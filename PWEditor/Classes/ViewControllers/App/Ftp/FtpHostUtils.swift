@@ -113,6 +113,14 @@ class FtpHostUtils: NSObject {
         ud.setObject("", forKey: FtpConst.FtpHostKey.kPassword)
     }
 
+    class func delete() {
+        let ud = NSUserDefaults.standardUserDefaults()
+        ud.removeObjectForKey(FtpConst.FtpHostKey.kDisplayName)
+        ud.removeObjectForKey(FtpConst.FtpHostKey.kHostName)
+        ud.removeObjectForKey(FtpConst.FtpHostKey.kUserName)
+        ud.removeObjectForKey(FtpConst.FtpHostKey.kPassword)
+    }
+
     // MARK: - Private
 
     private class func getValue(key: String) -> String {
