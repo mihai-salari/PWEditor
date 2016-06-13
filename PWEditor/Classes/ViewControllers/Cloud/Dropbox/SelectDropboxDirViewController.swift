@@ -1,33 +1,34 @@
 //
-//  SelectDirViewController.swift
+//  SelectDropboxDirViewController.swift
 //  PWEditor
 //
-//  Created by 二俣征嗣 on 2016/03/11.
+//  Created by mfuta1971 on 2016/06/14.
 //  Copyright © 2016年 Masatsugu Futamata. All rights reserved.
 //
 
 import UIKit
 import GoogleMobileAds
+import SwiftyDropbox
 
 /**
- ディレクトリ選択画面
+ Dropboxディレクトリ選択画面
 
  - Version: 1.0 新規作成
  - Authoer: paveway.info@gmail.com
  */
-class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDelegate {
+class SelectDropboxDirViewController: BaseTableViewController, UIGestureRecognizerDelegate {
 
-    // MARK: - Constants
+    // MARK: - Constatns
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kSelectDirScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kSelectDropboxDirScreenTitle)
 
     // MARK: - Variables
 
-    // テーブルビュー
+    /// テーブルビュー
     @IBOutlet weak var tableView: UITableView!
 
-    // バナービュー
+    /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
     /// パス名
@@ -46,15 +47,15 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
     private var operateType: Int!
 
     /// ディレクトリ情報リスト
-    private var dirInfoList = [FileInfo]()
+    private var dirInfoList = [DropboxFileInfo]()
 
     // MARK: - Initializer
 
     /**
-    イニシャライザ
+     イニシャライザ
 
-    - Parameter coder: デコーダー
-    */
+     - Parameter coder: デコーダー
+     */
     required init?(coder aDecoder: NSCoder) {
         // スーパークラスのメソッドを呼び出す。
         super.init(coder: aDecoder)
@@ -84,8 +85,8 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
     // MARK: - UIViewControllerDelegate
 
     /**
-    インスタンスが生成された時に呼び出される。
-    */
+     インスタンスが生成された時に呼び出される。
+     */
     override func viewDidLoad() {
         // スーパークラスのメソッドを呼び出す。
         super.viewDidLoad()
@@ -107,16 +108,14 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
 
         if pathName == "/" {
             // ルートディレクトリの場合
-            let fileInfo = FileInfo()
-            fileInfo.name = pathName
-            fileInfo.isDir = true
-            dirInfoList.append(fileInfo)
+            let dirInfo = DropboxFileInfo()
+            dirInfo.name = pathName
+            dirInfo.isDir = true
+            dirInfoList.append(dirInfo)
 
         } else {
             // ルートディレクトリ以外の場合
-            // ディレクトリ情報リストを取得する。
-            let localPathName = FileUtils.getLocalPath(pathName)
-            dirInfoList = FileUtils.getDirInfoListInDir(localPathName)
+            getDirInfoList(pathName)
         }
     }
 
@@ -133,12 +132,12 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
     // MARK: - UITableViewDataSource
 
     /**
-    セクション内のセル数を返却する。
+     セクション内のセル数を返却する。
 
-    - Parameter tableView: テーブルビュー
-    - Parameter section: セクション番号
-    - Returns: セクション内のセル数
-    */
+     - Parameter tableView: テーブルビュー
+     - Parameter section: セクション番号
+     - Returns: セクション内のセル数
+     */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // ディレクトリ情報リストの件数を返却する。
         let count = dirInfoList.count
@@ -168,11 +167,11 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
     // MARK: - UITableViewDelegate
 
     /**
-    セルが選択された時に呼び出される。
+     セルが選択された時に呼び出される。
 
-    - Parameter tableView: テーブルビュー
-    - Parameter indexPath: インデックスパス
-    */
+     - Parameter tableView: テーブルビュー
+     - Parameter indexPath: インデックスパス
+     */
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // セルの選択状態を解除する。
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -189,7 +188,7 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
         } else {
             if pathName == "" {
                 // 1階層目の場合
-                path = "\(name)"
+                path = "/\(name)"
 
             } else {
                 // 2階層目以降の場合
@@ -197,31 +196,18 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
             }
         }
 
-        // サブディレクトリ内にディレクトリが存在するか確認する。
-        let localPath = FileUtils.getLocalPath(path)
-        let tmpdirInfoList = FileUtils.getDirInfoListInDir(localPath)
-        let dirNum = tmpdirInfoList.count
-        if dirNum == 0 {
-            // ディレクトリが存在しない場合
-            // アラートを表示して処理終了
-            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageNoDirectoryError)
-            showAlert(title, message: message)
-            return
-        }
-
         // ディレクトリ選択画面に遷移する。
-        let vc = SelectDirViewController(pathName: path, name: name, srcPathName: srcPathName, srcName: srcName, operateType: operateType)
+        let vc = SelectDropboxDirViewController(pathName: path, name: name, srcPathName: srcPathName, srcName: srcName, operateType: operateType)
         navigationController?.pushViewController(vc, animated: true)
     }
 
     // MARK: - Button handler
 
     /**
-    セルがロングタップされた時に呼び出される。
+     セルがロングタップされた時に呼び出される。
 
-    - Parameter recognizer: セルロングタップジェスチャーオブジェクト
-    */
+     - Parameter recognizer: セルロングタップジェスチャーオブジェクト
+     */
     override func cellLongPressed(recognizer: UILongPressGestureRecognizer) {
         // インデックスパスを取得する。
         let point = recognizer.locationInView(tableView)
@@ -271,7 +257,7 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
      */
     override func rightBarButtonPressed(sender: UIButton) {
         // 選択されたディレクトリ情報を取得する。
-        var fileInfo: FileInfo? = nil
+        var dirInfo: DropboxFileInfo? = nil
         let rowNum = tableView?.numberOfRowsInSection(0)
         for var i = 0; i < rowNum; i += 1 {
             let indexPath = NSIndexPath(forItem: i, inSection: 0)
@@ -280,12 +266,12 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
 
             if check == UITableViewCellAccessoryType.Checkmark {
                 let row = indexPath.row
-                fileInfo = dirInfoList[row]
+                dirInfo = dirInfoList[row]
                 break
             }
         }
 
-        if fileInfo == nil {
+        if dirInfo == nil {
             // 選択されたディレクトリ情報が取得できない場合
             // エラーアラートを表示して終了する。
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
@@ -295,85 +281,49 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
         }
 
         // コピー・移動先パス名を取得する。
-        let dirName = fileInfo!.name
+        let dirName = dirInfo!.name
         let toPathName: String
         if pathName == "/" {
             // ルートディレクトリの場合
-            toPathName = ""
+            toPathName = "/\(srcName)"
 
         } else {
             // ルートディレクトリ以外の場合
             if pathName.isEmpty {
                 // 1階層目の場合
-                toPathName = "\(dirName)"
+                toPathName = "/\(dirName)/\(srcName)"
 
             } else {
                 // 2階層目以降の場合
-                toPathName = "\(pathName)/\(dirName)"
+                toPathName = "\(pathName)/\(dirName)/\(srcName)"
             }
         }
 
-        // 存在確認用の名前を取得する。
-        let toName: String
-        if toPathName.isEmpty {
-            // コピー・移動先パス名が空の場合
-            toName = srcName
+        let srcPath: String
+        if srcPathName.isEmpty {
+            srcPath = "/\(srcName)"
 
         } else {
-            // 上記以外
-            toName = "\(toPathName)/\(srcName)"
-        }
-
-        // コピー・移動先に同名のファイル・ディレクトリが存在するか確認する。
-        let toPath = FileUtils.getLocalPath(toName)
-        var result = FileUtils.isExist(toPath)
-        if result {
-            // コピー先に同名のファイルまたはディレクトリが存在する場合
-            // エラーアラートを表示して終了する。
-            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageSameFileName)
-            showAlert(title, message: message)
-            return
+            srcPath = "\(srcPathName)/\(srcName)"
         }
 
         // 操作タイプにより処理を振り分ける。
         switch operateType {
         case CommonConst.OperateType.Copy.rawValue:
             // コピーを行う。
-            result = FileUtils.copy(srcPathName, name: srcName, toPathName: toPathName)
-            if !result {
-                // コピーできない場合
-                // エラーアラートを表示して終了する。
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCopyError)
-                showAlert(title, message: message)
-                return
-            }
+            copy(srcPath, toPath: toPathName)
             break
 
         case CommonConst.OperateType.Move.rawValue:
             // 移動を行う。
-            result = FileUtils.move(srcPathName, name: srcName, toPathName: toPathName)
-            if !result {
-                // 移動できない場合
-                // エラーアラートを表示して終了する。
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageMoveError)
-                showAlert(title, message: message)
-                return
-            }
+            move(srcPath, toPath: toPathName)
             break
 
         default:
             // 上記以外、何もしない。
             break
         }
-
-        // 遷移元画面に戻る。
-        popViewController()
     }
-
-    // MARK: - Private method
 
     /**
      遷移元画面に戻る。
@@ -384,12 +334,150 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
         // 最後に表示した画面から画面遷移数確認する。
         for var i = count! - 1; i >= 0; i-- {
             let vc = navigationController?.viewControllers[i]
-            if vc!.dynamicType == LocalFileListViewController.self {
-                // 表示した画面がローカルファイル一覧画面の場合
+            if vc!.dynamicType == DropboxFileListViewController.self {
+                // 表示した画面がDropboxファイル一覧画面の場合
                 // 画面を戻す。
                 navigationController?.popToViewController(vc!, animated: true)
                 break
             }
+        }
+    }
+
+    // MARK: - Dropbox
+
+    /**
+     ファイル情報リストを取得する。
+
+     - Parameter pathName: パス名
+     - Parameter index: ファイル情報の位置
+     */
+    func getDirInfoList(pathName: String) {
+        // リフレッシュコントロールを停止する。
+        refreshControl?.endRefreshing()
+
+        let client = Dropbox.authorizedClient
+        if client == nil {
+            // Dropboxが無効な場合
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        // ディレクトリ内のファイル一覧を取得する。
+        client!.files.listFolder(path: pathName).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil || response == nil {
+                // エラーの場合
+                // エラーアラートを表示する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kDropboxFileListGetFileInfoListError)
+                self.showAlert(title, message: message, handler: nil)
+                return
+            }
+
+            self.dirInfoList.removeAll(keepCapacity: false)
+            let result = response
+            for entry in result!.entries {
+                if entry.dynamicType == Files.FolderMetadata.self {
+                    // ディレクトリの場合
+                    let fileInfo = DropboxFileInfo()
+                    let name = entry.name
+                    fileInfo.name = name
+                    fileInfo.isDir = true
+                    self.dirInfoList.append(fileInfo)
+                }
+            }
+
+            let count = self.dirInfoList.count
+            if count > 0 {
+                // サブディレクトリがある場合
+                // テーブルビューを更新する。
+                self.tableView.reloadData()
+
+            } else {
+                // サブディレクトリが無い場合
+                // エラーアラートを表示する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageNoDirectoryError)
+                let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
+                self.showAlert(title, message: message, okButtonTitle: okButtonTitle) {
+                    // 遷移元画面に戻る。
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+            }
+        }
+    }
+
+    /**
+     コピーする。
+ 
+     - Parameter fromPath: コピー元パス名
+     - Parameter toPath: コピー先パス名
+     */
+    private func copy(fromPath: String, toPath: String) {
+        let client = Dropbox.authorizedClient
+        if client == nil {
+            // Dropboxが無効な場合
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        // コピーする。
+        client!.files.copy(fromPath: fromPath, toPath: toPath).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil || response == nil {
+                // エラーの場合
+                // エラーアラートを表示する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kDropboxFileListGetFileInfoListError)
+                self.showAlert(title, message: message, handler: nil)
+                return
+            }
+
+            // 遷移元画面に戻る。
+            self.popViewController()
+        }
+    }
+
+    /**
+     移動する。
+
+     - Parameter fromPath: 移動元パス名
+     - Parameter toPath: 移動先パス名
+     */
+    private func move(fromPath: String, toPath: String) {
+        let client = Dropbox.authorizedClient
+        if client == nil {
+            // Dropboxが無効な場合
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        // 移動する。
+        client!.files.move(fromPath: fromPath, toPath: toPath).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil || response == nil {
+                // エラーの場合
+                // エラーアラートを表示する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kDropboxFileListGetFileInfoListError)
+                self.showAlert(title, message: message, handler: nil)
+                return
+            }
+
+            // 遷移元画面に戻る。
+            self.popViewController()
         }
     }
 }

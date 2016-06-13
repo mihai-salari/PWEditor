@@ -191,4 +191,10 @@ struct CommonConst {
         case Markdown
         case Other
     }
+
+    /// 操作タイプ
+    enum OperateType: Int {
+        case Copy
+        case Move
+    }
 }

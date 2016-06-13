@@ -353,7 +353,47 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             alert.addAction(openCharAction)
+
+            let results = FtpHostInfo.allObjects()
+            let count = results.count
+            if count > 0 {
+                // FTPアップロードボタンを生成する。
+                let ftpUploadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleFtpUpload)
+                let ftpUploadAction = UIAlertAction(title: ftpUploadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+                    // FTPアップロードホスト選択一覧画面に遷移する。
+                    let sourceClassName = self.dynamicType.description()
+                    let path = FileUtils.getLocalPath(name)
+                    let fileData = NSData(contentsOfFile: path)
+                    let vc = SelectFtpUploadHostListViewController(sourceClassName: sourceClassName, fileName: name, fileData: fileData!)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                })
+                alert.addAction(ftpUploadAction)
+            }
         }
+
+        // コピーボタンを生成する。
+        let copyButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCopy)
+        let copyAction = UIAlertAction(title: copyButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+            // ディレクトリ選択画面に遷移する。
+            let pathName = "/"
+            let name = fileInfo.name
+            let operateType = CommonConst.OperateType.Copy.rawValue
+            let vc = SelectDropboxDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(copyAction)
+
+        // 移動ボタンを生成する。
+        let moveButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleMove)
+        let moveAction = UIAlertAction(title: moveButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+            // ディレクトリ選択画面に遷移する。
+            let pathName = "/"
+            let name = fileInfo.name
+            let operateType = CommonConst.OperateType.Move.rawValue
+            let vc = SelectDropboxDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(moveAction)
 
         // 削除ボタンを生成する。
         let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)
@@ -529,7 +569,6 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
 
     /**
      Dropboxファイルをダウンロードする。
-     TODO: 対応中
      
      - Parameter fileName: ファイル名
      */

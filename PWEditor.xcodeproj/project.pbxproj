@@ -209,6 +209,8 @@
 		3FDB24FC1CF31E8B0073BC04 /* Syntax_javascript in Resources */ = {isa = PBXBuildFile; fileRef = 3FDB24FB1CF31E8B0073BC04 /* Syntax_javascript */; };
 		3FF93E371C86595500621455 /* EditDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */; };
 		3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */; };
+		3FFA45F61D0F534A002D4274 /* SelectDropboxDirViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA45F41D0F534A002D4274 /* SelectDropboxDirViewController.swift */; };
+		3FFA45F71D0F534A002D4274 /* SelectDropboxDirViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FFA45F51D0F534A002D4274 /* SelectDropboxDirViewController.xib */; };
 		3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */; };
 		40C44389B3CB69C698058540 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D11AD2E8D3B26F561B704230 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -503,6 +505,8 @@
 		3FDB24FB1CF31E8B0073BC04 /* Syntax_javascript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Syntax_javascript; path = Resources/Syntax/Syntax_javascript; sourceTree = "<group>"; };
 		3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDropboxFileViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.swift; sourceTree = "<group>"; };
 		3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/EditDropboxFileViewController.xib; sourceTree = "<group>"; };
+		3FFA45F41D0F534A002D4274 /* SelectDropboxDirViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectDropboxDirViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/SelectDropboxDirViewController.swift; sourceTree = "<group>"; };
+		3FFA45F51D0F534A002D4274 /* SelectDropboxDirViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectDropboxDirViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/SelectDropboxDirViewController.xib; sourceTree = "<group>"; };
 		3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SwiftyDropboxLicense.txt; path = Resources/Licenses/SwiftyDropboxLicense.txt; sourceTree = "<group>"; };
 		4F9D2010F7486BD9895A4387 /* Pods-PWEditorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PWEditorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PWEditorTests/Pods-PWEditorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		64373137871C337C27C6C1D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -629,6 +633,8 @@
 				3F157BF91C84F4A6007C555E /* CreateDropboxFileViewController.xib */,
 				3FF93E351C86595500621455 /* EditDropboxFileViewController.swift */,
 				3FF93E361C86595500621455 /* EditDropboxFileViewController.xib */,
+				3FFA45F41D0F534A002D4274 /* SelectDropboxDirViewController.swift */,
+				3FFA45F51D0F534A002D4274 /* SelectDropboxDirViewController.xib */,
 				3F157C021C84F50E007C555E /* DropboxFileInfo.swift */,
 			);
 			name = Dropbox;
@@ -1248,6 +1254,7 @@
 				3F165E7A1C7A7FF5001CBC38 /* SelectNumberViewController.xib in Resources */,
 				3F165E321C7A687C001CBC38 /* CreateLocalFileViewController.xib in Resources */,
 				3F37CF4B1C85AC1800B138C9 /* DropboxFileDetailViewController.xib in Resources */,
+				3FFA45F71D0F534A002D4274 /* SelectDropboxDirViewController.xib in Resources */,
 				3F165E451C7A6927001CBC38 /* SourceHanCodeJP-Normal.otf in Resources */,
 				3F1620E81CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib in Resources */,
 				3F57FED21CD17B76002ADAC8 /* EditOneDriveFileViewController.xib in Resources */,
@@ -1392,6 +1399,7 @@
 				3F889C491D0631300036A6DE /* SearchAndReplaceViewController.swift in Sources */,
 				3FDB24DE1CEF2EDF0073BC04 /* CYRLayoutManager.m in Sources */,
 				3F28526A1CE3EF1100C77435 /* BRRequestCreateDirectory.m in Sources */,
+				3FFA45F61D0F534A002D4274 /* SelectDropboxDirViewController.swift in Sources */,
 				3F165E671C7A7B13001CBC38 /* OpenSourceLicenseContentViewController.swift in Sources */,
 				3F28526B1CE3EF1100C77435 /* BRRequestDelete.m in Sources */,
 				3F57FED51CD17BA3002ADAC8 /* CreateOneDriveFileViewController.swift in Sources */,

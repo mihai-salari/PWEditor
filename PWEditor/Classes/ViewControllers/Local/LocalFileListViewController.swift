@@ -682,7 +682,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             // ディレクトリ選択画面に遷移する。
             let pathName = "/"
             let name = fileInfo.name
-            let operateType = SelectDirViewController.OperateType.Copy.rawValue
+            let operateType = CommonConst.OperateType.Copy.rawValue
             let vc = SelectDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
             self.navigationController?.pushViewController(vc, animated: true)
         })
@@ -694,7 +694,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             // ディレクトリ選択画面に遷移する。
             let pathName = "/"
             let name = fileInfo.name
-            let operateType = SelectDirViewController.OperateType.Move.rawValue
+            let operateType = CommonConst.OperateType.Move.rawValue
             let vc = SelectDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
             self.navigationController?.pushViewController(vc, animated: true)
         })

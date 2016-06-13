@@ -212,6 +212,9 @@ struct LocalizableConst {
     static let kEditDropboxFileDownloadError = "EditDropboxFileDownloadError"
     static let kEditDropboxFileUpdloadError = "EditDropboxFileUpdloadError"
 
+    // Dropboxディレクトリ選択画面
+    static let kSelectDropboxDirScreenTitle = "SelectDropboxDirScreenTitle"
+
     // GoogleDriveファイル一覧画面
     static let kGoogleDriveFileListScreenTitle = "GoogleDriveFileListScreenTitle"
 

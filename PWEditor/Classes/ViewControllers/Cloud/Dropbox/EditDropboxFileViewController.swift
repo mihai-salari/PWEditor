@@ -256,7 +256,12 @@ class EditDropboxFileViewController: BaseEditViewController {
                         // テキストデータの場合
                         // 文字列に変換する。
                         if self.encodingType == CommonConst.EncodingType.Undefine.rawValue {
-                            self.encoding = DMJudgeTextEncodingOfData(fileData!)
+                            if fileData!.length > 0 {
+                                self.encoding = DMJudgeTextEncodingOfData(fileData!)
+
+                            } else {
+                                self.encoding = NSUTF8StringEncoding
+                            }
                         }
                         text = String(data: fileData!, encoding: self.encoding)
 
@@ -310,7 +315,7 @@ class EditDropboxFileViewController: BaseEditViewController {
 
         // ファイルデータをアップロードする。
         let filePathName = "\(pathName)/\(fileName)"
-        let fileData = fileDataString.dataUsingEncoding(encoding, allowLossyConversion: false)
+        let fileData = fileDataString.dataUsingEncoding(encoding, allowLossyConversion: true)
         let rev = downloadFileInfo!.rev
         let date = NSDate()
         client!.files.upload(path: filePathName, mode: .Update(rev), clientModified: date, body: fileData!).response { response, error in
