@@ -112,6 +112,8 @@ class FtpFileDetailViewController: BaseTableViewController {
 
         // テーブルビューを設定する。
         setupTableView(tableView)
+        // 区切り線を非表示にする。
+        tableView.tableFooterView = UIView()
 
 //        let type = FtpFileInfoUtils.getType(ftpFileInfo)
 //        if type == FtpConst.FtpFileType.File {

@@ -98,6 +98,8 @@ class OneDriveFileDetailViewController: BaseTableViewController {
 
         // テーブルビューを設定する。
         setupTableView(tableView)
+        // 区切り線を非表示にする。
+        tableView.tableFooterView = UIView()
 
         // バナービューを設定する。
         setupBannerView(bannerView)

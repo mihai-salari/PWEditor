@@ -117,6 +117,8 @@ class CreateLocalFileViewController: BaseTableViewController, UIGestureRecognize
 
         // テーブルビューを設定する。
         setupTableView(tableView)
+        // 区切り線を非表示にする。
+        tableView.tableFooterView = UIView()
 
         // カスタムテーブルビューセルを設定する。
         let nib  = UINib(nibName: "EnterLineDataTableViewCell", bundle: nil)

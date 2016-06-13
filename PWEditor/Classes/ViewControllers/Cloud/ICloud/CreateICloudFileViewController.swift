@@ -90,8 +90,8 @@ class CreateICloudFileViewController: BaseTableViewController, UIGestureRecogniz
 
         // テーブルビューを設定する。
         setupTableView(tableView)
+        // 区切り線を非表示にする。
         tableView.tableFooterView = UIView()
-        tableView.scrollEnabled = false
 
         // カスタムテーブルビューセルを設定する。
         let nib  = UINib(nibName: kLineDataTableViewCellNibName, bundle: nil)
