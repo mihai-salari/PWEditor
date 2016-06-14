@@ -371,6 +371,16 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
             }
         }
 
+        // 名前変更ボタンを生成する。
+        let renameButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleRename)
+        let renameAction = UIAlertAction(title: renameButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+            // Dropboxファイル名前変更画面に遷移する。
+            let name = fileInfo.name
+            let vc = RenameDropboxFileViewController(pathName: self.pathName, srcName: name)
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(renameAction)
+
         // コピーボタンを生成する。
         let copyButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCopy)
         let copyAction = UIAlertAction(title: copyButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in

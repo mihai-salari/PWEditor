@@ -206,6 +206,9 @@ CreateDropboxFileCreateError = "Create %@ failed.";
 EditDropboxFileDownloadError = "Download %@ failed.";
 EditDropboxFileUpdloadError = "Upload %@ failed.";
 
+// Dropboxファイルリネーム画面
+RenameDropboxFileScreenTitle = "Rename dropbox file";
+
 // Dropboxディレクトリ選択画面
 SelectDropboxDirScreenTitle = "Select dropbox directory";
 

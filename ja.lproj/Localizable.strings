@@ -206,8 +206,11 @@ CreateDropboxFileCreateError = "%@を作成できませんでした。";
 EditDropboxFileDownloadError = "%@をダウンロードできませんでした。";
 EditDropboxFileUpdloadError = "%@をアップロードできませんでした。";
 
+// Dropboxファイルリネーム画面
+RenameDropboxFileScreenTitle = "Dropboxファイルリネーム";
+
 // Dropboxディレクトリ選択画面
-SelectDropboxDirScreenTitle = "Dropboxディレクトリ選択画面";
+SelectDropboxDirScreenTitle = "Dropboxディレクトリ選択";
 
 // GoogleDriveファイル一覧画面
 GoogleDriveFileListScreenTitle = "Google driveファイル一覧";

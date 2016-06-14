@@ -421,6 +421,10 @@ class SelectDropboxDirViewController: BaseTableViewController, UIGestureRecogniz
         let client = Dropbox.authorizedClient
         if client == nil {
             // Dropboxが無効な場合
+            // エラーアラートを表示する。
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDropboxInvalid)
+            self.showAlert(title, message: message)
             return
         }
 
@@ -436,7 +440,7 @@ class SelectDropboxDirViewController: BaseTableViewController, UIGestureRecogniz
                 // エラーの場合
                 // エラーアラートを表示する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getString(LocalizableConst.kDropboxFileListGetFileInfoListError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCopyError)
                 self.showAlert(title, message: message, handler: nil)
                 return
             }
@@ -456,6 +460,10 @@ class SelectDropboxDirViewController: BaseTableViewController, UIGestureRecogniz
         let client = Dropbox.authorizedClient
         if client == nil {
             // Dropboxが無効な場合
+            // エラーアラートを表示する。
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDropboxInvalid)
+            self.showAlert(title, message: message)
             return
         }
 
@@ -471,7 +479,7 @@ class SelectDropboxDirViewController: BaseTableViewController, UIGestureRecogniz
                 // エラーの場合
                 // エラーアラートを表示する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getString(LocalizableConst.kDropboxFileListGetFileInfoListError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageMoveError)
                 self.showAlert(title, message: message, handler: nil)
                 return
             }

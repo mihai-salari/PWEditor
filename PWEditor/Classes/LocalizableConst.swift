@@ -212,6 +212,9 @@ struct LocalizableConst {
     static let kEditDropboxFileDownloadError = "EditDropboxFileDownloadError"
     static let kEditDropboxFileUpdloadError = "EditDropboxFileUpdloadError"
 
+    // Dropboxファイルリネーム画面
+    static let kRenameDropboxFileScreenTitle = "RenameDropboxFileScreenTitle"
+
     // Dropboxディレクトリ選択画面
     static let kSelectDropboxDirScreenTitle = "SelectDropboxDirScreenTitle"
 

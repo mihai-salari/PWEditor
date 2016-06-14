@@ -1,5 +1,5 @@
 //
-//  RenameLocalFileViewController.swift
+//  RenameDropboxFileViewController.swift
 //  PWEditor
 //
 //  Created by mfuta1971 on 2016/06/09.
@@ -8,13 +8,20 @@
 
 import UIKit
 import GoogleMobileAds
+import SwiftyDropbox
 
-class RenameLocalFileViewController: BaseTableViewController, UITextFieldDelegate {
+/**
+ Dropboxファイルリネーム画面クラス
+
+ - Version: 1.0 新規作成
+ - Author: paveway.info@gmail.com
+ */
+class RenameDropboxFileViewController: BaseTableViewController, UITextFieldDelegate {
 
     // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kRenameLocalFileScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kRenameDropboxFileScreenTitle)
 
     // MARK: - Variables
 
@@ -189,27 +196,59 @@ class RenameLocalFileViewController: BaseTableViewController, UITextFieldDelegat
             return
         }
 
-        if FileUtils.isExist(pathName, name: toName!) {
-            // 変更後の名前のファイルまたはディレクトリが存在する場合
-            // エラーアラートを表示して、処理を終了する。
-            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageSameNameError)
-            showAlert(title, message: message)
-            return
-        }
-
         // 名前変更する。
-        let result = FileUtils.rename(pathName, srcName: srcName, toName: toName!)
-        if !result {
-            // 名前変更でエラーの場合
-            // エラーアラートを表示して、処理を終了する。
+        let fromPath: String
+        let toPath: String
+        if pathName == "" {
+            // ルートディレクトリの場合
+            fromPath = "/\(srcName)"
+            toPath = "/\(toName!)"
+
+        } else {
+            // ルートディレクトリ以外の場合
+            fromPath = "/\(pathName)/\(srcName)"
+            toPath = "/\(pathName)/\(toName!)"
+        }
+
+        rename(fromPath, toPath: toPath)
+    }
+
+    /**
+     リネームする。
+
+     - Parameter fromPath: 移動元パス名
+     - Parameter toPath: 移動先パス名
+     */
+    private func rename(fromPath: String, toPath: String) {
+        let client = Dropbox.authorizedClient
+        if client == nil {
+            // Dropboxが無効な場合
+            // エラーアラートを表示する。
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageRenameError)
-            showAlert(title, message: message)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDropboxInvalid)
+            self.showAlert(title, message: message)
             return
         }
 
-        // 遷移元画面に戻る。
-        navigationController?.popViewControllerAnimated(true)
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        // 移動する。
+        client!.files.move(fromPath: fromPath, toPath: toPath).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil || response == nil {
+                // エラーの場合
+                // エラーアラートを表示する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageRenameError)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            // 遷移元画面に戻る。
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
 }
