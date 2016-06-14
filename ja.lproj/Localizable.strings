@@ -207,7 +207,7 @@ EditDropboxFileDownloadError = "%@をダウンロードできませんでした�
 EditDropboxFileUpdloadError = "%@をアップロードできませんでした。";
 
 // Dropboxファイルリネーム画面
-RenameDropboxFileScreenTitle = "Dropboxファイルリネーム";
+RenameDropboxFileScreenTitle = "Dropboxファイル名前変更";
 
 // Dropboxディレクトリ選択画面
 SelectDropboxDirScreenTitle = "Dropboxディレクトリ選択";

@@ -360,12 +360,7 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
                 // FTPアップロードボタンを生成する。
                 let ftpUploadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleFtpUpload)
                 let ftpUploadAction = UIAlertAction(title: ftpUploadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
-                    // FTPアップロードホスト選択一覧画面に遷移する。
-                    let sourceClassName = self.dynamicType.description()
-                    let path = FileUtils.getLocalPath(name)
-                    let fileData = NSData(contentsOfFile: path)
-                    let vc = SelectFtpUploadHostListViewController(sourceClassName: sourceClassName, fileName: name, fileData: fileData!)
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    self.downloadData(name)
                 })
                 alert.addAction(ftpUploadAction)
             }
@@ -646,6 +641,82 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
                 let fileDataString = String(data: fileData!, encoding: NSUTF8StringEncoding)
                 let url = NSURL(string: fileDataString!)
                 let vc = PdfViewerViewController(url: url!)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
+
+    /**
+     Dropboxファイルをダウンロードする。
+
+     - Parameter fileName: ファイル名
+     */
+    func downloadData(fileName: String) {
+        let client = Dropbox.authorizedClient
+        if client == nil {
+            // Dropboxが無効な場合
+            // エラーアラートを表示する。
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDropboxInvalid)
+            self.showAlert(title, message: message)
+            return
+        }
+
+        // ダウンロード先URLを取得する。
+        let destination : (NSURL, NSHTTPURLResponse) -> NSURL = { temporaryURL, response in
+            let fileManager = NSFileManager.defaultManager()
+            let directoryURL = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            // generate a unique name for this file in case we've seen it before
+            let UUID = NSUUID().UUIDString
+            let pathComponent = "\(UUID)-\(response.suggestedFilename!)"
+            return directoryURL.URLByAppendingPathComponent(pathComponent)
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        // Dropboxファイルをダウンロードする。
+        let filePathName = "\(pathName)/\(fileName)"
+        client!.files.download(path: filePathName, destination: destination).response { response, error in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil || response == nil {
+                // エラーの場合
+                // エラーアラートを表示する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditDropboxFileDownloadError, filePathName)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            if let (metadata, url) = response {
+                // ファイル属性情報を取得する。
+                if metadata.dynamicType != Files.FileMetadata.self {
+                    // ファイル属性情報ではない場合
+                    // エラーアラートを表示する。
+                    let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                    let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditDropboxFileDownloadError, filePathName)
+                    self.showAlert(title, message: message)
+                    return
+                }
+
+                // 画面遷移後の削除用にローカルファイルパス名を取得する。
+                self.loacalFilePathName = url.path
+
+                // ファイルデータを取得する。
+                let fileData = NSData(contentsOfURL: url)
+
+                if fileData == nil {
+                    // ファイルデータが取得できない場合
+                    let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                    let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageGetFileDataError)
+                    self.showAlert(title, message: message)
+                }
+
+                // FTPアップロードホスト選択一覧画面に遷移する。
+                let sourceClassName = self.dynamicType.description()
+                let vc = SelectFtpUploadHostListViewController(sourceClassName: sourceClassName, fileName: fileName, fileData: fileData!)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
