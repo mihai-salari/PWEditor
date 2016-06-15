@@ -238,6 +238,12 @@ CreateGoogleDriveFileFileCreateError = "Create %@ failed.";
 EditGoogleDriveFileDownloadError = "Download %@ error.";
 EditGoogleDriveFileDownloadDataError = "Download %@ failed.";
 
+// GoogleDriveファイル名前変更画面
+RenameGoogleDriveFileScreenTitle = "Rename google drive file";
+
+// GoogleDriveディレクトリ選択画面
+SelectGoogleDriveDirScreenTitle = "Select google drive directory";
+
 // OneDriveファイル一覧画面
 OneDriveFileListScreenTitle = "One drive file list";
 

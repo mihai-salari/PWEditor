@@ -288,6 +288,7 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
         alert.addAction(cancelAction)
 
         let dir = GoogleDriveUtils.isDir(driveFile)
+        let name = driveFile.name
         if !dir {
             // ファイルの場合
             // 文字エンコーディングを指定して開くボタンを生成する。
@@ -299,6 +300,53 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             alert.addAction(openCharAction)
+
+            let results = FtpHostInfo.allObjects()
+            let count = results.count
+            if count > 0 {
+                // FTPアップロードボタンを生成する。
+                let ftpUploadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleFtpUpload)
+                let ftpUploadAction = UIAlertAction(title: ftpUploadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+                    self.downloadData(driveFile)
+                })
+                alert.addAction(ftpUploadAction)
+            }
+        }
+
+        if !dir {
+            // ファイルの場合
+            // TODO: ディレクトリの操作方法が不明なため暫定でファイルのみ対応する。
+            // 名前変更ボタンを生成する。
+            let renameButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleRename)
+            let renameAction = UIAlertAction(title: renameButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+                // GoogleDriveファイル名前変更画面に遷移する。
+                let vc = RenameGoogleDriveFileViewController(fromFile: driveFile)
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            alert.addAction(renameAction)
+
+            // ファイルの場合
+            // コピーボタンを生成する。
+            let copyButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCopy)
+            let copyAction = UIAlertAction(title: copyButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+                // ディレクトリ選択画面に遷移する。
+                let parentId = ""
+                let operateType = CommonConst.OperateType.Copy.rawValue
+                let vc = SelectGoogleDriveDirViewController(parentId: parentId, fromFile: driveFile, operateType: operateType)
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            alert.addAction(copyAction)
+
+            // 移動ボタンを生成する。
+            let moveButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleMove)
+            let moveAction = UIAlertAction(title: moveButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+                // ディレクトリ選択画面に遷移する。
+                let parentId = ""
+                let operateType = CommonConst.OperateType.Move.rawValue
+                let vc = SelectGoogleDriveDirViewController(parentId: parentId, fromFile: driveFile, operateType: operateType)
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            alert.addAction(moveAction)
         }
 
         // 削除ボタンを生成する。
@@ -448,6 +496,48 @@ class GoogleDriveFileListViewController: BaseTableViewController, UIGestureRecog
 
             // テーブルビューを更新する。
             self.tableView.reloadData()
+        })
+    }
+
+    /**
+     GoogleDriveファイルデータをダウンロードする。
+     
+     - Parameter driveFile: GoogleDriveファイル
+     */
+    func downloadData(driveFile: GTLDriveFile) {
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        let id = driveFile.identifier
+        let fileName = driveFile.name
+        let urlString = "https://www.googleapis.com/drive/v3/files/\(id)?alt=media"
+        let appDelegate = EnvUtils.getAppDelegate()
+        let serviceDrive = appDelegate.googleDriveServiceDrive
+        let fetcher = serviceDrive.fetcherService.fetcherWithURLString(urlString)
+        fetcher.beginFetchWithCompletionHandler( { (data: NSData?, error: NSError?) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                // エラーの場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditGoogleDriveFileDownloadError, fileName)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            if data == nil {
+                // データが取得できない場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditGoogleDriveFileDownloadDataError, fileName)
+                self.showAlert(title, message: message)
+                return
+            }
+
+            // FTPアップロードホスト選択一覧画面に遷移する。
+            let sourceClassName = self.dynamicType.description()
+            let vc = SelectFtpUploadHostListViewController(sourceClassName: sourceClassName, fileName: fileName, fileData: data!)
+            self.navigationController?.pushViewController(vc, animated: true)
         })
     }
 }

@@ -213,6 +213,10 @@
 		3FFA45F71D0F534A002D4274 /* SelectDropboxDirViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FFA45F51D0F534A002D4274 /* SelectDropboxDirViewController.xib */; };
 		3FFA45FA1D100740002D4274 /* RenameDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA45F81D100740002D4274 /* RenameDropboxFileViewController.swift */; };
 		3FFA45FB1D100740002D4274 /* RenameDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FFA45F91D100740002D4274 /* RenameDropboxFileViewController.xib */; };
+		3FFA46001D10C317002D4274 /* RenameGoogleDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA45FC1D10C317002D4274 /* RenameGoogleDriveFileViewController.swift */; };
+		3FFA46011D10C317002D4274 /* RenameGoogleDriveFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FFA45FD1D10C317002D4274 /* RenameGoogleDriveFileViewController.xib */; };
+		3FFA46021D10C317002D4274 /* SelectGoogleDriveDirViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFA45FE1D10C317002D4274 /* SelectGoogleDriveDirViewController.swift */; };
+		3FFA46031D10C317002D4274 /* SelectGoogleDriveDirViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FFA45FF1D10C317002D4274 /* SelectGoogleDriveDirViewController.xib */; };
 		3FFB231F1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */; };
 		40C44389B3CB69C698058540 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D11AD2E8D3B26F561B704230 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -511,6 +515,10 @@
 		3FFA45F51D0F534A002D4274 /* SelectDropboxDirViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectDropboxDirViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/SelectDropboxDirViewController.xib; sourceTree = "<group>"; };
 		3FFA45F81D100740002D4274 /* RenameDropboxFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RenameDropboxFileViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/RenameDropboxFileViewController.swift; sourceTree = "<group>"; };
 		3FFA45F91D100740002D4274 /* RenameDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RenameDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/RenameDropboxFileViewController.xib; sourceTree = "<group>"; };
+		3FFA45FC1D10C317002D4274 /* RenameGoogleDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RenameGoogleDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/GoogleDrive/RenameGoogleDriveFileViewController.swift; sourceTree = "<group>"; };
+		3FFA45FD1D10C317002D4274 /* RenameGoogleDriveFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RenameGoogleDriveFileViewController.xib; path = Classes/ViewControllers/Cloud/GoogleDrive/RenameGoogleDriveFileViewController.xib; sourceTree = "<group>"; };
+		3FFA45FE1D10C317002D4274 /* SelectGoogleDriveDirViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectGoogleDriveDirViewController.swift; path = Classes/ViewControllers/Cloud/GoogleDrive/SelectGoogleDriveDirViewController.swift; sourceTree = "<group>"; };
+		3FFA45FF1D10C317002D4274 /* SelectGoogleDriveDirViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectGoogleDriveDirViewController.xib; path = Classes/ViewControllers/Cloud/GoogleDrive/SelectGoogleDriveDirViewController.xib; sourceTree = "<group>"; };
 		3FFB231E1C8796F200D0DDB2 /* SwiftyDropboxLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SwiftyDropboxLicense.txt; path = Resources/Licenses/SwiftyDropboxLicense.txt; sourceTree = "<group>"; };
 		4F9D2010F7486BD9895A4387 /* Pods-PWEditorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PWEditorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PWEditorTests/Pods-PWEditorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		64373137871C337C27C6C1D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -613,6 +621,10 @@
 				3F5AE4481CC788C600E262AC /* CreateGoogleDriveFileViewController.xib */,
 				3F1620E51CC6D4B600ABECFE /* EditGoogleDriveFileViewController.swift */,
 				3F1620E61CC6D4B600ABECFE /* EditGoogleDriveFileViewController.xib */,
+				3FFA45FC1D10C317002D4274 /* RenameGoogleDriveFileViewController.swift */,
+				3FFA45FD1D10C317002D4274 /* RenameGoogleDriveFileViewController.xib */,
+				3FFA45FE1D10C317002D4274 /* SelectGoogleDriveDirViewController.swift */,
+				3FFA45FF1D10C317002D4274 /* SelectGoogleDriveDirViewController.xib */,
 			);
 			name = GoogleDrive;
 			sourceTree = "<group>";
@@ -1247,6 +1259,7 @@
 				3FDB24E81CF154B50073BC04 /* Syntax_html.txt in Resources */,
 				3F5AE4691CC9828200E262AC /* C.txt in Resources */,
 				3F165E6E1C7A7D0B001CBC38 /* HighlightLicense.txt in Resources */,
+				3FFA46031D10C317002D4274 /* SelectGoogleDriveDirViewController.xib in Resources */,
 				3F2852421CE3DBBF00C77435 /* FtpHostListViewController.xib in Resources */,
 				3FDB24F61CF277860073BC04 /* Syntax_java.txt in Resources */,
 				3F5AE4671CC9819200E262AC /* Java.txt in Resources */,
@@ -1321,6 +1334,7 @@
 				3F4873701C75DB9C006594A6 /* Config.txt in Resources */,
 				3F165E621C7A776F001CBC38 /* xcode.css in Resources */,
 				3F17F04B1CD00CB300A1F280 /* normal.html in Resources */,
+				3FFA46011D10C317002D4274 /* RenameGoogleDriveFileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1481,8 +1495,10 @@
 				3F1915531C8CCF360042D306 /* LineNumberTextView.m in Sources */,
 				3F2852971CEBBAC300C77435 /* FtpUtils.swift in Sources */,
 				3F28524A1CE3DBE900C77435 /* CreateFtpHostViewController.swift in Sources */,
+				3FFA46021D10C317002D4274 /* SelectGoogleDriveDirViewController.swift in Sources */,
 				3F19154B1C8CCEFE0042D306 /* ReadJEnc.swift in Sources */,
 				3F68715C1CBD937E009E45B2 /* MethodUtils.swift in Sources */,
+				3FFA46001D10C317002D4274 /* RenameGoogleDriveFileViewController.swift in Sources */,
 				3F165E751C7A7E7C001CBC38 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

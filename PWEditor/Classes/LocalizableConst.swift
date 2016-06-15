@@ -244,6 +244,12 @@ struct LocalizableConst {
     static let kEditGoogleDriveFileDownloadError = "EditGoogleDriveFileDownloadError";
     static let kEditGoogleDriveFileDownloadDataError = "EditGoogleDriveFileDownloadDataError"
 
+    // GoogleDriveファイル名前変更画面
+    static let kRenameGoogleDriveFileScreenTitle = "RenameGoogleDriveFileScreenTitle"
+
+    // GoogleDriveディレクトリ選択画面
+    static let kSelectGoogleDriveDirScreenTitle = "SelectGoogleDriveDirScreenTitle"
+
     // OneDriveファイル一覧画面
     static let kOneDriveFileListScreenTitle = "OneDriveFileListScreenTitle"
 
