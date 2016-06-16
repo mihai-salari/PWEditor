@@ -267,6 +267,12 @@ EditOneDriveFileDownloadError = "Download %@ error.";
 EditOneDriveFileFilePathInvalid = "%@ file path invalid.";
 EditOneDriveFileDownloadDataError = "Download %@ failed.";
 
+// OneDriveファイル名前変更画面
+RenameOneDriveFileScreenTitle = "Rename one drive file";
+
+// OneDriveディレクトリ選択画面
+SelectOneDriveDirScreenTitle = "Select one drive directory";
+
 // FTPホスト一覧画面
 FtpHostListScreenTitle = "FTP host list";
 

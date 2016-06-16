@@ -267,6 +267,12 @@ EditOneDriveFileDownloadError = "%@のダウンロードでエラーが発生し
 EditOneDriveFileFilePathInvalid = "%@のファイルパスが無効です。";
 EditOneDriveFileDownloadDataError = "%@をダウンロードできませんでした。";
 
+// OneDriveファイル名前変更画面
+RenameOneDriveFileScreenTitle = "OneDriveファイル名前変更";
+
+// OneDriveディレクトリ選択画面
+SelectOneDriveDirScreenTitle = "OneDriveディレクトリ選択";
+
 // FTPホスト一覧画面
 FtpHostListScreenTitle = "FTPホスト一覧";
 FtpHostListSaveError = "FTPホスト情報が保存できませんでした。";

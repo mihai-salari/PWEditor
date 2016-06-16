@@ -311,7 +311,51 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             alert.addAction(openCharAction)
+
+            let results = FtpHostInfo.allObjects()
+            let count = results.count
+            if count > 0 {
+                // FTPアップロードボタンを生成する。
+                let ftpUploadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleFtpUpload)
+                let ftpUploadAction = UIAlertAction(title: ftpUploadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+//                    self.downloadData(name)
+                })
+                alert.addAction(ftpUploadAction)
+            }
         }
+
+        // 名前変更ボタンを生成する。
+        let renameButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleRename)
+        let renameAction = UIAlertAction(title: renameButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+            // OneDriveファイル名前変更画面に遷移する。
+            let vc = RenameOneDriveFileViewController(item: item)
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(renameAction)
+
+        // コピーボタンを生成する。
+        let copyButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCopy)
+        let copyAction = UIAlertAction(title: copyButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+            // ディレクトリ選択画面に遷移する。
+//            let pathName = "/"
+//            let name = fileInfo.name
+//            let operateType = CommonConst.OperateType.Copy.rawValue
+//            let vc = SelectOneDriveDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
+//            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(copyAction)
+
+        // 移動ボタンを生成する。
+        let moveButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleMove)
+        let moveAction = UIAlertAction(title: moveButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
+            // ディレクトリ選択画面に遷移する。
+//            let pathName = "/"
+//            let name = fileInfo.name
+//            let operateType = CommonConst.OperateType.Move.rawValue
+//            let vc = SelectOneDriveDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
+//            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        alert.addAction(moveAction)
 
         // 削除ボタンを生成する。
         let deleteButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleDelete)

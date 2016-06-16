@@ -66,12 +66,12 @@ struct LocalizableConst {
     static let kAlertMessageFileDownloadError = "AlertMessageFileDownloadError"
         static let kAlertMessageSameFileName = "AlertMessageSameFileName"
 
-    static let kAlertMessageEnterNameError = "AlertMessageEnterNameError";
-    static let kAlertMessageSameNameError = "AlertMessageSameNameError";
-    static let kAlertMessageRenameError = "AlertMessageRenameError";
-    static let kAlertMessageDirNotSelectError = "AlertMessageDirNotSelectError";
-    static let kAlertMessageCopyError = "AlertMessageCopyError";
-    static let kAlertMessageMoveError = "AlertMessageMoveError";
+    static let kAlertMessageEnterNameError = "AlertMessageEnterNameError"
+    static let kAlertMessageSameNameError = "AlertMessageSameNameError"
+    static let kAlertMessageRenameError = "AlertMessageRenameError"
+    static let kAlertMessageDirNotSelectError = "AlertMessageDirNotSelectError"
+    static let kAlertMessageCopyError = "AlertMessageCopyError"
+    static let kAlertMessageMoveError = "AlertMessageMoveError"
 
     // アクションシートタイトル
     static let kActionSheetTitleLocalFile = "ActionSheetTitleLocalFile"
@@ -241,7 +241,7 @@ struct LocalizableConst {
     static let kCreateGoogleDriveFileFileCreateError = "CreateGoogleDriveFileFileCreateError"
 
     // GoogleDriveファイル編集画面
-    static let kEditGoogleDriveFileDownloadError = "EditGoogleDriveFileDownloadError";
+    static let kEditGoogleDriveFileDownloadError = "EditGoogleDriveFileDownloadError"
     static let kEditGoogleDriveFileDownloadDataError = "EditGoogleDriveFileDownloadDataError"
 
     // GoogleDriveファイル名前変更画面
@@ -269,9 +269,15 @@ struct LocalizableConst {
     static let kCreateOneDriveFileEnterNameError = "CreateOneDriveFileEnterNameError"
 
     // OneDrive編集画面
-    static let kEditOneDriveFileDownloadError = "EditOneDriveFileDownloadError";
-    static let kEditOneDriveFileFilePathInvalid = "EditOneDriveFileFilePathInvalid";
-    static let kEditOneDriveFileDownloadDataError = "EditOneDriveFileDownloadDataError";
+    static let kEditOneDriveFileDownloadError = "EditOneDriveFileDownloadError"
+    static let kEditOneDriveFileFilePathInvalid = "EditOneDriveFileFilePathInvalid"
+    static let kEditOneDriveFileDownloadDataError = "EditOneDriveFileDownloadDataError"
+
+    // OneDriveファイル名前変更画面
+    static let kRenameOneDriveFileScreenTitle = "RenameOneDriveFileScreenTitle"
+
+    // OneDriveディレクトリ選択画面
+    static let kSelectOneDriveDirScreenTitle = "SelectOneDriveDirScreenTitle"
 
     // FTPホスト一覧画面
     static let kFtpHostListScreenTitle = "FtpHostListScreenTitle"
@@ -319,13 +325,13 @@ struct LocalizableConst {
     static let kSelectFtpDownloadTargetCellTitleBox = "SelectFtpDownloadTargetCellTitleBox"
 
     // ローカルディレクトリ選択画面
-    static let kSelectLocalDirectoryNotSelectError = "SelectLocalDirectoryNotSelectError";
+    static let kSelectLocalDirectoryNotSelectError = "SelectLocalDirectoryNotSelectError"
 
     // FTPアップロード先ホスト一覧選択画面
-    static let kSelectFtpUploadHostListScreenTitle = "SelectFtpUploadHostListScreenTitle";
+    static let kSelectFtpUploadHostListScreenTitle = "SelectFtpUploadHostListScreenTitle"
 
     // FTPアップロードディレクトリ一覧選択画面
-    static let kSelectFtpUploadDirectoryListScreenTitle = "SelectFtpUploadDirectoryListScreenTitle";
+    static let kSelectFtpUploadDirectoryListScreenTitle = "SelectFtpUploadDirectoryListScreenTitle"
 
     // 設定画面
     static let kSettingsScreenTitle = "SettingsScreenTitle"
