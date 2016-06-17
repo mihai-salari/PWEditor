@@ -216,6 +216,28 @@ class BaseViewController: UIViewController, GADBannerViewDelegate {
      - Parameter title: タイトル
      - Parameter message: メッセージ
      - Parameter okButtonTitle: OKボタンタイトル(デフォルト"OK")
+     - Parameter handler: OKボタン押下時の処理
+     */
+    func showAlertAsync(title: String, message: String, okButtonTitle: String = LocalizableUtils.getString(LocalizableConst.kButtonTitleOk), handler: (() -> Void)? = nil) {
+        // アラートを表示する。
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: okButtonTitle, style: .Default, handler: {(action: UIAlertAction!) -> Void in
+            handler?()
+        })
+        alert.addAction(okAction)
+
+        let queue = dispatch_get_main_queue()
+        dispatch_async(queue) {
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+
+    /**
+     アラートを表示する(アラート表示のみ)
+
+     - Parameter title: タイトル
+     - Parameter message: メッセージ
+     - Parameter okButtonTitle: OKボタンタイトル(デフォルト"OK")
      - Parameter cancelButtonTitle: キャンセルボタンタイトル(デフォルト"キャンセル")
      - Parameter handler: OKボタン押下時の処理
      */

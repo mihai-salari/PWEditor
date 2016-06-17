@@ -178,7 +178,6 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
             // フォルダの場合
             cell.accessoryType = .DisclosureIndicator
         }
-
         return cell
     }
 
@@ -225,7 +224,6 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
      - Parameter indexPath: インデックスパス
      */
     func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-
         // OneDriveアイテムリストが未取得の場合、処理を終了する。
         let row = indexPath.row
         let count = itemList.count
@@ -318,7 +316,7 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
                 // FTPアップロードボタンを生成する。
                 let ftpUploadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleFtpUpload)
                 let ftpUploadAction = UIAlertAction(title: ftpUploadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
-//                    self.downloadData(name)
+                    self.downloadFileData(item)
                 })
                 alert.addAction(ftpUploadAction)
             }
@@ -337,11 +335,10 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         let copyButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleCopy)
         let copyAction = UIAlertAction(title: copyButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
             // ディレクトリ選択画面に遷移する。
-//            let pathName = "/"
-//            let name = fileInfo.name
-//            let operateType = CommonConst.OperateType.Copy.rawValue
-//            let vc = SelectOneDriveDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
-//            self.navigationController?.pushViewController(vc, animated: true)
+            let parentItemId = ""
+            let operateType = CommonConst.OperateType.Copy.rawValue
+            let vc = SelectOneDriveDirViewController(parentItemId: parentItemId, fromItem: item, operateType: operateType)
+            self.navigationController?.pushViewController(vc, animated: true)
         })
         alert.addAction(copyAction)
 
@@ -349,11 +346,10 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
         let moveButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleMove)
         let moveAction = UIAlertAction(title: moveButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
             // ディレクトリ選択画面に遷移する。
-//            let pathName = "/"
-//            let name = fileInfo.name
-//            let operateType = CommonConst.OperateType.Move.rawValue
-//            let vc = SelectOneDriveDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
-//            self.navigationController?.pushViewController(vc, animated: true)
+            let parentItemId = ""
+            let operateType = CommonConst.OperateType.Move.rawValue
+            let vc = SelectOneDriveDirViewController(parentItemId: parentItemId, fromItem: item, operateType: operateType)
+            self.navigationController?.pushViewController(vc, animated: true)
         })
         alert.addAction(moveAction)
 
@@ -436,7 +432,7 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
             // OneDriveが無効な場合
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
-            self.showAlert(title, message: message) {
+            showAlert(title, message: message) {
                 // 画面構成をリセットする。
                 self.resetScreen()
             }
@@ -457,7 +453,10 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
                 let errorCode = error!.code
                 let errorMessage = error!.localizedDescription
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageGetFileListError, errorCode, errorMessage)
-                self.showAlert(title, message: message)
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message)
+                }
                 return
             }
 
@@ -465,7 +464,10 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
                 // OneDriveファイルリストが取得できない場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageGetFileListFailed)
-                self.showAlert(title, message: message)
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message)
+                }
                 return
             }
 
@@ -475,10 +477,11 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
             }
 
             // UI操作はメインスレッドで行う。
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let queue = dispatch_get_main_queue()
+            dispatch_async(queue) {
                 // テーブルビューを更新する。
                 self.tableView.reloadData()
-            })
+            }
         })
     }
 
@@ -494,7 +497,7 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
             // OneDriveが無効な場合
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
-            self.showAlert(title, message: message)
+            showAlert(title, message: message)
             return
         }
 
@@ -510,7 +513,7 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
                 // エラーの場合、エラーアラートを表示して終了する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDeleteFileError)
-                self.showAlert(title, message: message)
+                self.showAlertAsync(title, message: message)
                 return
             }
 
@@ -518,10 +521,70 @@ class OneDriveFileListViewController: BaseTableViewController, UIGestureRecogniz
             self.itemList.removeAtIndex(index)
 
             // UI処理はメインスレッドで行う。
-            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+            let queue = dispatch_get_main_queue()
+            dispatch_async(queue) {
                 // テーブルビューを更新する。
                 self.tableView.reloadData()
-            })
+            }
+        })
+    }
+
+    /**
+     ファイルデータをダウンロードする。
+     */
+    func downloadFileData(item: ODItem) {
+        let client = ODClient.loadCurrentClient()
+        if client == nil {
+            // OneDriveが無効な場合
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
+            showAlert(title, message: message)
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        client.drive().items(item.id).contentRequest().downloadWithCompletion( { (filePath: NSURL?, urlResponse: NSURLResponse?, error: NSError?) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                // エラーの場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let fileName = item.name
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileDownloadError, fileName)
+                self.showAlertAsync(title, message: message)
+                return
+            }
+
+            if filePath == nil {
+                // ファイルパスが取得できない場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let fileName = item.name
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileFilePathInvalid, fileName)
+                self.showAlertAsync(title, message: message)
+                return
+            }
+
+            let data = NSData(contentsOfURL: filePath!)
+            if data == nil {
+                // データが取得できない場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let fileName = item.name
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileDownloadDataError, fileName)
+                self.showAlertAsync(title, message: message)
+                return
+            }
+
+            // FTPアップロードホスト選択一覧画面に遷移する。
+            let fileName = item.name
+            let sourceClassName = self.dynamicType.description()
+            let vc = SelectFtpUploadHostListViewController(sourceClassName: sourceClassName, fileName: fileName, fileData: data!)
+            let queue = dispatch_get_main_queue()
+            dispatch_async(queue) {
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         })
     }
 }

@@ -355,7 +355,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             // OneDriveが無効な場合
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
-            self.showAlert(title, message: message)
+            showAlert(title, message: message)
             return
         }
 
@@ -381,7 +381,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             // エラーアラートを表示して終了する。
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlError)
-            self.showAlert(title, message: message)
+            showAlert(title, message: message)
             return
         }
 
@@ -418,7 +418,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 // エラーアラートを表示して終了する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageHttpRequestError)
-                self.showAlert(title, message: message)
+                self.showAlertAsync(title, message: message)
                 return
             }
 
@@ -434,7 +434,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             case 200, 201:
                 // 正常終了の場合
                 // UI処理はメインスレッドで行う。
-                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     // 遷移元画面に戻る。
                     self.navigationController?.popViewControllerAnimated(true)
                 })
@@ -445,7 +445,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 // エラーアラートを表示して終了する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageHttpStatusError, statusCode, message)
-                self.showAlert(title, message: message)
+                self.showAlertAsync(title, message: message)
                 break
             }
         })
@@ -464,7 +464,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             // OneDriveが無効な場合
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
-            self.showAlert(title, message: message)
+            showAlert(title, message: message)
             return
         }
 
@@ -490,7 +490,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             // エラーアラートを表示して終了する。
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlError)
-            self.showAlert(title, message: message)
+            showAlert(title, message: message)
             return
         }
 
@@ -523,7 +523,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
         } catch {
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlParamsError)
-            self.showAlert(title, message: message)
+            showAlert(title, message: message)
             return
         }
 
@@ -537,7 +537,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 // エラーアラートを表示して終了する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageHttpRequestError)
-                self.showAlert(title, message: message)
+                self.showAlertAsync(title, message: message)
                 return
             }
 
@@ -555,10 +555,11 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             case 200, 201:
                 // 正常終了の場合
                 // UI処理はメインスレッドで行う。
-                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
                     // 遷移元画面に戻る。
                     self.navigationController?.popViewControllerAnimated(true)
-                })
+                }
                 break
 
             default:
@@ -566,7 +567,7 @@ class CreateOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 // エラーアラートを表示して終了する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageHttpStatusError, statusCode, message)
-                self.showAlert(title, message: message)
+                self.showAlertAsync(title, message: message)
                 break
             }
         })

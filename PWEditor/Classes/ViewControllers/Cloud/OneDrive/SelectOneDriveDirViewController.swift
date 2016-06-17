@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMobileAds
+import OneDriveSDK
 
 /**
  OneDriveディレクトリ選択画面
@@ -30,23 +31,17 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
-    /// パス名
-    private var pathName: String!
+    /// 親アイテムID
+    private var parentItemId: String!
 
-    /// 名前
-    private var name: String!
-
-    /// 元のパス名
-    private var srcPathName: String!
-
-    /// 元の名前
-    private var srcName: String!
+    /// 元アイテム
+    private var fromItem: ODItem!
 
     /// 操作タイプ
     private var operateType: Int!
 
-    /// ディレクトリ情報リスト
-    private var dirInfoList = [DropboxFileInfo]()
+    /// ディレクトリアイテムリスト
+    private var dirItemList = [ODItem]()
 
     // MARK: - Initializer
 
@@ -63,18 +58,14 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
     /**
      イニシャライザ
 
-     - Parameter pathName: パス名
-     - Parameter name: 名前
-     - Parameter srcPathName: 元のパス名
-     - Parameter srcName: 元の名前
+     - Parameter parentItemId: 親アイテムID
+     - Parameter fromItem: 元アイテム
      - Parameter operateType: 操作タイプ
      */
-    init(pathName: String, name: String, srcPathName: String, srcName: String, operateType: Int) {
+    init(parentItemId: String, fromItem: ODItem, operateType: Int) {
         // 引数のデータを保存する。
-        self.pathName = pathName
-        self.name = name
-        self.srcPathName = srcPathName
-        self.srcName = srcName
+        self.parentItemId = parentItemId
+        self.fromItem = fromItem
         self.operateType = operateType
 
         // スーパークラスのメソッドを呼び出す。
@@ -105,16 +96,15 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
         // バナービューを設定する。
         setupBannerView(bannerView)
 
-        if pathName == "/" {
-            // ルートディレクトリの場合
-            let dirInfo = DropboxFileInfo()
-            dirInfo.name = pathName
-            dirInfo.isDir = true
-            dirInfoList.append(dirInfo)
+        if parentItemId.isEmpty {
+            let dirItem = ODItem()
+            dirItem.id = "root"
+            dirItem.name = "/"
+            dirItemList.append(dirItem)
 
         } else {
-            // ルートディレクトリ以外の場合
-            getDirInfoList(pathName)
+            // ディレクトリアイテムリストを取得する。
+            getDirItemList()
         }
     }
 
@@ -138,8 +128,8 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
      - Returns: セクション内のセル数
      */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // ディレクトリ情報リストの件数を返却する。
-        let count = dirInfoList.count
+        // ディレクトリアイテムリストの件数を返却する。
+        let count = dirItemList.count
         return count
     }
 
@@ -154,9 +144,15 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
         // セルを取得する。
         let cell = getTableViewCell(tableView)
 
+        // ディレクトリアイテムリストが未取得の場合、処理を終了する。
         let row = indexPath.row
-        let dirInfo = dirInfoList[row]
-        let name = dirInfo.name
+        let count = dirItemList.count
+        if row + 1 > count {
+            return cell
+        }
+
+        let dirItem = dirItemList[row]
+        let name = dirItem.name
         cell.textLabel!.text = name
         cell.accessoryType = .DisclosureIndicator
 
@@ -175,28 +171,25 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
         // セルの選択状態を解除する。
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        // 次のサブディレクトリパス名を取得する。
+        // ディレクトリアイテムリストが未取得の場合、処理を終了する。
         let row = indexPath.row
-        let dirInfo = dirInfoList[row]
-        let name = dirInfo.name
-        let path: String
-        if pathName == "/" {
+        let count = dirItemList.count
+        if row + 1 > count {
+            return
+        }
+
+        // 次のサブディレクトリパス名を取得する。
+        let dirInfo = dirItemList[row]
+        if parentItemId.isEmpty {
             // ルートディレクトリの場合
-            path = ""
+            parentItemId = "root"
 
         } else {
-            if pathName == "" {
-                // 1階層目の場合
-                path = "/\(name)"
-
-            } else {
-                // 2階層目以降の場合
-                path = "\(pathName)/\(name)"
-            }
+            parentItemId = dirInfo.id
         }
 
         // ディレクトリ選択画面に遷移する。
-        let vc = SelectDropboxDirViewController(pathName: path, name: name, srcPathName: srcPathName, srcName: srcName, operateType: operateType)
+        let vc = SelectOneDriveDirViewController(parentItemId: parentItemId, fromItem: fromItem, operateType: operateType)
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -235,7 +228,7 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
             }
 
             // 選択されていないセルのチェックマークを外す。
-            let count = dirInfoList.count
+            let count = dirItemList.count
             let row = indexPath!.row
             for i in 0 ..< count {
                 if i != row {
@@ -256,7 +249,7 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
      */
     override func rightBarButtonPressed(sender: UIButton) {
         // 選択されたディレクトリ情報を取得する。
-        var dirInfo: DropboxFileInfo? = nil
+        var dirItem: ODItem? = nil
         let rowNum = tableView?.numberOfRowsInSection(0)
         for var i = 0; i < rowNum; i += 1 {
             let indexPath = NSIndexPath(forItem: i, inSection: 0)
@@ -265,13 +258,13 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
 
             if check == UITableViewCellAccessoryType.Checkmark {
                 let row = indexPath.row
-                dirInfo = dirInfoList[row]
+                dirItem = dirItemList[row]
                 break
             }
         }
 
-        if dirInfo == nil {
-            // 選択されたディレクトリ情報が取得できない場合
+        if dirItem == nil {
+            // 選択されたディレクトリアイテムが取得できない場合
             // エラーアラートを表示して終了する。
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDirNotSelectError)
@@ -280,42 +273,18 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
         }
 
         // コピー・移動先パス名を取得する。
-        let dirName = dirInfo!.name
-        let toPathName: String
-        if pathName == "/" {
-            // ルートディレクトリの場合
-            toPathName = "/\(srcName)"
-
-        } else {
-            // ルートディレクトリ以外の場合
-            if pathName.isEmpty {
-                // 1階層目の場合
-                toPathName = "/\(dirName)/\(srcName)"
-
-            } else {
-                // 2階層目以降の場合
-                toPathName = "\(pathName)/\(dirName)/\(srcName)"
-            }
-        }
-
-        let srcPath: String
-        if srcPathName.isEmpty {
-            srcPath = "/\(srcName)"
-
-        } else {
-            srcPath = "\(srcPathName)/\(srcName)"
-        }
+        let parentId = dirItem!.id
 
         // 操作タイプにより処理を振り分ける。
         switch operateType {
         case CommonConst.OperateType.Copy.rawValue:
             // コピーを行う。
-            copy(srcPath, toPath: toPathName)
+            copyItem(parentId)
             break
 
         case CommonConst.OperateType.Move.rawValue:
             // 移動を行う。
-            move(srcPath, toPath: toPathName)
+            moveItem(parentId)
             break
 
         default:
@@ -324,167 +293,206 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
         }
     }
 
-    /**
-     遷移元画面に戻る。
-     */
-    func popViewController() {
-        // 画面遷移数を取得する。
-        let count = navigationController?.viewControllers.count
-        // 最後に表示した画面から画面遷移数確認する。
-        for var i = count! - 1; i >= 0; i-- {
-            let vc = navigationController?.viewControllers[i]
-            if vc!.dynamicType == DropboxFileListViewController.self {
-                // 表示した画面がDropboxファイル一覧画面の場合
-                // 画面を戻す。
-                navigationController?.popToViewController(vc!, animated: true)
-                break
-            }
-        }
-    }
-
     // MARK: - Dropbox
 
     /**
      ファイル情報リストを取得する。
-
-     - Parameter pathName: パス名
-     - Parameter index: ファイル情報の位置
      */
-    func getDirInfoList(pathName: String) {
-//        // リフレッシュコントロールを停止する。
-//        refreshControl?.endRefreshing()
-//
-//        let client = Dropbox.authorizedClient
-//        if client == nil {
-//            // Dropboxが無効な場合
-//            return
-//        }
-//
-//        // ネットワークアクセス通知を表示する。
-//        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-//
-//        // ディレクトリ内のファイル一覧を取得する。
-//        client!.files.listFolder(path: pathName).response { response, error in
-//            // ネットワークアクセス通知を消す。
-//            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-//
-//            if error != nil || response == nil {
-//                // エラーの場合
-//                // エラーアラートを表示する。
-//                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-//                let message = LocalizableUtils.getString(LocalizableConst.kDropboxFileListGetFileInfoListError)
-//                self.showAlert(title, message: message, handler: nil)
-//                return
-//            }
-//
-//            self.dirInfoList.removeAll(keepCapacity: false)
-//            let result = response
-//            for entry in result!.entries {
-//                if entry.dynamicType == Files.FolderMetadata.self {
-//                    // ディレクトリの場合
-//                    let fileInfo = DropboxFileInfo()
-//                    let name = entry.name
-//                    fileInfo.name = name
-//                    fileInfo.isDir = true
-//                    self.dirInfoList.append(fileInfo)
-//                }
-//            }
-//
-//            let count = self.dirInfoList.count
-//            if count > 0 {
-//                // サブディレクトリがある場合
-//                // テーブルビューを更新する。
-//                self.tableView.reloadData()
-//
-//            } else {
-//                // サブディレクトリが無い場合
-//                // エラーアラートを表示する。
-//                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-//                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageNoDirectoryError)
-//                let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
-//                self.showAlert(title, message: message, okButtonTitle: okButtonTitle) {
-//                    // 遷移元画面に戻る。
-//                    self.navigationController?.popViewControllerAnimated(true)
-//                }
-//            }
-//        }
+    func getDirItemList() {
+        let client = ODClient.loadCurrentClient()
+        if client == nil {
+            // OneDriveが無効な場合
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
+            self.showAlert(title, message: message)
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        // OneDriveファイルリストを取得する。
+        client.drive().items(self.parentItemId).children().request().getWithCompletion( { (children: ODCollection?, nextRequest: ODChildrenCollectionRequest?, error: NSError?) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                // エラーの場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let errorCode = error!.code
+                let errorMessage = error!.localizedDescription
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageGetFileListError, errorCode, errorMessage)
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController(false)
+                    }
+                }
+                return
+            }
+
+            if children == nil {
+                // OneDriveファイルリストが取得できない場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageGetFileListFailed)
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController(false)
+                    }
+                }
+                return
+            }
+
+            self.dirItemList.removeAll(keepCapacity: false)
+            for item in children!.value as! [ODItem] {
+                if item.folder != nil {
+                    self.dirItemList.append(item)
+                }
+            }
+
+            let count = self.dirItemList.count
+            if count == 0 {
+                // サブディレクトリが無い場合
+                // エラーアラートを表示する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageNoDirectoryError)
+                let okButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleClose)
+                self.showAlert(title, message: message, okButtonTitle: okButtonTitle) {
+                    // 遷移元画面に戻る。
+                    self.popViewController(false)
+                }
+            }
+
+            // UI操作はメインスレッドで行う。
+            let queue = dispatch_get_main_queue()
+            dispatch_sync(queue) {
+                // テーブルビューを更新する。
+                self.tableView.reloadData()
+            }
+        })
     }
 
     /**
      コピーする。
  
-     - Parameter fromPath: コピー元パス名
-     - Parameter toPath: コピー先パス名
+     - Parameter parentId: 親ID
      */
-    private func copy(fromPath: String, toPath: String) {
-//        let client = Dropbox.authorizedClient
-//        if client == nil {
-//            // Dropboxが無効な場合
-//            // エラーアラートを表示する。
-//            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-//            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDropboxInvalid)
-//            self.showAlert(title, message: message)
-//            return
-//        }
-//
-//        // ネットワークアクセス通知を表示する。
-//        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-//
-//        // コピーする。
-//        client!.files.copy(fromPath: fromPath, toPath: toPath).response { response, error in
-//            // ネットワークアクセス通知を消す。
-//            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-//
-//            if error != nil || response == nil {
-//                // エラーの場合
-//                // エラーアラートを表示する。
-//                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-//                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCopyError)
-//                self.showAlert(title, message: message, handler: nil)
-//                return
-//            }
-//
-//            // 遷移元画面に戻る。
-//            self.popViewController()
-//        }
+    private func copyItem(parentId: String) {
+        let client = ODClient.loadCurrentClient()
+        if client == nil {
+            // OneDriveが無効な場合
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
+            showAlert(title, message: message)
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        let parent = ODItemReference()
+        let name = fromItem.name
+        parent.id = parentId
+        let request = client.drive().items(self.fromItem.id).copyWithName(name, parentReference: parent).request()
+        request.executeWithCompletion() { (item: ODItem?, status: ODAsyncOperationStatus?, error: NSError?) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                // エラーの場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageCopyError)
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message) {
+                        self.popViewController(false)
+                    }
+                }
+                return
+            }
+
+            // 遷移元画面に戻る。
+            self.popViewController()
+        }
     }
 
     /**
      移動する。
 
-     - Parameter fromPath: 移動元パス名
-     - Parameter toPath: 移動先パス名
+     - Parameter parentId: 親ID
      */
-    private func move(fromPath: String, toPath: String) {
-//        let client = Dropbox.authorizedClient
-//        if client == nil {
-//            // Dropboxが無効な場合
-//            // エラーアラートを表示する。
-//            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-//            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDropboxInvalid)
-//            self.showAlert(title, message: message)
-//            return
-//        }
-//
-//        // ネットワークアクセス通知を表示する。
-//        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-//
-//        // 移動する。
-//        client!.files.move(fromPath: fromPath, toPath: toPath).response { response, error in
-//            // ネットワークアクセス通知を消す。
-//            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-//
-//            if error != nil || response == nil {
-//                // エラーの場合
-//                // エラーアラートを表示する。
-//                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-//                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageMoveError)
-//                self.showAlert(title, message: message, handler: nil)
-//                return
-//            }
-//
-//            // 遷移元画面に戻る。
-//            self.popViewController()
-//        }
+    private func moveItem(parentId: String) {
+        let client = ODClient.loadCurrentClient()
+        if client == nil {
+            // OneDriveが無効な場合
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
+            showAlert(title, message: message)
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        let updatedItem = ODItem()
+        updatedItem.id = fromItem.id
+        updatedItem.parentReference = ODItemReference()
+        updatedItem.parentReference.id = parentId
+
+        client.drive().items(self.fromItem.id).request().update(updatedItem, withCompletion: { (item: ODItem?, error: NSError?) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                // エラーの場合
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageMoveError)
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message) {
+                        self.popViewController(false)
+                    }
+                }
+                return
+            }
+
+            // 遷移元画面に戻る。
+            self.popViewController()
+        })
+    }
+
+    /**
+     遷移元画面に戻る。
+     */
+    func popViewController(thread: Bool = true) {
+        // 画面遷移数を取得する。
+        let controllers = navigationController?.viewControllers
+        if controllers == nil {
+            return
+        }
+        let count = controllers!.count
+        // 最後に表示した画面から画面遷移数確認する。
+        for var i = count - 1; i >= 0; i-- {
+            let vc = navigationController?.viewControllers[i]
+            if vc == nil {
+                continue
+            }
+            if vc!.dynamicType == OneDriveFileListViewController.self {
+                // 表示した画面がOneDriveファイル一覧画面の場合
+                // 画面を戻す。
+                if thread {
+                    let queue = dispatch_get_main_queue()
+                    dispatch_sync(queue) {
+                        self.navigationController?.popToViewController(vc!, animated: true)
+                    }
+                } else {
+                    self.navigationController?.popToViewController(vc!, animated: true)
+                }
+                break
+            }
+        }
     }
 }

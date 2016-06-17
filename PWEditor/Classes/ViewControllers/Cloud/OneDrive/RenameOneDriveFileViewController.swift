@@ -206,7 +206,7 @@ class RenameOneDriveFileViewController: BaseTableViewController, UITextFieldDele
             // OneDriveが無効な場合
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
-            self.showAlert(title, message: message)
+            showAlert(title, message: message)
             return
         }
 
@@ -226,13 +226,19 @@ class RenameOneDriveFileViewController: BaseTableViewController, UITextFieldDele
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = error!.description
-                self.showAlert(title, message: message)
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.navigationController?.popViewControllerAnimated(true)
+                    }
+                }
                 return
             }
 
             // UI操作はメインスレッドで行う。
             let queue = dispatch_get_main_queue()
-            dispatch_sync(queue) {
+            dispatch_async(queue) {
                 // 遷移元画面に戻る。
                 self.navigationController?.popViewControllerAnimated(true)
             }

@@ -154,9 +154,9 @@ class EditOneDriveFileViewController: BaseEditViewController {
             // OneDriveが無効な場合
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
-            self.showAlert(title, message: message) {
+            showAlert(title, message: message) {
                 // 遷移元画面に戻る。
-                self.popViewController()
+                self.popViewController(false)
             }
             return
         }
@@ -173,9 +173,12 @@ class EditOneDriveFileViewController: BaseEditViewController {
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let fileName = self.item.name
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileDownloadError, fileName)
-                self.showAlert(title, message: message) {
-                    // 遷移元画面に戻る。
-                    self.popViewController()
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController(false)
+                    }
                 }
                 return
             }
@@ -185,9 +188,12 @@ class EditOneDriveFileViewController: BaseEditViewController {
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let fileName = self.item.name
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileFilePathInvalid, fileName)
-                self.showAlert(title, message: message) {
-                    // 遷移元画面に戻る。
-                    self.popViewController()
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController(false)
+                    }
                 }
                 return
             }
@@ -198,9 +204,12 @@ class EditOneDriveFileViewController: BaseEditViewController {
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let fileName = self.item.name
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kEditOneDriveFileDownloadDataError, fileName)
-                self.showAlert(title, message: message) {
-                    // 遷移元画面に戻る。
-                    self.popViewController()
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController(false)
+                    }
                 }
                 return
             }
@@ -209,9 +218,12 @@ class EditOneDriveFileViewController: BaseEditViewController {
                 // テキストデータではない場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageNotTextFileError)
-                self.showAlert(title, message: message) {
-                    // 遷移元画面に戻る。
-                    self.popViewController()
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController(false)
+                    }
                 }
                 return
             }
@@ -221,16 +233,19 @@ class EditOneDriveFileViewController: BaseEditViewController {
                 // 文字列に変換できない場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageCovertEncodingError)
-                self.showAlert(title, message: message) {
-                    // 遷移元画面に戻る。
-                    self.popViewController()
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController(false)
+                    }
                 }
                 return
             }
 
             // UI操作はメインスレッドで行う。
             let queue = dispatch_get_main_queue()
-            dispatch_sync(queue) {
+            dispatch_async(queue) {
                 // 右バーボタンを有効にする。
                 self.navigationItem.rightBarButtonItem?.enabled = true
 
@@ -251,9 +266,9 @@ class EditOneDriveFileViewController: BaseEditViewController {
             // OneDriveが無効な場合
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
-            self.showAlert(title, message: message) {
+            showAlert(title, message: message) {
                 // 遷移元画面に戻る。
-                self.popViewController()
+                self.popViewController(false)
             }
             return
         }
@@ -262,7 +277,13 @@ class EditOneDriveFileViewController: BaseEditViewController {
         if data == nil {
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageFileDataNotFound)
-            showAlert(title, message: message)
+            let queue = dispatch_get_main_queue()
+            dispatch_async(queue) {
+                self.showAlert(title, message: message) {
+                    // 遷移元画面に戻る。
+                    self.popViewController(false)
+                }
+            }
             return
         }
 
@@ -278,16 +299,18 @@ class EditOneDriveFileViewController: BaseEditViewController {
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = error!.description
-                self.showAlert(title, message: message)
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    self.showAlert(title, message: message) {
+                        // 遷移元画面に戻る。
+                        self.popViewController(false)
+                    }
+                }
                 return
             }
 
-            // UI操作はメインスレッドで行う。
-            let queue = dispatch_get_main_queue()
-            dispatch_sync(queue) {
-                // 遷移元画面に戻る。
-                self.popViewController()
-            }
+            // 遷移元画面に戻る。
+            self.popViewController()
         })
     }
 
@@ -297,7 +320,7 @@ class EditOneDriveFileViewController: BaseEditViewController {
      遷移元画面に戻る。
      文字エンコーディング選択画面から遷移した場合、OneDriveファイル一覧画面に戻るための対応
      */
-    func popViewController() {
+    func popViewController(thread: Bool = true) {
         if popType.boolValue {
             // 画面遷移数を取得する。
             let count = navigationController?.viewControllers.count
@@ -307,7 +330,14 @@ class EditOneDriveFileViewController: BaseEditViewController {
                 if vc!.dynamicType == OneDriveFileListViewController.self {
                     // 表示した画面がOneDriveファイル一覧画面の場合
                     // 画面を戻す。
-                    navigationController?.popToViewController(vc!, animated: true)
+                    if thread {
+                        let queue = dispatch_get_main_queue()
+                        dispatch_async(queue) {
+                            self.navigationController?.popToViewController(vc!, animated: true)
+                        }
+                    } else {
+                        navigationController?.popToViewController(vc!, animated: true)
+                    }
                     break
                 }
             }

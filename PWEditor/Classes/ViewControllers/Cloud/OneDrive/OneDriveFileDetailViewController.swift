@@ -233,7 +233,7 @@ class OneDriveFileDetailViewController: BaseTableViewController {
             // OneDriveが無効な場合
             let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
             let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
-            self.showAlert(title, message: message)
+            showAlert(title, message: message)
             return
         }
 
@@ -249,15 +249,16 @@ class OneDriveFileDetailViewController: BaseTableViewController {
                 // エラーの場合、エラーアラートを表示して終了する。
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageDeleteFileError)
-                self.showAlert(title, message: message)
+                self.showAlertAsync(title, message: message)
                 return
             }
 
             // UI処理はメインスレッドで行う。
-            dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+            let queue = dispatch_get_main_queue()
+            dispatch_async(queue) {
                 // 遷移元画面に戻る。
                 self.navigationController?.popViewControllerAnimated(true)
-            })
+            }
         })
     }
 }
