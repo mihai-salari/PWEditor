@@ -148,12 +148,14 @@ struct CommonConst {
             struct Key {
                 static let kContentType = "Content-Type"
                 static let kAuthorization = "Authorization"
+                static let kPrefer = "Prefer"
             }
 
             struct Value {
                 static let kApplicationJson = "application/json"
                 static let kTextPlain = "text/plain"
                 static let kBearer = "Bearer %@"
+                static let kRespondAsync = "respond-async"
             }
         }
     }

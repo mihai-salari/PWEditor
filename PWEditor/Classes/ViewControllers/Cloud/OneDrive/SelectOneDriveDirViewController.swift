@@ -279,7 +279,11 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
         switch operateType {
         case CommonConst.OperateType.Copy.rawValue:
             // コピーを行う。
-            copyItem(parentId)
+            if parentId == "root" {
+                copyItemToRoot()
+            } else {
+                copyItem(parentId)
+            }
             break
 
         case CommonConst.OperateType.Move.rawValue:
@@ -405,18 +409,137 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageCopyError)
-                let queue = dispatch_get_main_queue()
-                dispatch_async(queue) {
-                    self.showAlert(title, message: message) {
-                        self.popViewController(false)
-                    }
-                }
+                self.showAlertAsync(title, message: message)
                 return
             }
 
             // 遷移元画面に戻る。
             self.popViewController()
         }
+    }
+
+    /**
+     rootディレクトリにコピーする。
+     */
+    private func copyItemToRoot() {
+        let client = ODClient.loadCurrentClient()
+        if client == nil {
+            // OneDriveが無効な場合
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
+            showAlert(title, message: message)
+            return
+        }
+
+        // ネットワークアクセス通知を表示する。
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+
+        // ベースURLを取得する。
+        let baseURL = client.baseURL
+
+        // アクセストークンを取得する。
+        let accountSession = client.authProvider.accountSession!()
+        let accessToken = accountSession.accessToken
+
+        // URL文字列を生成する。
+        let urlString = "\(baseURL)/drive/items/\(fromItem.id)/action.copy"
+        // URLを生成する。
+        let url = NSURL(string: urlString)
+        if url == nil {
+            // URLを生成できない場合
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            // エラーアラートを表示して終了する。
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlError)
+            showAlert(title, message: message)
+            return
+        }
+
+        // HTTPリクエストを生成する。
+        let request = NSMutableURLRequest(URL: url!)
+
+        // キャッシュをオフにする。
+        request.cachePolicy = .ReloadIgnoringLocalCacheData
+
+        // HTTPメソッドを設定する。
+        request.HTTPMethod = CommonConst.Http.Method.kPOST
+
+        // Content-Typeを設定する。
+        let contentType = CommonConst.Http.HTTPHeaderField.Key.kContentType
+        let applicationJson = CommonConst.Http.HTTPHeaderField.Value.kApplicationJson
+        request.setValue(applicationJson, forHTTPHeaderField: contentType)
+
+        // Authorizationを設定する。
+        let authorization = CommonConst.Http.HTTPHeaderField.Key.kAuthorization
+        let bearer = String(format: CommonConst.Http.HTTPHeaderField.Value.kBearer, accessToken)
+        request.setValue(bearer, forHTTPHeaderField: authorization)
+
+        // Preferを設定する。
+        let prefer = CommonConst.Http.HTTPHeaderField.Key.kPrefer
+        let respondAsync = CommonConst.Http.HTTPHeaderField.Value.kRespondAsync
+        request.setValue(respondAsync, forHTTPHeaderField: prefer)
+
+        // HTTPパラメータを生成し、設定する。
+        let params = ["path": "/drive/root"]
+        let parentReference = ["parentReference": params]
+
+        do {
+            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parentReference, options: NSJSONWritingOptions())
+        } catch {
+            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlParamsError)
+            showAlert(title, message: message)
+            return
+        }
+
+        // HTTP通信タスクを生成する。
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            // ネットワークアクセス通知を消す。
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+
+            if error != nil {
+                // エラーの場合
+                // エラーアラートを表示して終了する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageHttpRequestError)
+                self.showAlertAsync(title, message: message)
+                return
+            }
+
+            var message = ""
+            if data != nil {
+                // データがある場合
+                // メッセージを取得する。
+                message = String(data: data!, encoding: NSUTF8StringEncoding)!
+            }
+
+            // HTTPステータスコードを取得する。
+            let statusCode = (response as! NSHTTPURLResponse).statusCode
+            // HTTPステータスコード別に処理を振り分ける。
+            switch statusCode {
+            case 202:
+                // 正常終了の場合
+                // UI処理はメインスレッドで行う。
+                let queue = dispatch_get_main_queue()
+                dispatch_async(queue) {
+                    // 遷移元画面に戻る。
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+                break
+
+            default:
+                // エラーの場合
+                // エラーアラートを表示して終了する。
+                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
+                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageHttpStatusError, statusCode, message)
+                self.showAlertAsync(title, message: message)
+                break
+            }
+        })
+        // HTTP通信タスクを実行する。
+        task.resume()
     }
 
     /**
@@ -450,12 +573,7 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
                 // エラーの場合
                 let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
                 let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageMoveError)
-                let queue = dispatch_get_main_queue()
-                dispatch_async(queue) {
-                    self.showAlert(title, message: message) {
-                        self.popViewController(false)
-                    }
-                }
+                self.showAlertAsync(title, message: message)
                 return
             }
 
