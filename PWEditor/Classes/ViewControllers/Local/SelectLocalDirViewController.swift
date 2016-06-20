@@ -1,5 +1,5 @@
 //
-//  SelectDirViewController.swift
+//  SelectLocalDirViewController.swift
 //  PWEditor
 //
 //  Created by 二俣征嗣 on 2016/03/11.
@@ -10,17 +10,17 @@ import UIKit
 import GoogleMobileAds
 
 /**
- ディレクトリ選択画面
+ ローカルディレクトリ選択画面
 
  - Version: 1.0 新規作成
  - Authoer: paveway.info@gmail.com
  */
-class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDelegate {
+class SelectLocalDirViewController: BaseTableViewController, UIGestureRecognizerDelegate {
 
     // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kSelectDirScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kSelectLocalDirScreenTitle)
 
     // MARK: - Variables
 
@@ -210,8 +210,8 @@ class SelectDirViewController: BaseTableViewController, UIGestureRecognizerDeleg
             return
         }
 
-        // ディレクトリ選択画面に遷移する。
-        let vc = SelectDirViewController(pathName: path, name: name, srcPathName: srcPathName, srcName: srcName, operateType: operateType)
+        // ローカルディレクトリ選択画面に遷移する。
+        let vc = SelectLocalDirViewController(pathName: path, name: name, srcPathName: srcPathName, srcName: srcName, operateType: operateType)
         navigationController?.pushViewController(vc, animated: true)
     }
 

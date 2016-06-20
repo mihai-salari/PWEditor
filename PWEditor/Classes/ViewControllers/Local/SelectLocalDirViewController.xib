@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectDirViewController" customModule="PWEditor" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectLocalDirViewController" customModule="PWEditor" customModuleProvider="target">
             <connections>
-                <outlet property="bannerView" destination="evF-a8-Ozs" id="hD8-Bw-lZP"/>
-                <outlet property="tableView" destination="eSY-bs-1Jk" id="Dv1-v1-8Ec"/>
+                <outlet property="bannerView" destination="evF-a8-Ozs" id="Ane-Oq-O4e"/>
+                <outlet property="tableView" destination="eSY-bs-1Jk" id="J0b-UI-ZQI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

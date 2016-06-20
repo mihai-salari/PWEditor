@@ -17,6 +17,10 @@
 		3F003D321C767C2600ECC371 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D2F1C767C2600ECC371 /* StringUtils.swift */; };
 		3F003D3C1C767DFB00ECC371 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D3A1C767DFB00ECC371 /* BaseTableViewController.swift */; };
 		3F003D3D1C767DFB00ECC371 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F003D3B1C767DFB00ECC371 /* BaseViewController.swift */; };
+		3F0D330E1D17FD27004A0532 /* ExportDropboxFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D330C1D17FD27004A0532 /* ExportDropboxFileViewController.swift */; };
+		3F0D330F1D17FD27004A0532 /* ExportDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D330D1D17FD27004A0532 /* ExportDropboxFileViewController.xib */; };
+		3F0D33121D189F1E004A0532 /* ExportLocalFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D33101D189F1E004A0532 /* ExportLocalFileViewController.swift */; };
+		3F0D33131D189F1E004A0532 /* ExportLocalFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D33111D189F1E004A0532 /* ExportLocalFileViewController.xib */; };
 		3F0F829E1C90D1510090632E /* ICTextViewLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */; };
 		3F0F82A11C90DAD20090632E /* HighlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F829F1C90DAD20090632E /* HighlightViewController.swift */; };
 		3F0F82A21C90DAD20090632E /* HighlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F82A01C90DAD20090632E /* HighlightViewController.xib */; };
@@ -86,8 +90,8 @@
 		3F1915521C8CCF360042D306 /* LineNumberLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F19154D1C8CCF360042D306 /* LineNumberLayoutManager.m */; };
 		3F1915531C8CCF360042D306 /* LineNumberTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F19154F1C8CCF360042D306 /* LineNumberTextView.m */; };
 		3F1915541C8CCF360042D306 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1915511C8CCF360042D306 /* MyView.m */; };
-		3F19D2661C9225D6009ACAB2 /* SelectDirViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F19D2641C9225D6009ACAB2 /* SelectDirViewController.swift */; };
-		3F19D2671C9225D6009ACAB2 /* SelectDirViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F19D2651C9225D6009ACAB2 /* SelectDirViewController.xib */; };
+		3F19D2661C9225D6009ACAB2 /* SelectLocalDirViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F19D2641C9225D6009ACAB2 /* SelectLocalDirViewController.swift */; };
+		3F19D2671C9225D6009ACAB2 /* SelectLocalDirViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F19D2651C9225D6009ACAB2 /* SelectLocalDirViewController.xib */; };
 		3F23F9601C7BBAA2004852B3 /* GrepResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */; };
 		3F23F9611C7BBAA2004852B3 /* SearchResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */; };
 		3F23F9651C7BD19D004852B3 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F23F9641C7BD19D004852B3 /* DateUtils.swift */; };
@@ -293,6 +297,10 @@
 		3F003D2F1C767C2600ECC371 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringUtils.swift; path = Classes/Utils/StringUtils.swift; sourceTree = "<group>"; };
 		3F003D3A1C767DFB00ECC371 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = Classes/ViewControllers/Common/BaseTableViewController.swift; sourceTree = "<group>"; };
 		3F003D3B1C767DFB00ECC371 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = Classes/ViewControllers/Common/BaseViewController.swift; sourceTree = "<group>"; };
+		3F0D330C1D17FD27004A0532 /* ExportDropboxFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExportDropboxFileViewController.swift; path = Classes/ViewControllers/Cloud/Dropbox/ExportDropboxFileViewController.swift; sourceTree = "<group>"; };
+		3F0D330D1D17FD27004A0532 /* ExportDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExportDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/ExportDropboxFileViewController.xib; sourceTree = "<group>"; };
+		3F0D33101D189F1E004A0532 /* ExportLocalFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExportLocalFileViewController.swift; path = Classes/ViewControllers/Local/ExportLocalFileViewController.swift; sourceTree = "<group>"; };
+		3F0D33111D189F1E004A0532 /* ExportLocalFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExportLocalFileViewController.xib; path = Classes/ViewControllers/Local/ExportLocalFileViewController.xib; sourceTree = "<group>"; };
 		3F0D81471C7F2C22005FC945 /* PWEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PWEditor.entitlements; sourceTree = "<group>"; };
 		3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ICTextViewLicense.txt; path = Resources/Licenses/ICTextViewLicense.txt; sourceTree = "<group>"; };
 		3F0F829F1C90DAD20090632E /* HighlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighlightViewController.swift; path = Classes/ViewControllers/Local/HighlightViewController.swift; sourceTree = "<group>"; };
@@ -369,8 +377,8 @@
 		3F19154F1C8CCF360042D306 /* LineNumberTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineNumberTextView.m; path = Classes/External/TextKitLineNumbers/LineNumberTextView.m; sourceTree = "<group>"; };
 		3F1915501C8CCF360042D306 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyView.h; path = Classes/External/TextKitLineNumbers/MyView.h; sourceTree = "<group>"; };
 		3F1915511C8CCF360042D306 /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyView.m; path = Classes/External/TextKitLineNumbers/MyView.m; sourceTree = "<group>"; };
-		3F19D2641C9225D6009ACAB2 /* SelectDirViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectDirViewController.swift; path = Classes/ViewControllers/Local/SelectDirViewController.swift; sourceTree = "<group>"; };
-		3F19D2651C9225D6009ACAB2 /* SelectDirViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectDirViewController.xib; path = Classes/ViewControllers/Local/SelectDirViewController.xib; sourceTree = "<group>"; };
+		3F19D2641C9225D6009ACAB2 /* SelectLocalDirViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectLocalDirViewController.swift; path = Classes/ViewControllers/Local/SelectLocalDirViewController.swift; sourceTree = "<group>"; };
+		3F19D2651C9225D6009ACAB2 /* SelectLocalDirViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectLocalDirViewController.xib; path = Classes/ViewControllers/Local/SelectLocalDirViewController.xib; sourceTree = "<group>"; };
 		3F23F95E1C7BBAA2004852B3 /* GrepResultInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GrepResultInfo.swift; path = Classes/ViewControllers/Local/GrepResultInfo.swift; sourceTree = "<group>"; };
 		3F23F95F1C7BBAA2004852B3 /* SearchResultInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultInfo.swift; path = Classes/ViewControllers/Local/SearchResultInfo.swift; sourceTree = "<group>"; };
 		3F23F9641C7BD19D004852B3 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtils.swift; path = Classes/Utils/DateUtils.swift; sourceTree = "<group>"; };
@@ -662,6 +670,8 @@
 				3FFA45F41D0F534A002D4274 /* SelectDropboxDirViewController.swift */,
 				3FFA45F51D0F534A002D4274 /* SelectDropboxDirViewController.xib */,
 				3F157C021C84F50E007C555E /* DropboxFileInfo.swift */,
+				3F0D330C1D17FD27004A0532 /* ExportDropboxFileViewController.swift */,
+				3F0D330D1D17FD27004A0532 /* ExportDropboxFileViewController.xib */,
 			);
 			name = Dropbox;
 			sourceTree = "<group>";
@@ -719,8 +729,10 @@
 				3F76F1B31D08CF3600B288D6 /* RenameLocalFileViewController.xib */,
 				3F0F829F1C90DAD20090632E /* HighlightViewController.swift */,
 				3F0F82A01C90DAD20090632E /* HighlightViewController.xib */,
-				3F19D2641C9225D6009ACAB2 /* SelectDirViewController.swift */,
-				3F19D2651C9225D6009ACAB2 /* SelectDirViewController.xib */,
+				3F19D2641C9225D6009ACAB2 /* SelectLocalDirViewController.swift */,
+				3F19D2651C9225D6009ACAB2 /* SelectLocalDirViewController.xib */,
+				3F0D33101D189F1E004A0532 /* ExportLocalFileViewController.swift */,
+				3F0D33111D189F1E004A0532 /* ExportLocalFileViewController.xib */,
 			);
 			name = Local;
 			sourceTree = "<group>";
@@ -1274,12 +1286,14 @@
 				3FFA46031D10C317002D4274 /* SelectGoogleDriveDirViewController.xib in Resources */,
 				3F2852421CE3DBBF00C77435 /* FtpHostListViewController.xib in Resources */,
 				3FDB24F61CF277860073BC04 /* Syntax_java.txt in Resources */,
+				3F0D330F1D17FD27004A0532 /* ExportDropboxFileViewController.xib in Resources */,
 				3F5AE4671CC9819200E262AC /* Java.txt in Resources */,
 				3FDB24CC1CEDE6850073BC04 /* SelectFtpUploadDirectoryListViewController.xib in Resources */,
 				3F003D201C767A2100ECC371 /* InfoPlist.strings in Resources */,
 				3FF93E381C86595500621455 /* EditDropboxFileViewController.xib in Resources */,
 				3F12E86E1CC594430008DDEE /* GoogleDriveFileListViewController.xib in Resources */,
 				3F17F0401CCF712700A1F280 /* marked.min.js in Resources */,
+				3F0D33131D189F1E004A0532 /* ExportLocalFileViewController.xib in Resources */,
 				3F5AE4531CC8420D00E262AC /* GoogleApiObjectiveCClientLicense.txt in Resources */,
 				3F165E411C7A690C001CBC38 /* ECSlidingViewControllerLicense.txt in Resources */,
 				3F165E7A1C7A7FF5001CBC38 /* SelectNumberViewController.xib in Resources */,
@@ -1300,7 +1314,7 @@
 				3F55D4661CDFDA8100818A4E /* OneDriveSDKiOSLicense.txt in Resources */,
 				3F165E421C7A690C001CBC38 /* SourceHanCodeJPLicense.txt in Resources */,
 				3FA61AE11CE15694009926EE /* CreateICloudFileViewController.xib in Resources */,
-				3F19D2671C9225D6009ACAB2 /* SelectDirViewController.xib in Resources */,
+				3F19D2671C9225D6009ACAB2 /* SelectLocalDirViewController.xib in Resources */,
 				3F5AE44A1CC788C600E262AC /* CreateGoogleDriveFileViewController.xib in Resources */,
 				3F157BFB1C84F4A6007C555E /* CreateDropboxFileViewController.xib in Resources */,
 				3F165E3D1C7A68FB001CBC38 /* History.txt in Resources */,
@@ -1464,11 +1478,12 @@
 				3F0F82A11C90DAD20090632E /* HighlightViewController.swift in Sources */,
 				3F5AE4511CC833E600E262AC /* GoogleDriveUtils.swift in Sources */,
 				3F5AE46D1CC9884F00E262AC /* ReserveWordUtils.swift in Sources */,
+				3F0D330E1D17FD27004A0532 /* ExportDropboxFileViewController.swift in Sources */,
 				3F1620DE1CC6538B00ABECFE /* GoogleDriveFileDetailViewController.swift in Sources */,
 				3F2852771CE53B0A00C77435 /* FtpFileInfoUtils.swift in Sources */,
 				3F23F9611C7BBAA2004852B3 /* SearchResultInfo.swift in Sources */,
 				3F76F1C31D0A34DC00B288D6 /* RLMSwiftSupport.m in Sources */,
-				3F19D2661C9225D6009ACAB2 /* SelectDirViewController.swift in Sources */,
+				3F19D2661C9225D6009ACAB2 /* SelectLocalDirViewController.swift in Sources */,
 				3F2852511CE3DF2000C77435 /* FtpHostInfo.swift in Sources */,
 				3FDB24C71CEDE1AF0073BC04 /* SelectFtpUploadHostListViewController.swift in Sources */,
 				3FDB24F41CF268BB0073BC04 /* BaseEditViewController.swift in Sources */,
@@ -1482,6 +1497,7 @@
 				3F23F9601C7BBAA2004852B3 /* GrepResultInfo.swift in Sources */,
 				3F76F1B81D08E37500B288D6 /* SelectStorageViewController.swift in Sources */,
 				3F1915521C8CCF360042D306 /* LineNumberLayoutManager.m in Sources */,
+				3F0D33121D189F1E004A0532 /* ExportLocalFileViewController.swift in Sources */,
 				3F1915471C8CCE8D0042D306 /* CharCode.swift in Sources */,
 				3F2852821CE54E0B00C77435 /* ShowFtpFileViewController.swift in Sources */,
 				3FA61AE01CE15694009926EE /* CreateICloudFileViewController.swift in Sources */,

@@ -25,6 +25,7 @@ struct LocalizableConst {
     static let kButtonTitleRename = "ButtonTitleRename"
     static let kButtonTitleCopy = "ButtonTitleCopy"
     static let kButtonTitleMove = "ButtonTitleMove"
+    static let kButtonTitleExport = "ButtonTitleExport"
 
     // アラートタイトル
     static let kAlertTitleError = "AlertTitleError"
@@ -128,6 +129,14 @@ struct LocalizableConst {
     static let kSearchAndReplaceCellTitleSearch = "SearchAndReplaceCellTitleSearch"
     static let kSearchAndReplaceCellTitleReplace = "SearchAndReplaceCellTitleReplace"
 
+    // ストレージ選択画面
+    static let kSelectStorageScreenTitle = "SelectStorageScreenTitle";
+    static let kSelectStorageCellTitleLocal = "SelectStorageCellTitleLocal";
+    static let kSelectStorageCellTitleICloud = "SelectStorageCellTitleICloud";
+    static let kSelectStorageCellTitleDropbox = "SelectStorageCellTitleDropbox";
+    static let kSelectStorageCellTitleGoogleDrive = "SelectStorageCellTitleGoogleDrive";
+    static let kSelectStorageCellTitleOneDrive = "SelectStorageCellTitleOneDrive";
+
     // ローカルファイル一覧画面
     static let kLocalFileListScreenTitle = "LocalFileListScreenTitle"
     static let kLocalFileListScreenTitleSearch = "LocalFileListScreenTitleSearch"
@@ -162,8 +171,11 @@ struct LocalizableConst {
     // ローカルファイル名前変更画面
     static let kRenameLocalFileScreenTitle = "RenameLocalFileScreenTitle"
 
-    // ディレクトリ選択画面
-    static let kSelectDirScreenTitle = "SelectDirScreenTitle"
+    // ローカルディレクトリ選択画面
+    static let kSelectLocalDirScreenTitle = "SelectLocalDirScreenTitle"
+
+    // ローカルファイルエクスポート画面
+    static let kExportLocalFileScreenTitle = "ExportLocalFileScreenTitle";
 
     // iCloudファイル一覧画面
     static let kICloudFileListScreenTitle = "ICloudFileListScreenTitle"
@@ -217,6 +229,9 @@ struct LocalizableConst {
 
     // Dropboxディレクトリ選択画面
     static let kSelectDropboxDirScreenTitle = "SelectDropboxDirScreenTitle"
+
+    // Dropboxファイルエクスポート画面
+    static let kExportDropboxFileScreenTitle = "ExportDropboxFileScreenTitle"
 
     // GoogleDriveファイル一覧画面
     static let kGoogleDriveFileListScreenTitle = "GoogleDriveFileListScreenTitle"

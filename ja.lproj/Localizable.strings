@@ -22,6 +22,7 @@ ButtonTitleReplace = "置換";
 ButtonTitleRename = "名前変更";
 ButtonTitleCopy = "コピー";
 ButtonTitleMove = "移動";
+ButtonTitleExport = "エクスポート";
 
 // アラートタイトル
 AlertTitleError = "エラー";
@@ -122,6 +123,14 @@ SearchAndReplaceSectionTitleResult = "結果";
 SearchAndReplaceCellTitleSearch = "検索単語";
 SearchAndReplaceCellTitleReplace = "置換単語";
 
+// ストレージ選択画面
+SelectStorageScreenTitle = "ストレージ選択";
+SelectStorageCellTitleLocal = "ローカル";
+SelectStorageCellTitleICloud = "iCloud";
+SelectStorageCellTitleDropbox = "Dropbox";
+SelectStorageCellTitleGoogleDrive = "Google drive";
+SelectStorageCellTitleOneDrive = "One drive";
+
 // ローカルファイル一覧画面
 LocalFileListScreenTitle = "ローカルファイル一覧";
 LocalFileListScreenTitleSearch = "検索結果一覧";
@@ -156,8 +165,11 @@ GrepLocalFileListScreenTitle = "ローカルファイルgrep一覧";
 // ローカルファイル名前変更画面
 RenameLocalFileScreenTitle = "ローカルファイル名前変更";
 
-// ディレクトリ選択画面
-SelectDirScreenTitle = "ディレクトリ選択";
+// ローカルディレクトリ選択画面
+SelectLocalDirScreenTitle = "ローカルディレクトリ選択";
+
+// ローカルファイルエクスポート画面
+ExportLocalFileScreenTitle = "ローカルファイルエクスポート";
 
 // iCloudファイル一覧画面
 ICloudFileListScreenTitle = "iCloudファイル一覧";
@@ -211,6 +223,9 @@ RenameDropboxFileScreenTitle = "Dropboxファイル名前変更";
 
 // Dropboxディレクトリ選択画面
 SelectDropboxDirScreenTitle = "Dropboxディレクトリ選択";
+
+// Dropboxファイルエクスポート画面
+ExportDropboxFileScreenTitle = "Dropboxファイルエクスポート";
 
 // GoogleDriveファイル一覧画面
 GoogleDriveFileListScreenTitle = "Google driveファイル一覧";

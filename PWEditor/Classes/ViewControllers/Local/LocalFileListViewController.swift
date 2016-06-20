@@ -664,6 +664,20 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
                 })
                 alert.addAction(ftpUploadAction)
             }
+
+            // エクスポートボタンを生成する。
+            let exportButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleExport)
+            let exportAction = UIAlertAction(title: exportButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+                // ストレージ選択画面に遷移する。
+                let sourceClassName = self.dynamicType.description()
+
+                let localFilePath = FileUtils.getLocalPath(self.pathName, name: name)
+                let fileData = NSData(contentsOfFile: localFilePath)
+
+                let vc = SelectStorageViewController(sourceClassName: sourceClassName, fileName: name, fileData: fileData!)
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+            alert.addAction(exportAction)
         }
 
         // 名前変更ボタンを生成する。
@@ -683,7 +697,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             let pathName = "/"
             let name = fileInfo.name
             let operateType = CommonConst.OperateType.Copy.rawValue
-            let vc = SelectDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
+            let vc = SelectLocalDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
             self.navigationController?.pushViewController(vc, animated: true)
         })
         alert.addAction(copyAction)
@@ -695,7 +709,7 @@ class LocalFileListViewController: BaseTableViewController, UISearchBarDelegate,
             let pathName = "/"
             let name = fileInfo.name
             let operateType = CommonConst.OperateType.Move.rawValue
-            let vc = SelectDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
+            let vc = SelectLocalDirViewController(pathName: pathName, name: name, srcPathName: self.pathName, srcName: name, operateType: operateType)
             self.navigationController?.pushViewController(vc, animated: true)
         })
         alert.addAction(moveAction)
