@@ -261,6 +261,9 @@ class SelectStorageViewController: BaseTableViewController {
         case CellIndex.GoogleDrive.rawValue:
             // Google driveセルの場合
             // Google driveエクスポート画面に遷移する。
+            let parentId = ""
+            let vc = ExportGoogleDriveFileViewController(sourceClassName: sourceClassName, parentId: parentId, fileName: fileName, fileData: fileData)
+            navigationController?.pushViewController(vc, animated: true)
             break
 
         case CellIndex.OneDrive.rawValue:

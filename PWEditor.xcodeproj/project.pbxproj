@@ -21,6 +21,8 @@
 		3F0D330F1D17FD27004A0532 /* ExportDropboxFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D330D1D17FD27004A0532 /* ExportDropboxFileViewController.xib */; };
 		3F0D33121D189F1E004A0532 /* ExportLocalFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D33101D189F1E004A0532 /* ExportLocalFileViewController.swift */; };
 		3F0D33131D189F1E004A0532 /* ExportLocalFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D33111D189F1E004A0532 /* ExportLocalFileViewController.xib */; };
+		3F0D33161D18A845004A0532 /* ExportGoogleDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D33141D18A845004A0532 /* ExportGoogleDriveFileViewController.swift */; };
+		3F0D33171D18A845004A0532 /* ExportGoogleDriveFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D33151D18A845004A0532 /* ExportGoogleDriveFileViewController.xib */; };
 		3F0F829E1C90D1510090632E /* ICTextViewLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */; };
 		3F0F82A11C90DAD20090632E /* HighlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F829F1C90DAD20090632E /* HighlightViewController.swift */; };
 		3F0F82A21C90DAD20090632E /* HighlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F82A01C90DAD20090632E /* HighlightViewController.xib */; };
@@ -301,6 +303,8 @@
 		3F0D330D1D17FD27004A0532 /* ExportDropboxFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExportDropboxFileViewController.xib; path = Classes/ViewControllers/Cloud/Dropbox/ExportDropboxFileViewController.xib; sourceTree = "<group>"; };
 		3F0D33101D189F1E004A0532 /* ExportLocalFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExportLocalFileViewController.swift; path = Classes/ViewControllers/Local/ExportLocalFileViewController.swift; sourceTree = "<group>"; };
 		3F0D33111D189F1E004A0532 /* ExportLocalFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExportLocalFileViewController.xib; path = Classes/ViewControllers/Local/ExportLocalFileViewController.xib; sourceTree = "<group>"; };
+		3F0D33141D18A845004A0532 /* ExportGoogleDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExportGoogleDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/GoogleDrive/ExportGoogleDriveFileViewController.swift; sourceTree = "<group>"; };
+		3F0D33151D18A845004A0532 /* ExportGoogleDriveFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExportGoogleDriveFileViewController.xib; path = Classes/ViewControllers/Cloud/GoogleDrive/ExportGoogleDriveFileViewController.xib; sourceTree = "<group>"; };
 		3F0D81471C7F2C22005FC945 /* PWEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PWEditor.entitlements; sourceTree = "<group>"; };
 		3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ICTextViewLicense.txt; path = Resources/Licenses/ICTextViewLicense.txt; sourceTree = "<group>"; };
 		3F0F829F1C90DAD20090632E /* HighlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighlightViewController.swift; path = Classes/ViewControllers/Local/HighlightViewController.swift; sourceTree = "<group>"; };
@@ -641,6 +645,8 @@
 				3FFA45FD1D10C317002D4274 /* RenameGoogleDriveFileViewController.xib */,
 				3FFA45FE1D10C317002D4274 /* SelectGoogleDriveDirViewController.swift */,
 				3FFA45FF1D10C317002D4274 /* SelectGoogleDriveDirViewController.xib */,
+				3F0D33141D18A845004A0532 /* ExportGoogleDriveFileViewController.swift */,
+				3F0D33151D18A845004A0532 /* ExportGoogleDriveFileViewController.xib */,
 			);
 			name = GoogleDrive;
 			sourceTree = "<group>";
@@ -1346,6 +1352,7 @@
 				3F2852731CE3F11B00C77435 /* BlackRaccoonLicense.txt in Resources */,
 				3F165E6A1C7A7B13001CBC38 /* OpenSourceLicenseListViewController.xib in Resources */,
 				3F889C461D062C4F0036A6DE /* ICloudDocumentSyncLicense.txt in Resources */,
+				3F0D33171D18A845004A0532 /* ExportGoogleDriveFileViewController.xib in Resources */,
 				3F6C6C411CFCF8DB002F0E62 /* CharCode.txt in Resources */,
 				3F165E361C7A687C001CBC38 /* GrepLocalFileListViewController.xib in Resources */,
 				3F165E761C7A7E7C001CBC38 /* SettingsViewController.xib in Resources */,
@@ -1513,6 +1520,7 @@
 				3F28527A1CE54DA500C77435 /* FtpFileDetailViewController.swift in Sources */,
 				3F165E791C7A7FF5001CBC38 /* SelectNumberViewController.swift in Sources */,
 				3F5AE4491CC788C600E262AC /* CreateGoogleDriveFileViewController.swift in Sources */,
+				3F0D33161D18A845004A0532 /* ExportGoogleDriveFileViewController.swift in Sources */,
 				3F2852851CE5962400C77435 /* FtpHostUtils.swift in Sources */,
 				3F2852681CE3EF1100C77435 /* BRRequest.m in Sources */,
 				3F12E8501CC57D7A0008DDEE /* GTLDrive_Sources.m in Sources */,

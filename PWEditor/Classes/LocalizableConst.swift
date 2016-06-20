@@ -265,6 +265,9 @@ struct LocalizableConst {
     // GoogleDriveディレクトリ選択画面
     static let kSelectGoogleDriveDirScreenTitle = "SelectGoogleDriveDirScreenTitle"
 
+    // GoogleDriveファイルエクスポート
+    static let kExportGoogleDriveFileScreenTitle = "ExportGoogleDriveFileScreenTitle"
+
     // OneDriveファイル一覧画面
     static let kOneDriveFileListScreenTitle = "OneDriveFileListScreenTitle"
 

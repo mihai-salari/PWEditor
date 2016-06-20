@@ -259,6 +259,9 @@ RenameGoogleDriveFileScreenTitle = "GoogleDriveファイル名前変更";
 // GoogleDriveディレクトリ選択画面
 SelectGoogleDriveDirScreenTitle = "GoogleDriveディレクトリ選択";
 
+// GoogleDriveファイルエクスポート
+ExportGoogleDriveFileScreenTitle = "GoogleDriveファイルエクスポート";
+
 // OneDriveファイル一覧画面
 OneDriveFileListScreenTitle = "One driveファイル一覧";
 
