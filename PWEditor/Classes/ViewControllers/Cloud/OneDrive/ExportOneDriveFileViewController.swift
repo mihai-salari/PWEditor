@@ -1,8 +1,8 @@
 //
-//  SelectOneDriveDirViewController.swift
+//  ExportOneDriveFileViewController.swift
 //  PWEditor
 //
-//  Created by mfuta1971 on 2016/06/14.
+//  Created by mfuta1971 on 2016/06/21.
 //  Copyright © 2016年 Masatsugu Futamata. All rights reserved.
 //
 
@@ -11,17 +11,17 @@ import GoogleMobileAds
 import OneDriveSDK
 
 /**
- OneDriveディレクトリ選択画面
+ OneDriveファイルエクスポート画面
 
  - Version: 1.0 新規作成
- - Authoer: paveway.info@gmail.com
+ - Author: paveway.info@gmail.com
  */
-class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecognizerDelegate {
+class ExportOneDriveFileViewController: BaseTableViewController, UIGestureRecognizerDelegate {
 
-    // MARK: - Constatns
+    // MARK: - Constants
 
     /// 画面タイトル
-    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kSelectOneDriveDirScreenTitle)
+    let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kExportOneDriveFileScreenTitle)
 
     // MARK: - Variables
 
@@ -31,14 +31,17 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
     /// バナービュー
     @IBOutlet weak var bannerView: GADBannerView!
 
+    /// 遷移元クラス名
+    private var sourceClassName: String!
+
     /// 親アイテムID
     private var parentItemId: String!
 
-    /// 元アイテム
-    private var fromItem: ODItem!
+    /// ファイル名
+    private var fileName: String!
 
-    /// 操作タイプ
-    private var operateType: Int!
+    /// ファイルデータ
+    private var fileData: NSData!
 
     /// ディレクトリアイテムリスト
     private var dirItemList = [ODItem]()
@@ -58,15 +61,17 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
     /**
      イニシャライザ
 
+     - Parameter sourceClassName: 遷移元クラス名
      - Parameter parentItemId: 親アイテムID
-     - Parameter fromItem: 元アイテム
-     - Parameter operateType: 操作タイプ
+     - Parameter fileName: ファイル名
+     - Parameter fileData: ファイルデータ
      */
-    init(parentItemId: String, fromItem: ODItem, operateType: Int) {
+    init(sourceClassName: String, parentItemId: String, fileName: String, fileData: NSData) {
         // 引数のデータを保存する。
+        self.sourceClassName = sourceClassName
         self.parentItemId = parentItemId
-        self.fromItem = fromItem
-        self.operateType = operateType
+        self.fileName = fileName
+        self.fileData = fileData
 
         // スーパークラスのメソッドを呼び出す。
         super.init(nibName: nil, bundle: nil)
@@ -155,7 +160,7 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
         let name = dirItem.name
         cell.textLabel!.text = name
         cell.accessoryType = .DisclosureIndicator
-
+        
         return cell
     }
 
@@ -188,8 +193,8 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
             parentItemId = dirInfo.id
         }
 
-        // ディレクトリ選択画面に遷移する。
-        let vc = SelectOneDriveDirViewController(parentItemId: parentItemId, fromItem: fromItem, operateType: operateType)
+        // OneDriveファイルエクスポート画面に遷移する。
+        let vc = ExportOneDriveFileViewController(sourceClassName: sourceClassName, parentItemId: parentItemId, fileName: fileName, fileData: fileData)
         navigationController?.pushViewController(vc, animated: true)
     }
 
@@ -272,29 +277,9 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
             return
         }
 
-        // コピー・移動先パス名を取得する。
+        // ファイルをエクスポートする。
         let parentId = dirItem!.id
-
-        // 操作タイプにより処理を振り分ける。
-        switch operateType {
-        case CommonConst.OperateType.Copy.rawValue:
-            // コピーを行う。
-            if parentId == "root" {
-                copyItemToRoot()
-            } else {
-                copyItem(parentId)
-            }
-            break
-
-        case CommonConst.OperateType.Move.rawValue:
-            // 移動を行う。
-            moveItem(parentId)
-            break
-
-        default:
-            // 上記以外、何もしない。
-            break
-        }
+        exportFile(parentId)
     }
 
     // MARK: - OneDrive API
@@ -380,48 +365,11 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
     }
 
     /**
-     コピーする。
- 
+     ファイルをエクスポートする。
+
      - Parameter parentId: 親ID
      */
-    private func copyItem(parentId: String) {
-        let client = ODClient.loadCurrentClient()
-        if client == nil {
-            // OneDriveが無効な場合
-            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
-            showAlert(title, message: message)
-            return
-        }
-
-        // ネットワークアクセス通知を表示する。
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-
-        let parent = ODItemReference()
-        let name = fromItem.name
-        parent.id = parentId
-        let request = client.drive().items(self.fromItem.id).copyWithName(name, parentReference: parent).request()
-        request.executeWithCompletion() { (item: ODItem?, status: ODAsyncOperationStatus?, error: NSError?) -> Void in
-            // ネットワークアクセス通知を消す。
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-
-            if error != nil {
-                // エラーの場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageCopyError)
-                self.showAlertAsync(title, message: message)
-                return
-            }
-
-            // 遷移元画面に戻る。
-            self.popViewController()
-        }
-    }
-
-    /**
-     rootディレクトリにコピーする。
-     */
-    private func copyItemToRoot() {
+    private func exportFile(parentId: String) {
         let client = ODClient.loadCurrentClient()
         if client == nil {
             // OneDriveが無効な場合
@@ -442,11 +390,11 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
         let accessToken = accountSession.accessToken
 
         // URL文字列を生成する。
-        let urlString = "\(baseURL)/drive/items/\(fromItem.id)/action.copy"
+        let urlString = "\(baseURL)/drive/items/\(parentId)/children/\(fileName)/content"
         // URLを生成する。
         let url = NSURL(string: urlString)
         if url == nil {
-            // URLを生成できない場合
+            // URLが生成できない場合
             // ネットワークアクセス通知を消す。
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
@@ -464,37 +412,22 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
         request.cachePolicy = .ReloadIgnoringLocalCacheData
 
         // HTTPメソッドを設定する。
-        request.HTTPMethod = CommonConst.Http.Method.kPOST
+        request.HTTPMethod = CommonConst.Http.Method.kPUT
 
         // Content-Typeを設定する。
         let contentType = CommonConst.Http.HTTPHeaderField.Key.kContentType
-        let applicationJson = CommonConst.Http.HTTPHeaderField.Value.kApplicationJson
-        request.setValue(applicationJson, forHTTPHeaderField: contentType)
+        let kTextPlain = CommonConst.Http.HTTPHeaderField.Value.kTextPlain
+        request.setValue(kTextPlain, forHTTPHeaderField: contentType)
 
         // Authorizationを設定する。
         let authorization = CommonConst.Http.HTTPHeaderField.Key.kAuthorization
         let bearer = String(format: CommonConst.Http.HTTPHeaderField.Value.kBearer, accessToken)
         request.setValue(bearer, forHTTPHeaderField: authorization)
 
-        // Preferを設定する。
-        let prefer = CommonConst.Http.HTTPHeaderField.Key.kPrefer
-        let respondAsync = CommonConst.Http.HTTPHeaderField.Value.kRespondAsync
-        request.setValue(respondAsync, forHTTPHeaderField: prefer)
+        // ファイルデータを設定する。
+        request.HTTPBody = fileData
 
-        // HTTPパラメータを生成し、設定する。
-        let params = ["path": "/drive/root"]
-        let parentReference = ["parentReference": params]
-
-        do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(parentReference, options: NSJSONWritingOptions())
-        } catch {
-            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageUrlParamsError)
-            showAlert(title, message: message)
-            return
-        }
-
-        // HTTP通信タスクを生成する。
+        // 通信タスクを生成する。
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             // ネットワークアクセス通知を消す。
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
@@ -510,8 +443,6 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
 
             var message = ""
             if data != nil {
-                // データがある場合
-                // メッセージを取得する。
                 message = String(data: data!, encoding: NSUTF8StringEncoding)!
             }
 
@@ -519,14 +450,10 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
             let statusCode = (response as! NSHTTPURLResponse).statusCode
             // HTTPステータスコード別に処理を振り分ける。
             switch statusCode {
-            case 202:
+            case 200, 201:
                 // 正常終了の場合
-                // UI処理はメインスレッドで行う。
-                let queue = dispatch_get_main_queue()
-                dispatch_async(queue) {
-                    // 遷移元画面に戻る。
-                    self.navigationController?.popViewControllerAnimated(true)
-                }
+                // 遷移元画面に戻る。
+                self.popViewController()
                 break
 
             default:
@@ -543,63 +470,16 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
     }
 
     /**
-     移動する。
-
-     - Parameter parentId: 親ID
-     */
-    private func moveItem(parentId: String) {
-        let client = ODClient.loadCurrentClient()
-        if client == nil {
-            // OneDriveが無効な場合
-            let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-            let message = LocalizableUtils.getString(LocalizableConst.kAlertMessageOneDriveInvalid)
-            showAlert(title, message: message)
-            return
-        }
-
-        // ネットワークアクセス通知を表示する。
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-
-        let updatedItem = ODItem()
-        updatedItem.id = fromItem.id
-        updatedItem.parentReference = ODItemReference()
-        updatedItem.parentReference.id = parentId
-
-        client.drive().items(self.fromItem.id).request().update(updatedItem, withCompletion: { (item: ODItem?, error: NSError?) -> Void in
-            // ネットワークアクセス通知を消す。
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-
-            if error != nil {
-                // エラーの場合
-                let title = LocalizableUtils.getString(LocalizableConst.kAlertTitleError)
-                let message = LocalizableUtils.getStringWithArgs(LocalizableConst.kAlertMessageMoveError)
-                self.showAlertAsync(title, message: message)
-                return
-            }
-
-            // 遷移元画面に戻る。
-            self.popViewController()
-        })
-    }
-
-    /**
      遷移元画面に戻る。
      */
     func popViewController(thread: Bool = true) {
         // 画面遷移数を取得する。
-        let controllers = navigationController?.viewControllers
-        if controllers == nil {
-            return
-        }
-        let count = controllers!.count
+        let count = navigationController?.viewControllers.count
         // 最後に表示した画面から画面遷移数確認する。
-        for var i = count - 1; i >= 0; i-- {
+        for var i = count! - 1; i >= 0; i-- {
             let vc = navigationController?.viewControllers[i]
-            if vc == nil {
-                continue
-            }
-            if vc!.dynamicType == OneDriveFileListViewController.self {
-                // 表示した画面がOneDriveファイル一覧画面の場合
+            if vc!.dynamicType.description() == sourceClassName {
+                // 表示した画面が遷移元画面の場合
                 // 画面を戻す。
                 if thread {
                     let queue = dispatch_get_main_queue()
@@ -607,7 +487,7 @@ class SelectOneDriveDirViewController: BaseTableViewController, UIGestureRecogni
                         self.navigationController?.popToViewController(vc!, animated: true)
                     }
                 } else {
-                    self.navigationController?.popToViewController(vc!, animated: true)
+                    navigationController?.popToViewController(vc!, animated: true)
                 }
                 break
             }

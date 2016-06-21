@@ -27,7 +27,7 @@ class SelectStorageViewController: BaseTableViewController {
     /// セルタイトルリスト
     let kCellTitleList = [
         LocalizableUtils.getString(LocalizableConst.kSelectStorageCellTitleLocal),
-        LocalizableUtils.getString(LocalizableConst.kSelectStorageCellTitleICloud),
+//        LocalizableUtils.getString(LocalizableConst.kSelectStorageCellTitleICloud),
         LocalizableUtils.getString(LocalizableConst.kSelectStorageCellTitleDropbox),
         LocalizableUtils.getString(LocalizableConst.kSelectStorageCellTitleGoogleDrive),
         LocalizableUtils.getString(LocalizableConst.kSelectStorageCellTitleOneDrive),
@@ -36,7 +36,7 @@ class SelectStorageViewController: BaseTableViewController {
     /// セルインデックス
     enum CellIndex: Int {
         case Local
-        case ICloud
+//        case ICloud
         case Dropbox
         case GoogleDrive
         case OneDrive
@@ -155,20 +155,20 @@ class SelectStorageViewController: BaseTableViewController {
             cell.textLabel?.enabled = true
             break
 
-        case CellIndex.ICloud.rawValue:
-            // iCloudセルの場合
-            let cloud = iCloud.sharedCloud()
-            if cloud.checkCloudUbiquityContainer() {
-                // iCloudが有効な場合
-                cell.accessoryType = .DisclosureIndicator
-                cell.textLabel?.enabled = true
-
-            } else {
-                // iCloudが無効な場合
-                cell.accessoryType = .None
-                cell.textLabel?.enabled = false
-            }
-            break
+//        case CellIndex.ICloud.rawValue:
+//            // iCloudセルの場合
+//            let cloud = iCloud.sharedCloud()
+//            if cloud.checkCloudUbiquityContainer() {
+//                // iCloudが有効な場合
+//                cell.accessoryType = .DisclosureIndicator
+//                cell.textLabel?.enabled = true
+//
+//            } else {
+//                // iCloudが無効な場合
+//                cell.accessoryType = .None
+//                cell.textLabel?.enabled = false
+//            }
+//            break
 
         case CellIndex.Dropbox.rawValue:
             // Dropboxセルの場合
@@ -245,10 +245,10 @@ class SelectStorageViewController: BaseTableViewController {
             navigationController?.pushViewController(vc, animated: true)
             break
 
-        case CellIndex.ICloud.rawValue:
-            // iCloudセルの場合
-            // iCloudエクスポート画面に遷移する。
-            break
+//        case CellIndex.ICloud.rawValue:
+//            // iCloudセルの場合
+//            // iCloudエクスポート画面に遷移する。
+//            break
 
         case CellIndex.Dropbox.rawValue:
             // Dropboxセルの場合
@@ -269,31 +269,14 @@ class SelectStorageViewController: BaseTableViewController {
         case CellIndex.OneDrive.rawValue:
             // One driveセルの場合
             // One driveエクスポート画面に遷移する。
+            let parentItemId = ""
+            let vc = ExportOneDriveFileViewController(sourceClassName: sourceClassName, parentItemId: parentItemId, fileName: fileName, fileData: fileData)
+            navigationController?.pushViewController(vc, animated: true)
             break
 
         default:
             // 上記以外、何もしない。
             break
-        }
-    }
-
-    // MARK: - Private method
-
-    /**
-     遷移元画面に戻る。
-     */
-    func popViewController() {
-        // 画面遷移数を取得する。
-        let count = navigationController?.viewControllers.count
-        // 最後に表示した画面から画面遷移数確認する。
-        for var i = count! - 1; i >= 0; i-- {
-            let vc = navigationController?.viewControllers[i]
-            if vc!.dynamicType == LocalFileListViewController.self {
-                // 表示した画面がローカルファイル一覧画面の場合
-                // 画面を戻す。
-                navigationController?.popToViewController(vc!, animated: true)
-                break
-            }
         }
     }
 }

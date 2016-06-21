@@ -23,6 +23,8 @@
 		3F0D33131D189F1E004A0532 /* ExportLocalFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D33111D189F1E004A0532 /* ExportLocalFileViewController.xib */; };
 		3F0D33161D18A845004A0532 /* ExportGoogleDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D33141D18A845004A0532 /* ExportGoogleDriveFileViewController.swift */; };
 		3F0D33171D18A845004A0532 /* ExportGoogleDriveFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D33151D18A845004A0532 /* ExportGoogleDriveFileViewController.xib */; };
+		3F0D331A1D18B1A2004A0532 /* ExportOneDriveFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0D33181D18B1A2004A0532 /* ExportOneDriveFileViewController.swift */; };
+		3F0D331B1D18B1A2004A0532 /* ExportOneDriveFileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0D33191D18B1A2004A0532 /* ExportOneDriveFileViewController.xib */; };
 		3F0F829E1C90D1510090632E /* ICTextViewLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */; };
 		3F0F82A11C90DAD20090632E /* HighlightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F829F1C90DAD20090632E /* HighlightViewController.swift */; };
 		3F0F82A21C90DAD20090632E /* HighlightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F82A01C90DAD20090632E /* HighlightViewController.xib */; };
@@ -305,6 +307,8 @@
 		3F0D33111D189F1E004A0532 /* ExportLocalFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExportLocalFileViewController.xib; path = Classes/ViewControllers/Local/ExportLocalFileViewController.xib; sourceTree = "<group>"; };
 		3F0D33141D18A845004A0532 /* ExportGoogleDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExportGoogleDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/GoogleDrive/ExportGoogleDriveFileViewController.swift; sourceTree = "<group>"; };
 		3F0D33151D18A845004A0532 /* ExportGoogleDriveFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExportGoogleDriveFileViewController.xib; path = Classes/ViewControllers/Cloud/GoogleDrive/ExportGoogleDriveFileViewController.xib; sourceTree = "<group>"; };
+		3F0D33181D18B1A2004A0532 /* ExportOneDriveFileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExportOneDriveFileViewController.swift; path = Classes/ViewControllers/Cloud/OneDrive/ExportOneDriveFileViewController.swift; sourceTree = "<group>"; };
+		3F0D33191D18B1A2004A0532 /* ExportOneDriveFileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExportOneDriveFileViewController.xib; path = Classes/ViewControllers/Cloud/OneDrive/ExportOneDriveFileViewController.xib; sourceTree = "<group>"; };
 		3F0D81471C7F2C22005FC945 /* PWEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PWEditor.entitlements; sourceTree = "<group>"; };
 		3F0F829D1C90D1510090632E /* ICTextViewLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ICTextViewLicense.txt; path = Resources/Licenses/ICTextViewLicense.txt; sourceTree = "<group>"; };
 		3F0F829F1C90DAD20090632E /* HighlightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighlightViewController.swift; path = Classes/ViewControllers/Local/HighlightViewController.swift; sourceTree = "<group>"; };
@@ -997,6 +1001,8 @@
 				3FFA46051D12184D002D4274 /* RenameOneDriveFileViewController.xib */,
 				3FFA46061D12184D002D4274 /* SelectOneDriveDirViewController.swift */,
 				3FFA46071D12184D002D4274 /* SelectOneDriveDirViewController.xib */,
+				3F0D33181D18B1A2004A0532 /* ExportOneDriveFileViewController.swift */,
+				3F0D33191D18B1A2004A0532 /* ExportOneDriveFileViewController.xib */,
 			);
 			name = OneDrive;
 			sourceTree = "<group>";
@@ -1281,6 +1287,7 @@
 				3FDB24C01CED05110073BC04 /* SelectFtpDownloadTargetViewController.xib in Resources */,
 				3FDB24E41CF0FE310073BC04 /* Syntax_common.txt in Resources */,
 				3F6C6C441CFCF8DB002F0E62 /* ReadJEnc.txt in Resources */,
+				3F0D331B1D18B1A2004A0532 /* ExportOneDriveFileViewController.xib in Resources */,
 				3F57FED61CD17BA3002ADAC8 /* CreateOneDriveFileViewController.xib in Resources */,
 				3F165E511C7A75F9001CBC38 /* content.html in Resources */,
 				3F17F03F1CCF712700A1F280 /* marked.html in Resources */,
@@ -1450,6 +1457,7 @@
 				3F165E351C7A687C001CBC38 /* GrepLocalFileListViewController.swift in Sources */,
 				3F28526D1CE3EF1100C77435 /* BRRequestError.m in Sources */,
 				3F57FECD1CD17A54002ADAC8 /* OneDriveFileDetailViewController.swift in Sources */,
+				3F0D331A1D18B1A2004A0532 /* ExportOneDriveFileViewController.swift in Sources */,
 				3FDB24E01CEF2EDF0073BC04 /* CYRTextView.m in Sources */,
 				3FDB24C31CED096E0073BC04 /* SelectLocalDirectoryListViewController.swift in Sources */,
 				3F889C491D0631300036A6DE /* SearchAndReplaceViewController.swift in Sources */,

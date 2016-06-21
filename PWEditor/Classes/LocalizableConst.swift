@@ -297,6 +297,9 @@ struct LocalizableConst {
     // OneDriveディレクトリ選択画面
     static let kSelectOneDriveDirScreenTitle = "SelectOneDriveDirScreenTitle"
 
+    // OneDriveファイルエクスポート画面
+    static let kExportOneDriveFileScreenTitle = "ExportOneDriveFileScreenTitle"
+
     // FTPホスト一覧画面
     static let kFtpHostListScreenTitle = "FtpHostListScreenTitle"
 

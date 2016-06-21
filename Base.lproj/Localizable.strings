@@ -291,6 +291,9 @@ RenameOneDriveFileScreenTitle = "Rename one drive file";
 // OneDriveディレクトリ選択画面
 SelectOneDriveDirScreenTitle = "Select one drive directory";
 
+// OneDriveファイルエクスポート画面
+ExportOneDriveFileScreenTitle = "Export one drive file";
+
 // FTPホスト一覧画面
 FtpHostListScreenTitle = "FTP host list";
 
