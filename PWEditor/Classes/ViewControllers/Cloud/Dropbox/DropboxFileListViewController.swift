@@ -23,6 +23,11 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
     /// 画面タイトル
     let kScreenTitle = LocalizableUtils.getString(LocalizableConst.kDropboxFileListScreenTitle)
 
+    enum OperateType: Int {
+        case FtpUpload
+        case Export
+    }
+
     // MARK: - Variables
 
     /// テーブルビュー
@@ -360,10 +365,19 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
                 // FTPアップロードボタンを生成する。
                 let ftpUploadButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleFtpUpload)
                 let ftpUploadAction = UIAlertAction(title: ftpUploadButtonTitle, style: .Default, handler: { (action: UIAlertAction) -> Void in
-                    self.downloadData(name)
+                    let operateType = OperateType.FtpUpload.rawValue
+                    self.downloadData(name, operateType: operateType)
                 })
                 alert.addAction(ftpUploadAction)
             }
+
+            // エクスポートボタンを生成する。
+            let exportButtonTitle = LocalizableUtils.getString(LocalizableConst.kButtonTitleExport)
+            let exportAction = UIAlertAction(title: exportButtonTitle, style: .Default, handler: {(action: UIAlertAction) -> Void in
+                let operateType = OperateType.Export.rawValue
+                self.downloadData(name, operateType: operateType)
+            })
+            alert.addAction(exportAction)
         }
 
         // 名前変更ボタンを生成する。
@@ -650,8 +664,9 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
      Dropboxファイルをダウンロードする。
 
      - Parameter fileName: ファイル名
+     - Parameter operateType: 操作タイプ
      */
-    func downloadData(fileName: String) {
+    func downloadData(fileName: String, operateType: Int) {
         let client = Dropbox.authorizedClient
         if client == nil {
             // Dropboxが無効な場合
@@ -714,9 +729,16 @@ class DropboxFileListViewController: BaseTableViewController, UIGestureRecognize
                     self.showAlert(title, message: message)
                 }
 
-                // FTPアップロードホスト選択一覧画面に遷移する。
+                let vc: UIViewController
                 let sourceClassName = self.dynamicType.description()
-                let vc = SelectFtpUploadHostListViewController(sourceClassName: sourceClassName, fileName: fileName, fileData: fileData!)
+                if operateType == OperateType.FtpUpload.rawValue {
+                    // FTPアップロードホスト選択一覧画面に遷移する。
+                    vc = SelectFtpUploadHostListViewController(sourceClassName: sourceClassName, fileName: fileName, fileData: fileData!)
+
+                } else {
+                    // ストレージ選択画面に遷移する。
+                    vc = SelectStorageViewController(sourceClassName: sourceClassName, fileName: fileName, fileData: fileData!)
+                }
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

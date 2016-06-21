@@ -275,7 +275,7 @@ class ExportDropboxFileViewController: BaseTableViewController, UIGestureRecogni
             return
         }
 
-        // コピー・移動先パス名を取得する。
+        // エクスポート先パス名を取得する。
         let dirName = dirInfo!.name
         let filePathName: String
         if pathName == "/" {
@@ -294,7 +294,8 @@ class ExportDropboxFileViewController: BaseTableViewController, UIGestureRecogni
             }
         }
 
-        export(filePathName)
+        // ファイルをエクスポートする。
+        exportFile(filePathName)
     }
 
     // MARK: - Dropbox
@@ -370,7 +371,7 @@ class ExportDropboxFileViewController: BaseTableViewController, UIGestureRecogni
 
      - Parameter filePathName: ファイルパス名
      */
-    private func export(filePathName: String) {
+    private func exportFile(filePathName: String) {
         let client = Dropbox.authorizedClient
         if client == nil {
             // Dropboxが無効な場合

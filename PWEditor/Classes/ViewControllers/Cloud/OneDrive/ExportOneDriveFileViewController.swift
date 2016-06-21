@@ -390,7 +390,8 @@ class ExportOneDriveFileViewController: BaseTableViewController, UIGestureRecogn
         let accessToken = accountSession.accessToken
 
         // URL文字列を生成する。
-        let urlString = "\(baseURL)/drive/items/\(parentId)/children/\(fileName)/content"
+        let encodedFileName = fileName.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        let urlString = "\(baseURL)/drive/items/\(parentId)/children/\(encodedFileName!)/content"
         // URLを生成する。
         let url = NSURL(string: urlString)
         if url == nil {
